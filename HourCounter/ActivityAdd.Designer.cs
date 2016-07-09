@@ -51,9 +51,9 @@
             this.radioSubActivity.AutoSize = true;
             this.radioSubActivity.Location = new System.Drawing.Point(12, 104);
             this.radioSubActivity.Name = "radioSubActivity";
-            this.radioSubActivity.Size = new System.Drawing.Size(80, 17);
+            this.radioSubActivity.Size = new System.Drawing.Size(90, 17);
             this.radioSubActivity.TabIndex = 1;
-            this.radioSubActivity.Text = "Sub activity";
+            this.radioSubActivity.Text = "Below activity";
             this.radioSubActivity.UseVisualStyleBackColor = true;
             this.radioSubActivity.CheckedChanged += new System.EventHandler(this.radioSubActivity_CheckedChanged);
             // 
@@ -105,6 +105,7 @@
             this.bCancel.TabIndex = 6;
             this.bCancel.Text = "Cancel";
             this.bCancel.UseVisualStyleBackColor = true;
+            this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
             // 
             // label1
             // 

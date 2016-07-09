@@ -13,8 +13,8 @@ namespace HourCounter
 
         private string _name = null; // Stores the activity name
         public string Name { get { return _name; } private set { } } // Only can be viewed
-        private SortedList<string, Activity> subActivities = new SortedList<string, Activity>(); //Stores all the subActivities
-        public SortedList<string, Activity> GetList() { return subActivities; }
+        private SortedList<string, Activity> _subActivities = new SortedList<string, Activity>(); //Stores all the subActivities
+        public SortedList<string, Activity> GetList() { return _subActivities; }
 
         private long _minutesSpentOnActivity;
         //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
@@ -24,7 +24,7 @@ namespace HourCounter
             get
             {
                 long sumMinutesSpent = _minutesSpentOnActivity;
-                foreach (var de in subActivities)
+                foreach (var de in _subActivities)
                 {
                     Activity ac = (Activity)de.Value;
                     sumMinutesSpent += ac.Counter;
@@ -48,9 +48,35 @@ namespace HourCounter
         // Adds subactivity to the activity list 
         public void AddSubActivity(Activity subActivity)
         {
-            subActivities.Add(subActivity.Name, subActivity);
+            _subActivities.Add(subActivity.Name, subActivity);
             updateAllViews(); ///TODO Ott is updatelni kell majd ahol inkrementálja egy activity idejét!!!!!
         }
+        public LinkedList<String> GetListStringFormated(Activity startActivity, String tab)
+        {
+            SortedList<string, Activity> subActivities = startActivity.GetList();
+            if (subActivities.Count == 0) //No more activities
+                return null;
+            LinkedList<String> activityStringList = new LinkedList<string>();
+
+            foreach(var dict in subActivities)
+            {
+                string activityName = dict.Key;
+                activityStringList.AddLast(tab + activityName);
+
+                Activity subActivity = dict.Value;
+                LinkedList<String> subList = GetListStringFormated(subActivity, tab + "  ");
+                if(subList != null)
+                {
+                    foreach (String subSubActivityName in subList)
+                    {
+                        activityStringList.AddLast(subSubActivityName);
+                    }
+                } 
+            }
+
+            return activityStringList;
+        }
+
         public string getFormatedStatus()
         {
             return _name + "    " + (Counter / 60) + "h";

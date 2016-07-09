@@ -17,11 +17,21 @@ namespace HourCounter
         {
             _activityContainer = activityContainer;
             InitializeComponent ();
+            fillComboBox();
+        }
+
+        private void fillComboBox ()
+        {
+            LinkedList<String> comboItems = _activityContainer.GetListStringFormated(_activityContainer, "");
+            foreach(String item in comboItems)
+            {
+                comboActivityDropDown.Items.Add(item);
+            }
         }
 
         private void radioSubActivity_CheckedChanged (object sender, EventArgs e)
         {
-            comboActivityDropDown.Enabled = !comboActivityDropDown.Enabled;
+            comboActivityDropDown.Enabled = !comboActivityDropDown.Enabled; 
         }
 
         private void bAdd_Click (object sender, EventArgs e)
@@ -42,6 +52,11 @@ namespace HourCounter
                 throw new NotImplementedException();
             }
             this.Close ();
+        }
+
+        private void bCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

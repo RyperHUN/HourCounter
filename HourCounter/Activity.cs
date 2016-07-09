@@ -81,5 +81,32 @@ namespace HourCounter
         {
             return _name + "    " + (Counter / 60) + "h";
         }
+        public void AddBelowActivity (Activity rootActivity,Activity newActivity, string searchForActivity)
+        {
+            Activity activity = Find(rootActivity, searchForActivity);
+            if (activity != null)
+                activity.AddSubActivity(newActivity);
+
+            updateAllViews ();
+        }
+        public Activity Find (Activity rootActivity,string searchForActivity)
+        {
+            SortedList<string, Activity> subActivities = rootActivity.GetList ();
+            if (subActivities.Count == 0)
+                return null;
+
+            foreach(var dict in subActivities)
+            {
+                String activityName = dict.Key;
+                Activity activity = dict.Value;
+                if (activityName == searchForActivity)
+                    return activity;
+                Activity act = activity.Find(activity, searchForActivity);
+                if (act != null && act.Name == searchForActivity)
+                    return act;
+            }
+
+            return null;
+        }
     }
 }

@@ -35,6 +35,7 @@ namespace HourCounter
                 
                 this.Nodes.Add(Root);
             }
+            this.ExpandAll();
         }
         LinkedList<TreeNode> GetChilds(Activity activity)
         {

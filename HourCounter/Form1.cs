@@ -12,6 +12,7 @@ namespace HourCounter
 {
     public partial class Form1 : Form
     {
+        bool isAutomaticSave = true;
         Activity activityContainer = new Activity("INIT");
         public Form1()
         {
@@ -31,22 +32,39 @@ namespace HourCounter
             programozas.AddSubActivity(csharp);
 
             activityContainer.AddSubActivity(suli);
-            activityContainer.AddSubActivity(programozas);
             TreeListView treeList = new TreeListView(activityContainer);
 
             treeList.Dock = DockStyle.Fill; //Így kitölti az egész szülő Containert
-            treeList.ExpandAll();
 
             activityContainer.addObserver(treeList);
 
             splitContainer.Panel1.Controls.Add(treeList);
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void menuAddNewActivity_Click (object sender, EventArgs e)
         {
             ActivityAdd activityAdd = new ActivityAdd(activityContainer);
             activityAdd.ShowDialog();
             
+        }
+
+        private void menuSettings_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuAutomaticSave_Click(object sender, EventArgs e)
+        {
+            if(isAutomaticSave)
+            {
+                isAutomaticSave = false;
+                menuAutomaticSave.Text = "Automatic Save: OFF";
+            }
+            else
+            {
+                isAutomaticSave = true;
+                menuAutomaticSave.Text = "Automatic Save: ON";
+            }
         }
     }
 }

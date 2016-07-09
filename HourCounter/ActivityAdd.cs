@@ -40,6 +40,8 @@ namespace HourCounter
             long timeSpent;
             if (!Int64.TryParse (tTimeSpent.Text, out timeSpent))
                 throw new System.IO.IOException ("Expected only number at the timeSpent textbox");
+            if(activityName == "")
+                throw new System.IO.IOException("Name cannot be empty");
 
             Activity newActivity = new Activity (activityName, timeSpent);
             if (radioMainActivity.Checked)
@@ -49,7 +51,9 @@ namespace HourCounter
             }
             else
             {
-                throw new NotImplementedException();
+                string searchForActivity = (string)comboActivityDropDown.SelectedItem;
+                searchForActivity        = searchForActivity.Trim(); //Remove spaces before activity ( tab )
+                _activityContainer.AddBelowActivity(_activityContainer, newActivity, searchForActivity);
             }
             this.Close ();
         }

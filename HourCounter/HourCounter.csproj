@@ -53,6 +53,12 @@
     <Compile Include="ActivityAdd.Designer.cs">
       <DependentUpon>ActivityAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="ActivityTimer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivityTimer.Designer.cs">
+      <DependentUpon>ActivityTimer.cs</DependentUpon>
+    </Compile>
     <Compile Include="DetailedView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,6 +77,12 @@
     </Compile>
     <EmbeddedResource Include="ActivityAdd.resx">
       <DependentUpon>ActivityAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ActivityTimer.resx">
+      <DependentUpon>ActivityTimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedView.resx">
+      <DependentUpon>DetailedView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -7,14 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HourCounter;
 
-namespace HourCounter
+namespace DetailedView
 {
-    public partial class ActivityTimer : UserControl
+    public partial class DetailedView : UserControl, Observer
     {
-        public ActivityTimer()
+        public DetailedView(Activity asd)
         {
             InitializeComponent();
         }
+
     }
 }

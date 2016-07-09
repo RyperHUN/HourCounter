@@ -47,7 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity.cs" />
-    <Compile Include="ActivityContainer.cs" />
+    <Compile Include="ActivityAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActivityAdd.Designer.cs">
+      <DependentUpon>ActivityAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="DetailedView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -64,6 +69,9 @@
     <Compile Include="TreeListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="ActivityAdd.resx">
+      <DependentUpon>ActivityAdd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

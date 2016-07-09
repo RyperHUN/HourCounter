@@ -8,12 +8,20 @@ namespace HourCounter
     public abstract class Observable
     {
         protected LinkedList<Observer> observers;
-        private void updateAllViews()
+        protected void updateAllViews()
         {
             foreach(Observer observer in observers)
             {
-                observer.Update();
+                observer.update();
             }
+        }
+        public void addObserver(Observer o)
+        {
+            observers.AddLast(o);
+        }
+        public Observable()
+        {
+            observers = new LinkedList<Observer>();
         }
     }
 }

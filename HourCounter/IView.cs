@@ -7,6 +7,6 @@ namespace HourCounter
 {
     public interface Observer
     {
-        void Update();
+        void update();
     }
 }

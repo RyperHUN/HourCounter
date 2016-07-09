@@ -9,14 +9,15 @@ namespace HourCounter
     //Ez egy olyan nézet lesz amibe megjelennek a tevékenységek, és mellettük külön oszlopba az eltöltött óra
     public class TreeListView : TreeView,Observer
     {
-        private ActivityContainer activityContainer;
-        public TreeListView(ActivityContainer ac)
+        private Activity activityContainer;
+        public TreeListView(Activity ac)
         {
             activityContainer = ac;
             BuildTree();
         }
         void BuildTree()
         {
+            this.Nodes.Clear();
             SortedList<string,Activity> activities = activityContainer.GetList();
             foreach(var dict in activities)
             {

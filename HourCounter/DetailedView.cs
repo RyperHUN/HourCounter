@@ -5,7 +5,11 @@ using System.Text;
 
 namespace HourCounter
 {
-    public class DetailedView : System.Windows.Forms.UserControl,Observer
+    public class DetailedView : System.Windows.Forms.UserControl, Observer
     {
+        public void update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

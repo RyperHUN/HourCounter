@@ -12,7 +12,7 @@ namespace HourCounter
 {
     public partial class Form1 : Form
     {
-        ActivityContainer activityContainer = new ActivityContainer();
+        Activity activityContainer = new Activity("INIT");
         public Form1()
         {
             InitializeComponent();
@@ -30,14 +30,23 @@ namespace HourCounter
             programozas.AddSubActivity(cpp);
             programozas.AddSubActivity(csharp);
 
-            activityContainer.addActivity(suli);
-            activityContainer.addActivity(programozas);
+            activityContainer.AddSubActivity(suli);
+            activityContainer.AddSubActivity(programozas);
             TreeListView treeList = new TreeListView(activityContainer);
 
             treeList.Dock = DockStyle.Fill; //Így kitölti az egész szülő Containert
             treeList.ExpandAll();
 
+            activityContainer.addObserver(treeList);
+
             splitContainer.Panel1.Controls.Add(treeList);
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ActivityAdd activityAdd = new ActivityAdd(activityContainer);
+            activityAdd.ShowDialog();
+            
         }
     }
 }

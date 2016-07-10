@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.splitContainerRight = new System.Windows.Forms.SplitContainer();
+            this.activityTimer = new ActivityTimer.ActivityTimer();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddNewActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAutomaticSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.activityTimer1 = new ActivityTimer.ActivityTimer();
-            this.splitContainerRight = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
-            this.menuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerRight)).BeginInit();
             this.splitContainerRight.Panel2.SuspendLayout();
             this.splitContainerRight.SuspendLayout();
+            this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerMain
@@ -61,6 +61,28 @@
             this.splitContainerMain.Size = new System.Drawing.Size(588, 489);
             this.splitContainerMain.SplitterDistance = 222;
             this.splitContainerMain.TabIndex = 0;
+            // 
+            // splitContainerRight
+            // 
+            this.splitContainerRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerRight.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerRight.Name = "splitContainerRight";
+            this.splitContainerRight.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerRight.Panel2
+            // 
+            this.splitContainerRight.Panel2.Controls.Add(this.activityTimer);
+            this.splitContainerRight.Size = new System.Drawing.Size(362, 489);
+            this.splitContainerRight.SplitterDistance = 230;
+            this.splitContainerRight.TabIndex = 0;
+            // 
+            // activityTimer
+            // 
+            this.activityTimer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.activityTimer.Location = new System.Drawing.Point(0, 0);
+            this.activityTimer.Name = "activityTimer";
+            this.activityTimer.Size = new System.Drawing.Size(362, 255);
+            this.activityTimer.TabIndex = 0;
             // 
             // menuBar
             // 
@@ -104,28 +126,6 @@
             this.menuAutomaticSave.Text = "Automatic Save: ON";
             this.menuAutomaticSave.Click += new System.EventHandler(this.menuAutomaticSave_Click);
             // 
-            // activityTimer1
-            // 
-            this.activityTimer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.activityTimer1.Location = new System.Drawing.Point(0, 0);
-            this.activityTimer1.Name = "activityTimer1";
-            this.activityTimer1.Size = new System.Drawing.Size(362, 254);
-            this.activityTimer1.TabIndex = 0;
-            // 
-            // splitContainerRight
-            // 
-            this.splitContainerRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerRight.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerRight.Name = "splitContainerRight";
-            this.splitContainerRight.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainerRight.Panel2
-            // 
-            this.splitContainerRight.Panel2.Controls.Add(this.activityTimer1);
-            this.splitContainerRight.Size = new System.Drawing.Size(362, 489);
-            this.splitContainerRight.SplitterDistance = 231;
-            this.splitContainerRight.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,11 +139,11 @@
             this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
-            this.menuBar.ResumeLayout(false);
-            this.menuBar.PerformLayout();
             this.splitContainerRight.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerRight)).EndInit();
             this.splitContainerRight.ResumeLayout(false);
+            this.menuBar.ResumeLayout(false);
+            this.menuBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,7 +157,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuAddNewActivity;
         private System.Windows.Forms.ToolStripMenuItem menuSettings;
         private System.Windows.Forms.ToolStripMenuItem menuAutomaticSave;
-        private ActivityTimer.ActivityTimer activityTimer1;
+        private ActivityTimer.ActivityTimer activityTimer;
         private System.Windows.Forms.SplitContainer splitContainerRight;
     }
 }

@@ -12,16 +12,16 @@ namespace HourCounter
 {
     public partial class Form1 : Form
     {
-        bool isAutomaticSave = true;
-        Activity activityContainer = new Activity("INIT");
-        public Form1()
+        bool _isAutomaticSave = true;
+        Activity _activityContainer = new Activity("INIT");
+        public Form1 ()
         {
-            InitializeComponent();
-
+            InitializeComponent ();
+            //Neccesary for timer
             Activity suli = new Activity("suli");
 
             Activity programozas = new Activity("Programozás");
-            
+
 
             Activity cpp = new Activity("C++");
 
@@ -31,19 +31,22 @@ namespace HourCounter
             programozas.AddSubActivity(cpp);
             programozas.AddSubActivity(csharp);
 
-            activityContainer.AddSubActivity(suli);
-            TreeListView treeList = new TreeListView(activityContainer);
+            _activityContainer.AddSubActivity(suli);
+            activityTimer.setActivityContainer(_activityContainer);
+            //Neccesary for timer
+            
+            TreeListView treeList = new TreeListView(_activityContainer);
 
             treeList.Dock = DockStyle.Fill; //Így kitölti az egész szülő Containert
 
-            activityContainer.addObserver(treeList);
+            _activityContainer.addObserver(treeList);
 
             splitContainerMain.Panel1.Controls.Add(treeList);
         }
 
         private void menuAddNewActivity_Click (object sender, EventArgs e)
         {
-            ActivityAdd activityAdd = new ActivityAdd(activityContainer);
+            ActivityAdd activityAdd = new ActivityAdd(_activityContainer);
             activityAdd.ShowDialog();
             
         }
@@ -55,14 +58,14 @@ namespace HourCounter
 
         private void menuAutomaticSave_Click(object sender, EventArgs e)
         {
-            if(isAutomaticSave)
+            if(_isAutomaticSave)
             {
-                isAutomaticSave = false;
+                _isAutomaticSave = false;
                 menuAutomaticSave.Text = "Automatic Save: OFF";
             }
             else
             {
-                isAutomaticSave = true;
+                _isAutomaticSave = true;
                 menuAutomaticSave.Text = "Automatic Save: ON";
             }
         }

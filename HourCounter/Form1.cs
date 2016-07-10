@@ -38,7 +38,7 @@ namespace HourCounter
 
             activityContainer.addObserver(treeList);
 
-            splitContainer.Panel1.Controls.Add(treeList);
+            splitContainerMain.Panel1.Controls.Add(treeList);
         }
 
         private void menuAddNewActivity_Click (object sender, EventArgs e)

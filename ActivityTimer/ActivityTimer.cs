@@ -15,6 +15,7 @@ namespace ActivityTimer
         public ActivityTimer()
         {
             InitializeComponent();
+            tabPicker.Dock = DockStyle.Fill;
         }
     }
 }

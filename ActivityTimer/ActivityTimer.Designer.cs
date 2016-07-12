@@ -41,21 +41,21 @@
             this.tabTimer = new System.Windows.Forms.TabPage();
             this.bSet = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.Stopwatch = new System.Windows.Forms.TabPage();
+            this.tabStopwatch = new System.Windows.Forms.TabPage();
             this.bStopStop = new System.Windows.Forms.Button();
             this.bStopPause = new System.Windows.Forms.Button();
             this.bStopStart = new System.Windows.Forms.Button();
             this.lStopTime = new System.Windows.Forms.Label();
             this.tabPicker.SuspendLayout();
             this.tabTimer.SuspendLayout();
-            this.Stopwatch.SuspendLayout();
+            this.tabStopwatch.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerSecond
             // 
             this.timerSecond.Tick += new System.EventHandler(this.timerSecond_Tick);
             // 
-            // stopwatchSecond
+            // timerStopwatchSecond
             // 
             this.timerStopwatchSecond.Tick += new System.EventHandler(this.stopwatchSecond_Tick);
             // 
@@ -118,8 +118,8 @@
             // 
             // tabPicker
             // 
+            this.tabPicker.Controls.Add(this.tabStopwatch);
             this.tabPicker.Controls.Add(this.tabTimer);
-            this.tabPicker.Controls.Add(this.Stopwatch);
             this.tabPicker.Location = new System.Drawing.Point(0, 3);
             this.tabPicker.Name = "tabPicker";
             this.tabPicker.SelectedIndex = 0;
@@ -163,19 +163,19 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Set the time:";
             // 
-            // Stopwatch
+            // tabStopwatch
             // 
-            this.Stopwatch.Controls.Add(this.bStopStop);
-            this.Stopwatch.Controls.Add(this.bStopPause);
-            this.Stopwatch.Controls.Add(this.bStopStart);
-            this.Stopwatch.Controls.Add(this.lStopTime);
-            this.Stopwatch.Location = new System.Drawing.Point(4, 22);
-            this.Stopwatch.Name = "Stopwatch";
-            this.Stopwatch.Padding = new System.Windows.Forms.Padding(3);
-            this.Stopwatch.Size = new System.Drawing.Size(337, 212);
-            this.Stopwatch.TabIndex = 1;
-            this.Stopwatch.Text = "tabStopwatch";
-            this.Stopwatch.UseVisualStyleBackColor = true;
+            this.tabStopwatch.Controls.Add(this.bStopStop);
+            this.tabStopwatch.Controls.Add(this.bStopPause);
+            this.tabStopwatch.Controls.Add(this.bStopStart);
+            this.tabStopwatch.Controls.Add(this.lStopTime);
+            this.tabStopwatch.Location = new System.Drawing.Point(4, 22);
+            this.tabStopwatch.Name = "tabStopwatch";
+            this.tabStopwatch.Padding = new System.Windows.Forms.Padding(3);
+            this.tabStopwatch.Size = new System.Drawing.Size(337, 212);
+            this.tabStopwatch.TabIndex = 1;
+            this.tabStopwatch.Text = "Stopwatch";
+            this.tabStopwatch.UseVisualStyleBackColor = true;
             // 
             // bStopStop
             // 
@@ -227,8 +227,8 @@
             this.tabPicker.ResumeLayout(false);
             this.tabTimer.ResumeLayout(false);
             this.tabTimer.PerformLayout();
-            this.Stopwatch.ResumeLayout(false);
-            this.Stopwatch.PerformLayout();
+            this.tabStopwatch.ResumeLayout(false);
+            this.tabStopwatch.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -245,7 +245,7 @@
         private System.Windows.Forms.Label lRemainingTime;
         private System.Windows.Forms.TabControl tabPicker;
         private System.Windows.Forms.TabPage tabTimer;
-        private System.Windows.Forms.TabPage Stopwatch;
+        private System.Windows.Forms.TabPage tabStopwatch;
         private System.Windows.Forms.Button bSet;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button bStopStop;

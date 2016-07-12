@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.treeView = new TreeListView.TreeListView();
             this.splitContainerRight = new System.Windows.Forms.SplitContainer();
             this.groupDetailedView = new System.Windows.Forms.GroupBox();
             this.detailedView = new DetailedView.DetailedView();
@@ -43,7 +44,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.treeView = new TreeListView.TreeListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -73,6 +73,15 @@
             this.splitContainerMain.Size = new System.Drawing.Size(588, 489);
             this.splitContainerMain.SplitterDistance = 222;
             this.splitContainerMain.TabIndex = 0;
+            // 
+            // treeView
+            // 
+            this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView.Location = new System.Drawing.Point(5, 25);
+            this.treeView.Name = "treeView";
+            this.treeView.Size = new System.Drawing.Size(212, 459);
+            this.treeView.TabIndex = 0;
+            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
             // 
             // splitContainerRight
             // 
@@ -200,16 +209,6 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(133, 0);
             // 
-            // treeView
-            // 
-            this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView.Location = new System.Drawing.Point(5, 25);
-            this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(212, 459);
-            this.treeView.TabIndex = 0;
-            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
-            this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +219,7 @@
             this.MainMenuStrip = this.menuBar;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();

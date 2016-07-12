@@ -23,9 +23,12 @@ namespace HourCounter
         private void fillComboBox ()
         {
             LinkedList<String> comboItems = _activityContainer.GetListStringFormated(_activityContainer, "");
-            foreach(String item in comboItems)
+            if (comboItems != null)
             {
-                comboActivityDropDown.Items.Add(item);
+                foreach (String item in comboItems)
+                {
+                    comboActivityDropDown.Items.Add (item);
+                }
             }
         }
 

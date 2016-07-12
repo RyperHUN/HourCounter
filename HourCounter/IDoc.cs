@@ -5,8 +5,10 @@ using System.Text;
 
 namespace HourCounter
 {
+    [Serializable]
     public abstract class Observable
     {
+        [NonSerialized]
         protected static LinkedList<Observer> observers;
         protected void updateAllViews()
         {

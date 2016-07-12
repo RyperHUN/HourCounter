@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,24 +20,13 @@ namespace HourCounter
         public Form1 ()
         {
             InitializeComponent ();
-            //Neccesary for timer
-            Activity suli = new Activity("suli");
 
-            Activity programozas = new Activity("Programozás");
-
-
-            Activity cpp = new Activity("C++");
-
-            Activity csharp = new Activity("C#");
-
-            suli.AddSubActivity(programozas);
-            programozas.AddSubActivity(cpp);
-            programozas.AddSubActivity(csharp);
-
-            _activityContainer.AddSubActivity(suli);
+            loadActivities ();
+            
+            
 
             treeView.addActivityContainer (_activityContainer);
-            //Neccesary for timer
+         
 
             _activityContainer.addObserver (treeView);
             _activityContainer.addObserver (detailedView);
@@ -72,11 +63,6 @@ namespace HourCounter
             }
         }
 
-        private void treeView1_NodeMouseClick (object sender, TreeNodeMouseClickEventArgs e)
-        {
-
-        }
-
         private void treeView_AfterSelect (object sender, TreeViewEventArgs e)
         {
             TreeNode selectedNode = treeView.SelectedNode;
@@ -85,5 +71,59 @@ namespace HourCounter
             Activity activity     = _activityContainer.Find(_activityContainer,activityName);
             treeView.SelectChangedFunction (activity);
         }
+        private void Form1_FormClosing (object sender, FormClosingEventArgs e)
+        {
+            saveActivities ();
+        }
+
+        private void saveActivities()
+        {
+            if(_isAutomaticSave)
+            {
+                IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                Stream stream = new FileStream("data.bin",
+                                               FileMode.Create,
+                                               FileAccess.Write, FileShare.None);
+                formatter.Serialize (stream, _activityContainer);
+                stream.Close ();
+            }
+        }
+
+        private bool loadActivities()
+        {
+            try
+            {
+                IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                Stream stream = new FileStream("data.bin",
+                                           FileMode.Open,
+                                           FileAccess.Read,
+                                           FileShare.Read);
+                _activityContainer = (Activity)formatter.Deserialize (stream);
+                stream.Close ();
+            }
+            catch (FileNotFoundException exc)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //private void initFromCode()
+        //{
+        //    //Activity suli = new Activity("suli");
+
+        //    //Activity programozas = new Activity("Programozás");
+
+
+        //    //Activity cpp = new Activity("C++");
+
+        //    //Activity csharp = new Activity("C#");
+
+        //    //suli.AddSubActivity (programozas);
+        //    //programozas.AddSubActivity (cpp);
+        //    //programozas.AddSubActivity (csharp);
+
+        //    //_activityContainer.AddSubActivity (suli);
+        //}
     }
 }

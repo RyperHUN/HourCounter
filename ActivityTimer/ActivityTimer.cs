@@ -13,6 +13,7 @@ namespace ActivityTimer
 {
     public partial class ActivityTimer : UserControl
     {
+        //TODO Ha timer elindul akkor ne lehessen activityt váltani
         private Activity _selectedActivity;
         private long _remainingTimeSeconds;
         private long _startingTimeSeconds;
@@ -134,7 +135,7 @@ namespace ActivityTimer
 
         private void bStopPause_Click (object sender, EventArgs e)
         {
-            if (bTimerPause.Text == "Pause")
+            if (bStopPause.Text == "Pause")
             {
                 bStopPause.Text = "Continue";
                 timerStopwatchSecond.Stop ();

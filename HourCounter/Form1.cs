@@ -12,6 +12,7 @@ namespace HourCounter
 {
     public partial class Form1 : Form
     {
+        /// TODO ActivitityChanged Esemeny: Feliratkoznak ra a nezetek, es megkapjak a kivalasztott uj activityt
         bool _isAutomaticSave = true;
         Activity _activityContainer = new Activity("INIT");
         public Form1 ()
@@ -32,16 +33,14 @@ namespace HourCounter
             programozas.AddSubActivity(csharp);
 
             _activityContainer.AddSubActivity(suli);
-            activityTimer.setActivityContainer(_activityContainer);
+            activityTimer.setActivityContainer (_activityContainer);
+            treeView.addActivityContainer (_activityContainer);
             //Neccesary for timer
-            
-            TreeListView treeList = new TreeListView(_activityContainer);
 
-            treeList.Dock = DockStyle.Fill; //Így kitölti az egész szülő Containert
+            _activityContainer.addObserver (treeView);
+            _activityContainer.addObserver (detailedView);
 
-            _activityContainer.addObserver(treeList);
-
-            splitContainerMain.Panel1.Controls.Add(treeList);
+            splitContainerMain.Panel1.Controls.Add(treeView);
         }
 
         private void menuAddNewActivity_Click (object sender, EventArgs e)
@@ -68,6 +67,11 @@ namespace HourCounter
                 _isAutomaticSave = true;
                 menuAutomaticSave.Text = "Automatic Save: ON";
             }
+        }
+
+        private void treeView1_NodeMouseClick (object sender, TreeNodeMouseClickEventArgs e)
+        {
+
         }
     }
 }

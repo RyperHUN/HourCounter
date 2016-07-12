@@ -11,14 +11,29 @@ using HourCounter;
 
 namespace DetailedView
 {
-    public partial class DetailedView : UserControl
+    public partial class DetailedView : UserControl, Observer
     {
         Activity _selectedActivity = null;
         public DetailedView ()
         {
             InitializeComponent ();
         }
-        void addActivity (Activity selectedActivity)
+        //Update name and time
+        public void update ()
+        {
+            lActivityName.Text = _selectedActivity.Name;
+
+            long minutesSpentOnActivity = _selectedActivity.Counter;
+
+            long hours   = minutesSpentOnActivity / 60;
+            minutesSpentOnActivity %= 60;
+            long minutes = minutesSpentOnActivity;
+
+            string timeWithActivityString = hours + "h " + minutes + "m";
+            lTimeSpentOnActivity.Text     = timeWithActivityString;
+        }
+
+        public void addActivity (Activity selectedActivity)
         {
             _selectedActivity = selectedActivity;
         }

@@ -30,6 +30,8 @@
         {
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.splitContainerRight = new System.Windows.Forms.SplitContainer();
+            this.groupDetailedView = new System.Windows.Forms.GroupBox();
+            this.detailedView = new DetailedView.DetailedView();
             this.activityTimer = new ActivityTimer.ActivityTimer();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,17 +43,17 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.groupDetailedView = new System.Windows.Forms.GroupBox();
-            this.detailedView = new DetailedView.DetailedView();
+            this.treeView = new TreeListView.TreeListView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
+            this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerRight)).BeginInit();
             this.splitContainerRight.Panel1.SuspendLayout();
             this.splitContainerRight.Panel2.SuspendLayout();
             this.splitContainerRight.SuspendLayout();
-            this.menuBar.SuspendLayout();
             this.groupDetailedView.SuspendLayout();
+            this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerMain
@@ -62,6 +64,7 @@
             // 
             // splitContainerMain.Panel1
             // 
+            this.splitContainerMain.Panel1.Controls.Add(this.treeView);
             this.splitContainerMain.Panel1.Padding = new System.Windows.Forms.Padding(5, 25, 5, 5);
             // 
             // splitContainerMain.Panel2
@@ -88,6 +91,27 @@
             this.splitContainerRight.Size = new System.Drawing.Size(362, 489);
             this.splitContainerRight.SplitterDistance = 230;
             this.splitContainerRight.TabIndex = 0;
+            // 
+            // groupDetailedView
+            // 
+            this.groupDetailedView.BackColor = System.Drawing.Color.White;
+            this.groupDetailedView.Controls.Add(this.detailedView);
+            this.groupDetailedView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupDetailedView.Location = new System.Drawing.Point(0, 26);
+            this.groupDetailedView.Name = "groupDetailedView";
+            this.groupDetailedView.Size = new System.Drawing.Size(362, 204);
+            this.groupDetailedView.TabIndex = 0;
+            this.groupDetailedView.TabStop = false;
+            this.groupDetailedView.Text = "Detailed View";
+            // 
+            // detailedView
+            // 
+            this.detailedView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.detailedView.Location = new System.Drawing.Point(3, 16);
+            this.detailedView.Name = "detailedView";
+            this.detailedView.Size = new System.Drawing.Size(356, 185);
+            this.detailedView.TabIndex = 0;
+            this.detailedView.Visible = false;
             // 
             // activityTimer
             // 
@@ -176,26 +200,14 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(133, 0);
             // 
-            // groupDetailedView
+            // treeView
             // 
-            this.groupDetailedView.BackColor = System.Drawing.Color.White;
-            this.groupDetailedView.Controls.Add(this.detailedView);
-            this.groupDetailedView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupDetailedView.Location = new System.Drawing.Point(0, 26);
-            this.groupDetailedView.Name = "groupDetailedView";
-            this.groupDetailedView.Size = new System.Drawing.Size(362, 204);
-            this.groupDetailedView.TabIndex = 0;
-            this.groupDetailedView.TabStop = false;
-            this.groupDetailedView.Text = "Detailed View";
-            // 
-            // detailedView
-            // 
-            this.detailedView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.detailedView.Location = new System.Drawing.Point(3, 16);
-            this.detailedView.Name = "detailedView";
-            this.detailedView.Size = new System.Drawing.Size(356, 185);
-            this.detailedView.TabIndex = 0;
-            this.detailedView.Visible = false;
+            this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView.Location = new System.Drawing.Point(5, 25);
+            this.treeView.Name = "treeView";
+            this.treeView.Size = new System.Drawing.Size(212, 459);
+            this.treeView.TabIndex = 0;
+            this.treeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // Form1
             // 
@@ -207,6 +219,7 @@
             this.MainMenuStrip = this.menuBar;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
@@ -214,9 +227,9 @@
             this.splitContainerRight.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerRight)).EndInit();
             this.splitContainerRight.ResumeLayout(false);
+            this.groupDetailedView.ResumeLayout(false);
             this.menuBar.ResumeLayout(false);
             this.menuBar.PerformLayout();
-            this.groupDetailedView.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,6 +252,7 @@
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
         private System.Windows.Forms.GroupBox groupDetailedView;
         private DetailedView.DetailedView detailedView;
+        private TreeListView.TreeListView treeView;
     }
 }
 

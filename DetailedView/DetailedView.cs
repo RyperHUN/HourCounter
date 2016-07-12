@@ -21,17 +21,20 @@ namespace DetailedView
         //Update name and time
         public void update ()
         {
-            lActivityName.Text = _selectedActivity.Name;
+            if (_selectedActivity != null)
+            {
+                lActivityName.Text = _selectedActivity.Name;
 
-            long minutesSpentOnActivity = _selectedActivity.Counter;
+                long minutesSpentOnActivity = _selectedActivity.Counter;
 
-            long hours   = minutesSpentOnActivity / 60;
-            minutesSpentOnActivity %= 60;
-            long minutes = minutesSpentOnActivity;
+                long hours   = minutesSpentOnActivity / 60;
+                minutesSpentOnActivity %= 60;
+                long minutes = minutesSpentOnActivity;
 
-            string timeWithActivityString = hours + "h " + minutes + "m";
-            lTimeSpentOnActivity.Text     = timeWithActivityString;
-            this.Visible = true;
+                string timeWithActivityString = hours + "h " + minutes + "m";
+                lTimeSpentOnActivity.Text = timeWithActivityString;
+                this.Visible = true;
+            }
         }
 
         public void setSelectedActivity (Activity selectedActivity)

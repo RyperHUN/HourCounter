@@ -9,7 +9,7 @@ namespace HourCounter
     public abstract class Observable
     {
         [NonSerialized]
-        protected static LinkedList<Observer> observers;
+        protected static LinkedList<Observer> observers = new LinkedList<Observer>();
         protected void updateAllViews()
         {
             foreach(Observer observer in observers)
@@ -23,7 +23,6 @@ namespace HourCounter
         }
         public Observable()
         {
-            observers = new LinkedList<Observer>();
         }
     }
 }

@@ -36,6 +36,9 @@
     <Reference Include="ActivityTimer">
       <HintPath>..\ActivityTimer\bin\Debug\ActivityTimer.dll</HintPath>
     </Reference>
+    <Reference Include="DetailedView">
+      <HintPath>..\DetailedView\bin\Debug\DetailedView.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

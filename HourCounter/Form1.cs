@@ -33,12 +33,15 @@ namespace HourCounter
             programozas.AddSubActivity(csharp);
 
             _activityContainer.AddSubActivity(suli);
-            activityTimer.setActivityContainer (_activityContainer);
+
             treeView.addActivityContainer (_activityContainer);
             //Neccesary for timer
 
             _activityContainer.addObserver (treeView);
             _activityContainer.addObserver (detailedView);
+
+            treeView.SelectChanged += detailedView.setSelectedActivity;
+            treeView.SelectChanged += activityTimer.setSelectedActivity;
 
             splitContainerMain.Panel1.Controls.Add(treeView);
         }
@@ -72,6 +75,15 @@ namespace HourCounter
         private void treeView1_NodeMouseClick (object sender, TreeNodeMouseClickEventArgs e)
         {
 
+        }
+
+        private void treeView_AfterSelect (object sender, TreeViewEventArgs e)
+        {
+            TreeNode selectedNode = treeView.SelectedNode;
+            String activityName   = selectedNode.Text;
+            activityName = Activity.removeFormat (activityName);
+            Activity activity     = _activityContainer.Find(_activityContainer,activityName);
+            treeView.SelectChangedFunction (activity);
         }
     }
 }

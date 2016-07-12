@@ -13,18 +13,22 @@ namespace ActivityTimer
 {
     public partial class ActivityTimer : UserControl
     {
-        private Activity _activityContainer;
+        private Activity _selectedActivity;
         private long _remainingTimeSeconds;
         private long _startingTimeSeconds;
+
+        private long _stopWatchTimeSecond = 0;
+
         public ActivityTimer()
         {
             InitializeComponent();
-            tabPicker.Dock = DockStyle.Fill;
-            timerSecond.Interval = 1000; // 1 sec
+            tabPicker.Dock           = DockStyle.Fill;
+            timerSecond.Interval     = 1000; // 1 sec
+            timerStopwatchSecond.Interval = 1000;
         }
-        public void setActivityContainer(Activity activityContainer)
+        public void setSelectedActivity(Activity selectedActivity)
         {
-            _activityContainer = activityContainer;
+            _selectedActivity = selectedActivity;
         }
 
         private void bSet_Click (object sender, EventArgs e)
@@ -55,6 +59,11 @@ namespace ActivityTimer
             }
             lRemainingTime.Text = TimeConverter.timeToString (_remainingTimeSeconds);
         }
+        private void stopwatchSecond_Tick (object sender, EventArgs e)
+        {
+            _stopWatchTimeSecond++;
+            lStopTime.Text = TimeConverter.timeToString (_stopWatchTimeSecond);
+        }
         private class TimeConverter
         {
             static readonly long MINTOSEC  = 60;
@@ -77,7 +86,17 @@ namespace ActivityTimer
                 time      = time % MINTOSEC;
                 long sec  = time;
 
-                string result = hour + ":" + min + ":" + sec;
+                string hourStr = "" + hour;
+                string minStr  = "" + min;
+                string secStr  = "" + sec;
+                if (hour <= 9)
+                    hourStr = "0" + hour;
+                if (min <= 9)
+                    minStr = "0" + min;
+                if (sec <= 9)
+                    secStr = "0" + sec;
+
+                string result = hourStr + ":" + minStr + ":" + secStr;
 
                 return result;
             }
@@ -85,14 +104,14 @@ namespace ActivityTimer
 
         private void bPause_Click (object sender, EventArgs e)
         {
-            if(bPause.Text == "Pause")
+            if(bTimerPause.Text == "Pause")
             {
-                bPause.Text = "Continue";
+                bTimerPause.Text = "Continue";
                 timerSecond.Stop ();
             }
             else
             {
-                bPause.Text = "Pause";
+                bTimerPause.Text = "Pause";
                 timerSecond.Start ();
             }
         }
@@ -103,6 +122,35 @@ namespace ActivityTimer
             timerSecond.Stop ();
             long elapsedTimeSeconds = _startingTimeSeconds - _remainingTimeSeconds;
             ///TODO Update activity
+        }
+        //TODO ha bármelyiket elindítuk a másikat ne lehessen elindítani
+
+        private void bStopStart_Click (object sender, EventArgs e)
+        {
+            _stopWatchTimeSecond = 0;
+            lStopTime.Text = TimeConverter.timeToString (_stopWatchTimeSecond);
+            timerStopwatchSecond.Start ();
+        }
+
+        private void bStopPause_Click (object sender, EventArgs e)
+        {
+            if (bTimerPause.Text == "Pause")
+            {
+                bStopPause.Text = "Continue";
+                timerStopwatchSecond.Stop ();
+            }
+            else
+            {
+                bStopPause.Text = "Pause";
+                timerStopwatchSecond.Start ();
+            }
+        }
+
+        private void bStopStop_Click (object sender, EventArgs e)
+        {
+            timerStopwatchSecond.Stop ();
+            long measuredMin = _stopWatchTimeSecond / 60;
+            _selectedActivity.AddTime (measuredMin);
         }
     }
 

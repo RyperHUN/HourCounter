@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace HourCounter
 {
@@ -20,7 +21,6 @@ namespace HourCounter
         //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
         public long Counter
         {
-
             get
             {
                 long sumMinutesSpent = _minutesSpentOnActivity;
@@ -81,6 +81,14 @@ namespace HourCounter
         {
             return _name + "    " + (Counter / 60) + "h";
         }
+        public static string removeFormat (string formated)
+        {
+            string pattern      = @"    [0-9]*h";
+            string replacement  = "";
+            string result       = Regex.Replace (formated,pattern,replacement);
+
+            return result;
+        }
         public void AddBelowActivity (Activity rootActivity,Activity newActivity, string searchForActivity)
         {
             Activity activity = Find(rootActivity, searchForActivity);
@@ -107,6 +115,11 @@ namespace HourCounter
             }
 
             return null;
+        }
+        public void AddTime(long timeMin)
+        {
+            _minutesSpentOnActivity += timeMin;
+            updateAllViews ();
         }
     }
 }

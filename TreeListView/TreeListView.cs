@@ -12,6 +12,9 @@ namespace TreeListView
     public class TreeListView : TreeView, Observer
     {
         private Activity activityContainer;
+        public  delegate void SelectChangeHandler (Activity ac);
+        public  event SelectChangeHandler SelectChanged;
+        
         public TreeListView ()
         {
         }
@@ -67,6 +70,11 @@ namespace TreeListView
         public void update ()
         {
             BuildTree ();
+        }
+        public void SelectChangedFunction (Activity activity)
+        {
+            if(SelectChanged != null)
+                SelectChanged (activity);
         }
     }
 }

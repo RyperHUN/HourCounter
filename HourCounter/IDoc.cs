@@ -7,7 +7,7 @@ namespace HourCounter
 {
     public abstract class Observable
     {
-        protected LinkedList<Observer> observers;
+        protected static LinkedList<Observer> observers;
         protected void updateAllViews()
         {
             foreach(Observer observer in observers)

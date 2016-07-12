@@ -31,11 +31,13 @@ namespace DetailedView
 
             string timeWithActivityString = hours + "h " + minutes + "m";
             lTimeSpentOnActivity.Text     = timeWithActivityString;
+            this.Visible = true;
         }
 
-        public void addActivity (Activity selectedActivity)
+        public void setSelectedActivity (Activity selectedActivity)
         {
             _selectedActivity = selectedActivity;
+            update ();
         }
     }
 }

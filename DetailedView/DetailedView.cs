@@ -42,5 +42,14 @@ namespace DetailedView
             _selectedActivity = selectedActivity;
             update ();
         }
+        //Simple enable ON/OFF
+        public void timerStartedHandler ()
+        {
+            this.Enabled = false;
+        }
+        public void timerStoppedHandler ()
+        {
+            this.Enabled = true;
+        }
     }
 }

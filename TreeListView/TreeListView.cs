@@ -76,5 +76,14 @@ namespace TreeListView
             if(SelectChanged != null)
                 SelectChanged (activity);
         }
+        //Simple enable ON/OFF
+        public void timerStartedHandler ()
+        {
+            this.Enabled = false;
+        }
+        public void timerStoppedHandler ()
+        {
+            this.Enabled = true;
+        }
     }
 }

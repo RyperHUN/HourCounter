@@ -34,6 +34,11 @@ namespace HourCounter
             treeView.SelectChanged += detailedView.setSelectedActivity;
             treeView.SelectChanged += activityTimer.setSelectedActivity;
 
+            activityTimer.TimerStartedEvent += treeView.timerStartedHandler;
+            activityTimer.TimerStartedEvent += detailedView.timerStartedHandler;
+            activityTimer.TimerStoppedEvent += treeView.timerStoppedHandler;
+            activityTimer.TimerStoppedEvent += detailedView.timerStoppedHandler;
+
             splitContainerMain.Panel1.Controls.Add(treeView);
         }
 

@@ -14,6 +14,10 @@ namespace ActivityTimer
     public partial class ActivityTimer : UserControl
     {
         //TODO Ha timer elindul akkor ne lehessen activityt váltani
+        public delegate void TimerHandler ();
+        public event TimerHandler TimerStartedEvent;
+        public event TimerHandler TimerStoppedEvent; ///TODO Ne lehessen tabot váltani!
+
         private Activity _selectedActivity;
         private long _remainingTimeSeconds;
         private long _startingTimeSeconds;
@@ -41,8 +45,10 @@ namespace ActivityTimer
         }
 
         private void bStart_Click(object sender, EventArgs e)
-        {
-            timerSecond.Start();
+        { 
+            timerSecond.Start ();
+            if (TimerStartedEvent != null)
+                TimerStartedEvent ();
             bSet.Enabled = false;
         }
 
@@ -51,10 +57,13 @@ namespace ActivityTimer
             _remainingTimeSeconds--;
             if (_remainingTimeSeconds == 0)
             {
-                timerSecond.Stop();
+                timerSecond.Stop ();
+                if(TimerStoppedEvent != null)
+                    TimerStoppedEvent ();
+                _selectedActivity.AddTime (_startingTimeSeconds / 60);
                 ///TODO
                 //Play sound??
-                //Add time to activity
+                //Popup menu where you can modify your time minus plus +- ( ha eppen nem sikerult olyan jól )
                 //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\mywavfile.wav");
                 //player.Play();
             }
@@ -121,6 +130,8 @@ namespace ActivityTimer
         {
             bSet.Enabled = true;
             timerSecond.Stop ();
+            if (TimerStoppedEvent != null)
+                TimerStoppedEvent ();
             long elapsedTimeSeconds = _startingTimeSeconds - _remainingTimeSeconds;
             ///TODO Update activity
         }
@@ -131,6 +142,8 @@ namespace ActivityTimer
             _stopWatchTimeSecond = 0;
             lStopTime.Text = TimeConverter.timeToString (_stopWatchTimeSecond);
             timerStopwatchSecond.Start ();
+            if (TimerStartedEvent != null)
+                TimerStartedEvent ();
         }
 
         private void bStopPause_Click (object sender, EventArgs e)
@@ -150,8 +163,17 @@ namespace ActivityTimer
         private void bStopStop_Click (object sender, EventArgs e)
         {
             timerStopwatchSecond.Stop ();
+            if (TimerStoppedEvent != null)
+                TimerStoppedEvent ();
             long measuredMin = _stopWatchTimeSecond / 60;
             _selectedActivity.AddTime (measuredMin);
+
+        }
+
+        private void bManualAdd_Click (object sender, EventArgs e)
+        {
+            long needToAddTimeSec = TimeConverter.stringToTime (tManualSetTime.Text);
+            _selectedActivity.AddTime (needToAddTimeSec / 60);
         }
     }
 

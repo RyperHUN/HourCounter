@@ -62,6 +62,7 @@
     <Compile Include="ActivityAdd.Designer.cs">
       <DependentUpon>ActivityAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="DateContainer.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

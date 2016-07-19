@@ -1,6 +1,6 @@
 ﻿namespace HourCounter
 {
-    partial class Form1
+    partial class App
     {
         /// <summary>
         /// Required designer variable.
@@ -209,7 +209,7 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(133, 0);
             // 
-            // Form1
+            // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -217,8 +217,8 @@
             this.Controls.Add(this.menuBar);
             this.Controls.Add(this.splitContainerMain);
             this.MainMenuStrip = this.menuBar;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "App";
+            this.Text = "Ryper self improvement manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.splitContainerMain.Panel1.ResumeLayout(false);
             this.splitContainerMain.Panel2.ResumeLayout(false);

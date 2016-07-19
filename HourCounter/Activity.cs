@@ -116,6 +116,29 @@ namespace HourCounter
 
             return null;
         }
+        public bool remove (Activity rootActivity,string searchForActivity)
+        {
+            SortedList<string, Activity> subActivities = rootActivity.GetList ();
+            if (subActivities.Count == 0)
+                return false;
+
+            foreach (var dict in subActivities)
+            {
+                String activityName = dict.Key;
+                Activity activity = dict.Value;
+                if (activityName == searchForActivity)
+                {
+                    subActivities.Remove (activityName);
+                    updateAllViews ();
+                    return true;
+                }
+                bool founded = activity.remove(activity, searchForActivity);
+                if (founded == true)
+                    return true;
+            }
+
+            return false;
+        }
         public void AddTime(long timeMin)
         {
             _minutesSpentOnActivity += timeMin;

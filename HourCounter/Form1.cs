@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace HourCounter
 {
-    public partial class Form1 : Form
+    public partial class App : Form
     {
         /// TODO ActivitityChanged Esemeny: Feliratkoznak ra a nezetek, es megkapjak a kivalasztott uj activityt
         bool _isAutomaticSave = true;
         Activity _activityContainer = new Activity("INIT");
-        public Form1 ()
+        public App ()
         {
             InitializeComponent ();
 
@@ -38,6 +38,8 @@ namespace HourCounter
             activityTimer.TimerStartedEvent += detailedView.timerStartedHandler;
             activityTimer.TimerStoppedEvent += treeView.timerStoppedHandler;
             activityTimer.TimerStoppedEvent += detailedView.timerStoppedHandler;
+
+            //_activityContainer.remove (_activityContainer, "HanganyagCsajozás");
 
             splitContainerMain.Panel1.Controls.Add(treeView);
         }

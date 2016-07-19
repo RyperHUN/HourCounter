@@ -37,6 +37,7 @@
             this.bCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tTimeSpent = new System.Windows.Forms.TextBox();
+            this.lTimeFormat = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tActivityName
@@ -110,7 +111,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 50);
+            this.label1.Location = new System.Drawing.Point(2, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 13);
             this.label1.TabIndex = 7;
@@ -124,11 +125,22 @@
             this.tTimeSpent.TabIndex = 8;
             this.tTimeSpent.Text = "0";
             // 
+            // lTimeFormat
+            // 
+            this.lTimeFormat.AutoSize = true;
+            this.lTimeFormat.Location = new System.Drawing.Point(185, 53);
+            this.lTimeFormat.Name = "lTimeFormat";
+            this.lTimeFormat.Size = new System.Drawing.Size(23, 13);
+            this.lTimeFormat.TabIndex = 9;
+            this.lTimeFormat.Text = "min";
+            this.lTimeFormat.Click += new System.EventHandler(this.label2_Click);
+            // 
             // ActivityAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 185);
+            this.Controls.Add(this.lTimeFormat);
             this.Controls.Add(this.tTimeSpent);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bCancel);
@@ -156,5 +168,6 @@
         private System.Windows.Forms.Button bCancel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tTimeSpent;
+        private System.Windows.Forms.Label lTimeFormat;
     }
 }

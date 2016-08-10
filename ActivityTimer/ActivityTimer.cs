@@ -14,7 +14,6 @@ namespace ActivityTimer
     [Serializable]
     public partial class ActivityTimer : UserControl
     {
-        //TODO Ha timer elindul akkor ne lehessen activityt váltani
         public delegate void TimerHandler ();
         public event TimerHandler TimerStartedEvent;
         public event TimerHandler TimerStoppedEvent; ///TODO Ne lehessen tabot váltani!
@@ -29,10 +28,37 @@ namespace ActivityTimer
             tabPicker.Dock  = DockStyle.Fill;
             Timer_timerSecond.Interval     = 1000; // 1 sec
             Stop_timerSecond.Interval = 1000;
+
+            //Automatic Start/Stop enable
+            TimerStartedEvent += EnableTimerMode;
+            TimerStoppedEvent += DisableTimerMode;
+
+            TimerStoppedEvent ();
         }
         public void setSelectedActivity(Activity selectedActivity)
         {
             _selectedActivity = selectedActivity;
+        }
+        //Ugy allitja a gombokat hogy a modoknak megfelelo legyen
+        private void EnableTimerMode()
+        {
+            Timer_bStart.Enabled = false;
+            Stop_bStart.Enabled  = false;
+
+            Timer_bPause.Enabled = true;
+            Timer_bStop.Enabled  = true;
+            Stop_bPause.Enabled  = true;
+            Stop_bStop.Enabled   = true;
+        }
+        private void DisableTimerMode()
+        {
+            Timer_bStart.Enabled = true;
+            Stop_bStart.Enabled  = true;
+
+            Timer_bPause.Enabled = false;
+            Timer_bStop.Enabled  = false;
+            Stop_bPause.Enabled  = false;
+            Stop_bStop.Enabled   = false;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// TIMER CODE GOES HERE ////////////////////////////////////////////////////////
@@ -73,20 +99,20 @@ namespace ActivityTimer
             }
             Timer_lRemainingTime.Text = TimeConverter.timeToString (Timer_remainingTimeSeconds);
         }
-        private void bPause_Click (object sender, EventArgs e)
+        private void Timer_bPause_Click (object sender, EventArgs e)
         {
-            if (Timer_bTimerPause.Text == "Pause")
+            if (Timer_bPause.Text == "Pause")
             {
-                Timer_bTimerPause.Text = "Continue";
+                Timer_bPause.Text = "Continue";
                 Timer_timerSecond.Stop ();
             }
             else
             {
-                Timer_bTimerPause.Text = "Pause";
+                Timer_bPause.Text = "Pause";
                 Timer_timerSecond.Start ();
             }
         }
-        private void bStop_Click (object sender, EventArgs e)
+        private void Timer_bStop_Click (object sender, EventArgs e)
         {
             Timer_bSetTime.Enabled = true;
             Timer_timerSecond.Stop ();

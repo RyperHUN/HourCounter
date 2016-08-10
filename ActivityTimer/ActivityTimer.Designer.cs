@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.Timer_timerSecond = new System.Windows.Forms.Timer(this.components);
             this.Stop_timerSecond = new System.Windows.Forms.Timer(this.components);
-            this.Timer_bTimerStart = new System.Windows.Forms.Button();
-            this.Timer_bTimerPause = new System.Windows.Forms.Button();
-            this.Timer_bTimerStop = new System.Windows.Forms.Button();
+            this.Timer_bStart = new System.Windows.Forms.Button();
+            this.Timer_bPause = new System.Windows.Forms.Button();
+            this.Timer_bStop = new System.Windows.Forms.Button();
             this.Timer_tSetTime = new System.Windows.Forms.TextBox();
             this.Timer_lTextRemainingTime = new System.Windows.Forms.Label();
             this.Timer_lRemainingTime = new System.Windows.Forms.Label();
@@ -72,35 +72,35 @@
             // 
             this.Stop_timerSecond.Tick += new System.EventHandler(this.Stop_stopwatchSecond_Tick);
             // 
-            // Timer_bTimerStart
+            // Timer_bStart
             // 
-            this.Timer_bTimerStart.Location = new System.Drawing.Point(6, 100);
-            this.Timer_bTimerStart.Name = "Timer_bTimerStart";
-            this.Timer_bTimerStart.Size = new System.Drawing.Size(75, 23);
-            this.Timer_bTimerStart.TabIndex = 0;
-            this.Timer_bTimerStart.Text = "Start";
-            this.Timer_bTimerStart.UseVisualStyleBackColor = true;
-            this.Timer_bTimerStart.Click += new System.EventHandler(this.Timer_bStart_Click);
+            this.Timer_bStart.Location = new System.Drawing.Point(6, 100);
+            this.Timer_bStart.Name = "Timer_bStart";
+            this.Timer_bStart.Size = new System.Drawing.Size(75, 23);
+            this.Timer_bStart.TabIndex = 0;
+            this.Timer_bStart.Text = "Start";
+            this.Timer_bStart.UseVisualStyleBackColor = true;
+            this.Timer_bStart.Click += new System.EventHandler(this.Timer_bStart_Click);
             // 
             // Timer_bTimerPause
             // 
-            this.Timer_bTimerPause.Location = new System.Drawing.Point(118, 100);
-            this.Timer_bTimerPause.Name = "Timer_bTimerPause";
-            this.Timer_bTimerPause.Size = new System.Drawing.Size(75, 23);
-            this.Timer_bTimerPause.TabIndex = 1;
-            this.Timer_bTimerPause.Text = "Pause";
-            this.Timer_bTimerPause.UseVisualStyleBackColor = true;
-            this.Timer_bTimerPause.Click += new System.EventHandler(this.bPause_Click);
+            this.Timer_bPause.Location = new System.Drawing.Point(118, 100);
+            this.Timer_bPause.Name = "Timer_bTimerPause";
+            this.Timer_bPause.Size = new System.Drawing.Size(75, 23);
+            this.Timer_bPause.TabIndex = 1;
+            this.Timer_bPause.Text = "Pause";
+            this.Timer_bPause.UseVisualStyleBackColor = true;
+            this.Timer_bPause.Click += new System.EventHandler(this.Timer_bPause_Click);
             // 
             // Timer_bTimerStop
             // 
-            this.Timer_bTimerStop.Location = new System.Drawing.Point(229, 100);
-            this.Timer_bTimerStop.Name = "Timer_bTimerStop";
-            this.Timer_bTimerStop.Size = new System.Drawing.Size(75, 23);
-            this.Timer_bTimerStop.TabIndex = 2;
-            this.Timer_bTimerStop.Text = "Stop";
-            this.Timer_bTimerStop.UseVisualStyleBackColor = true;
-            this.Timer_bTimerStop.Click += new System.EventHandler(this.bStop_Click);
+            this.Timer_bStop.Location = new System.Drawing.Point(229, 100);
+            this.Timer_bStop.Name = "Timer_bTimerStop";
+            this.Timer_bStop.Size = new System.Drawing.Size(75, 23);
+            this.Timer_bStop.TabIndex = 2;
+            this.Timer_bStop.Text = "Stop";
+            this.Timer_bStop.UseVisualStyleBackColor = true;
+            this.Timer_bStop.Click += new System.EventHandler(this.Timer_bStop_Click);
             // 
             // Timer_tSetTime
             // 
@@ -183,7 +183,7 @@
             this.Stop_bStart.TabIndex = 7;
             this.Stop_bStart.Text = "Start";
             this.Stop_bStart.UseVisualStyleBackColor = true;
-            this.Stop_bStart.Click += new System.EventHandler(this.bStop_Click);
+            this.Stop_bStart.Click += new System.EventHandler(this.Stop_bStart_Click);
             // 
             // Stop_lTime
             // 
@@ -201,10 +201,10 @@
             this.tabTimer.Controls.Add(this.Timer_lTextSetTheTime);
             this.tabTimer.Controls.Add(this.Timer_lTextRemainingTime);
             this.tabTimer.Controls.Add(this.Timer_lRemainingTime);
-            this.tabTimer.Controls.Add(this.Timer_bTimerStart);
-            this.tabTimer.Controls.Add(this.Timer_bTimerPause);
+            this.tabTimer.Controls.Add(this.Timer_bStart);
+            this.tabTimer.Controls.Add(this.Timer_bPause);
             this.tabTimer.Controls.Add(this.Timer_tSetTime);
-            this.tabTimer.Controls.Add(this.Timer_bTimerStop);
+            this.tabTimer.Controls.Add(this.Timer_bStop);
             this.tabTimer.Location = new System.Drawing.Point(4, 22);
             this.tabTimer.Name = "tabTimer";
             this.tabTimer.Padding = new System.Windows.Forms.Padding(3);
@@ -367,9 +367,9 @@
 
         private System.Windows.Forms.Timer Timer_timerSecond;
         private System.Windows.Forms.Timer Stop_timerSecond;
-        private System.Windows.Forms.Button Timer_bTimerStart;
-        private System.Windows.Forms.Button Timer_bTimerPause;
-        private System.Windows.Forms.Button Timer_bTimerStop;
+        private System.Windows.Forms.Button Timer_bStart;
+        private System.Windows.Forms.Button Timer_bPause;
+        private System.Windows.Forms.Button Timer_bStop;
         private System.Windows.Forms.TextBox Timer_tSetTime;
         private System.Windows.Forms.Label Timer_lTextRemainingTime;
         private System.Windows.Forms.Label Timer_lRemainingTime;

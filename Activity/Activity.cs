@@ -36,6 +36,19 @@ namespace HourCounter
             _isHabit = info.GetBoolean ("1");
             _minutesSpentOnActivity = (long)info.GetValue ("2", typeof(long));
             _subActivities = (SortedList<string, Activity>)info.GetValue ("3", typeof (SortedList<string, Activity>));
+            //try
+            //{ //New attributes can be added here <- If they are not exist EXCEPTION
+            //    newasd = info.GetBoolean ("22");
+            //}
+            //catch (System.Runtime.Serialization.SerializationException exception)
+            //{
+            //    string exceptionStr = exception.ToString ();
+            //    if(exceptionStr.Contains ("not found"))
+            //    {
+            //        //Found which variable
+            //        newasd = false;
+            //    }
+            //}
     }
     //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
     public long Counter

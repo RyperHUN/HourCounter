@@ -29,34 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timerSecond = new System.Windows.Forms.Timer(this.components);
-            this.timerStopwatchSecond = new System.Windows.Forms.Timer(this.components);
-            this.bTimerStart = new System.Windows.Forms.Button();
-            this.bTimerPause = new System.Windows.Forms.Button();
-            this.bTimerStop = new System.Windows.Forms.Button();
-            this.tSetTime = new System.Windows.Forms.TextBox();
-            this.lTextRemainingTime = new System.Windows.Forms.Label();
-            this.lRemainingTime = new System.Windows.Forms.Label();
+            this.Timer_timerSecond = new System.Windows.Forms.Timer(this.components);
+            this.Stop_timerSecond = new System.Windows.Forms.Timer(this.components);
+            this.Timer_bTimerStart = new System.Windows.Forms.Button();
+            this.Timer_bTimerPause = new System.Windows.Forms.Button();
+            this.Timer_bTimerStop = new System.Windows.Forms.Button();
+            this.Timer_tSetTime = new System.Windows.Forms.TextBox();
+            this.Timer_lTextRemainingTime = new System.Windows.Forms.Label();
+            this.Timer_lRemainingTime = new System.Windows.Forms.Label();
             this.tabPicker = new System.Windows.Forms.TabControl();
             this.tabStopwatch = new System.Windows.Forms.TabPage();
-            this.bStopStop = new System.Windows.Forms.Button();
-            this.bStopPause = new System.Windows.Forms.Button();
-            this.bStopStart = new System.Windows.Forms.Button();
-            this.lStopTime = new System.Windows.Forms.Label();
+            this.Stop_bStop = new System.Windows.Forms.Button();
+            this.Stop_bPause = new System.Windows.Forms.Button();
+            this.Stop_bStart = new System.Windows.Forms.Button();
+            this.Stop_lTime = new System.Windows.Forms.Label();
             this.tabTimer = new System.Windows.Forms.TabPage();
-            this.bSet = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Timer_bSetTime = new System.Windows.Forms.Button();
+            this.Timer_lTextSetTheTime = new System.Windows.Forms.Label();
             this.tabManualAdd = new System.Windows.Forms.TabPage();
-            this.bManualAdd = new System.Windows.Forms.Button();
-            this.lTextManualSetTime = new System.Windows.Forms.Label();
-            this.tManualSetTime = new System.Windows.Forms.TextBox();
+            this.Manual_bAdd = new System.Windows.Forms.Button();
+            this.Manual_lTextSetTime = new System.Windows.Forms.Label();
+            this.Manual_tSetTime = new System.Windows.Forms.TextBox();
             this.tabSetAsHabit = new System.Windows.Forms.TabPage();
-            this.lTextSetTheTime = new System.Windows.Forms.Label();
-            this.lTextMinPerDay = new System.Windows.Forms.Label();
-            this.lValueMinPerDay = new System.Windows.Forms.Label();
-            this.bSetAsHabit = new System.Windows.Forms.Button();
-            this.tHabitSetTime = new System.Windows.Forms.TextBox();
-            this.bRemoveFromHabbits = new System.Windows.Forms.Button();
+            this.Habit_lTextSetTheTime = new System.Windows.Forms.Label();
+            this.Habit_lTextMinPerDay = new System.Windows.Forms.Label();
+            this.Habit_bSetAsHabit = new System.Windows.Forms.Button();
+            this.Habit_tSetTime = new System.Windows.Forms.TextBox();
+            this.Habit_bRemoveFromHabbits = new System.Windows.Forms.Button();
+            this.Habit_lValueMinPerDay = new System.Windows.Forms.Label();
             this.tabPicker.SuspendLayout();
             this.tabStopwatch.SuspendLayout();
             this.tabTimer.SuspendLayout();
@@ -64,70 +64,70 @@
             this.tabSetAsHabit.SuspendLayout();
             this.SuspendLayout();
             // 
-            // timerSecond
+            // Timer_timerSecond
             // 
-            this.timerSecond.Tick += new System.EventHandler(this.timerSecond_Tick);
+            this.Timer_timerSecond.Tick += new System.EventHandler(this.Timer_timerSecond_Tick);
             // 
-            // timerStopwatchSecond
+            // Stop_timerSecond
             // 
-            this.timerStopwatchSecond.Tick += new System.EventHandler(this.stopwatchSecond_Tick);
+            this.Stop_timerSecond.Tick += new System.EventHandler(this.Stop_stopwatchSecond_Tick);
             // 
-            // bTimerStart
+            // Timer_bTimerStart
             // 
-            this.bTimerStart.Location = new System.Drawing.Point(6, 100);
-            this.bTimerStart.Name = "bTimerStart";
-            this.bTimerStart.Size = new System.Drawing.Size(75, 23);
-            this.bTimerStart.TabIndex = 0;
-            this.bTimerStart.Text = "Start";
-            this.bTimerStart.UseVisualStyleBackColor = true;
-            this.bTimerStart.Click += new System.EventHandler(this.bStart_Click);
+            this.Timer_bTimerStart.Location = new System.Drawing.Point(6, 100);
+            this.Timer_bTimerStart.Name = "Timer_bTimerStart";
+            this.Timer_bTimerStart.Size = new System.Drawing.Size(75, 23);
+            this.Timer_bTimerStart.TabIndex = 0;
+            this.Timer_bTimerStart.Text = "Start";
+            this.Timer_bTimerStart.UseVisualStyleBackColor = true;
+            this.Timer_bTimerStart.Click += new System.EventHandler(this.Timer_bStart_Click);
             // 
-            // bTimerPause
+            // Timer_bTimerPause
             // 
-            this.bTimerPause.Location = new System.Drawing.Point(118, 100);
-            this.bTimerPause.Name = "bTimerPause";
-            this.bTimerPause.Size = new System.Drawing.Size(75, 23);
-            this.bTimerPause.TabIndex = 1;
-            this.bTimerPause.Text = "Pause";
-            this.bTimerPause.UseVisualStyleBackColor = true;
-            this.bTimerPause.Click += new System.EventHandler(this.bPause_Click);
+            this.Timer_bTimerPause.Location = new System.Drawing.Point(118, 100);
+            this.Timer_bTimerPause.Name = "Timer_bTimerPause";
+            this.Timer_bTimerPause.Size = new System.Drawing.Size(75, 23);
+            this.Timer_bTimerPause.TabIndex = 1;
+            this.Timer_bTimerPause.Text = "Pause";
+            this.Timer_bTimerPause.UseVisualStyleBackColor = true;
+            this.Timer_bTimerPause.Click += new System.EventHandler(this.bPause_Click);
             // 
-            // bTimerStop
+            // Timer_bTimerStop
             // 
-            this.bTimerStop.Location = new System.Drawing.Point(229, 100);
-            this.bTimerStop.Name = "bTimerStop";
-            this.bTimerStop.Size = new System.Drawing.Size(75, 23);
-            this.bTimerStop.TabIndex = 2;
-            this.bTimerStop.Text = "Stop";
-            this.bTimerStop.UseVisualStyleBackColor = true;
-            this.bTimerStop.Click += new System.EventHandler(this.bStop_Click);
+            this.Timer_bTimerStop.Location = new System.Drawing.Point(229, 100);
+            this.Timer_bTimerStop.Name = "Timer_bTimerStop";
+            this.Timer_bTimerStop.Size = new System.Drawing.Size(75, 23);
+            this.Timer_bTimerStop.TabIndex = 2;
+            this.Timer_bTimerStop.Text = "Stop";
+            this.Timer_bTimerStop.UseVisualStyleBackColor = true;
+            this.Timer_bTimerStop.Click += new System.EventHandler(this.bStop_Click);
             // 
-            // tSetTime
+            // Timer_tSetTime
             // 
-            this.tSetTime.Location = new System.Drawing.Point(118, 15);
-            this.tSetTime.Name = "tSetTime";
-            this.tSetTime.Size = new System.Drawing.Size(109, 20);
-            this.tSetTime.TabIndex = 3;
-            this.tSetTime.Text = "hh:mm:ss";
+            this.Timer_tSetTime.Location = new System.Drawing.Point(118, 15);
+            this.Timer_tSetTime.Name = "Timer_tSetTime";
+            this.Timer_tSetTime.Size = new System.Drawing.Size(109, 20);
+            this.Timer_tSetTime.TabIndex = 3;
+            this.Timer_tSetTime.Text = "hh:mm:ss";
             // 
-            // lTextRemainingTime
+            // Timer_lTextRemainingTime
             // 
-            this.lTextRemainingTime.AutoSize = true;
-            this.lTextRemainingTime.Location = new System.Drawing.Point(3, 57);
-            this.lTextRemainingTime.Name = "lTextRemainingTime";
-            this.lTextRemainingTime.Size = new System.Drawing.Size(86, 13);
-            this.lTextRemainingTime.TabIndex = 4;
-            this.lTextRemainingTime.Text = "Remaining Time:";
+            this.Timer_lTextRemainingTime.AutoSize = true;
+            this.Timer_lTextRemainingTime.Location = new System.Drawing.Point(3, 57);
+            this.Timer_lTextRemainingTime.Name = "Timer_lTextRemainingTime";
+            this.Timer_lTextRemainingTime.Size = new System.Drawing.Size(86, 13);
+            this.Timer_lTextRemainingTime.TabIndex = 4;
+            this.Timer_lTextRemainingTime.Text = "Remaining Time:";
             // 
-            // lRemainingTime
+            // Timer_lRemainingTime
             // 
-            this.lRemainingTime.AutoSize = true;
-            this.lRemainingTime.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lRemainingTime.Location = new System.Drawing.Point(108, 39);
-            this.lRemainingTime.Name = "lRemainingTime";
-            this.lRemainingTime.Size = new System.Drawing.Size(185, 58);
-            this.lRemainingTime.TabIndex = 5;
-            this.lRemainingTime.Text = "hh:mm:ss";
+            this.Timer_lRemainingTime.AutoSize = true;
+            this.Timer_lRemainingTime.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Timer_lRemainingTime.Location = new System.Drawing.Point(108, 39);
+            this.Timer_lRemainingTime.Name = "Timer_lRemainingTime";
+            this.Timer_lRemainingTime.Size = new System.Drawing.Size(185, 58);
+            this.Timer_lRemainingTime.TabIndex = 5;
+            this.Timer_lRemainingTime.Text = "hh:mm:ss";
             // 
             // tabPicker
             // 
@@ -143,10 +143,10 @@
             // 
             // tabStopwatch
             // 
-            this.tabStopwatch.Controls.Add(this.bStopStop);
-            this.tabStopwatch.Controls.Add(this.bStopPause);
-            this.tabStopwatch.Controls.Add(this.bStopStart);
-            this.tabStopwatch.Controls.Add(this.lStopTime);
+            this.tabStopwatch.Controls.Add(this.Stop_bStop);
+            this.tabStopwatch.Controls.Add(this.Stop_bPause);
+            this.tabStopwatch.Controls.Add(this.Stop_bStart);
+            this.tabStopwatch.Controls.Add(this.Stop_lTime);
             this.tabStopwatch.Location = new System.Drawing.Point(4, 22);
             this.tabStopwatch.Name = "tabStopwatch";
             this.tabStopwatch.Padding = new System.Windows.Forms.Padding(3);
@@ -155,56 +155,56 @@
             this.tabStopwatch.Text = "Stopwatch";
             this.tabStopwatch.UseVisualStyleBackColor = true;
             // 
-            // bStopStop
+            // Stop_bStop
             // 
-            this.bStopStop.Location = new System.Drawing.Point(230, 100);
-            this.bStopStop.Name = "bStopStop";
-            this.bStopStop.Size = new System.Drawing.Size(75, 23);
-            this.bStopStop.TabIndex = 9;
-            this.bStopStop.Text = "Stop";
-            this.bStopStop.UseVisualStyleBackColor = true;
-            this.bStopStop.Click += new System.EventHandler(this.bStopStop_Click);
+            this.Stop_bStop.Location = new System.Drawing.Point(230, 100);
+            this.Stop_bStop.Name = "Stop_bStop";
+            this.Stop_bStop.Size = new System.Drawing.Size(75, 23);
+            this.Stop_bStop.TabIndex = 9;
+            this.Stop_bStop.Text = "Stop";
+            this.Stop_bStop.UseVisualStyleBackColor = true;
+            this.Stop_bStop.Click += new System.EventHandler(this.Stop_bStop_Click);
             // 
-            // bStopPause
+            // Stop_bPause
             // 
-            this.bStopPause.Location = new System.Drawing.Point(122, 100);
-            this.bStopPause.Name = "bStopPause";
-            this.bStopPause.Size = new System.Drawing.Size(75, 23);
-            this.bStopPause.TabIndex = 8;
-            this.bStopPause.Text = "Pause";
-            this.bStopPause.UseVisualStyleBackColor = true;
-            this.bStopPause.Click += new System.EventHandler(this.bStopPause_Click);
+            this.Stop_bPause.Location = new System.Drawing.Point(122, 100);
+            this.Stop_bPause.Name = "Stop_bPause";
+            this.Stop_bPause.Size = new System.Drawing.Size(75, 23);
+            this.Stop_bPause.TabIndex = 8;
+            this.Stop_bPause.Text = "Pause";
+            this.Stop_bPause.UseVisualStyleBackColor = true;
+            this.Stop_bPause.Click += new System.EventHandler(this.Stop_bPause_Click);
             // 
-            // bStopStart
+            // Stop_bStart
             // 
-            this.bStopStart.Location = new System.Drawing.Point(18, 100);
-            this.bStopStart.Name = "bStopStart";
-            this.bStopStart.Size = new System.Drawing.Size(75, 23);
-            this.bStopStart.TabIndex = 7;
-            this.bStopStart.Text = "Start";
-            this.bStopStart.UseVisualStyleBackColor = true;
-            this.bStopStart.Click += new System.EventHandler(this.bStopStart_Click);
+            this.Stop_bStart.Location = new System.Drawing.Point(18, 100);
+            this.Stop_bStart.Name = "Stop_bStart";
+            this.Stop_bStart.Size = new System.Drawing.Size(75, 23);
+            this.Stop_bStart.TabIndex = 7;
+            this.Stop_bStart.Text = "Start";
+            this.Stop_bStart.UseVisualStyleBackColor = true;
+            this.Stop_bStart.Click += new System.EventHandler(this.bStop_Click);
             // 
-            // lStopTime
+            // Stop_lTime
             // 
-            this.lStopTime.AutoSize = true;
-            this.lStopTime.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lStopTime.Location = new System.Drawing.Point(87, 19);
-            this.lStopTime.Name = "lStopTime";
-            this.lStopTime.Size = new System.Drawing.Size(159, 58);
-            this.lStopTime.TabIndex = 6;
-            this.lStopTime.Text = "00:00:00";
+            this.Stop_lTime.AutoSize = true;
+            this.Stop_lTime.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Stop_lTime.Location = new System.Drawing.Point(87, 19);
+            this.Stop_lTime.Name = "Stop_lTime";
+            this.Stop_lTime.Size = new System.Drawing.Size(159, 58);
+            this.Stop_lTime.TabIndex = 6;
+            this.Stop_lTime.Text = "00:00:00";
             // 
             // tabTimer
             // 
-            this.tabTimer.Controls.Add(this.bSet);
-            this.tabTimer.Controls.Add(this.label1);
-            this.tabTimer.Controls.Add(this.lTextRemainingTime);
-            this.tabTimer.Controls.Add(this.lRemainingTime);
-            this.tabTimer.Controls.Add(this.bTimerStart);
-            this.tabTimer.Controls.Add(this.bTimerPause);
-            this.tabTimer.Controls.Add(this.tSetTime);
-            this.tabTimer.Controls.Add(this.bTimerStop);
+            this.tabTimer.Controls.Add(this.Timer_bSetTime);
+            this.tabTimer.Controls.Add(this.Timer_lTextSetTheTime);
+            this.tabTimer.Controls.Add(this.Timer_lTextRemainingTime);
+            this.tabTimer.Controls.Add(this.Timer_lRemainingTime);
+            this.tabTimer.Controls.Add(this.Timer_bTimerStart);
+            this.tabTimer.Controls.Add(this.Timer_bTimerPause);
+            this.tabTimer.Controls.Add(this.Timer_tSetTime);
+            this.tabTimer.Controls.Add(this.Timer_bTimerStop);
             this.tabTimer.Location = new System.Drawing.Point(4, 22);
             this.tabTimer.Name = "tabTimer";
             this.tabTimer.Padding = new System.Windows.Forms.Padding(3);
@@ -213,30 +213,30 @@
             this.tabTimer.Text = "Timer";
             this.tabTimer.UseVisualStyleBackColor = true;
             // 
-            // bSet
+            // Timer_bSetTime
             // 
-            this.bSet.Location = new System.Drawing.Point(253, 15);
-            this.bSet.Name = "bSet";
-            this.bSet.Size = new System.Drawing.Size(51, 20);
-            this.bSet.TabIndex = 7;
-            this.bSet.Text = "Set";
-            this.bSet.UseVisualStyleBackColor = true;
-            this.bSet.Click += new System.EventHandler(this.bSet_Click);
+            this.Timer_bSetTime.Location = new System.Drawing.Point(253, 15);
+            this.Timer_bSetTime.Name = "Timer_bSetTime";
+            this.Timer_bSetTime.Size = new System.Drawing.Size(51, 20);
+            this.Timer_bSetTime.TabIndex = 7;
+            this.Timer_bSetTime.Text = "Set";
+            this.Timer_bSetTime.UseVisualStyleBackColor = true;
+            this.Timer_bSetTime.Click += new System.EventHandler(this.Timer_bSet_Click);
             // 
-            // label1
+            // Timer_lTextSetTheTime
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Set the time:";
+            this.Timer_lTextSetTheTime.AutoSize = true;
+            this.Timer_lTextSetTheTime.Location = new System.Drawing.Point(6, 18);
+            this.Timer_lTextSetTheTime.Name = "Timer_lTextSetTheTime";
+            this.Timer_lTextSetTheTime.Size = new System.Drawing.Size(66, 13);
+            this.Timer_lTextSetTheTime.TabIndex = 6;
+            this.Timer_lTextSetTheTime.Text = "Set the time:";
             // 
             // tabManualAdd
             // 
-            this.tabManualAdd.Controls.Add(this.bManualAdd);
-            this.tabManualAdd.Controls.Add(this.lTextManualSetTime);
-            this.tabManualAdd.Controls.Add(this.tManualSetTime);
+            this.tabManualAdd.Controls.Add(this.Manual_bAdd);
+            this.tabManualAdd.Controls.Add(this.Manual_lTextSetTime);
+            this.tabManualAdd.Controls.Add(this.Manual_tSetTime);
             this.tabManualAdd.Location = new System.Drawing.Point(4, 22);
             this.tabManualAdd.Name = "tabManualAdd";
             this.tabManualAdd.Padding = new System.Windows.Forms.Padding(3);
@@ -245,41 +245,41 @@
             this.tabManualAdd.Text = "Manual Add";
             this.tabManualAdd.UseVisualStyleBackColor = true;
             // 
-            // bManualAdd
+            // Manual_bAdd
             // 
-            this.bManualAdd.Location = new System.Drawing.Point(260, 18);
-            this.bManualAdd.Name = "bManualAdd";
-            this.bManualAdd.Size = new System.Drawing.Size(51, 20);
-            this.bManualAdd.TabIndex = 10;
-            this.bManualAdd.Text = "Add";
-            this.bManualAdd.UseVisualStyleBackColor = true;
-            this.bManualAdd.Click += new System.EventHandler(this.bManualAdd_Click);
+            this.Manual_bAdd.Location = new System.Drawing.Point(260, 18);
+            this.Manual_bAdd.Name = "Manual_bAdd";
+            this.Manual_bAdd.Size = new System.Drawing.Size(51, 20);
+            this.Manual_bAdd.TabIndex = 10;
+            this.Manual_bAdd.Text = "Add";
+            this.Manual_bAdd.UseVisualStyleBackColor = true;
+            this.Manual_bAdd.Click += new System.EventHandler(this.bManualAdd_Click);
             // 
-            // lTextManualSetTime
+            // Manual_lTextSetTime
             // 
-            this.lTextManualSetTime.AutoSize = true;
-            this.lTextManualSetTime.Location = new System.Drawing.Point(11, 21);
-            this.lTextManualSetTime.Name = "lTextManualSetTime";
-            this.lTextManualSetTime.Size = new System.Drawing.Size(66, 13);
-            this.lTextManualSetTime.TabIndex = 9;
-            this.lTextManualSetTime.Text = "Set the time:";
+            this.Manual_lTextSetTime.AutoSize = true;
+            this.Manual_lTextSetTime.Location = new System.Drawing.Point(11, 21);
+            this.Manual_lTextSetTime.Name = "Manual_lTextSetTime";
+            this.Manual_lTextSetTime.Size = new System.Drawing.Size(66, 13);
+            this.Manual_lTextSetTime.TabIndex = 9;
+            this.Manual_lTextSetTime.Text = "Set the time:";
             // 
-            // tManualSetTime
+            // Manual_tSetTime
             // 
-            this.tManualSetTime.Location = new System.Drawing.Point(110, 18);
-            this.tManualSetTime.Name = "tManualSetTime";
-            this.tManualSetTime.Size = new System.Drawing.Size(109, 20);
-            this.tManualSetTime.TabIndex = 8;
-            this.tManualSetTime.Text = "hh:mm:ss";
+            this.Manual_tSetTime.Location = new System.Drawing.Point(110, 18);
+            this.Manual_tSetTime.Name = "Manual_tSetTime";
+            this.Manual_tSetTime.Size = new System.Drawing.Size(109, 20);
+            this.Manual_tSetTime.TabIndex = 8;
+            this.Manual_tSetTime.Text = "hh:mm:ss";
             // 
             // tabSetAsHabit
             // 
-            this.tabSetAsHabit.Controls.Add(this.lTextSetTheTime);
-            this.tabSetAsHabit.Controls.Add(this.lTextMinPerDay);
-            this.tabSetAsHabit.Controls.Add(this.bSetAsHabit);
-            this.tabSetAsHabit.Controls.Add(this.tHabitSetTime);
-            this.tabSetAsHabit.Controls.Add(this.bRemoveFromHabbits);
-            this.tabSetAsHabit.Controls.Add(this.lValueMinPerDay);
+            this.tabSetAsHabit.Controls.Add(this.Habit_lTextSetTheTime);
+            this.tabSetAsHabit.Controls.Add(this.Habit_lTextMinPerDay);
+            this.tabSetAsHabit.Controls.Add(this.Habit_bSetAsHabit);
+            this.tabSetAsHabit.Controls.Add(this.Habit_tSetTime);
+            this.tabSetAsHabit.Controls.Add(this.Habit_bRemoveFromHabbits);
+            this.tabSetAsHabit.Controls.Add(this.Habit_lValueMinPerDay);
             this.tabSetAsHabit.Location = new System.Drawing.Point(4, 22);
             this.tabSetAsHabit.Name = "tabSetAsHabit";
             this.tabSetAsHabit.Padding = new System.Windows.Forms.Padding(3);
@@ -288,60 +288,60 @@
             this.tabSetAsHabit.Text = "Set as Habit";
             this.tabSetAsHabit.UseVisualStyleBackColor = true;
             // 
-            // lTextSetTheTime
+            // Habit_lTextSetTheTime
             // 
-            this.lTextSetTheTime.AutoSize = true;
-            this.lTextSetTheTime.Location = new System.Drawing.Point(14, 26);
-            this.lTextSetTheTime.Name = "lTextSetTheTime";
-            this.lTextSetTheTime.Size = new System.Drawing.Size(66, 13);
-            this.lTextSetTheTime.TabIndex = 14;
-            this.lTextSetTheTime.Text = "Set the time:";
+            this.Habit_lTextSetTheTime.AutoSize = true;
+            this.Habit_lTextSetTheTime.Location = new System.Drawing.Point(14, 26);
+            this.Habit_lTextSetTheTime.Name = "Habit_lTextSetTheTime";
+            this.Habit_lTextSetTheTime.Size = new System.Drawing.Size(66, 13);
+            this.Habit_lTextSetTheTime.TabIndex = 14;
+            this.Habit_lTextSetTheTime.Text = "Set the time:";
             // 
-            // lTextMinPerDay
+            // Habit_lTextMinPerDay
             // 
-            this.lTextMinPerDay.AutoSize = true;
-            this.lTextMinPerDay.Location = new System.Drawing.Point(29, 69);
-            this.lTextMinPerDay.Name = "lTextMinPerDay";
-            this.lTextMinPerDay.Size = new System.Drawing.Size(51, 13);
-            this.lTextMinPerDay.TabIndex = 12;
-            this.lTextMinPerDay.Text = "min/day :";
+            this.Habit_lTextMinPerDay.AutoSize = true;
+            this.Habit_lTextMinPerDay.Location = new System.Drawing.Point(29, 69);
+            this.Habit_lTextMinPerDay.Name = "Habit_lTextMinPerDay";
+            this.Habit_lTextMinPerDay.Size = new System.Drawing.Size(51, 13);
+            this.Habit_lTextMinPerDay.TabIndex = 12;
+            this.Habit_lTextMinPerDay.Text = "min/day :";
             // 
-            // lValueMinPerDay
+            // Habit_bSetAsHabit
             // 
-            this.lValueMinPerDay.AutoSize = true;
-            this.lValueMinPerDay.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lValueMinPerDay.Location = new System.Drawing.Point(142, 46);
-            this.lValueMinPerDay.Name = "lValueMinPerDay";
-            this.lValueMinPerDay.Size = new System.Drawing.Size(44, 58);
-            this.lValueMinPerDay.TabIndex = 13;
-            this.lValueMinPerDay.Text = "0";
+            this.Habit_bSetAsHabit.Location = new System.Drawing.Point(17, 104);
+            this.Habit_bSetAsHabit.Name = "Habit_bSetAsHabit";
+            this.Habit_bSetAsHabit.Size = new System.Drawing.Size(75, 23);
+            this.Habit_bSetAsHabit.TabIndex = 8;
+            this.Habit_bSetAsHabit.Text = "Set As Habit";
+            this.Habit_bSetAsHabit.UseVisualStyleBackColor = true;
+            this.Habit_bSetAsHabit.Click += new System.EventHandler(this.bSetAsHabit_Click);
             // 
-            // bSetAsHabit
+            // Habit_tSetTime
             // 
-            this.bSetAsHabit.Location = new System.Drawing.Point(17, 104);
-            this.bSetAsHabit.Name = "bSetAsHabit";
-            this.bSetAsHabit.Size = new System.Drawing.Size(75, 23);
-            this.bSetAsHabit.TabIndex = 8;
-            this.bSetAsHabit.Text = "Set As Habit";
-            this.bSetAsHabit.UseVisualStyleBackColor = true;
-            this.bSetAsHabit.Click += new System.EventHandler(this.bSetAsHabit_Click);
+            this.Habit_tSetTime.Location = new System.Drawing.Point(113, 23);
+            this.Habit_tSetTime.Name = "Habit_tSetTime";
+            this.Habit_tSetTime.Size = new System.Drawing.Size(109, 20);
+            this.Habit_tSetTime.TabIndex = 11;
+            this.Habit_tSetTime.Text = "hh:mm:ss";
             // 
-            // tHabitSetTime
+            // Habit_bRemoveFromHabbits
             // 
-            this.tHabitSetTime.Location = new System.Drawing.Point(113, 23);
-            this.tHabitSetTime.Name = "tHabitSetTime";
-            this.tHabitSetTime.Size = new System.Drawing.Size(109, 20);
-            this.tHabitSetTime.TabIndex = 11;
-            this.tHabitSetTime.Text = "hh:mm:ss";
+            this.Habit_bRemoveFromHabbits.Location = new System.Drawing.Point(192, 104);
+            this.Habit_bRemoveFromHabbits.Name = "Habit_bRemoveFromHabbits";
+            this.Habit_bRemoveFromHabbits.Size = new System.Drawing.Size(123, 23);
+            this.Habit_bRemoveFromHabbits.TabIndex = 10;
+            this.Habit_bRemoveFromHabbits.Text = "Remove From Habbits";
+            this.Habit_bRemoveFromHabbits.UseVisualStyleBackColor = true;
             // 
-            // bRemoveFromHabbits
+            // Habit_lValueMinPerDay
             // 
-            this.bRemoveFromHabbits.Location = new System.Drawing.Point(192, 104);
-            this.bRemoveFromHabbits.Name = "bRemoveFromHabbits";
-            this.bRemoveFromHabbits.Size = new System.Drawing.Size(123, 23);
-            this.bRemoveFromHabbits.TabIndex = 10;
-            this.bRemoveFromHabbits.Text = "Remove From Habbits";
-            this.bRemoveFromHabbits.UseVisualStyleBackColor = true;
+            this.Habit_lValueMinPerDay.AutoSize = true;
+            this.Habit_lValueMinPerDay.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Habit_lValueMinPerDay.Location = new System.Drawing.Point(142, 46);
+            this.Habit_lValueMinPerDay.Name = "Habit_lValueMinPerDay";
+            this.Habit_lValueMinPerDay.Size = new System.Drawing.Size(44, 58);
+            this.Habit_lValueMinPerDay.TabIndex = 13;
+            this.Habit_lValueMinPerDay.Text = "0";
             // 
             // ActivityTimer
             // 
@@ -365,33 +365,33 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timerSecond;
-        private System.Windows.Forms.Timer timerStopwatchSecond;
-        private System.Windows.Forms.Button bTimerStart;
-        private System.Windows.Forms.Button bTimerPause;
-        private System.Windows.Forms.Button bTimerStop;
-        private System.Windows.Forms.TextBox tSetTime;
-        private System.Windows.Forms.Label lTextRemainingTime;
-        private System.Windows.Forms.Label lRemainingTime;
+        private System.Windows.Forms.Timer Timer_timerSecond;
+        private System.Windows.Forms.Timer Stop_timerSecond;
+        private System.Windows.Forms.Button Timer_bTimerStart;
+        private System.Windows.Forms.Button Timer_bTimerPause;
+        private System.Windows.Forms.Button Timer_bTimerStop;
+        private System.Windows.Forms.TextBox Timer_tSetTime;
+        private System.Windows.Forms.Label Timer_lTextRemainingTime;
+        private System.Windows.Forms.Label Timer_lRemainingTime;
         private System.Windows.Forms.TabControl tabPicker;
         private System.Windows.Forms.TabPage tabTimer;
         private System.Windows.Forms.TabPage tabStopwatch;
-        private System.Windows.Forms.Button bSet;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button bStopStop;
-        private System.Windows.Forms.Button bStopPause;
-        private System.Windows.Forms.Button bStopStart;
-        private System.Windows.Forms.Label lStopTime;
+        private System.Windows.Forms.Button Timer_bSetTime;
+        private System.Windows.Forms.Label Timer_lTextSetTheTime;
+        private System.Windows.Forms.Button Stop_bStop;
+        private System.Windows.Forms.Button Stop_bPause;
+        private System.Windows.Forms.Button Stop_bStart;
+        private System.Windows.Forms.Label Stop_lTime;
         private System.Windows.Forms.TabPage tabManualAdd;
-        private System.Windows.Forms.Button bManualAdd;
-        private System.Windows.Forms.Label lTextManualSetTime;
-        private System.Windows.Forms.TextBox tManualSetTime;
+        private System.Windows.Forms.Button Manual_bAdd;
+        private System.Windows.Forms.Label Manual_lTextSetTime;
+        private System.Windows.Forms.TextBox Manual_tSetTime;
         private System.Windows.Forms.TabPage tabSetAsHabit;
-        private System.Windows.Forms.Label lTextSetTheTime;
-        private System.Windows.Forms.Label lTextMinPerDay;
-        private System.Windows.Forms.Label lValueMinPerDay;
-        private System.Windows.Forms.Button bSetAsHabit;
-        private System.Windows.Forms.TextBox tHabitSetTime;
-        private System.Windows.Forms.Button bRemoveFromHabbits;
+        private System.Windows.Forms.Label Habit_lTextSetTheTime;
+        private System.Windows.Forms.Label Habit_lTextMinPerDay;
+        private System.Windows.Forms.Label Habit_lValueMinPerDay;
+        private System.Windows.Forms.Button Habit_bSetAsHabit;
+        private System.Windows.Forms.TextBox Habit_tSetTime;
+        private System.Windows.Forms.Button Habit_bRemoveFromHabbits;
     }
 }

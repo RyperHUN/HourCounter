@@ -76,21 +76,37 @@ namespace ActivityTimer
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private long Timer_remainingTimeSeconds;
         private long Timer_startingTimeSeconds;
+        private bool Timer_isValidTimeSet = false;
 
         private void Timer_bSet_Click (object sender, EventArgs e)
         {
             String setTime        = Timer_tSetTime.Text;
-            Timer_lRemainingTime.Text   = setTime;
-            Timer_startingTimeSeconds  = TimeConverter.stringToTime (setTime);
-            Timer_remainingTimeSeconds = Timer_startingTimeSeconds;
+            Timer_lRemainingTime.Text  = setTime;
+            try
+            {
+                Timer_startingTimeSeconds = TimeConverter.stringToTime (setTime);
+                Timer_remainingTimeSeconds = Timer_startingTimeSeconds;
+                Timer_isValidTimeSet = true;
+            }
+            catch (InvalidOperationException /*exc*/)
+            {
+                Timer_isValidTimeSet = false; //conversion failed
+            }
         }
 
         private void Timer_bStart_Click(object sender, EventArgs e)
-        { 
-            Timer_timerSecond.Start ();
-            if (TimerStartedEvent != null)
-                TimerStartedEvent ();
-            Timer_bSetTime.Enabled = false;
+        {
+            if (Timer_isValidTimeSet)
+            {
+                Timer_timerSecond.Start ();
+                if (TimerStartedEvent != null)
+                    TimerStartedEvent ();
+                Timer_bSetTime.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show ("You must specify a time first.");
+            }
         }
 
         private void Timer_timerSecond_Tick(object sender, EventArgs e)
@@ -180,8 +196,13 @@ namespace ActivityTimer
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void bManualAdd_Click (object sender, EventArgs e)
         {
-            long needToAddTimeSec = TimeConverter.stringToTime (Manual_tSetTime.Text);
-            _selectedActivity.AddTime (needToAddTimeSec / 60);
+            try
+            {
+                long needToAddTimeSec = TimeConverter.stringToTime (Manual_tSetTime.Text);
+                _selectedActivity.AddTime (needToAddTimeSec / 60);
+            }
+            catch(InvalidOperationException /*exc*/)
+            {}
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// HABIT ADD CODE GOES HERE ////////////////////////////////////////////////////
@@ -202,14 +223,22 @@ namespace ActivityTimer
         {
             static readonly long MINTOSEC  = 60;
             static readonly long HOURTOSEC = 3600;
-            static public long stringToTime (string time)
+            static public long stringToTime (string time) ///TODO Sorround all stringToTime with try catch
             {
                 String[] timeArray = time.Split(':');
                 long timeSeconds = 0;
-                timeSeconds += Int64.Parse (timeArray[0]) * HOURTOSEC;
-                timeSeconds += Int64.Parse (timeArray[1]) * MINTOSEC;
-                timeSeconds += Int64.Parse (timeArray[2]);
-
+                try
+                {
+                    timeSeconds += ConvertStringToLongSafe (timeArray[0]) * HOURTOSEC;
+                    timeSeconds += ConvertStringToLongSafe (timeArray[1]) * MINTOSEC;
+                    timeSeconds += ConvertStringToLongSafe (timeArray[2]); //TODO Maybe sec remove
+                }
+                catch ( InvalidOperationException exc)
+                {
+                    MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
+                    throw exc;
+                }
+                
                 return timeSeconds;
             }
             static public string timeToString (long time)
@@ -234,8 +263,21 @@ namespace ActivityTimer
 
                 return result;
             }
+            public static long ConvertStringToLongSafe(string num)
+            {
+                long result;
+                if(Int64.TryParse(num,out result))
+                {
+                    return result;
+                }
+                else
+                {
+                    throw new InvalidOperationException ("Invalid string argument given");
+                }
+            }
         }
 
+        //Nem enged tabot valtani ha TImer modban vagyunk
         private void tabPicker_Selecting (object sender, TabControlCancelEventArgs e)
         {
             if (!e.TabPage.Enabled)

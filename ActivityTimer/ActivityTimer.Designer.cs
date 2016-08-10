@@ -82,20 +82,20 @@
             this.Timer_bStart.UseVisualStyleBackColor = true;
             this.Timer_bStart.Click += new System.EventHandler(this.Timer_bStart_Click);
             // 
-            // Timer_bTimerPause
+            // Timer_bPause
             // 
             this.Timer_bPause.Location = new System.Drawing.Point(118, 100);
-            this.Timer_bPause.Name = "Timer_bTimerPause";
+            this.Timer_bPause.Name = "Timer_bPause";
             this.Timer_bPause.Size = new System.Drawing.Size(75, 23);
             this.Timer_bPause.TabIndex = 1;
             this.Timer_bPause.Text = "Pause";
             this.Timer_bPause.UseVisualStyleBackColor = true;
             this.Timer_bPause.Click += new System.EventHandler(this.Timer_bPause_Click);
             // 
-            // Timer_bTimerStop
+            // Timer_bStop
             // 
             this.Timer_bStop.Location = new System.Drawing.Point(229, 100);
-            this.Timer_bStop.Name = "Timer_bTimerStop";
+            this.Timer_bStop.Name = "Timer_bStop";
             this.Timer_bStop.Size = new System.Drawing.Size(75, 23);
             this.Timer_bStop.TabIndex = 2;
             this.Timer_bStop.Text = "Stop";
@@ -140,6 +140,7 @@
             this.tabPicker.SelectedIndex = 0;
             this.tabPicker.Size = new System.Drawing.Size(345, 238);
             this.tabPicker.TabIndex = 6;
+            this.tabPicker.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabPicker_Selecting);
             // 
             // tabStopwatch
             // 

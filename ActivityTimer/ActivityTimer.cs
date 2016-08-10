@@ -49,6 +49,8 @@ namespace ActivityTimer
             Timer_bStop.Enabled  = true;
             Stop_bPause.Enabled  = true;
             Stop_bStop.Enabled   = true;
+
+            EnableTab (false);
         }
         private void DisableTimerMode()
         {
@@ -59,6 +61,15 @@ namespace ActivityTimer
             Timer_bStop.Enabled  = false;
             Stop_bPause.Enabled  = false;
             Stop_bStop.Enabled   = false;
+
+            EnableTab (true);
+        }
+        private void EnableTab (bool enable)
+        {
+            foreach (TabPage ctl in tabPicker.Controls)
+                ctl.Enabled = enable;
+
+            tabPicker.TabPages[tabPicker.SelectedIndex].Enabled = true;
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// TIMER CODE GOES HERE ////////////////////////////////////////////////////////
@@ -222,6 +233,14 @@ namespace ActivityTimer
                 string result = hourStr + ":" + minStr + ":" + secStr;
 
                 return result;
+            }
+        }
+
+        private void tabPicker_Selecting (object sender, TabControlCancelEventArgs e)
+        {
+            if (!e.TabPage.Enabled)
+            {
+                e.Cancel = true;
             }
         }
     }

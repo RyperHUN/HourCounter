@@ -50,10 +50,18 @@
             this.bManualAdd = new System.Windows.Forms.Button();
             this.lTextManualSetTime = new System.Windows.Forms.Label();
             this.tManualSetTime = new System.Windows.Forms.TextBox();
+            this.tabSetAsHabit = new System.Windows.Forms.TabPage();
+            this.lTextSetTheTime = new System.Windows.Forms.Label();
+            this.lTextMinPerDay = new System.Windows.Forms.Label();
+            this.lValueMinPerDay = new System.Windows.Forms.Label();
+            this.bSetAsHabit = new System.Windows.Forms.Button();
+            this.tHabitSetTime = new System.Windows.Forms.TextBox();
+            this.bRemoveFromHabbits = new System.Windows.Forms.Button();
             this.tabPicker.SuspendLayout();
             this.tabStopwatch.SuspendLayout();
             this.tabTimer.SuspendLayout();
             this.tabManualAdd.SuspendLayout();
+            this.tabSetAsHabit.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerSecond
@@ -126,6 +134,7 @@
             this.tabPicker.Controls.Add(this.tabStopwatch);
             this.tabPicker.Controls.Add(this.tabTimer);
             this.tabPicker.Controls.Add(this.tabManualAdd);
+            this.tabPicker.Controls.Add(this.tabSetAsHabit);
             this.tabPicker.Location = new System.Drawing.Point(0, 3);
             this.tabPicker.Name = "tabPicker";
             this.tabPicker.SelectedIndex = 0;
@@ -263,6 +272,77 @@
             this.tManualSetTime.TabIndex = 8;
             this.tManualSetTime.Text = "hh:mm:ss";
             // 
+            // tabSetAsHabit
+            // 
+            this.tabSetAsHabit.Controls.Add(this.lTextSetTheTime);
+            this.tabSetAsHabit.Controls.Add(this.lTextMinPerDay);
+            this.tabSetAsHabit.Controls.Add(this.bSetAsHabit);
+            this.tabSetAsHabit.Controls.Add(this.tHabitSetTime);
+            this.tabSetAsHabit.Controls.Add(this.bRemoveFromHabbits);
+            this.tabSetAsHabit.Controls.Add(this.lValueMinPerDay);
+            this.tabSetAsHabit.Location = new System.Drawing.Point(4, 22);
+            this.tabSetAsHabit.Name = "tabSetAsHabit";
+            this.tabSetAsHabit.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSetAsHabit.Size = new System.Drawing.Size(337, 212);
+            this.tabSetAsHabit.TabIndex = 3;
+            this.tabSetAsHabit.Text = "Set as Habit";
+            this.tabSetAsHabit.UseVisualStyleBackColor = true;
+            // 
+            // lTextSetTheTime
+            // 
+            this.lTextSetTheTime.AutoSize = true;
+            this.lTextSetTheTime.Location = new System.Drawing.Point(14, 26);
+            this.lTextSetTheTime.Name = "lTextSetTheTime";
+            this.lTextSetTheTime.Size = new System.Drawing.Size(66, 13);
+            this.lTextSetTheTime.TabIndex = 14;
+            this.lTextSetTheTime.Text = "Set the time:";
+            // 
+            // lTextMinPerDay
+            // 
+            this.lTextMinPerDay.AutoSize = true;
+            this.lTextMinPerDay.Location = new System.Drawing.Point(29, 69);
+            this.lTextMinPerDay.Name = "lTextMinPerDay";
+            this.lTextMinPerDay.Size = new System.Drawing.Size(51, 13);
+            this.lTextMinPerDay.TabIndex = 12;
+            this.lTextMinPerDay.Text = "min/day :";
+            // 
+            // lValueMinPerDay
+            // 
+            this.lValueMinPerDay.AutoSize = true;
+            this.lValueMinPerDay.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lValueMinPerDay.Location = new System.Drawing.Point(142, 46);
+            this.lValueMinPerDay.Name = "lValueMinPerDay";
+            this.lValueMinPerDay.Size = new System.Drawing.Size(44, 58);
+            this.lValueMinPerDay.TabIndex = 13;
+            this.lValueMinPerDay.Text = "0";
+            // 
+            // bSetAsHabit
+            // 
+            this.bSetAsHabit.Location = new System.Drawing.Point(17, 104);
+            this.bSetAsHabit.Name = "bSetAsHabit";
+            this.bSetAsHabit.Size = new System.Drawing.Size(75, 23);
+            this.bSetAsHabit.TabIndex = 8;
+            this.bSetAsHabit.Text = "Set As Habit";
+            this.bSetAsHabit.UseVisualStyleBackColor = true;
+            this.bSetAsHabit.Click += new System.EventHandler(this.bSetAsHabit_Click);
+            // 
+            // tHabitSetTime
+            // 
+            this.tHabitSetTime.Location = new System.Drawing.Point(113, 23);
+            this.tHabitSetTime.Name = "tHabitSetTime";
+            this.tHabitSetTime.Size = new System.Drawing.Size(109, 20);
+            this.tHabitSetTime.TabIndex = 11;
+            this.tHabitSetTime.Text = "hh:mm:ss";
+            // 
+            // bRemoveFromHabbits
+            // 
+            this.bRemoveFromHabbits.Location = new System.Drawing.Point(192, 104);
+            this.bRemoveFromHabbits.Name = "bRemoveFromHabbits";
+            this.bRemoveFromHabbits.Size = new System.Drawing.Size(123, 23);
+            this.bRemoveFromHabbits.TabIndex = 10;
+            this.bRemoveFromHabbits.Text = "Remove From Habbits";
+            this.bRemoveFromHabbits.UseVisualStyleBackColor = true;
+            // 
             // ActivityTimer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,6 +357,8 @@
             this.tabTimer.PerformLayout();
             this.tabManualAdd.ResumeLayout(false);
             this.tabManualAdd.PerformLayout();
+            this.tabSetAsHabit.ResumeLayout(false);
+            this.tabSetAsHabit.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -304,5 +386,12 @@
         private System.Windows.Forms.Button bManualAdd;
         private System.Windows.Forms.Label lTextManualSetTime;
         private System.Windows.Forms.TextBox tManualSetTime;
+        private System.Windows.Forms.TabPage tabSetAsHabit;
+        private System.Windows.Forms.Label lTextSetTheTime;
+        private System.Windows.Forms.Label lTextMinPerDay;
+        private System.Windows.Forms.Label lValueMinPerDay;
+        private System.Windows.Forms.Button bSetAsHabit;
+        private System.Windows.Forms.TextBox tHabitSetTime;
+        private System.Windows.Forms.Button bRemoveFromHabbits;
     }
 }

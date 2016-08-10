@@ -11,6 +11,7 @@ using HourCounter;
 
 namespace ActivityTimer
 {
+    [Serializable]
     public partial class ActivityTimer : UserControl
     {
         //TODO Ha timer elindul akkor ne lehessen activityt váltani
@@ -24,6 +25,7 @@ namespace ActivityTimer
 
         private long _stopWatchTimeSecond = 0;
 
+        private Dictionary<Activity,long> _habitContainer = new Dictionary<Activity,long>();
         public ActivityTimer()
         {
             InitializeComponent();
@@ -174,6 +176,19 @@ namespace ActivityTimer
         {
             long needToAddTimeSec = TimeConverter.stringToTime (tManualSetTime.Text);
             _selectedActivity.AddTime (needToAddTimeSec / 60);
+        }
+
+        private void bSetAsHabit_Click (object sender, EventArgs e)
+        {
+            long habitTimeSec = TimeConverter.stringToTime(tHabitSetTime.Text);
+            long habitTimeMin = habitTimeSec/60;
+
+            //if (_habitContainer.ContainsKey (_selectedActivity))
+            //    ;///TODO Popup -> Felülírja az előző activityt.
+
+            _habitContainer.Add (_selectedActivity, habitTimeMin);
+
+            _selectedActivity.AddedAsHabit ();
         }
     }
 

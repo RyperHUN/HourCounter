@@ -31,6 +31,8 @@ namespace TreeListView
             {
                 Activity activity = dict.Value;
                 TreeNode Root = new TreeNode(activity.getFormatedStatus());
+                if (activity.IsHabit)
+                    Root.ForeColor = System.Drawing.Color.Green;
                 LinkedList<TreeNode> childs = GetChilds(activity);
 
                 if (childs != null)
@@ -56,6 +58,8 @@ namespace TreeListView
             {
                 Activity childActivity = dict.Value;
                 TreeNode ChildNode = new TreeNode(childActivity.getFormatedStatus());
+                if (childActivity.IsHabit)
+                    ChildNode.ForeColor = System.Drawing.Color.Green;
                 LinkedList<TreeNode> childChildNodes = GetChilds(childActivity);
                 if (childChildNodes != null)// Ha vannak még gyerekek
                 {

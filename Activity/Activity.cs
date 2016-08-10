@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace HourCounter
 {
     [Serializable]
-    public class Activity : Observable
+    public class Activity : Observable, ISerializable
     {
         /// TODO Kellene valami keresés amivel meglehet találni az egyes activityket
 
@@ -17,9 +18,27 @@ namespace HourCounter
         private SortedList<string, Activity> _subActivities = new SortedList<string, Activity>(); //Stores all the subActivities
         public SortedList<string, Activity> GetList() { return _subActivities; }
 
+        
+        private bool _isHabit = false;
+        public bool IsHabit { get { return _isHabit; } private set { } }
+
         private long _minutesSpentOnActivity;
-        //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
-        public long Counter
+        public void GetObjectData (SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue ("0", _name);
+            info.AddValue ("1", _isHabit);
+            info.AddValue ("2", _minutesSpentOnActivity);
+            info.AddValue ("3", _subActivities);
+        }
+        protected Activity (SerializationInfo info, StreamingContext context)
+        {
+            _name    = info.GetString ("0");
+            _isHabit = info.GetBoolean ("1");
+            _minutesSpentOnActivity = (long)info.GetValue ("2", typeof(long));
+            _subActivities = (SortedList<string, Activity>)info.GetValue ("3", typeof (SortedList<string, Activity>));
+    }
+    //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
+    public long Counter
         {
             get
             {
@@ -142,6 +161,16 @@ namespace HourCounter
         public void AddTime(long timeMin)
         {
             _minutesSpentOnActivity += timeMin;
+            updateAllViews ();
+        }
+        public void AddedAsHabit()
+        {
+            _isHabit = true;
+            updateAllViews ();
+        }
+        public void RemovedAsHabit()
+        {
+            _isHabit = false;
             updateAllViews ();
         }
     }

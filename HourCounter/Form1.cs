@@ -87,7 +87,7 @@ namespace HourCounter
             if(_isAutomaticSave)
             {
                 IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                Stream stream = new FileStream("data.bin",
+                Stream stream = new FileStream("data2.bin",
                                                FileMode.Create,
                                                FileAccess.Write, FileShare.None);
                 formatter.Serialize (stream, _activityContainer);
@@ -100,12 +100,17 @@ namespace HourCounter
             try
             {
                 IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                Stream stream = new FileStream("data.bin",
+                Stream stream = new FileStream("data2.bin",
                                            FileMode.Open,
                                            FileAccess.Read,
                                            FileShare.Read);
                 _activityContainer = (Activity)formatter.Deserialize (stream);
                 stream.Close ();
+            }
+            catch (System.Runtime.Serialization.SerializationException exc)
+            {
+                Console.WriteLine ( exc.ToString() );
+                return false;
             }
             catch (FileNotFoundException exc)
             {

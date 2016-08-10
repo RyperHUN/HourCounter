@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HourCounter">
-      <HintPath>..\HourCounter\bin\Debug\HourCounter.exe</HintPath>
+    <Reference Include="Activity">
+      <HintPath>..\Activity\bin\Debug\Activity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

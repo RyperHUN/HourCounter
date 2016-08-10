@@ -26,7 +26,7 @@ namespace TreeListView
         void BuildTree ()
         {
             this.Nodes.Clear ();
-            SortedList<string,Activity> activities = activityContainer.GetList();
+            SortedList<string,Activity> activities = activityContainer.GetSubActivityList();
             foreach (var dict in activities)
             {
                 Activity activity = dict.Value;
@@ -50,7 +50,7 @@ namespace TreeListView
         LinkedList<TreeNode> GetChilds (Activity activity)
         {
             LinkedList<TreeNode> treeNodes = new LinkedList<TreeNode>();
-            SortedList<string, Activity> activities = activity.GetList();
+            SortedList<string, Activity> activities = activity.GetSubActivityList();
             if (activities.Count == 0)
                 return null; //Recursion end if no more childs
 

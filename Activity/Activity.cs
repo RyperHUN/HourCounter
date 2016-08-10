@@ -17,9 +17,10 @@ namespace HourCounter
         private string _name = null; // Stores the activity name
         public  string Name { get { return _name; } private set { } } // Only can be viewed
         private SortedList<string, Activity> _subActivities = new SortedList<string, Activity>(); //Stores all the subActivities
-        public  SortedList<string, Activity> GetList() { return _subActivities; }
+        public  SortedList<string, Activity> GetSubActivityList() { return _subActivities; }
 
         private static Dictionary<Activity,long> _habitContainer = new Dictionary<Activity, long>(); //Stores who is habit and who is not.
+        public Dictionary<Activity, long> GetHabitList () { return _habitContainer; }
 
         private bool _isHabit = false;
         public bool IsHabit { get { return _isHabit; } private set { } }
@@ -88,7 +89,7 @@ namespace HourCounter
         }
         public LinkedList<String> GetListStringFormated(Activity startActivity, String tab)
         {
-            SortedList<string, Activity> subActivities = startActivity.GetList();
+            SortedList<string, Activity> subActivities = startActivity.GetSubActivityList();
             if (subActivities.Count == 0) //No more activities
                 return null;
             LinkedList<String> activityStringList = new LinkedList<string>();
@@ -134,7 +135,7 @@ namespace HourCounter
         }
         public Activity Find (Activity rootActivity,string searchForActivity)
         {
-            SortedList<string, Activity> subActivities = rootActivity.GetList ();
+            SortedList<string, Activity> subActivities = rootActivity.GetSubActivityList ();
             if (subActivities.Count == 0)
                 return null;
 
@@ -153,7 +154,7 @@ namespace HourCounter
         }
         public bool remove (Activity rootActivity,string searchForActivity)
         {
-            SortedList<string, Activity> subActivities = rootActivity.GetList ();
+            SortedList<string, Activity> subActivities = rootActivity.GetSubActivityList ();
             if (subActivities.Count == 0)
                 return false;
 

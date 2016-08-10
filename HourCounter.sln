@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeListView", "TreeListVie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Activity", "Activity\Activity.csproj", "{7BEA3EFF-5A8D-48B9-AF1E-EB2B7EAD1735}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HabitController", "HabitController\HabitController.csproj", "{69AA505E-979F-44AA-923B-920487776543}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7BEA3EFF-5A8D-48B9-AF1E-EB2B7EAD1735}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BEA3EFF-5A8D-48B9-AF1E-EB2B7EAD1735}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BEA3EFF-5A8D-48B9-AF1E-EB2B7EAD1735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69AA505E-979F-44AA-923B-920487776543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69AA505E-979F-44AA-923B-920487776543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69AA505E-979F-44AA-923B-920487776543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69AA505E-979F-44AA-923B-920487776543}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

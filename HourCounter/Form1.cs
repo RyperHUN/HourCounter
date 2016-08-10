@@ -22,8 +22,7 @@ namespace HourCounter
             InitializeComponent ();
 
             loadActivities ();
-            
-            
+
 
             treeView.addActivityContainer (_activityContainer);
          

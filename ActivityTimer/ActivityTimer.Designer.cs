@@ -333,6 +333,7 @@
             this.Habit_bRemoveFromHabbits.TabIndex = 10;
             this.Habit_bRemoveFromHabbits.Text = "Remove From Habbits";
             this.Habit_bRemoveFromHabbits.UseVisualStyleBackColor = true;
+            this.Habit_bRemoveFromHabbits.Click += new System.EventHandler(this.Habit_bRemoveFromHabbits_Click);
             // 
             // Habit_lValueMinPerDay
             // 

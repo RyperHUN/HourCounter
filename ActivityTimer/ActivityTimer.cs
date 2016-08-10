@@ -19,12 +19,11 @@ namespace ActivityTimer
         public event TimerHandler TimerStoppedEvent; ///TODO Ne lehessen tabot váltani!
 
         private Activity _selectedActivity;
-        private Dictionary<Activity,long> _habitContainer;
 
         public ActivityTimer()
         {
             InitializeComponent();
-            _habitContainer = new Dictionary<Activity,long>(); ///TODO Esetleg átrakni ACTIVITYBE es szerializálni
+            
             tabPicker.Dock  = DockStyle.Fill;
             Timer_timerSecond.Interval     = 1000; // 1 sec
             Stop_timerSecond.Interval = 1000;
@@ -209,16 +208,37 @@ namespace ActivityTimer
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private void bSetAsHabit_Click (object sender, EventArgs e)
         {
+            try
+            {
+                Habit_AddHabit ();
+            }
+            catch (ArgumentException /*exc*/)
+            {
+                DialogResult result = MessageBox.Show("Do you want to overwrite existing habit?", "Confirmation", MessageBoxButtons.YesNo);
+                if(result == DialogResult.OK)
+                {
+                    _selectedActivity.RemovedAsHabit ();
+                    Habit_AddHabit ();
+                }
+            }
+            catch (InvalidOperationException /*exc*/)
+            { }
+        }
+
+        private void Habit_bRemoveFromHabbits_Click (object sender, EventArgs e)
+        {
+            _selectedActivity.RemovedAsHabit ();
+        }
+        private void Habit_AddHabit()
+        {
             long habitTimeSec = TimeConverter.stringToTime(Habit_tSetTime.Text);
             long habitTimeMin = habitTimeSec/60;
 
-            //if (_habitContainer.ContainsKey (_selectedActivity))
-            //    ;///TODO Popup -> Felülírja az előző activityt.
-
-            _habitContainer.Add (_selectedActivity, habitTimeMin);
-
-            _selectedActivity.AddedAsHabit ();
+            _selectedActivity.AddedAsHabit (habitTimeMin);
         }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////// OTHER CODE GOES HERE ////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private class TimeConverter
         {
             static readonly long MINTOSEC  = 60;

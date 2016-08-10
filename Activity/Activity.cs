@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace HourCounter
 {
@@ -14,11 +15,12 @@ namespace HourCounter
         /// TODO Kellene valami keresés amivel meglehet találni az egyes activityket
 
         private string _name = null; // Stores the activity name
-        public string Name { get { return _name; } private set { } } // Only can be viewed
+        public  string Name { get { return _name; } private set { } } // Only can be viewed
         private SortedList<string, Activity> _subActivities = new SortedList<string, Activity>(); //Stores all the subActivities
-        public SortedList<string, Activity> GetList() { return _subActivities; }
+        public  SortedList<string, Activity> GetList() { return _subActivities; }
 
-        
+        private static Dictionary<Activity,long> _habitContainer = new Dictionary<Activity, long>(); //Stores who is habit and who is not.
+
         private bool _isHabit = false;
         public bool IsHabit { get { return _isHabit; } private set { } }
 
@@ -51,7 +53,7 @@ namespace HourCounter
             //}
     }
     //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
-    public long Counter
+        public long Counter
         {
             get
             {
@@ -176,14 +178,23 @@ namespace HourCounter
             _minutesSpentOnActivity += timeMin;
             updateAllViews ();
         }
-        public void AddedAsHabit()
+        public void AddedAsHabit (long time)
         {
-            _isHabit = true;
-            updateAllViews ();
+            if (_habitContainer.ContainsKey (this))
+            {
+                throw new ArgumentException ("Key is already inside");
+            }
+            else
+            {
+                _isHabit = true;
+                _habitContainer.Add (this, time); //TODO check if already exists
+                updateAllViews ();
+            }
         }
-        public void RemovedAsHabit()
+        public void RemovedAsHabit ()
         {
             _isHabit = false;
+            _habitContainer.Remove (this);
             updateAllViews ();
         }
     }

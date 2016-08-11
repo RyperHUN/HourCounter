@@ -1,4 +1,4 @@
-﻿namespace HabitController
+﻿namespace HabitUtils
 {
     partial class HabitAdderDialog
     {

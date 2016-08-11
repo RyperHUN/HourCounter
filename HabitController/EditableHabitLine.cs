@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using HourCounter;
 using Utils;
 
-namespace HabitController
+namespace HabitUtils
 {
     public partial class EditableHabitLine : UserControl
     {

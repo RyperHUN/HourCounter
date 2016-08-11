@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace HabitController
+namespace HabitUtils
 {
     public partial class HabitAdderDialog : Form
     {

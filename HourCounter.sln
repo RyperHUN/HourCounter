@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeListView", "TreeListVie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Activity", "Activity\Activity.csproj", "{7BEA3EFF-5A8D-48B9-AF1E-EB2B7EAD1735}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HabitController", "HabitController\HabitController.csproj", "{69AA505E-979F-44AA-923B-920487776543}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HabitUtils", "HabitController\HabitUtils.csproj", "{69AA505E-979F-44AA-923B-920487776543}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{F3B65998-5424-4E56-B99F-E5C79DBD9407}"
 EndProject

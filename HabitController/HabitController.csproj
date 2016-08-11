@@ -54,12 +54,21 @@
     <Compile Include="EditableHabitLine.Designer.cs">
       <DependentUpon>EditableHabitLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="HabitAdderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HabitAdderDialog.Designer.cs">
+      <DependentUpon>HabitAdderDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="HabitController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EditableHabitLine.resx">
       <DependentUpon>EditableHabitLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HabitAdderDialog.resx">
+      <DependentUpon>HabitAdderDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

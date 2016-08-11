@@ -18,7 +18,7 @@ namespace HabitController
         private DateTime _lastTestedTime = DateTime.MinValue;
 		//private Dictionary<Activity, bool> _whatIsAdded = new Dictionary<Activity, bool>(); //Maybe later
         private Timer    _hourCounterTimer;
-		private bool _isInitialized = false;
+		private bool     _isInitialized = false;
 		
         public HabitController (Activity activityContainer)
         {
@@ -70,6 +70,9 @@ namespace HabitController
 		{
 			//if(!_isInitialized)
 			//	throw new InitializationError;
+            HabitAdderDialog dialog = new HabitAdderDialog ();
+            dialog.Initialize (CreateElapsedHabitTimes ());
+            dialog.Show ();
 		}
         public void HabitTimeAdderLogic ()
         {
@@ -105,6 +108,23 @@ namespace HabitController
                 return true;
             }
             return false;
+        }
+        private long CalculateElapsedHabitTime (long timePerDay)
+        {
+            long passedDays = (long) (DateTime.Now - _lastTestedTime).TotalDays;
+            return timePerDay * passedDays;
+        }
+
+        private Dictionary<Activity, long> CreateElapsedHabitTimes ()
+        {
+            Dictionary<Activity,long> habitList = _activityContainer.GetHabitList ();
+            Dictionary<Activity,long> calculatedHabitList = new Dictionary<Activity,long> ();
+            foreach (var habit in habitList)
+            {
+                long calculatedTime = CalculateElapsedHabitTime (habit.Value);
+                calculatedHabitList.Add (habit.Key, calculatedTime);
+            }
+            return calculatedHabitList;
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 namespace HabitController
 {
     //YOU HAVE TO START THE CONTROLLER MANUALLY
+    /// -> InitAndStart ()
 	[Serializable]
     public class HabitController : ISerializable
     {
@@ -96,7 +97,7 @@ namespace HabitController
             }
         }
         ///TODO Tovabbfejleszteni hogy kepes legyen lecsekkolni hogy mindegyik Habit megvan-e
-        private bool IsTodayAlreadyAdded()
+        private bool IsTodayAlreadyAdded ()
         {
             DateTime time = DateTime.Now;
             if (_lastTestedTime.DayOfYear == time.DayOfYear)

@@ -41,6 +41,7 @@
             this.bAdd.TabIndex = 1;
             this.bAdd.Text = "Add";
             this.bAdd.UseVisualStyleBackColor = true;
+            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
             // 
             // bCancel
             // 

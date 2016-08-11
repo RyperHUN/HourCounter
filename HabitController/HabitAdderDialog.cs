@@ -37,7 +37,16 @@ namespace HabitUtils
         }
         private void bCancel_Click (object sender, EventArgs e)
         {
-            this.Close();
+            this.Close ();
+        }
+
+        private void bAdd_Click (object sender, EventArgs e)
+        {
+            foreach (EditableHabitLine control in flowLayoutPanel.Controls)
+            {
+                control.HandleAdding ();
+            }
+            this.Close ();
         }
     }
 }

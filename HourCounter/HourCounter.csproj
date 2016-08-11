@@ -57,6 +57,9 @@
     <Reference Include="DetailedView">
       <HintPath>..\DetailedView\bin\Debug\DetailedView.dll</HintPath>
     </Reference>
+    <Reference Include="HabitController">
+      <HintPath>..\HabitController\bin\Debug\HabitController.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

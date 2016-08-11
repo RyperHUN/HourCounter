@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HabitUtils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,8 @@ namespace HourCounter
         /// TODO ActivitityChanged Esemeny: Feliratkoznak ra a nezetek, es megkapjak a kivalasztott uj activityt
         bool _isAutomaticSave = true;
         Activity _activityContainer = new Activity("INIT");
+        HabitController _habitController;
+
         public App ()
         {
             InitializeComponent ();
@@ -38,9 +41,10 @@ namespace HourCounter
             activityTimer.TimerStoppedEvent += treeView.timerStoppedHandler;
             activityTimer.TimerStoppedEvent += detailedView.timerStoppedHandler;
 
-            //_activityContainer.remove (_activityContainer, "HanganyagCsajozás");
-
             splitContainerMain.Panel1.Controls.Add(treeView);
+
+            _habitController = new HabitController (_activityContainer);
+            _habitController.StartController ();
         }
 
         private void menuAddNewActivity_Click (object sender, EventArgs e)
@@ -116,6 +120,11 @@ namespace HourCounter
                 return false;
             }
             return true;
+        }
+
+        private void showHabitAdderToolStripMenuItem_Click (object sender, EventArgs e)
+        {
+            _habitController.OpenHabbitAdderDialog ();
         }
 
         //private void initFromCode()

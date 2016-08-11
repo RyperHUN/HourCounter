@@ -44,6 +44,7 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
+            this.showHabitAdderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -145,7 +146,8 @@
             // 
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAddNewActivity,
-            this.menuSettings});
+            this.menuSettings,
+            this.showHabitAdderToolStripMenuItem});
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.Size = new System.Drawing.Size(37, 20);
             this.fileMenu.Text = "File";
@@ -153,7 +155,7 @@
             // menuAddNewActivity
             // 
             this.menuAddNewActivity.Name = "menuAddNewActivity";
-            this.menuAddNewActivity.Size = new System.Drawing.Size(164, 22);
+            this.menuAddNewActivity.Size = new System.Drawing.Size(170, 22);
             this.menuAddNewActivity.Text = "Add new Activity";
             this.menuAddNewActivity.Click += new System.EventHandler(this.menuAddNewActivity_Click);
             // 
@@ -162,7 +164,7 @@
             this.menuSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAutomaticSave});
             this.menuSettings.Name = "menuSettings";
-            this.menuSettings.Size = new System.Drawing.Size(164, 22);
+            this.menuSettings.Size = new System.Drawing.Size(170, 22);
             this.menuSettings.Text = "Settings";
             this.menuSettings.Click += new System.EventHandler(this.menuSettings_Click);
             // 
@@ -209,6 +211,13 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(133, 0);
             // 
+            // showHabitAdderToolStripMenuItem
+            // 
+            this.showHabitAdderToolStripMenuItem.Name = "showHabitAdderToolStripMenuItem";
+            this.showHabitAdderToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.showHabitAdderToolStripMenuItem.Text = "Show Habit Adder";
+            this.showHabitAdderToolStripMenuItem.Click += new System.EventHandler(this.showHabitAdderToolStripMenuItem_Click);
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,6 +263,7 @@
         private System.Windows.Forms.GroupBox groupDetailedView;
         private DetailedView.DetailedView detailedView;
         private TreeListView.TreeListView treeView;
+        private System.Windows.Forms.ToolStripMenuItem showHabitAdderToolStripMenuItem;
     }
 }
 

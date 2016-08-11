@@ -32,7 +32,8 @@ namespace HourCounter
             info.AddValue ("1", _isHabit);
             info.AddValue ("2", _minutesSpentOnActivity);
             info.AddValue ("3", _subActivities);
-            info.AddValue ("4", _habitContainer);
+            info.AddValue ("HabitContainer191923", _habitContainer);
+            info.AddValue ("_isHabit1281263", _isHabit);
         }
         protected Activity (SerializationInfo info, StreamingContext context)
         {
@@ -44,13 +45,26 @@ namespace HourCounter
             { //New attributes can be added here <- If they are not exist EXCEPTION
                 _habitContainer = (Dictionary < Activity, long>)info.GetValue ("HabitContainer191923", typeof (Dictionary<Activity, long>));
             }
-            catch (System.Runtime.Serialization.SerializationException exception)
+            catch (SerializationException exception)
             {
                 string exceptionStr = exception.ToString ();
                 if (exceptionStr.Contains ("not found") && exceptionStr.Contains ("HabitContainer191923"))
                 {
                     //Found which variable
                     _habitContainer = new Dictionary<Activity, long> ();
+                }
+            }
+            try
+            { //New attributes can be added here <- If they are not exist EXCEPTION
+                _isHabit = info.GetBoolean ("_isHabit1281263");
+            }
+            catch (SerializationException exception)
+            {
+                string exceptionStr = exception.ToString ();
+                if (exceptionStr.Contains ("not found") && exceptionStr.Contains ("_isHabit1281263"))
+                {
+                    //Found which variable
+                    _isHabit = false;
                 }
             }
         }

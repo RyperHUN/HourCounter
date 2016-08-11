@@ -16,7 +16,7 @@ namespace HabitUtils
     {
         private Activity _selectedActivity;
         private bool _isAdding = false;
-        public  bool Status
+        public  bool IsAdding
         {
             get { return _isAdding; }
             private set { ; }
@@ -58,6 +58,13 @@ namespace HabitUtils
             catch (InvalidOperationException /*exc*/)
             {}
             return 0;
+        }
+        public void HandleAdding ()
+        {
+            if (IsAdding)
+            {
+                _selectedActivity.AddTime (GetCalculatedTime ());
+            }
         }
     }
 }

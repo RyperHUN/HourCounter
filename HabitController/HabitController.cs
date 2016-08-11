@@ -72,7 +72,7 @@ namespace HabitUtils
 			//	throw new InitializationError;
             HabitAdderDialog dialog = new HabitAdderDialog ();
             dialog.Initialize (CreateElapsedHabitTimes ());
-            dialog.Show ();
+            dialog.ShowDialog ();
 		}
         public void HabitTimeAdderLogic ()
         {
@@ -89,11 +89,12 @@ namespace HabitUtils
             {
 				_hourCounterTimer.Stop (); //There will be no duplicated messages
                 DialogResult result = MessageBox.Show ("Do you want to add habbits now?", "Confirmation", MessageBoxButtons.YesNo);
-                if (result == DialogResult.OK)
+                if (result == DialogResult.Yes)
                 {
                     _lastTestedTime = DateTime.Now;
+                    OpenHabbitAdderDialog ();
                 }
-				else if (result == DialogResult.Cancel)
+				else if (result == DialogResult.No)
 				{
 					_hourCounterTimer.Start (); ///TODO Test if it is a problem if start is duplicated.
 				}

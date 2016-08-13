@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HourCounter;
+using Utils;
 
 namespace DetailedView
 {
@@ -23,18 +24,34 @@ namespace DetailedView
         {
             if (_selectedActivity != null)
             {
-                lActivityName.Text = _selectedActivity.Name;
-
-                long minutesSpentOnActivity = _selectedActivity.Counter;
-
-                long hours   = minutesSpentOnActivity / 60;
-                minutesSpentOnActivity %= 60;
-                long minutes = minutesSpentOnActivity;
-
-                string timeWithActivityString = hours + "h " + minutes + "m";
-                lTimeSpentOnActivity.Text = timeWithActivityString;
-                this.Visible = true;
+                updateName ();
+                updateHabitData ();
             }
+        }
+
+        public void updateName ()
+        {
+            lActivityName.Text = _selectedActivity.Name;
+
+            long minutesSpentOnActivity = _selectedActivity.Counter;
+
+            long hours   = minutesSpentOnActivity / 60;
+            minutesSpentOnActivity %= 60;
+            long minutes = minutesSpentOnActivity;
+
+            string timeWithActivityString = hours + "h " + minutes + "m";
+            lTimeSpentOnActivity.Text = timeWithActivityString;
+            this.Visible = true;
+        }
+
+        public void updateHabitData ()
+        {
+            const string HabitUnisSuffix = "min/day";
+            long habitTimeMin = 0;
+            if ( _selectedActivity.IsHabit)
+                habitTimeMin = _selectedActivity.GetHabitTime ();
+
+            lValueHabitTimeMin.Text = habitTimeMin + HabitUnisSuffix;
         }
 
         public void setSelectedActivity (Activity selectedActivity)

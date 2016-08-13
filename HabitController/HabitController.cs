@@ -81,8 +81,8 @@ namespace HabitUtils
 		
             if (IsTodayAlreadyAdded ())
             {
-                _hourCounterTimer.Stop ();
-				OpenHabbitAdderDialog (); 
+                //_hourCounterTimer.Stop ();
+				//OpenHabbitAdderDialog (); 
                 return;
             }
             else

@@ -51,7 +51,7 @@ namespace Utils
 
             return result;
         }
-        private static long ConvertStringToLongSafe (string num)
+        public static long ConvertStringToLongSafe (string num)
         {
             long result;
             if (Int64.TryParse (num, out result))

@@ -31,6 +31,8 @@
             this.lActivityName = new System.Windows.Forms.Label();
             this.lTextTimeSpentOnActivity = new System.Windows.Forms.Label();
             this.lTimeSpentOnActivity = new System.Windows.Forms.Label();
+            this.lTextHabitTime = new System.Windows.Forms.Label();
+            this.lValueHabitTimeMin = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lActivityName
@@ -61,10 +63,30 @@
             this.lTimeSpentOnActivity.TabIndex = 2;
             this.lTimeSpentOnActivity.Text = "28h 30m";
             // 
+            // lTextHabitTime
+            // 
+            this.lTextHabitTime.AutoSize = true;
+            this.lTextHabitTime.Location = new System.Drawing.Point(19, 104);
+            this.lTextHabitTime.Name = "lTextHabitTime";
+            this.lTextHabitTime.Size = new System.Drawing.Size(57, 13);
+            this.lTextHabitTime.TabIndex = 3;
+            this.lTextHabitTime.Text = "Habit time:";
+            // 
+            // lValueHabitTimeMin
+            // 
+            this.lValueHabitTimeMin.AutoSize = true;
+            this.lValueHabitTimeMin.Location = new System.Drawing.Point(172, 104);
+            this.lValueHabitTimeMin.Name = "lValueHabitTimeMin";
+            this.lValueHabitTimeMin.Size = new System.Drawing.Size(57, 13);
+            this.lValueHabitTimeMin.TabIndex = 4;
+            this.lValueHabitTimeMin.Text = "90min/day";
+            // 
             // DetailedView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lValueHabitTimeMin);
+            this.Controls.Add(this.lTextHabitTime);
             this.Controls.Add(this.lTimeSpentOnActivity);
             this.Controls.Add(this.lActivityName);
             this.Controls.Add(this.lTextTimeSpentOnActivity);
@@ -80,5 +102,7 @@
         private System.Windows.Forms.Label lActivityName;
         private System.Windows.Forms.Label lTextTimeSpentOnActivity;
         private System.Windows.Forms.Label lTimeSpentOnActivity;
+        private System.Windows.Forms.Label lTextHabitTime;
+        private System.Windows.Forms.Label lValueHabitTimeMin;
     }
 }

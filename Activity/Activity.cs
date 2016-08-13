@@ -194,6 +194,14 @@ namespace HourCounter
             _minutesSpentOnActivity += timeMin;
             updateAllViews ();
         }
+        public long GetHabitTime ()
+        {
+            if(IsHabit)
+            {
+                return _habitContainer[this];
+            }
+            return 0;
+        }
         public void AddedAsHabit (long time)
         {
             if (_habitContainer.ContainsKey (this))

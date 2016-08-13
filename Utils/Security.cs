@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Utils
 {
-    class Security
+    public class Security
     {
-        public static void initializationGuard (bool isInitialized)
+        public static void InitializationGuard (bool isInitialized)
         {
             if (!isInitialized)
                 throw new InitializationMissingException ();

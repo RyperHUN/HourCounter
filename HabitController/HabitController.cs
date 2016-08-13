@@ -56,8 +56,8 @@ namespace HabitUtils
 		}
         public void StartController ()
         {
-			//if(!_isInitialized)
-			//	throw new InitializationError;
+			Utils.Security.InitializationGuard (_isInitialized);
+
             HabitTimeAdderLogic ();
             _hourCounterTimer.Start ();
         }
@@ -68,18 +68,15 @@ namespace HabitUtils
         }
 		public void OpenHabbitAdderDialog ()
 		{
-			//if(!_isInitialized)
-			//	throw new InitializationError;
+            Utils.Security.InitializationGuard (_isInitialized);
+
             HabitAdderDialog dialog = new HabitAdderDialog ();
             dialog.Initialize (CreateElapsedHabitTimes ());
             dialog.ShowDialog ();
 		}
-        public void HabitTimeAdderLogic ()
+        private void HabitTimeAdderLogic ()
         {
-			//if(!_isInitialized)
-			//	throw new InitializationError;
-		
-            if (IsTodayAlreadyAdded ())
+			if (IsTodayAlreadyAdded ())
             {
                 //_hourCounterTimer.Stop ();
 				//OpenHabbitAdderDialog (); 

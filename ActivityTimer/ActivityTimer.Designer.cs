@@ -58,15 +58,21 @@
             this.Habit_bRemoveFromHabbits = new System.Windows.Forms.Button();
             this.Habit_lValueMinPerDay = new System.Windows.Forms.Label();
             this.tabPomodoro = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.Pomod_bSetWorkTime = new System.Windows.Forms.Button();
+            this.Pomod_lTextSetWorkTime = new System.Windows.Forms.Label();
+            this.Pomod_lTextRemainingTime = new System.Windows.Forms.Label();
+            this.Pomod_lValueRemainingTIme = new System.Windows.Forms.Label();
+            this.Pomod_bStart = new System.Windows.Forms.Button();
+            this.Pomod_bPause = new System.Windows.Forms.Button();
+            this.Pomod_lValueSetWorkTimeMin = new System.Windows.Forms.TextBox();
+            this.Pomod_bStop = new System.Windows.Forms.Button();
+            this.Pomod_lTextSetRestTIme = new System.Windows.Forms.Label();
+            this.Pomod_lValueSetRestTimeMin = new System.Windows.Forms.TextBox();
+            this.Pomod_bSetRestTime = new System.Windows.Forms.Button();
+            this.Pomod_lMin1 = new System.Windows.Forms.Label();
+            this.Pomod_lMin2 = new System.Windows.Forms.Label();
+            this.Pomod_lTextMode = new System.Windows.Forms.Label();
+            this.Pomod_lValueMode = new System.Windows.Forms.Label();
             this.tabPicker.SuspendLayout();
             this.tabStopwatch.SuspendLayout();
             this.tabTimer.SuspendLayout();
@@ -359,15 +365,21 @@
             // 
             // tabPomodoro
             // 
-            this.tabPomodoro.Controls.Add(this.label4);
-            this.tabPomodoro.Controls.Add(this.button1);
-            this.tabPomodoro.Controls.Add(this.label1);
-            this.tabPomodoro.Controls.Add(this.label2);
-            this.tabPomodoro.Controls.Add(this.label3);
-            this.tabPomodoro.Controls.Add(this.button2);
-            this.tabPomodoro.Controls.Add(this.button3);
-            this.tabPomodoro.Controls.Add(this.textBox1);
-            this.tabPomodoro.Controls.Add(this.button4);
+            this.tabPomodoro.Controls.Add(this.Pomod_lValueRemainingTIme);
+            this.tabPomodoro.Controls.Add(this.Pomod_lTextMode);
+            this.tabPomodoro.Controls.Add(this.Pomod_lMin2);
+            this.tabPomodoro.Controls.Add(this.Pomod_lMin1);
+            this.tabPomodoro.Controls.Add(this.Pomod_bSetRestTime);
+            this.tabPomodoro.Controls.Add(this.Pomod_lValueSetRestTimeMin);
+            this.tabPomodoro.Controls.Add(this.Pomod_lTextSetRestTIme);
+            this.tabPomodoro.Controls.Add(this.Pomod_bSetWorkTime);
+            this.tabPomodoro.Controls.Add(this.Pomod_lTextSetWorkTime);
+            this.tabPomodoro.Controls.Add(this.Pomod_lTextRemainingTime);
+            this.tabPomodoro.Controls.Add(this.Pomod_bStart);
+            this.tabPomodoro.Controls.Add(this.Pomod_bPause);
+            this.tabPomodoro.Controls.Add(this.Pomod_lValueSetWorkTimeMin);
+            this.tabPomodoro.Controls.Add(this.Pomod_bStop);
+            this.tabPomodoro.Controls.Add(this.Pomod_lValueMode);
             this.tabPomodoro.Location = new System.Drawing.Point(4, 22);
             this.tabPomodoro.Name = "tabPomodoro";
             this.tabPomodoro.Padding = new System.Windows.Forms.Padding(3);
@@ -376,86 +388,141 @@
             this.tabPomodoro.Text = "Pomodoro";
             this.tabPomodoro.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // Pomod_bSetWorkTime
             // 
-            this.button1.Location = new System.Drawing.Point(188, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 20);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Set";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Pomod_bSetWorkTime.Location = new System.Drawing.Point(211, 19);
+            this.Pomod_bSetWorkTime.Name = "Pomod_bSetWorkTime";
+            this.Pomod_bSetWorkTime.Size = new System.Drawing.Size(51, 20);
+            this.Pomod_bSetWorkTime.TabIndex = 15;
+            this.Pomod_bSetWorkTime.Text = "Set";
+            this.Pomod_bSetWorkTime.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // Pomod_lTextSetWorkTime
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Set work time:";
+            this.Pomod_lTextSetWorkTime.AutoSize = true;
+            this.Pomod_lTextSetWorkTime.Location = new System.Drawing.Point(15, 22);
+            this.Pomod_lTextSetWorkTime.Name = "Pomod_lTextSetWorkTime";
+            this.Pomod_lTextSetWorkTime.Size = new System.Drawing.Size(74, 13);
+            this.Pomod_lTextSetWorkTime.TabIndex = 14;
+            this.Pomod_lTextSetWorkTime.Text = "Set work time:";
             // 
-            // label2
+            // Pomod_lTextRemainingTime
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Remaining Time:";
+            this.Pomod_lTextRemainingTime.AutoSize = true;
+            this.Pomod_lTextRemainingTime.Location = new System.Drawing.Point(15, 119);
+            this.Pomod_lTextRemainingTime.Name = "Pomod_lTextRemainingTime";
+            this.Pomod_lTextRemainingTime.Size = new System.Drawing.Size(86, 13);
+            this.Pomod_lTextRemainingTime.TabIndex = 12;
+            this.Pomod_lTextRemainingTime.Text = "Remaining Time:";
             // 
-            // label3
+            // Pomod_lValueRemainingTIme
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(128, 46);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(185, 58);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "hh:mm:ss";
+            this.Pomod_lValueRemainingTIme.AutoSize = true;
+            this.Pomod_lValueRemainingTIme.Font = new System.Drawing.Font("Adobe Devanagari", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pomod_lValueRemainingTIme.Location = new System.Drawing.Point(134, 105);
+            this.Pomod_lValueRemainingTIme.Name = "Pomod_lValueRemainingTIme";
+            this.Pomod_lValueRemainingTIme.Size = new System.Drawing.Size(88, 39);
+            this.Pomod_lValueRemainingTIme.TabIndex = 13;
+            this.Pomod_lValueRemainingTIme.Text = "mm:ss";
             // 
-            // button2
+            // Pomod_bStart
             // 
-            this.button2.Location = new System.Drawing.Point(15, 107);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Start";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Pomod_bStart.Location = new System.Drawing.Point(14, 148);
+            this.Pomod_bStart.Name = "Pomod_bStart";
+            this.Pomod_bStart.Size = new System.Drawing.Size(75, 23);
+            this.Pomod_bStart.TabIndex = 8;
+            this.Pomod_bStart.Text = "Start";
+            this.Pomod_bStart.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // Pomod_bPause
             // 
-            this.button3.Location = new System.Drawing.Point(127, 107);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Pause";
-            this.button3.UseVisualStyleBackColor = true;
+            this.Pomod_bPause.Location = new System.Drawing.Point(121, 148);
+            this.Pomod_bPause.Name = "Pomod_bPause";
+            this.Pomod_bPause.Size = new System.Drawing.Size(75, 23);
+            this.Pomod_bPause.TabIndex = 9;
+            this.Pomod_bPause.Text = "Pause";
+            this.Pomod_bPause.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // Pomod_lValueSetWorkTimeMin
             // 
-            this.textBox1.Location = new System.Drawing.Point(104, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(63, 20);
-            this.textBox1.TabIndex = 11;
-            this.textBox1.Text = "hh:mm:ss";
+            this.Pomod_lValueSetWorkTimeMin.Location = new System.Drawing.Point(104, 19);
+            this.Pomod_lValueSetWorkTimeMin.Name = "Pomod_lValueSetWorkTimeMin";
+            this.Pomod_lValueSetWorkTimeMin.Size = new System.Drawing.Size(63, 20);
+            this.Pomod_lValueSetWorkTimeMin.TabIndex = 11;
+            this.Pomod_lValueSetWorkTimeMin.Text = "20";
             // 
-            // button4
+            // Pomod_bStop
             // 
-            this.button4.Location = new System.Drawing.Point(238, 158);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Stop";
-            this.button4.UseVisualStyleBackColor = true;
+            this.Pomod_bStop.Location = new System.Drawing.Point(238, 148);
+            this.Pomod_bStop.Name = "Pomod_bStop";
+            this.Pomod_bStop.Size = new System.Drawing.Size(75, 23);
+            this.Pomod_bStop.TabIndex = 10;
+            this.Pomod_bStop.Text = "Stop";
+            this.Pomod_bStop.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // Pomod_lTextSetRestTIme
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 46);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Set work time:";
+            this.Pomod_lTextSetRestTIme.AutoSize = true;
+            this.Pomod_lTextSetRestTIme.Location = new System.Drawing.Point(15, 54);
+            this.Pomod_lTextSetRestTIme.Name = "Pomod_lTextSetRestTIme";
+            this.Pomod_lTextSetRestTIme.Size = new System.Drawing.Size(68, 13);
+            this.Pomod_lTextSetRestTIme.TabIndex = 16;
+            this.Pomod_lTextSetRestTIme.Text = "Set rest time:";
+            // 
+            // Pomod_lValueSetRestTimeMin
+            // 
+            this.Pomod_lValueSetRestTimeMin.Location = new System.Drawing.Point(104, 51);
+            this.Pomod_lValueSetRestTimeMin.Name = "Pomod_lValueSetRestTimeMin";
+            this.Pomod_lValueSetRestTimeMin.Size = new System.Drawing.Size(63, 20);
+            this.Pomod_lValueSetRestTimeMin.TabIndex = 17;
+            this.Pomod_lValueSetRestTimeMin.Text = "5";
+            // 
+            // Pomod_bSetRestTime
+            // 
+            this.Pomod_bSetRestTime.Location = new System.Drawing.Point(211, 51);
+            this.Pomod_bSetRestTime.Name = "Pomod_bSetRestTime";
+            this.Pomod_bSetRestTime.Size = new System.Drawing.Size(51, 20);
+            this.Pomod_bSetRestTime.TabIndex = 18;
+            this.Pomod_bSetRestTime.Text = "Set";
+            this.Pomod_bSetRestTime.UseVisualStyleBackColor = true;
+            // 
+            // Pomod_lMin1
+            // 
+            this.Pomod_lMin1.AutoSize = true;
+            this.Pomod_lMin1.Location = new System.Drawing.Point(173, 22);
+            this.Pomod_lMin1.Name = "Pomod_lMin1";
+            this.Pomod_lMin1.Size = new System.Drawing.Size(23, 13);
+            this.Pomod_lMin1.TabIndex = 19;
+            this.Pomod_lMin1.Text = "min";
+            // 
+            // Pomod_lMin2
+            // 
+            this.Pomod_lMin2.AutoSize = true;
+            this.Pomod_lMin2.Location = new System.Drawing.Point(173, 55);
+            this.Pomod_lMin2.Name = "Pomod_lMin2";
+            this.Pomod_lMin2.Size = new System.Drawing.Size(23, 13);
+            this.Pomod_lMin2.TabIndex = 20;
+            this.Pomod_lMin2.Text = "min";
+            // 
+            // Pomod_lTextMode
+            // 
+            this.Pomod_lTextMode.AutoSize = true;
+            this.Pomod_lTextMode.Location = new System.Drawing.Point(64, 90);
+            this.Pomod_lTextMode.Name = "Pomod_lTextMode";
+            this.Pomod_lTextMode.Size = new System.Drawing.Size(37, 13);
+            this.Pomod_lTextMode.TabIndex = 21;
+            this.Pomod_lTextMode.Text = "Mode:";
+            // 
+            // Pomod_lValueMode
+            // 
+            this.Pomod_lValueMode.AutoSize = true;
+            this.Pomod_lValueMode.Font = new System.Drawing.Font("Adobe Devanagari", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pomod_lValueMode.Location = new System.Drawing.Point(135, 80);
+            this.Pomod_lValueMode.Margin = new System.Windows.Forms.Padding(0);
+            this.Pomod_lValueMode.Name = "Pomod_lValueMode";
+            this.Pomod_lValueMode.Size = new System.Drawing.Size(56, 37);
+            this.Pomod_lValueMode.TabIndex = 22;
+            this.Pomod_lValueMode.Text = "Idle";
             // 
             // ActivityTimer
             // 
@@ -510,14 +577,20 @@
         private System.Windows.Forms.TextBox Habit_tSetTime;
         private System.Windows.Forms.Button Habit_bRemoveFromHabbits;
         private System.Windows.Forms.TabPage tabPomodoro;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label Pomod_lTextSetRestTIme;
+        private System.Windows.Forms.Button Pomod_bSetWorkTime;
+        private System.Windows.Forms.Label Pomod_lTextSetWorkTime;
+        private System.Windows.Forms.Label Pomod_lTextRemainingTime;
+        private System.Windows.Forms.Label Pomod_lValueRemainingTIme;
+        private System.Windows.Forms.Button Pomod_bStart;
+        private System.Windows.Forms.Button Pomod_bPause;
+        private System.Windows.Forms.TextBox Pomod_lValueSetWorkTimeMin;
+        private System.Windows.Forms.Button Pomod_bStop;
+        private System.Windows.Forms.Label Pomod_lMin2;
+        private System.Windows.Forms.Label Pomod_lMin1;
+        private System.Windows.Forms.Button Pomod_bSetRestTime;
+        private System.Windows.Forms.TextBox Pomod_lValueSetRestTimeMin;
+        private System.Windows.Forms.Label Pomod_lTextMode;
+        private System.Windows.Forms.Label Pomod_lValueMode;
     }
 }

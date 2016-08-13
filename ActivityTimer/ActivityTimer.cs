@@ -40,10 +40,14 @@ namespace ActivityTimer
             _selectedActivity = selectedActivity;
         }
         //Ugy allitja a gombokat hogy a modoknak megfelelo legyen
-        private void EnableTimerMode()
+        private void EnableTimerMode ()
         {
             Timer_bStart.Enabled = false;
             Stop_bStart.Enabled  = false;
+
+            Timer_bSetTime.Enabled = false;
+            Pomod_bSetRestTime.Enabled = false;
+            Pomod_bSetWorkTime.Enabled = false;
 
             Timer_bPause.Enabled = true;
             Timer_bStop.Enabled  = true;
@@ -54,6 +58,10 @@ namespace ActivityTimer
         }
         private void DisableTimerMode()
         {
+            Timer_bSetTime.Enabled = true;
+            Pomod_bSetRestTime.Enabled = true;
+            Pomod_bSetWorkTime.Enabled = true;
+
             Timer_bStart.Enabled = true;
             Stop_bStart.Enabled  = true;
 
@@ -101,7 +109,6 @@ namespace ActivityTimer
                 Timer_timerSecond.Start ();
                 if (TimerStartedEvent != null)
                     TimerStartedEvent ();
-                Timer_bSetTime.Enabled = false;
             }
             else
             {
@@ -141,7 +148,6 @@ namespace ActivityTimer
         }
         private void Timer_bStop_Click (object sender, EventArgs e)
         {
-            Timer_bSetTime.Enabled = true;
             Timer_timerSecond.Stop ();
             if (TimerStoppedEvent != null)
                 TimerStoppedEvent ();

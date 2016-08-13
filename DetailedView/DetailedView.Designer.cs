@@ -91,7 +91,7 @@
             this.Controls.Add(this.lActivityName);
             this.Controls.Add(this.lTextTimeSpentOnActivity);
             this.Name = "DetailedView";
-            this.Size = new System.Drawing.Size(305, 201);
+            this.Size = new System.Drawing.Size(311, 310);
             this.ResumeLayout(false);
             this.PerformLayout();
 

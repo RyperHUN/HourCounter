@@ -57,11 +57,22 @@
             this.Habit_tSetTime = new System.Windows.Forms.TextBox();
             this.Habit_bRemoveFromHabbits = new System.Windows.Forms.Button();
             this.Habit_lValueMinPerDay = new System.Windows.Forms.Label();
+            this.tabPomodoro = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabPicker.SuspendLayout();
             this.tabStopwatch.SuspendLayout();
             this.tabTimer.SuspendLayout();
             this.tabManualAdd.SuspendLayout();
             this.tabSetAsHabit.SuspendLayout();
+            this.tabPomodoro.SuspendLayout();
             this.SuspendLayout();
             // 
             // Timer_timerSecond
@@ -133,12 +144,13 @@
             // 
             this.tabPicker.Controls.Add(this.tabStopwatch);
             this.tabPicker.Controls.Add(this.tabTimer);
+            this.tabPicker.Controls.Add(this.tabPomodoro);
             this.tabPicker.Controls.Add(this.tabManualAdd);
             this.tabPicker.Controls.Add(this.tabSetAsHabit);
             this.tabPicker.Location = new System.Drawing.Point(0, 3);
             this.tabPicker.Name = "tabPicker";
             this.tabPicker.SelectedIndex = 0;
-            this.tabPicker.Size = new System.Drawing.Size(345, 238);
+            this.tabPicker.Size = new System.Drawing.Size(346, 213);
             this.tabPicker.TabIndex = 6;
             this.tabPicker.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabPicker_Selecting);
             // 
@@ -209,7 +221,7 @@
             this.tabTimer.Location = new System.Drawing.Point(4, 22);
             this.tabTimer.Name = "tabTimer";
             this.tabTimer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTimer.Size = new System.Drawing.Size(337, 212);
+            this.tabTimer.Size = new System.Drawing.Size(337, 201);
             this.tabTimer.TabIndex = 0;
             this.tabTimer.Text = "Timer";
             this.tabTimer.UseVisualStyleBackColor = true;
@@ -345,13 +357,113 @@
             this.Habit_lValueMinPerDay.TabIndex = 13;
             this.Habit_lValueMinPerDay.Text = "0";
             // 
+            // tabPomodoro
+            // 
+            this.tabPomodoro.Controls.Add(this.label4);
+            this.tabPomodoro.Controls.Add(this.button1);
+            this.tabPomodoro.Controls.Add(this.label1);
+            this.tabPomodoro.Controls.Add(this.label2);
+            this.tabPomodoro.Controls.Add(this.label3);
+            this.tabPomodoro.Controls.Add(this.button2);
+            this.tabPomodoro.Controls.Add(this.button3);
+            this.tabPomodoro.Controls.Add(this.textBox1);
+            this.tabPomodoro.Controls.Add(this.button4);
+            this.tabPomodoro.Location = new System.Drawing.Point(4, 22);
+            this.tabPomodoro.Name = "tabPomodoro";
+            this.tabPomodoro.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPomodoro.Size = new System.Drawing.Size(338, 187);
+            this.tabPomodoro.TabIndex = 4;
+            this.tabPomodoro.Text = "Pomodoro";
+            this.tabPomodoro.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(188, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(51, 20);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Set";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Set work time:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(86, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Remaining Time:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(128, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(185, 58);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "hh:mm:ss";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(15, 107);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Start";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(127, 107);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Pause";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(104, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(63, 20);
+            this.textBox1.TabIndex = 11;
+            this.textBox1.Text = "hh:mm:ss";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(238, 158);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Stop";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Set work time:";
+            // 
             // ActivityTimer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabPicker);
             this.Name = "ActivityTimer";
-            this.Size = new System.Drawing.Size(345, 169);
+            this.Size = new System.Drawing.Size(348, 218);
             this.tabPicker.ResumeLayout(false);
             this.tabStopwatch.ResumeLayout(false);
             this.tabStopwatch.PerformLayout();
@@ -361,6 +473,8 @@
             this.tabManualAdd.PerformLayout();
             this.tabSetAsHabit.ResumeLayout(false);
             this.tabSetAsHabit.PerformLayout();
+            this.tabPomodoro.ResumeLayout(false);
+            this.tabPomodoro.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -395,5 +509,15 @@
         private System.Windows.Forms.Button Habit_bSetAsHabit;
         private System.Windows.Forms.TextBox Habit_tSetTime;
         private System.Windows.Forms.Button Habit_bRemoveFromHabbits;
+        private System.Windows.Forms.TabPage tabPomodoro;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button4;
     }
 }

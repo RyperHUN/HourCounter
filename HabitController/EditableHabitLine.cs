@@ -36,18 +36,21 @@ namespace HabitUtils
 
             SetStatusDoNothing ();
         }
+
         private void SetStatusAdding ()
         {
             _isAdding = true;
             lStatus.Text = "Status: Adding";
             lStatus.ForeColor = Color.Green;
         }
+
         private void SetStatusDoNothing ()
         {
             _isAdding = false;
             lStatus.Text = "Status: Do nothing";
             lStatus.ForeColor = Color.Red;
         }
+
         private void bAdd_Click (object sender, EventArgs e)
         {
             SetStatusAdding ();
@@ -69,6 +72,7 @@ namespace HabitUtils
             {}
             return 0;
         }
+
         public void HandleAdding ()
         {
             if (IsAdding)

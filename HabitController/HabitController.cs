@@ -112,8 +112,12 @@ namespace HabitUtils
         }
         private long CalculateElapsedHabitTime (long timePerDay)
         {
-            long passedDays = (long) (DateTime.Now - _lastTestedTime).TotalDays;
-            return timePerDay * passedDays;
+            long passedDays = (long) (DateTime.Now - _lastTestedTime).TotalDays; //If opened twice a day, it will be zero
+
+            if (passedDays > 0) //Solves the 0 passedDay problem 
+                return timePerDay * passedDays;
+            else
+                return timePerDay;
         }
 
         private Dictionary<Activity, long> CreateElapsedHabitTimes ()

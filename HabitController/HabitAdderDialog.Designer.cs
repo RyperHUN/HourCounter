@@ -35,7 +35,7 @@
             // 
             // bAdd
             // 
-            this.bAdd.Location = new System.Drawing.Point(96, 462);
+            this.bAdd.Location = new System.Drawing.Point(71, 462);
             this.bAdd.Name = "bAdd";
             this.bAdd.Size = new System.Drawing.Size(75, 23);
             this.bAdd.TabIndex = 1;
@@ -55,21 +55,24 @@
             // 
             // flowLayoutPanel
             // 
-            this.flowLayoutPanel.Location = new System.Drawing.Point(47, 32);
+            this.flowLayoutPanel.AutoScroll = true;
+            this.flowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.flowLayoutPanel.Location = new System.Drawing.Point(12, 12);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(452, 382);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(529, 426);
             this.flowLayoutPanel.TabIndex = 3;
             // 
             // HabitAdderDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 523);
+            this.ClientSize = new System.Drawing.Size(558, 496);
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bAdd);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "HabitAdderDialog";
-            this.Text = "HabitAdderDialog";
+            this.Text = "Habit adder";
             this.ResumeLayout(false);
 
         }

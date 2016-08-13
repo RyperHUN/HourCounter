@@ -33,22 +33,32 @@ namespace HabitUtils
             lActivityName.Text  = _selectedActivity.Name;
             string stringTime   = TimeConverter.timeToString (calculatedTime);
             tAddingTime.Text    = stringTime;
-        }
 
+            SetStatusDoNothing ();
+        }
+        private void SetStatusAdding ()
+        {
+            _isAdding = true;
+            lStatus.Text = "Status: Adding";
+            lStatus.ForeColor = Color.Green;
+        }
+        private void SetStatusDoNothing ()
+        {
+            _isAdding = false;
+            lStatus.Text = "Status: Do nothing";
+            lStatus.ForeColor = Color.Red;
+        }
         private void bAdd_Click (object sender, EventArgs e)
         {
-            _isAdding    = true;
-            lStatus.Text = "Status: Adding";
-            //TODO Maybe set green color 
+            SetStatusAdding ();
         }
 
         private void bDoNothing_Click (object sender, EventArgs e)
         {
-            _isAdding    = false;
-            lStatus.Text = "Status: Do nothing";
+            SetStatusDoNothing ();
         }
 
-        private long GetCalculatedTime ()
+        private long GetCalculatedTime () //Todo maybe handle time when clicking add
         {
             try
             {

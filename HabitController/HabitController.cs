@@ -87,7 +87,10 @@ namespace HabitUtils
             }
             else
             {
-				_hourCounterTimer.Stop (); //There will be no duplicated messages
+                if(_activityContainer.GetHabitList ().Count == 0) // If there is no habit don't show the dialog
+                    return;
+
+				_hourCounterTimer.Stop (); //There will be no duplicated messages if no respond for another thick
                 DialogResult result = MessageBox.Show ("Do you want to add habbits now?", "Confirmation", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {

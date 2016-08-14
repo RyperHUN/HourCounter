@@ -69,7 +69,9 @@ namespace HabitUtils
                 return convertedTime;
             }
             catch (InvalidOperationException /*exc*/)
-            {}
+            {
+                MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
+            }
             return 0;
         }
 

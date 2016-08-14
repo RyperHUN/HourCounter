@@ -23,7 +23,6 @@ namespace Utils
             }
             catch (InvalidOperationException exc)
             {
-                MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss"); ///TODO Talan nem az o felelossege ezt kiírni jobb lene ott kiíratni ahol hívódik
                 throw exc;
             }
 

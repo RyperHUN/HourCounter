@@ -111,6 +111,7 @@ namespace ActivityTimer
             }
             catch (InvalidOperationException /*exc*/)
             {
+                MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
                 Timer_isValidTimeSet = false; //conversion failed
             }
         }
@@ -220,7 +221,9 @@ namespace ActivityTimer
                 _selectedActivity.AddTime (needToAddTimeSec / 60);
             }
             catch(InvalidOperationException /*exc*/)
-            {}
+            {
+                MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
+            }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// HABIT ADD CODE GOES HERE ////////////////////////////////////////////////////
@@ -250,10 +253,17 @@ namespace ActivityTimer
         }
         private void Habit_AddHabit()
         {
-            long habitTimeSec = TimeConverter.StringToTimeHHMMSS(Habit_tSetTime.Text);
-            long habitTimeMin = habitTimeSec/60;
-
-            _selectedActivity.AddedAsHabit (habitTimeMin);
+            try
+            {
+                long habitTimeSec = TimeConverter.StringToTimeHHMMSS(Habit_tSetTime.Text);
+                long habitTimeMin = habitTimeSec/60;
+             
+                _selectedActivity.AddedAsHabit (habitTimeMin);
+            }
+            catch (InvalidOperationException /*exc*/)
+            {
+                MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
+            }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// POMODORO CODE GOES HERE /////////////////////////////////////////////////////

@@ -15,7 +15,6 @@ namespace HourCounter
 {
     public partial class App : Form
     {
-        /// TODO ActivitityChanged Esemeny: Feliratkoznak ra a nezetek, es megkapjak a kivalasztott uj activityt
         bool _isAutomaticSave = true;
         Activity _activityContainer = new Activity("INIT");
         HabitController _habitController;

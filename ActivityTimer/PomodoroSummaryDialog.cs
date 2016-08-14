@@ -17,6 +17,7 @@ namespace ActivityTimer
         long _workTimeSec;
         long _restTimeSec;
         long _idleTimeSec;
+        bool _isInitialized = false;
 
         public PomodoroSummaryDialog ()
         {
@@ -24,6 +25,8 @@ namespace ActivityTimer
         }
         public void Initialize (Activity selectedActivity ,long workTimeSec, long restTimeSec, long idleTimeSec)
         {
+            _isInitialized = true;
+
             _selectedActivity = selectedActivity;
             _workTimeSec      = workTimeSec;
             _restTimeSec      = restTimeSec;
@@ -40,7 +43,8 @@ namespace ActivityTimer
         }
 
         private void bAdd_Click (object sender, EventArgs e)
-        { //TODO maybe init guard
+        { 
+            Utils.Security.InitializationGuard (_isInitialized);
             try
             {
                 long elapsedTime = 0;

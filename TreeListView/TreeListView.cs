@@ -13,7 +13,7 @@ namespace TreeListView
     {
         private Activity activityContainer;
         public  delegate void SelectChangeHandler (Activity ac);
-        public  event SelectChangeHandler SelectChanged;
+        public  event SelectChangeHandler SelectChanged; //If focus on activity changes, reports the change to the subscribed methods
         
         public TreeListView ()
         {

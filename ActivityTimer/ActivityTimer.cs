@@ -17,7 +17,7 @@ namespace ActivityTimer
     {
         public delegate void TimerHandler ();
         public event TimerHandler TimerStartedEvent;
-        public event TimerHandler TimerStoppedEvent; ///TODO Ne lehessen tabot váltani!
+        public event TimerHandler TimerStoppedEvent;
 
         private SoundPlayer soundPlayer;
 
@@ -167,7 +167,6 @@ namespace ActivityTimer
             long elapsedTimeSeconds = Timer_startingTimeSeconds - Timer_remainingTimeSeconds;
             ///TODO Update activity
         }
-        //TODO ha bármelyiket elindítuk a másikat ne lehessen elindítani
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// STOPWATCH CODE GOES HERE ////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -264,7 +263,7 @@ namespace ActivityTimer
         Pomod_Status Pomod_status = Pomod_Status.Idle;
         Timer Pomod_timerSecond = new Timer ();
         System.Diagnostics.Stopwatch Pomod_stopwatchIdle = new System.Diagnostics.Stopwatch ();
-        bool Pomod_isValidWorkTimeSet = true; //TODO Valid rest es Valid work is kell
+        bool Pomod_isValidWorkTimeSet = true;
         bool Pomod_isValidRestTimeSet = true;
 
         long Pomod_startingWorkTimeSec = 1200; //Todo settingsbol mondjuk kinyerni ezeket?
@@ -343,7 +342,7 @@ namespace ActivityTimer
         }
         private void Pomod_bStop_Click (object sender, EventArgs e)
         {
-            Pomod_stopwatchIdle.Stop (); //TODO Reset
+            Pomod_stopwatchIdle.Stop (); //Pause
             Pomod_timerSecond.Stop ();
             if (TimerStoppedEvent != null)
                 TimerStoppedEvent ();

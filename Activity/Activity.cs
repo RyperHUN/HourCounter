@@ -99,7 +99,7 @@ namespace HourCounter
         public void AddSubActivity(Activity subActivity)
         {
             _subActivities.Add(subActivity.Name, subActivity);
-            updateAllViews(); ///TODO Ott is updatelni kell majd ahol inkrementálja egy activity idejét!!!!!
+            updateAllViews();
         }
         public LinkedList<String> GetListStringFormated(Activity startActivity, String tab)
         {
@@ -207,12 +207,12 @@ namespace HourCounter
         {
             if (_habitContainer.ContainsKey (this))
             {
-                throw new ArgumentException ("Key is already inside");
+                throw new ArgumentException ("Key is already used");
             }
             else
             {
                 _isHabit = true;
-                _habitContainer.Add (this, time); //TODO check if already exists
+                _habitContainer.Add (this, time);
                 updateAllViews ();
             }
         }

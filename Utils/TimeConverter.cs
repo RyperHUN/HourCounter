@@ -17,6 +17,9 @@ namespace Utils
             long timeSeconds = 0;
             try
             {
+                if (timeArray.Length < 3)
+                    throw new InvalidOperationException ("Not contains 3 :");
+
                 timeSeconds += ConvertStringToLongSafe (timeArray[0]) * HOURTOSEC;
                 timeSeconds += ConvertStringToLongSafe (timeArray[1]) * MINTOSEC;
                 timeSeconds += ConvertStringToLongSafe (timeArray[2]); //TODO Maybe sec remove

@@ -102,10 +102,10 @@ namespace ActivityTimer
         private void Timer_bSet_Click (object sender, EventArgs e)
         {
             String setTime        = Timer_tSetTime.Text;
-            Timer_lRemainingTime.Text  = setTime;
             try
             {
                 Timer_startingTimeSeconds  = TimeConverter.StringToTimeHHMMSS (setTime);
+                Timer_lRemainingTime.Text  = TimeConverter.TimeToStringHHMMSS (Timer_startingTimeSeconds);
                 Timer_remainingTimeSeconds = Timer_startingTimeSeconds;
                 Timer_isValidTimeSet = true;
             }
@@ -166,7 +166,8 @@ namespace ActivityTimer
             if (TimerStoppedEvent != null)
                 TimerStoppedEvent ();
             long elapsedTimeSeconds = Timer_startingTimeSeconds - Timer_remainingTimeSeconds;
-            ///TODO Update activity
+            _selectedActivity.AddTime (elapsedTimeSeconds);
+            ///TODO Reset Timer to initial state
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// STOPWATCH CODE GOES HERE ////////////////////////////////////////////////////
@@ -208,7 +209,6 @@ namespace ActivityTimer
                 TimerStoppedEvent ();
             long measuredMin = Stop_sTimeSecond / 60;
             _selectedActivity.AddTime (measuredMin);
-
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// MANUAL ADD CODE GOES HERE ///////////////////////////////////////////////////

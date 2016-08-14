@@ -28,6 +28,9 @@ namespace ActivityTimer
             tabPicker.Dock  = DockStyle.Fill;
             Timer_timerSecond.Interval     = 1000; // 1 sec
             Stop_timerSecond.Interval = 1000;
+            Pomod_timerSecond.Interval = 1000;
+
+            Pomod_timerSecond.Tick += Pomod_timerSecond_Tick;
 
             //Automatic Start/Stop enable
             TimerStartedEvent += EnableTimerMode;
@@ -44,8 +47,9 @@ namespace ActivityTimer
         {
             Timer_bStart.Enabled = false;
             Stop_bStart.Enabled  = false;
+            Pomod_bStart.Enabled = false;
 
-            Timer_bSetTime.Enabled = false;
+            Timer_bSetTime.Enabled     = false;
             Pomod_bSetRestTime.Enabled = false;
             Pomod_bSetWorkTime.Enabled = false;
 
@@ -53,22 +57,27 @@ namespace ActivityTimer
             Timer_bStop.Enabled  = true;
             Stop_bPause.Enabled  = true;
             Stop_bStop.Enabled   = true;
+            Pomod_bPause.Enabled = true;
+            Pomod_bStop.Enabled  = true;
 
             EnableTab (false);
         }
         private void DisableTimerMode()
         {
-            Timer_bSetTime.Enabled = true;
+            Timer_bSetTime.Enabled     = true;
             Pomod_bSetRestTime.Enabled = true;
             Pomod_bSetWorkTime.Enabled = true;
 
             Timer_bStart.Enabled = true;
             Stop_bStart.Enabled  = true;
+            Pomod_bStart.Enabled = true;
 
             Timer_bPause.Enabled = false;
             Timer_bStop.Enabled  = false;
             Stop_bPause.Enabled  = false;
             Stop_bStop.Enabled   = false;
+            Pomod_bPause.Enabled = false;
+            Pomod_bStop.Enabled  = false;
 
             EnableTab (true);
         }
@@ -92,7 +101,7 @@ namespace ActivityTimer
             Timer_lRemainingTime.Text  = setTime;
             try
             {
-                Timer_startingTimeSeconds = TimeConverter.stringToTime (setTime);
+                Timer_startingTimeSeconds  = TimeConverter.StringToTimeHHMMSS (setTime);
                 Timer_remainingTimeSeconds = Timer_startingTimeSeconds;
                 Timer_isValidTimeSet = true;
             }
@@ -131,7 +140,7 @@ namespace ActivityTimer
                 //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\mywavfile.wav");
                 //player.Play();
             }
-            Timer_lRemainingTime.Text = TimeConverter.timeToString (Timer_remainingTimeSeconds);
+            Timer_lRemainingTime.Text = TimeConverter.TimeToStringHHMMSS (Timer_remainingTimeSeconds);
         }
         private void Timer_bPause_Click (object sender, EventArgs e)
         {
@@ -162,13 +171,13 @@ namespace ActivityTimer
         private void Stop_stopwatchSecond_Tick (object sender, EventArgs e)
         {
             Stop_sTimeSecond++;
-            Stop_lTime.Text = TimeConverter.timeToString (Stop_sTimeSecond);
+            Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_sTimeSecond);
         }
      
         private void Stop_bStart_Click (object sender, EventArgs e)
         {
             Stop_sTimeSecond = 0;
-            Stop_lTime.Text = TimeConverter.timeToString (Stop_sTimeSecond);
+            Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_sTimeSecond);
             Stop_timerSecond.Start ();
             if (TimerStartedEvent != null)
                 TimerStartedEvent ();
@@ -204,7 +213,7 @@ namespace ActivityTimer
         {
             try
             {
-                long needToAddTimeSec = TimeConverter.stringToTime (Manual_tSetTime.Text);
+                long needToAddTimeSec = TimeConverter.StringToTimeHHMMSS (Manual_tSetTime.Text);
                 _selectedActivity.AddTime (needToAddTimeSec / 60);
             }
             catch(InvalidOperationException /*exc*/)
@@ -238,7 +247,7 @@ namespace ActivityTimer
         }
         private void Habit_AddHabit()
         {
-            long habitTimeSec = TimeConverter.stringToTime(Habit_tSetTime.Text);
+            long habitTimeSec = TimeConverter.StringToTimeHHMMSS(Habit_tSetTime.Text);
             long habitTimeMin = habitTimeSec/60;
 
             _selectedActivity.AddedAsHabit (habitTimeMin);
@@ -246,9 +255,150 @@ namespace ActivityTimer
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// POMODORO CODE GOES HERE /////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        enum Pomod_Status { Idle, Work, Rest };
 
-        
+        Pomod_Status Pomod_status = Pomod_Status.Idle;
+        Timer Pomod_timerSecond = new Timer ();
+        System.Diagnostics.Stopwatch Pomod_stopwatchIdle = new System.Diagnostics.Stopwatch ();
+        bool Pomod_isValidWorkTimeSet = true; //TODO Valid rest es Valid work is kell
+        bool Pomod_isValidRestTimeSet = true;
 
+        long Pomod_startingWorkTimeSec = 1200; //Todo settingsbol mondjuk kinyerni ezeket?
+        long Pomod_startingRestTimeSec = 300;
+        long Pomod_remainingTimeSec;
+        long Pomod_elapsedTimeSeconds = 0;
+
+        private void Pomod_bStart_Click (object sender, EventArgs e)
+        {
+            if (Pomod_isValidWorkTimeSet && Pomod_isValidRestTimeSet)
+            {
+                Pomod_ChangeStatus (Pomod_Status.Work);
+                Pomod_timerSecond.Start ();
+                if (TimerStartedEvent != null)
+                    TimerStartedEvent ();
+            }
+            else
+            {
+                MessageBox.Show ("You must specify a valid time first.");
+            }
+        }
+
+        private void Pomod_timerSecond_Tick (object sender, EventArgs e)
+        {
+            Pomod_remainingTimeSec--;
+            if (Pomod_remainingTimeSec == 0)
+            {
+                ///TODO
+                //Play sound?? <- EZ LEGYEN AZ OPEN SET ENDING DIALOGBA!
+                Pomod_OpenSetEndingDialog ();
+                if (Pomod_status == Pomod_Status.Work)
+                {
+                    Pomod_ChangeStatus (Pomod_Status.Rest);
+                    Pomod_remainingTimeSec = Pomod_startingRestTimeSec;
+                }
+                else if (Pomod_status == Pomod_Status.Rest)
+                {
+                    Pomod_ChangeStatus (Pomod_Status.Work);
+                    Pomod_remainingTimeSec = Pomod_startingWorkTimeSec;
+                }
+            }
+            Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_remainingTimeSec);
+        }
+        private void Pomod_OpenSetEndingDialog ()
+        {
+            Pomod_stopwatchIdle.Stop (); //Pause
+
+            if (Pomod_status == Pomod_Status.Rest)
+                MessageBox.Show ("Rest ended, It's time to work, good luck!");
+            if (Pomod_status == Pomod_Status.Work)
+                MessageBox.Show ("Work ended, It's time to rest, good luck!");
+
+            Pomod_stopwatchIdle.Start (); //Continue
+        }
+        private void Pomod_bPause_Click (object sender, EventArgs e)
+        {
+            if (Pomod_bPause.Text == "Pause")
+            {
+                Pomod_bPause.Text = "Continue";
+                Pomod_stopwatchIdle.Start (); //Continue stopwatch
+                Pomod_timerSecond.Stop ();
+            }
+            else
+            {
+                Pomod_bPause.Text = "Pause";
+                Pomod_stopwatchIdle.Stop (); //Pause
+                Pomod_timerSecond.Start ();
+            }
+        }
+        private void Pomod_bStop_Click (object sender, EventArgs e)
+        {
+            Pomod_stopwatchIdle.Stop (); //TODO Reset
+            Pomod_timerSecond.Stop ();
+            Pomod_ChangeStatus (Pomod_Status.Idle);
+            if (TimerStoppedEvent != null)
+                TimerStoppedEvent ();
+
+            if(Pomod_status == Pomod_Status.Work) //Adds remaining time to the whole time
+                Pomod_elapsedTimeSeconds += Pomod_startingWorkTimeSec - Pomod_remainingTimeSec;
+            if(Pomod_status == Pomod_Status.Rest)
+                Pomod_elapsedTimeSeconds += Pomod_startingRestTimeSec - Pomod_remainingTimeSec;
+
+            Pomod_OpenSummaryDialog ();
+            Pomod_stopwatchIdle.Reset ();
+        }
+        private void Pomod_OpenSummaryDialog ()
+        {
+            Pomod_stopwatchIdle.Reset ();
+        }
+        private void Pomod_bSetWorkTime_Click (object sender, EventArgs e)
+        {
+            try
+            {
+                String setTime                 = Pomod_tValueSetWorkTimeMin.Text;
+                Pomod_startingWorkTimeSec      = TimeConverter.ConvertMinToSec (TimeConverter.ConvertStringToLongSafe (setTime));
+                Pomod_remainingTimeSec         = Pomod_startingWorkTimeSec;
+                Pomod_isValidWorkTimeSet       = true;
+                Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_startingWorkTimeSec);
+            }
+            catch (InvalidOperationException /*exc*/)
+            {
+                MessageBox.Show ("Invalid work time given, please input only minutes");
+                Pomod_isValidWorkTimeSet = false; //conversion failed
+            }
+        }
+        private void Pomod_bSetRestTime_Click (object sender, EventArgs e)
+        {
+            try
+            {
+                String setTime                 = Pomod_tValueSetRestTimeMin.Text;
+                Pomod_startingRestTimeSec     = TimeConverter.ConvertMinToSec (TimeConverter.ConvertStringToLongSafe (setTime));
+                Pomod_isValidRestTimeSet       = true;
+                Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_startingWorkTimeSec);
+            }
+            catch (InvalidOperationException /*exc*/)
+            {
+                MessageBox.Show ("Invalid rest time given, please input only minutes");
+                Pomod_isValidRestTimeSet = false; //conversion failed
+            }
+        }
+        private void Pomod_ChangeStatus (Pomod_Status status)
+        {
+            if(status == Pomod_Status.Idle)
+            {
+                Pomod_status          = Pomod_Status.Idle; 
+                Pomod_lValueMode.Text = "Idle";
+            }
+            else if (status == Pomod_Status.Work)
+            {
+                Pomod_status          = Pomod_Status.Work;
+                Pomod_lValueMode.Text = "Work";
+            }
+            else if (status == Pomod_Status.Rest)
+            {
+                Pomod_status          = Pomod_Status.Rest;
+                Pomod_lValueMode.Text = "Rest";
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// OTHER CODE GOES HERE ////////////////////////////////////////////////////////
@@ -262,6 +412,8 @@ namespace ActivityTimer
                 e.Cancel = true;
             }
         }
+
+        
     }
 
     

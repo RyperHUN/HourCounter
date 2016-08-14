@@ -31,7 +31,7 @@ namespace HabitUtils
         {
             _selectedActivity   = selectedActivity;
             lActivityName.Text  = _selectedActivity.Name;
-            string stringTime   = TimeConverter.timeToString (calculatedTime);
+            string stringTime   = TimeConverter.TimeToStringHHMMSS (calculatedTime);
             tAddingTime.Text    = stringTime;
 
             SetStatusDoNothing ();
@@ -65,7 +65,7 @@ namespace HabitUtils
         {
             try
             {
-                long convertedTime = TimeConverter.stringToTime (tAddingTime.Text);
+                long convertedTime = TimeConverter.StringToTimeHHMMSS (tAddingTime.Text);
                 return convertedTime;
             }
             catch (InvalidOperationException /*exc*/)

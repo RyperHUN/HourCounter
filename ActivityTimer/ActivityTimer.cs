@@ -19,8 +19,7 @@ namespace ActivityTimer
         public event TimerHandler TimerStartedEvent;
         public event TimerHandler TimerStoppedEvent; ///TODO Ne lehessen tabot váltani!
 
-        System.Media.SoundPlayer soundPlayer = null;
-        bool isSoundPlayerLoaded             = false;
+        private SoundPlayer soundPlayer;
 
         private Activity _selectedActivity;
 
@@ -41,16 +40,7 @@ namespace ActivityTimer
 
             TimerStoppedEvent ();
 
-            try
-            { 
-                soundPlayer         = new System.Media.SoundPlayer (@"Sound\SOUND_RING_ALARM.wav");
-                soundPlayer.Load ();
-                isSoundPlayerLoaded = true;
-            }
-            catch (Exception /*e*/)
-            {
-                isSoundPlayerLoaded = false;
-            }
+            soundPlayer = new SoundPlayer (@"Sound/SOUND_RING_ALARM.wav");
         }
         public void setSelectedActivity(Activity selectedActivity)
         {
@@ -150,9 +140,9 @@ namespace ActivityTimer
                 _selectedActivity.AddTime (Timer_startingTimeSeconds / 60);
 
                 //Popup menu where you can modify your time minus plus +- ( ha eppen nem sikerult olyan jól )
-                PlaySound ();
+                soundPlayer.PlaySoundUntilStop ();
                 MessageBox.Show ("Timer done");
-                StopSound ();
+                soundPlayer.StopSound ();
             }
             Timer_lRemainingTime.Text = TimeConverter.TimeToStringHHMMSS (Timer_remainingTimeSeconds);
         }
@@ -326,14 +316,14 @@ namespace ActivityTimer
         private void Pomod_OpenSetEndingDialog ()
         {
             Pomod_stopwatchIdle.Stop (); //Pause
-            PlaySound ();
+            soundPlayer.PlaySoundUntilStop ();
 
             if (Pomod_status == Pomod_Status.Rest)
                 MessageBox.Show ("Rest ended, It's time to work, good luck!");
             if (Pomod_status == Pomod_Status.Work)
                 MessageBox.Show ("Work ended, It's time to rest, good luck!");
 
-            StopSound ();
+            soundPlayer.StopSound ();
             Pomod_stopwatchIdle.Start (); //Continue
         }
         private void Pomod_bPause_Click (object sender, EventArgs e)
@@ -437,30 +427,6 @@ namespace ActivityTimer
             if (!e.TabPage.Enabled)
             {
                 e.Cancel = true;
-            }
-        }
-
-        public void PlaySound ()
-        {
-            if (isSoundPlayerLoaded)
-            {
-                soundPlayer.PlayLooping ();
-            }
-            else
-            {
-                System.Media.SystemSounds.Beep.Play (); //TODO Threadbe elinditani stopba meg megallitani
-            }
-        }
-
-        public void StopSound ()
-        {
-            if (isSoundPlayerLoaded)
-            {
-                soundPlayer.Stop ();
-            }
-            else
-            {
-                ;
             }
         }
     }

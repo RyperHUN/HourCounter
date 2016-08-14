@@ -64,6 +64,7 @@
       <DependentUpon>PomodoroSummaryDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoundPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ActivityTimer.resx">

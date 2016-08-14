@@ -33,6 +33,7 @@
             this.lTimeSpentOnActivity = new System.Windows.Forms.Label();
             this.lTextHabitTime = new System.Windows.Forms.Label();
             this.lValueHabitTimeMin = new System.Windows.Forms.Label();
+            this.bRemoveActivity = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lActivityName
@@ -41,6 +42,7 @@
             this.lActivityName.Font = new System.Drawing.Font("Adobe Devanagari", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lActivityName.Location = new System.Drawing.Point(57, 25);
             this.lActivityName.Name = "lActivityName";
+            this.lActivityName.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lActivityName.Size = new System.Drawing.Size(163, 37);
             this.lActivityName.TabIndex = 0;
             this.lActivityName.Text = "Activity Name";
@@ -81,17 +83,28 @@
             this.lValueHabitTimeMin.TabIndex = 4;
             this.lValueHabitTimeMin.Text = "90min/day";
             // 
+            // bRemoveActivity
+            // 
+            this.bRemoveActivity.Location = new System.Drawing.Point(216, 187);
+            this.bRemoveActivity.Name = "bRemoveActivity";
+            this.bRemoveActivity.Size = new System.Drawing.Size(104, 25);
+            this.bRemoveActivity.TabIndex = 5;
+            this.bRemoveActivity.Text = "Remove Activity";
+            this.bRemoveActivity.UseVisualStyleBackColor = true;
+            this.bRemoveActivity.Click += new System.EventHandler(this.bRemoveActivity_Click);
+            // 
             // DetailedView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.bRemoveActivity);
             this.Controls.Add(this.lValueHabitTimeMin);
             this.Controls.Add(this.lTextHabitTime);
             this.Controls.Add(this.lTimeSpentOnActivity);
             this.Controls.Add(this.lActivityName);
             this.Controls.Add(this.lTextTimeSpentOnActivity);
             this.Name = "DetailedView";
-            this.Size = new System.Drawing.Size(311, 310);
+            this.Size = new System.Drawing.Size(344, 228);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,5 +117,6 @@
         private System.Windows.Forms.Label lTimeSpentOnActivity;
         private System.Windows.Forms.Label lTextHabitTime;
         private System.Windows.Forms.Label lValueHabitTimeMin;
+        private System.Windows.Forms.Button bRemoveActivity;
     }
 }

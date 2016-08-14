@@ -180,13 +180,13 @@ namespace HourCounter
                 if (activityName == searchForActivity)
                     return rootActivity;
                 Activity act = activity.Find(activity, searchForActivity);
-                if (act != null && act.Name != "INIT")//&& act.Find(act,searchForActivity) != null) //If child is
+                if (act != null )//&& act.Name != "INIT")//&& act.Find(act,searchForActivity) != null) //If child is
                     return act;
             }
 
             return null;
         }
-        public bool remove (Activity rootActivity,string searchForActivity)
+        private bool remove (Activity rootActivity,string searchForActivity)
         {
             SortedList<string, Activity> subActivities = rootActivity.GetSubActivityList ();
             if (subActivities.Count == 0)
@@ -202,12 +202,18 @@ namespace HourCounter
                     updateAllViews ();
                     return true;
                 }
-                bool founded = activity.remove(activity, searchForActivity);
+                bool founded = activity.Remove(activity, searchForActivity);
                 if (founded == true)
                     return true;
             }
 
             return false;
+        }
+        public bool Remove (Activity rootActivity, string searchForActivity)
+        {
+            bool found = remove (rootActivity, searchForActivity);
+            updateAllViews ();
+            return found;
         }
         public void AddTime(long timeMin)
         {

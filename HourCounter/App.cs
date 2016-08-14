@@ -44,7 +44,7 @@ namespace HourCounter
             activityTimer.TimerStoppedEvent += detailedView.timerStoppedHandler;
 
             splitContainerMain.Panel1.Controls.Add(treeView);
-
+            detailedView.InitializeActivityContainer (_activityContainer);
             
             _habitController.StartController ();
         }

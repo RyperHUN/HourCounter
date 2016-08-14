@@ -15,6 +15,7 @@ namespace DetailedView
     public partial class DetailedView : UserControl, Observer
     {
         Activity _selectedActivity = null;
+        Activity _activityContaner = null;
         public DetailedView ()
         {
             InitializeComponent ();
@@ -28,7 +29,10 @@ namespace DetailedView
                 updateHabitData ();
             }
         }
-
+        public void InitializeActivityContainer (Activity activityContainer)
+        {
+            _activityContaner = activityContainer;
+        }
         public void updateName ()
         {
             lActivityName.Text = _selectedActivity.Name;
@@ -67,6 +71,15 @@ namespace DetailedView
         public void timerStoppedHandler ()
         {
             this.Enabled = true;
+        }
+
+        private void bRemoveActivity_Click (object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show ("Are you sure you want to remove this habit?", "Confirmation", MessageBoxButtons.YesNo);
+            if(result == DialogResult.Yes)
+            {
+                _activityContaner.Remove(_activityContaner, _selectedActivity.Name);
+            }
         }
     }
 }

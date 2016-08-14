@@ -18,6 +18,7 @@ namespace ActivityTimer
         public delegate void TimerHandler ();
         public event TimerHandler TimerStartedEvent;
         public event TimerHandler TimerStoppedEvent; ///TODO Ne lehessen tabot váltani!
+        System.Media.SoundPlayer soundPlayer = new System.Media.SoundPlayer(@"Sound\SOUND_RING_ALARM.wav");
 
         private Activity _selectedActivity;
 
@@ -134,11 +135,11 @@ namespace ActivityTimer
                 if(TimerStoppedEvent != null)
                     TimerStoppedEvent ();
                 _selectedActivity.AddTime (Timer_startingTimeSeconds / 60);
-                ///TODO
-                //Play sound??
+
                 //Popup menu where you can modify your time minus plus +- ( ha eppen nem sikerult olyan jól )
-                //System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"c:\mywavfile.wav");
-                //player.Play();
+                soundPlayer.PlayLooping ();
+                MessageBox.Show ("Timer done");
+                soundPlayer.Stop ();
             }
             Timer_lRemainingTime.Text = TimeConverter.TimeToStringHHMMSS (Timer_remainingTimeSeconds);
         }
@@ -307,12 +308,14 @@ namespace ActivityTimer
         private void Pomod_OpenSetEndingDialog ()
         {
             Pomod_stopwatchIdle.Stop (); //Pause
+            soundPlayer.PlayLooping ();
 
             if (Pomod_status == Pomod_Status.Rest)
                 MessageBox.Show ("Rest ended, It's time to work, good luck!");
             if (Pomod_status == Pomod_Status.Work)
                 MessageBox.Show ("Work ended, It's time to rest, good luck!");
 
+            soundPlayer.Stop ();
             Pomod_stopwatchIdle.Start (); //Continue
         }
         private void Pomod_bPause_Click (object sender, EventArgs e)

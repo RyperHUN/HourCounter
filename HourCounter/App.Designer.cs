@@ -32,6 +32,8 @@
             this.treeView = new TreeListView.TreeListView();
             this.splitContainerRight = new System.Windows.Forms.SplitContainer();
             this.groupDetailedView = new System.Windows.Forms.GroupBox();
+            this.detailedView = new DetailedView.DetailedView();
+            this.activityTimer = new ActivityTimer.ActivityTimer();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddNewActivity = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,8 +45,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.detailedView = new DetailedView.DetailedView();
-            this.activityTimer = new ActivityTimer.ActivityTimer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -113,6 +113,25 @@
             this.groupDetailedView.TabIndex = 0;
             this.groupDetailedView.TabStop = false;
             this.groupDetailedView.Text = "Detailed View";
+            // 
+            // detailedView
+            // 
+            this.detailedView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.detailedView.Location = new System.Drawing.Point(3, 16);
+            this.detailedView.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.detailedView.Name = "detailedView";
+            this.detailedView.Size = new System.Drawing.Size(346, 221);
+            this.detailedView.TabIndex = 0;
+            this.detailedView.Visible = false;
+            // 
+            // activityTimer
+            // 
+            this.activityTimer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.activityTimer.Location = new System.Drawing.Point(0, 0);
+            this.activityTimer.Name = "activityTimer";
+            this.activityTimer.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
+            this.activityTimer.Size = new System.Drawing.Size(352, 220);
+            this.activityTimer.TabIndex = 0;
             // 
             // menuBar
             // 
@@ -199,25 +218,6 @@
             // ContentPanel
             // 
             this.ContentPanel.Size = new System.Drawing.Size(133, 0);
-            // 
-            // detailedView
-            // 
-            this.detailedView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.detailedView.Location = new System.Drawing.Point(3, 16);
-            this.detailedView.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.detailedView.Name = "detailedView";
-            this.detailedView.Size = new System.Drawing.Size(346, 221);
-            this.detailedView.TabIndex = 0;
-            this.detailedView.Visible = false;
-            // 
-            // activityTimer
-            // 
-            this.activityTimer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.activityTimer.Location = new System.Drawing.Point(0, 0);
-            this.activityTimer.Name = "activityTimer";
-            this.activityTimer.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
-            this.activityTimer.Size = new System.Drawing.Size(352, 220);
-            this.activityTimer.TabIndex = 0;
             // 
             // App
             // 

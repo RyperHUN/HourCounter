@@ -133,7 +133,6 @@
             this.lTimeFormat.Size = new System.Drawing.Size(23, 13);
             this.lTimeFormat.TabIndex = 9;
             this.lTimeFormat.Text = "min";
-            this.lTimeFormat.Click += new System.EventHandler(this.label2_Click);
             // 
             // ActivityAdd
             // 

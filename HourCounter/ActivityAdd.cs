@@ -40,17 +40,14 @@ namespace HourCounter
         private void bAdd_Click (object sender, EventArgs e)
         {
             String activityName = tActivityName.Text;
-            long timeSpent;
-            if (!Int64.TryParse (tTimeSpent.Text, out timeSpent))
-                throw new System.IO.IOException ("Expected only number at the timeSpent textbox");
-            if(activityName == "")
-                throw new System.IO.IOException("Name cannot be empty");
+            long timeSpentMin = 0;
+            if(!IsValidArgumentsGivenForAdd (activityName, out timeSpentMin))
+                return;
 
-            Activity newActivity = new Activity (activityName, timeSpent);
+            Activity newActivity = new Activity (activityName, timeSpentMin);
             if (radioMainActivity.Checked)
             {
-                ///TODO Check if activity exists error
-                _activityContainer.AddSubActivity (newActivity);
+                 _activityContainer.AddSubActivity (newActivity);
             }
             else
             {
@@ -65,10 +62,29 @@ namespace HourCounter
         {
             this.Close();
         }
-
-        private void label2_Click (object sender, EventArgs e)
+        private bool IsValidArgumentsGivenForAdd (string activityName, out long timeSpentMin)
         {
-
+            timeSpentMin = 0;
+            try
+            {
+                timeSpentMin = Utils.TimeConverter.ConvertStringToLongSafe (tTimeSpent.Text);
+            }
+            catch (InvalidOperationException /*exc*/)
+            {
+                MessageBox.Show ("Invalid string argument given. Please only fill the textbox with numbers");
+                return false;
+            }
+            if (activityName == "")
+            {
+                MessageBox.Show ("Name cannot be empty");
+                return false;
+            }
+            if (_activityContainer.Find (_activityContainer, activityName) != null)
+            {
+                MessageBox.Show ("Activity name already exists");
+                return false;
+            }
+            return true;
         }
     }
 }

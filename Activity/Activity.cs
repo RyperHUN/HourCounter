@@ -147,6 +147,7 @@ namespace HourCounter
 
             updateAllViews ();
         }
+        /// Returns activity if found, else null
         public Activity Find (Activity rootActivity,string searchForActivity)
         {
             SortedList<string, Activity> subActivities = rootActivity.GetSubActivityList ();

@@ -42,7 +42,6 @@ namespace ActivityTimer
             }
             else
             {
-                //System.Media.SystemSounds.Beep.Play (); //TODO Threadbe elinditani stopba meg megallitani
                 systemSoundThread.Start ();
                 systemSoundStopper.Set ();
             }

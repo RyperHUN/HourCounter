@@ -9,9 +9,9 @@ namespace Utils
 {
     public class TimeConverter
     {
-        static readonly long MINTOSEC  = 60;
+        static readonly long MINTOSEC  = 60;  //Multiplying MINTOSEC Dividing SecToMin
         static readonly long HOURTOSEC = 3600;
-        static public long stringToTime (string time) ///TODO Sorround all stringToTime with try catch
+        public static long StringToTimeHHMMSS (string time) ///TODO Sorround all stringToTime with try catch
         {
             String[] timeArray = time.Split(':');
             long timeSeconds = 0;
@@ -29,13 +29,13 @@ namespace Utils
 
             return timeSeconds;
         }
-        static public string timeToString (long time)
+        public static string TimeToStringHHMMSS (long timeInSeconds)
         {
-            long hour = time / HOURTOSEC;
-            time = time % HOURTOSEC;
-            long min  = time / MINTOSEC;
-            time = time % MINTOSEC;
-            long sec  = time;
+            long hour     = timeInSeconds / HOURTOSEC;
+            timeInSeconds = timeInSeconds % HOURTOSEC; //Only time remains which is less than a hour
+            long min      = timeInSeconds / MINTOSEC;
+            timeInSeconds = timeInSeconds % MINTOSEC;  //Only seconds remains which is less than a minute
+            long sec      = timeInSeconds;
 
             string hourStr = "" + hour;
             string minStr  = "" + min;
@@ -51,6 +51,23 @@ namespace Utils
 
             return result;
         }
+        public static string TimeToStringMMSS (long timeInSeconds)
+        {
+            long min      = timeInSeconds / MINTOSEC;
+            timeInSeconds = timeInSeconds % MINTOSEC; //Only seconds remains which is less than a minute
+            long sec      = timeInSeconds;
+
+            string minStr  = "" + min;
+            string secStr  = "" + sec;
+            if (min <= 9)
+                minStr = "0" + min;
+            if (sec <= 9)
+                secStr = "0" + sec;
+
+            string result = minStr + ":" + secStr;
+
+            return result;
+        }
         public static long ConvertStringToLongSafe (string num)
         {
             long result;
@@ -62,6 +79,10 @@ namespace Utils
             {
                 throw new InvalidOperationException ("Invalid string argument given");
             }
+        }
+        public static long ConvertMinToSec (long min)
+        {
+            return min * MINTOSEC;
         }
     }
 }

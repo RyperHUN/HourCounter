@@ -167,6 +167,25 @@ namespace HourCounter
 
             return null;
         }
+        public Activity FindParent (Activity rootActivity, string searchForActivity)
+        {
+            SortedList<string, Activity> subActivities = rootActivity.GetSubActivityList ();
+            if (subActivities.Count == 0)
+                return null;
+
+            foreach (var dict in subActivities)
+            {
+                String activityName = dict.Key;
+                Activity activity = dict.Value;
+                if (activityName == searchForActivity)
+                    return rootActivity;
+                Activity act = activity.Find(activity, searchForActivity);
+                if (act != null && act.Name != "INIT")//&& act.Find(act,searchForActivity) != null) //If child is
+                    return act;
+            }
+
+            return null;
+        }
         public bool remove (Activity rootActivity,string searchForActivity)
         {
             SortedList<string, Activity> subActivities = rootActivity.GetSubActivityList ();

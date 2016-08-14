@@ -243,8 +243,6 @@ namespace ActivityTimer
                     Habit_AddHabit ();
                 }
             }
-            catch (InvalidOperationException /*exc*/)
-            { }
         }
 
         private void Habit_bRemoveFromHabbits_Click (object sender, EventArgs e)

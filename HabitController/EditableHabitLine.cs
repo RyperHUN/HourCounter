@@ -21,6 +21,7 @@ namespace HabitUtils
             get { return _isAdding; }
             private set { ; }
         }
+        private long calculatedTime = 0;
         
         public EditableHabitLine ()
         {
@@ -53,6 +54,15 @@ namespace HabitUtils
 
         private void bAdd_Click (object sender, EventArgs e)
         {
+            try
+            { 
+                calculatedTime = GetCalculatedTime ();
+            }
+            catch (InvalidOperationException /*exc*/)
+            {
+                SetStatusDoNothing ();
+                return;
+            }
             SetStatusAdding ();
         }
 
@@ -61,25 +71,25 @@ namespace HabitUtils
             SetStatusDoNothing ();
         }
 
-        private long GetCalculatedTime () //Todo maybe handle time when clicking add
+        private long GetCalculatedTime () 
         {
             try
             {
                 long convertedTime = TimeConverter.StringToTimeHHMMSS (tAddingTime.Text);
                 return convertedTime;
             }
-            catch (InvalidOperationException /*exc*/)
+            catch (InvalidOperationException exc)
             {
                 MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
+                throw exc;
             }
-            return 0;
         }
 
         public void HandleAdding ()
         {
             if (IsAdding)
             {
-                _selectedActivity.AddTime (GetCalculatedTime ());
+                _selectedActivity.AddTime (calculatedTime);
             }
         }
     }

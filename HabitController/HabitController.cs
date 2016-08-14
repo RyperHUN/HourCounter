@@ -96,7 +96,7 @@ namespace HabitUtils
                 }
 				else if (result == DialogResult.No)
 				{
-					_hourCounterTimer.Start (); ///TODO Test if it is a problem if start is duplicated.
+					_hourCounterTimer.Start (); ///TODO Test if it is a problem if start is duplicated. => I think not!
 				}
             }
         }

@@ -11,7 +11,7 @@ namespace Utils
     {
         static readonly long MINTOSEC  = 60;  //Multiplying MINTOSEC Dividing SecToMin
         static readonly long HOURTOSEC = 3600;
-        public static long StringToTimeHHMMSS (string time) ///TODO Sorround all stringToTime with try catch
+        public static long StringToTimeHHMMSS (string time)
         {
             String[] timeArray = time.Split(':');
             long timeSeconds = 0;

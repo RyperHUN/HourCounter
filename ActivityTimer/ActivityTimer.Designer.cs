@@ -91,7 +91,7 @@
             // 
             // Timer_bStart
             // 
-            this.Timer_bStart.Location = new System.Drawing.Point(6, 100);
+            this.Timer_bStart.Location = new System.Drawing.Point(6, 108);
             this.Timer_bStart.Name = "Timer_bStart";
             this.Timer_bStart.Size = new System.Drawing.Size(75, 23);
             this.Timer_bStart.TabIndex = 0;
@@ -101,7 +101,7 @@
             // 
             // Timer_bPause
             // 
-            this.Timer_bPause.Location = new System.Drawing.Point(118, 100);
+            this.Timer_bPause.Location = new System.Drawing.Point(118, 108);
             this.Timer_bPause.Name = "Timer_bPause";
             this.Timer_bPause.Size = new System.Drawing.Size(75, 23);
             this.Timer_bPause.TabIndex = 1;
@@ -111,7 +111,7 @@
             // 
             // Timer_bStop
             // 
-            this.Timer_bStop.Location = new System.Drawing.Point(229, 100);
+            this.Timer_bStop.Location = new System.Drawing.Point(229, 108);
             this.Timer_bStop.Name = "Timer_bStop";
             this.Timer_bStop.Size = new System.Drawing.Size(75, 23);
             this.Timer_bStop.TabIndex = 2;
@@ -130,7 +130,7 @@
             // Timer_lTextRemainingTime
             // 
             this.Timer_lTextRemainingTime.AutoSize = true;
-            this.Timer_lTextRemainingTime.Location = new System.Drawing.Point(3, 57);
+            this.Timer_lTextRemainingTime.Location = new System.Drawing.Point(3, 65);
             this.Timer_lTextRemainingTime.Name = "Timer_lTextRemainingTime";
             this.Timer_lTextRemainingTime.Size = new System.Drawing.Size(86, 13);
             this.Timer_lTextRemainingTime.TabIndex = 4;
@@ -140,7 +140,7 @@
             // 
             this.Timer_lRemainingTime.AutoSize = true;
             this.Timer_lRemainingTime.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Timer_lRemainingTime.Location = new System.Drawing.Point(108, 39);
+            this.Timer_lRemainingTime.Location = new System.Drawing.Point(108, 47);
             this.Timer_lRemainingTime.Name = "Timer_lRemainingTime";
             this.Timer_lRemainingTime.Size = new System.Drawing.Size(185, 58);
             this.Timer_lRemainingTime.TabIndex = 5;

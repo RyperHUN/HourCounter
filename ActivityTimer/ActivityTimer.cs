@@ -274,6 +274,9 @@ namespace ActivityTimer
         bool Pomod_isValidWorkTimeSet = true;
         bool Pomod_isValidRestTimeSet = true;
 
+        long Pomod_alreadySetWorkTimeSec = 1200; //These values ensures that if you click start, the timer start from the set time again
+        long Pomod_alreadySetRestTimeSec = 300;
+
         long Pomod_startingWorkTimeSec = 1200; //Todo settingsbol mondjuk kinyerni ezeket?
         long Pomod_startingRestTimeSec = 300;
         long Pomod_remainingTimeSec;
@@ -284,6 +287,8 @@ namespace ActivityTimer
         {
             if (Pomod_isValidWorkTimeSet && Pomod_isValidRestTimeSet)
             {
+                Pomod_InitializeTimer ();
+
                 Pomod_ChangeStatus (Pomod_Status.Work);
                 Pomod_timerSecond.Start ();
                 if (TimerStartedEvent != null)
@@ -319,6 +324,14 @@ namespace ActivityTimer
                 Pomod_timerSecond.Start ();
             }
             Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_remainingTimeSec);
+        }
+        private void Pomod_InitializeTimer ()
+        {
+            Pomod_startingRestTimeSec = Pomod_alreadySetRestTimeSec;
+            Pomod_remainingTimeSec    = Pomod_alreadySetWorkTimeSec;
+            Pomod_startingWorkTimeSec = Pomod_alreadySetWorkTimeSec;
+
+            Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_alreadySetWorkTimeSec);
         }
         private void Pomod_OpenSetEndingDialog ()
         {
@@ -379,7 +392,7 @@ namespace ActivityTimer
             try
             {
                 String setTime                 = Pomod_tValueSetWorkTimeMin.Text;
-                Pomod_startingWorkTimeSec      = TimeConverter.ConvertMinToSec (TimeConverter.ConvertStringToLongSafe (setTime));
+                Pomod_alreadySetWorkTimeSec    = TimeConverter.ConvertMinToSec (TimeConverter.ConvertStringToLongSafe (setTime));
                 Pomod_remainingTimeSec         = Pomod_startingWorkTimeSec;
                 Pomod_isValidWorkTimeSet       = true;
                 Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_startingWorkTimeSec);
@@ -395,7 +408,7 @@ namespace ActivityTimer
             try
             {
                 String setTime                 = Pomod_tValueSetRestTimeMin.Text;
-                Pomod_startingRestTimeSec     = TimeConverter.ConvertMinToSec (TimeConverter.ConvertStringToLongSafe (setTime));
+                Pomod_alreadySetRestTimeSec     = TimeConverter.ConvertMinToSec (TimeConverter.ConvertStringToLongSafe (setTime));
                 Pomod_isValidRestTimeSet       = true;
                 Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_startingWorkTimeSec);
             }

@@ -16,19 +16,22 @@ namespace ActivityTimer
         Activity _selectedActivity;
         long _workTimeSec;
         long _restTimeSec;
+        long _idleTimeSec;
 
         public PomodoroSummaryDialog ()
         {
             InitializeComponent ();
         }
-        public void Initialize (Activity selectedActivity ,long workTimeSec, long restTimeSec)
+        public void Initialize (Activity selectedActivity ,long workTimeSec, long restTimeSec, long idleTimeSec)
         {
             _selectedActivity = selectedActivity;
             _workTimeSec      = workTimeSec;
             _restTimeSec      = restTimeSec;
+            _idleTimeSec      = idleTimeSec;
 
-            tWorkTime.Text = Utils.TimeConverter.TimeToStringHHMMSS (_workTimeSec);
-            tRestTime.Text = Utils.TimeConverter.TimeToStringHHMMSS (_restTimeSec);
+            tWorkTime.Text      = Utils.TimeConverter.TimeToStringHHMMSS (_workTimeSec);
+            tRestTime.Text      = Utils.TimeConverter.TimeToStringHHMMSS (_restTimeSec);
+            lValueIdleTime.Text = Utils.TimeConverter.TimeToStringHHMMSS (_idleTimeSec);
         }
 
         private void bCancel_Click (object sender, EventArgs e)

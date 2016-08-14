@@ -280,7 +280,8 @@ namespace ActivityTimer
         long Pomod_startingWorkTimeSec = 1200; //Todo settingsbol mondjuk kinyerni ezeket?
         long Pomod_startingRestTimeSec = 300;
         long Pomod_remainingTimeSec;
-        long Pomod_elapsedTimeSeconds = 0;
+        long Pomod_elapsedWorkTimeSec = 0;
+        long Pomod_elapsedRestTimeSec = 0;
 
         private void Pomod_bStart_Click (object sender, EventArgs e)
         {
@@ -302,19 +303,23 @@ namespace ActivityTimer
             Pomod_remainingTimeSec--;
             if (Pomod_remainingTimeSec == 0)
             {
-                ///TODO
-                //Play sound?? <- EZ LEGYEN AZ OPEN SET ENDING DIALOGBA!
+                Pomod_timerSecond.Stop ();
+
                 Pomod_OpenSetEndingDialog ();
                 if (Pomod_status == Pomod_Status.Work)
                 {
+                    Pomod_elapsedWorkTimeSec += Pomod_startingWorkTimeSec;
                     Pomod_ChangeStatus (Pomod_Status.Rest);
                     Pomod_remainingTimeSec = Pomod_startingRestTimeSec;
                 }
                 else if (Pomod_status == Pomod_Status.Rest)
                 {
+                    Pomod_elapsedRestTimeSec += Pomod_startingRestTimeSec;
                     Pomod_ChangeStatus (Pomod_Status.Work);
                     Pomod_remainingTimeSec = Pomod_startingWorkTimeSec;
                 }
+
+                Pomod_timerSecond.Start ();
             }
             Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_remainingTimeSec);
         }
@@ -350,20 +355,26 @@ namespace ActivityTimer
         {
             Pomod_stopwatchIdle.Stop (); //TODO Reset
             Pomod_timerSecond.Stop ();
-            Pomod_ChangeStatus (Pomod_Status.Idle);
             if (TimerStoppedEvent != null)
                 TimerStoppedEvent ();
 
             if(Pomod_status == Pomod_Status.Work) //Adds remaining time to the whole time
-                Pomod_elapsedTimeSeconds += Pomod_startingWorkTimeSec - Pomod_remainingTimeSec;
+                Pomod_elapsedWorkTimeSec += Pomod_startingWorkTimeSec - Pomod_remainingTimeSec;
             if(Pomod_status == Pomod_Status.Rest)
-                Pomod_elapsedTimeSeconds += Pomod_startingRestTimeSec - Pomod_remainingTimeSec;
+                Pomod_elapsedRestTimeSec += Pomod_startingRestTimeSec - Pomod_remainingTimeSec;
+            Pomod_ChangeStatus (Pomod_Status.Idle);
 
             Pomod_OpenSummaryDialog ();
             Pomod_stopwatchIdle.Reset ();
         }
         private void Pomod_OpenSummaryDialog ()
         {
+            PomodoroSummaryDialog dialog = new PomodoroSummaryDialog ();
+            dialog.Initialize (_selectedActivity, 
+                               Pomod_elapsedWorkTimeSec,
+                               Pomod_elapsedRestTimeSec,
+                               Pomod_stopwatchIdle.Elapsed.Seconds);
+            dialog.ShowDialog ();
             Pomod_stopwatchIdle.Reset ();
         }
         private void Pomod_bSetWorkTime_Click (object sender, EventArgs e)

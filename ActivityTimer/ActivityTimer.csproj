@@ -57,11 +57,20 @@
     <Compile Include="ActivityTimer.Designer.cs">
       <DependentUpon>ActivityTimer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PomodoroSummaryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PomodoroSummaryDialog.Designer.cs">
+      <DependentUpon>PomodoroSummaryDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ActivityTimer.resx">
       <DependentUpon>ActivityTimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PomodoroSummaryDialog.resx">
+      <DependentUpon>PomodoroSummaryDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

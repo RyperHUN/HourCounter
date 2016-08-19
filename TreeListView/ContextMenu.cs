@@ -34,7 +34,7 @@ namespace TreeListView
         }
         private void MenuMoveActivity (object sender, EventArgs e)
         {
-
+            new Dialogs.MoveActivity (_activityContainer, _selectedActivity).ShowDialog ();
         }
     }
 }

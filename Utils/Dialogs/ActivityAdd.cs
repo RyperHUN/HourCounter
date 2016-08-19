@@ -65,9 +65,9 @@ namespace Dialogs
             }
             else
             {
-                string searchForActivity = (string)comboActivityDropDown.SelectedItem;
-                searchForActivity        = searchForActivity.Trim(); //Remove spaces before activity ( tab )
-                _activityContainer.AddBelowActivity(_activityContainer, newActivity, searchForActivity);
+                string searchForParentActivity = (string)comboActivityDropDown.SelectedItem;
+                searchForParentActivity        = searchForParentActivity.Trim(); //Remove spaces before activity ( tab )
+                _activityContainer.AddBelowActivity(_activityContainer, newActivity, searchForParentActivity);
             }
             this.Close ();
         }

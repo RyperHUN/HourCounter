@@ -77,5 +77,10 @@ namespace DetailedView
         {
             new Dialogs.RemoveActivity (_activityContainer, _selectedActivity);
         }
+
+        private void bMove_Click (object sender, EventArgs e)
+        {
+            new Dialogs.MoveActivity (_activityContainer, _selectedActivity).ShowDialog ();
+        }
     }
 }

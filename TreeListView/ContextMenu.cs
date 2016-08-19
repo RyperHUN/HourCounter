@@ -30,7 +30,11 @@ namespace TreeListView
         }
         private void MenuRemoveActivity (object sender, EventArgs e)
         {
-            //MSGBOX show are you sure to remove??
+            DialogResult result = MessageBox.Show ("Are you sure you want to remove this habit?", "Confirmation", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                _activityContainer.Remove (_activityContainer, _selectedActivity.Name);
+            }
         }
         private void MenuMoveActivity (object sender, EventArgs e)
         {

@@ -75,11 +75,7 @@ namespace DetailedView
 
         private void bRemoveActivity_Click (object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show ("Are you sure you want to remove this habit?", "Confirmation", MessageBoxButtons.YesNo);
-            if(result == DialogResult.Yes)
-            {
-                _activityContainer.Remove(_activityContainer, _selectedActivity.Name);
-            }
+            new Dialogs.RemoveActivity (_activityContainer, _selectedActivity);
         }
     }
 }

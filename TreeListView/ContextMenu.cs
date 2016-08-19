@@ -24,17 +24,13 @@ namespace TreeListView
         
         private void MenuAddChildActivity (object sender,EventArgs e)
         {
-            Utils.ActivityAdd activityAdd = new Utils.ActivityAdd (_activityContainer);
+            Dialogs.ActivityAdd activityAdd = new Dialogs.ActivityAdd (_activityContainer);
             activityAdd.SetDefaultParent (_selectedActivity);
             activityAdd.ShowDialog ();
         }
         private void MenuRemoveActivity (object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show ("Are you sure you want to remove this habit?", "Confirmation", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                _activityContainer.Remove (_activityContainer, _selectedActivity.Name);
-            }
+            new Dialogs.RemoveActivity (_activityContainer, _selectedActivity);
         }
         private void MenuMoveActivity (object sender, EventArgs e)
         {

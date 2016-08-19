@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using HourCounter;
 
-namespace Utils
+namespace Dialogs
 {
     public partial class ActivityAdd : Form
     {

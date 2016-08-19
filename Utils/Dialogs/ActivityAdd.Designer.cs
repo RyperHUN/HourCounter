@@ -1,4 +1,4 @@
-﻿namespace Utils
+﻿namespace Dialogs
 {
     partial class ActivityAdd
     {

@@ -45,19 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityAdd.cs">
+    <Compile Include="Dialogs\ActivityAdd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ActivityAdd.Designer.cs">
+    <Compile Include="Dialogs\ActivityAdd.Designer.cs">
       <DependentUpon>ActivityAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\RemoveActivity.cs" />
     <Compile Include="InitializationMissingException.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="TimeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ActivityAdd.resx">
+    <EmbeddedResource Include="Dialogs\ActivityAdd.resx">
       <DependentUpon>ActivityAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

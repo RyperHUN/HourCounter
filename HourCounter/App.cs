@@ -51,7 +51,7 @@ namespace HourCounter
 
         private void menuAddNewActivity_Click (object sender, EventArgs e)
         {
-            Utils.ActivityAdd activityAdd = new Utils.ActivityAdd(_activityContainer);
+            Dialogs.ActivityAdd activityAdd = new Dialogs.ActivityAdd(_activityContainer);
             activityAdd.ShowDialog();
         }
 

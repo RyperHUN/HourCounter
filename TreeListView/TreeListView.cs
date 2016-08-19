@@ -25,9 +25,8 @@ namespace TreeListView
             if (e.Button == MouseButtons.Right) ///TODO Menu shows
             {
                 //MessageBox.Show (e.Node.Text);
-                ContextMenu mnu = new ContextMenu();
-                mnu.MenuItems.Add ("Asd");
-                mnu.Show ( this,e.Location);
+                TreeContextMenu mnu = new TreeContextMenu (activityContainer);
+                mnu.Show ( this, e.Location);
             }
         }
 

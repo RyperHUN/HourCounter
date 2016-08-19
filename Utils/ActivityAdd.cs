@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HourCounter;
 
-namespace HourCounter
+namespace Utils
 {
     public partial class ActivityAdd : Form
     {
@@ -28,6 +29,19 @@ namespace HourCounter
                 foreach (String item in comboItems)
                 {
                     comboActivityDropDown.Items.Add (item);
+                }
+            }
+        }
+
+        public void SetDefaultParent (Activity parent)
+        {
+            foreach(String comboBoxText in comboActivityDropDown.Items)
+            {
+                string activityName = comboBoxText.Trim (); //Removes formating
+                if(activityName == parent.Name)
+                {
+                    comboActivityDropDown.SelectedItem = comboBoxText;
+                    radioSubActivity.Select ();
                 }
             }
         }

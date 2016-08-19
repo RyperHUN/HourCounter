@@ -11,10 +11,12 @@ namespace TreeListView
     internal class TreeContextMenu : ContextMenu
     {
         private Activity _activityContainer;
-        public TreeContextMenu (Activity activityContainer)
+        private Activity _selectedActivity;
+        public TreeContextMenu (Activity activityContainer, string selectedActivityName)
         {
             _activityContainer = activityContainer;
-            
+            _selectedActivity  = _activityContainer.Find (_activityContainer, selectedActivityName);
+
             MenuItems.Add ("Add child Activity", MenuAddChildActivity);
             MenuItems.Add ("Remove", MenuRemoveActivity);
             MenuItems.Add ("Move", MenuMoveActivity);
@@ -22,11 +24,13 @@ namespace TreeListView
         
         private void MenuAddChildActivity (object sender,EventArgs e)
         {
-
+            Utils.ActivityAdd activityAdd = new Utils.ActivityAdd (_activityContainer);
+            activityAdd.SetDefaultParent (_selectedActivity);
+            activityAdd.ShowDialog ();
         }
         private void MenuRemoveActivity (object sender, EventArgs e)
         {
-
+            //MSGBOX show are you sure to remove??
         }
         private void MenuMoveActivity (object sender, EventArgs e)
         {

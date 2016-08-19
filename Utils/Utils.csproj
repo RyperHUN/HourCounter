@@ -30,8 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Activity">
+      <HintPath>..\Activity\bin\Debug\Activity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,10 +45,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActivityAdd.Designer.cs">
+      <DependentUpon>ActivityAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="InitializationMissingException.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="TimeConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ActivityAdd.resx">
+      <DependentUpon>ActivityAdd.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

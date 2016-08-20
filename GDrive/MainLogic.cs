@@ -14,14 +14,37 @@ using System.Threading.Tasks;
 
 namespace GDrive
 {
-    class Program
+    //All commands are executed at the set file name
+    class CommandExecuter
     {
+        ///TODO Update file names to be able to use File Paths and Extensions easier
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/drive-dotnet-quickstart.json
-        static string[] Scopes = {  DriveService.Scope.DriveFile };
+        static string[] Scopes        = {  DriveService.Scope.DriveFile }; //Here you can set what can access the program
         static string ApplicationName = "Hour Counter";
 
-        static void Main (string[] args)
+        private string       _fileName = null;
+        private DriveService _service  = null;
+        private string       _fileId   = null;
+
+        public CommandExecuter (String fileName)
+        {
+            SetFileName (fileName);
+            InitializeDrive ();
+        }
+
+        public void SetFileName (string fileName)
+        {
+            _fileName = fileName;
+            UpdateFileId ();
+        }
+
+        public void UpdateFileId ()
+        {
+            _fileId = CommandStatic.GetFileId (_service, _fileName); ///TODO Check hogy mivan ha nem létező fájlt adsz meg!
+        }
+
+        private void InitializeDrive ()
         {
             UserCredential credential;
 
@@ -42,54 +65,59 @@ namespace GDrive
             }
 
             // Create Drive API service.
-            var service = new DriveService(new BaseClientService.Initializer()
+            _service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
-
-            //downloadFile (service);
-            //removeFile (service, "dataActivity.bin");
-            //updateFile (service,"dataActivity.bin",".bin",getFileId (service, "dataActivity.bin"));
-            UploadFile (service, "dataActivity.bin", ".bin");
-
-            downloadFile (service);
-            Console.Read ();
-
         }
 
-        public static string getFileId (DriveService _service, string fieName)
+        public void DownloadFile ()
         {
-            var requestList = _service.Files.List ();
-            requestList.Corpus = FilesResource.ListRequest.CorpusEnum.User;
-            requestList.Q = $"name = '{fieName}'";
+            CommandStatic.DownloadFile (_service, _fileName);
+        }
+
+        public void RemoveFile ()
+        {
+            CommandStatic.RemoveFile (_service, _fileId);
+            _fileId = null;
+        }
+
+        public void UpdateFile ()
+        {
+           CommandStatic.UpdateFile (_service, _fileName, ".bin", _fileId);
+        }
+
+        public void UploadFile ()
+        {
+            CommandStatic.UploadFile (_service, _fileName, ".bin"); ///TODO Extension
+        }
+    }
+    class CommandStatic
+    {
+        public static string GetFileId (DriveService service, string fileName)
+        {
+            var requestList       = service.Files.List ();
+            requestList.Corpus    = FilesResource.ListRequest.CorpusEnum.User;
+            requestList.Q         = $"name = '{fileName}'";
             FileList foundedFiles = requestList.Execute ();
+
             IList<File> foundedFileList = foundedFiles.Files;
 
-            string fileId = null;
-            foreach (var file in foundedFileList)
-            {
-                fileId = file.Id;  ///TODO Exception if more than one
-                Console.WriteLine ("\nName: " + file.Name + "  ID: " + file.Id);
-            }
+            if( foundedFileList.Count > 1)
+                throw new Exception ("Error : More files found when downloading");
 
+            string fileId = foundedFileList.First ().Id;
             return fileId;
         }
-        /// Download a file
-        /// Documentation: https://developers.google.com/drive/v2/reference/files/get
-        /// 
 
-        /// a Valid authenticated DriveService
-        /// File resource of the file to download
-        /// location of where to save the file including the file name to save it as.
-        /// 
-        public static void downloadFile (DriveService _service)//, File _fileResource, string _saveTo)
+        public static void DownloadFile (DriveService service, string fileName)// string _saveTo) //TODO SAVE TO
         {
-            String fileId = getFileId (_service, "dataActivity.bin");
+            String fileId = GetFileId (service, fileName);
 
             var stream = new System.IO.MemoryStream();
 
-            var request = _service.Files.Get(fileId);
+            var request = service.Files.Get(fileId);
             request.MediaDownloader.ProgressChanged +=
             (IDownloadProgress progress) =>
             {
@@ -114,32 +142,23 @@ namespace GDrive
             };
             request.Download (stream);
 
-            using (System.IO.FileStream destinationFile = new System.IO.FileStream ("dataActivity.bin", System.IO.FileMode.Create, System.IO.FileAccess.Write))
+            using (System.IO.FileStream destinationFile = new System.IO.FileStream (fileName, System.IO.FileMode.Create, System.IO.FileAccess.Write))
             {
                 stream.WriteTo (destinationFile);
             }
         }
 
-        public static void RemoveFile (DriveService _service, string fileName)
+        public static void RemoveFile (DriveService _service, string fileId)
         {
-            string fileId = getFileId (_service, fileName);
-
             var deleteRequest = _service.Files.Delete(fileId);
             deleteRequest.Execute ();
         }
 
-
         public static File UpdateFile (DriveService _service, string _uploadFile, string _uploadFileExtension, string _fileId)
         {
-            //.Files.Update ()
             if (System.IO.File.Exists (_uploadFile))
             {
-                File body = new File();
-                body.Name = System.IO.Path.GetFileName (_uploadFile);
-                body.Description = "File updated by Diamto Drive Sample";
-                body.MimeType = MimeTypeMap.GetMimeType (_uploadFileExtension);
-                //body.Parents = new List<String> ();
-
+                File body = SetFileAttributes (_uploadFile, _uploadFileExtension);
                 // File's content.
                 byte[] byteArray = System.IO.File.ReadAllBytes(_uploadFile);
                 System.IO.MemoryStream stream = new System.IO.MemoryStream(byteArray);
@@ -162,23 +181,27 @@ namespace GDrive
             }
         }
 
-        public static File UploadFile (DriveService _service, string _uploadFile, string _uploadFileExtension)
+        public static File SetFileAttributes (string uploadFile, string uploadFileExtension)
         {
-            //.Files.Update ()
-            if (System.IO.File.Exists (_uploadFile))
-            {
-                File body = new File();
-                body.Name = System.IO.Path.GetFileName (_uploadFile);
-                body.Description = "File updated by Diamto Drive Sample";
-                body.MimeType = MimeTypeMap.GetMimeType (_uploadFileExtension);
-                //body.Parents = new List<String> ();
+            File body = new File();
+            body.Name = System.IO.Path.GetFileName (uploadFile);
+            body.Description = "File uploaded by HourCounter";
+            body.MimeType = MimeTypeMap.GetMimeType (uploadFileExtension);
+            //body.Parents = new List<String> ();  ///TODO Set valid parent
+            return body;
+        }
 
+        public static File UploadFile (DriveService service, string uploadFile, string uploadFileExtension)
+        {
+            if (System.IO.File.Exists (uploadFile))
+            {
+                File body = SetFileAttributes (uploadFile, uploadFileExtension);
                 // File's content.
-                byte[] byteArray = System.IO.File.ReadAllBytes(_uploadFile);
+                byte[] byteArray = System.IO.File.ReadAllBytes(uploadFile);
                 System.IO.MemoryStream stream = new System.IO.MemoryStream(byteArray);
                 try
                 {
-                    var request = _service.Files.Create (body, stream, MimeTypeMap.GetMimeType (_uploadFileExtension));
+                    var request = service.Files.Create (body, stream, MimeTypeMap.GetMimeType (uploadFileExtension));
                     request.Upload ();
                     return request.ResponseBody;
                 }
@@ -190,7 +213,7 @@ namespace GDrive
             }
             else
             {
-                Console.WriteLine ("File does not exist: " + _uploadFile);
+                Console.WriteLine ("File does not exist: " + uploadFile);
                 return null;
             }
         }

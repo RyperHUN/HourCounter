@@ -15,19 +15,14 @@ namespace HourCounter
 {
     public partial class App : Form
     {
-        bool _isAutomaticSave = true;
-        Activity _activityContainer = new Activity("INIT");
+        bool _isAutomaticSave       = true; ///TODO Berakni settingsbe és a serializatorba
+        Activity        _activityContainer;
         HabitController _habitController;
-        private readonly string ACTIVITYSERIALIZEDFILE = "dataActivity.bin";
-        private readonly string HABITCONTROLERSERIALIZEDFILE = "dataHabit.bin";
 
         public App ()
         {
+            LoadEverything ();
             InitializeComponent ();
-
-            loadActivities ();
-            if(!loadHabitController ())
-                _habitController = new HabitController (_activityContainer);
 
             treeView.addActivityContainer (_activityContainer);
          
@@ -84,109 +79,37 @@ namespace HourCounter
         }
         private void Form1_FormClosing (object sender, FormClosingEventArgs e)
         {
-            SaveEverything(_isAutomaticSave);
+            //SaveEverything(_isAutomaticSave);
+            SaveEverything ();
         }
 
-        private void SaveEverything (bool allowedToSave)
+        private void SaveEverything ()
         {
-            saveActivities (allowedToSave);
-            saveHabitController (allowedToSave);
+            Serializer serializer         = new Serializer ();
+            serializer._activityContainer = _activityContainer;
+            serializer._habitController   = _habitController;
+            serializer.Save ();
         }
-
-        private void saveActivities (bool allowedToSave)
+        private void LoadEverything ()
         {
-            if (allowedToSave)
+            Serializer serializer = Serializer.loadEverythingFromDisk ();
+            if(serializer != null) 
             {
-                IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                Stream stream = new FileStream (ACTIVITYSERIALIZEDFILE,
-                                                FileMode.Create,
-                                                FileAccess.Write, FileShare.None);
-                formatter.Serialize (stream, _activityContainer);
-                stream.Close ();
+                _activityContainer = serializer._activityContainer;
+                _habitController   = serializer._habitController;
+                _habitController.InitVariables (_activityContainer); //Maybe put init into serializer???
             }
-        }
-        private void saveHabitController (bool allowedToSave)
-        {
-            if (allowedToSave)
+            else //Failed serialization
             {
-                IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                Stream stream = new FileStream (HABITCONTROLERSERIALIZEDFILE,
-                                                FileMode.Create,
-                                                FileAccess.Write, FileShare.None);
-                formatter.Serialize (stream, _habitController);
-                stream.Close ();
+                _activityContainer = new Activity ("INIT");
+                _habitController   = new HabitController (_activityContainer);
             }
-        }
-
-        private bool loadActivities ()
-        {
-            try
-            {
-                IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                Stream stream = new FileStream (ACTIVITYSERIALIZEDFILE,
-                                                FileMode.Open,
-                                                FileAccess.Read,
-                                                FileShare.Read);
-                _activityContainer = (Activity)formatter.Deserialize (stream);
-                stream.Close ();
-            }
-            catch (System.Runtime.Serialization.SerializationException exc)
-            {
-                Console.WriteLine ( exc.ToString() );
-                return false;
-            }
-            catch (FileNotFoundException /*exc*/)
-            {
-                return false;
-            }
-            return true;
-        }
-        private bool loadHabitController ()
-        {
-            try
-            {
-                IFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                Stream stream = new FileStream (HABITCONTROLERSERIALIZEDFILE,
-                                                FileMode.Open,
-                                                FileAccess.Read,
-                                                FileShare.Read);
-                _habitController = (HabitController) formatter.Deserialize (stream);
-                _habitController.InitVariables (_activityContainer);
-                stream.Close ();
-            }
-            catch (System.Runtime.Serialization.SerializationException exc)
-            {
-                Console.WriteLine (exc.ToString ());
-                return false;
-            }
-            catch (FileNotFoundException /*exc*/)
-            {
-                return false;
-            }
-            return true;
+            
         }
 
         private void showHabitAdderToolStripMenuItem_Click (object sender, EventArgs e)
         {
             _habitController.OpenHabbitAdderDialog ();
         }
-
-        //private void initFromCode()
-        //{
-        //    //Activity suli = new Activity("suli");
-
-        //    //Activity programozas = new Activity("Programozás");
-
-
-        //    //Activity cpp = new Activity("C++");
-
-        //    //Activity csharp = new Activity("C#");
-
-        //    //suli.AddSubActivity (programozas);
-        //    //programozas.AddSubActivity (cpp);
-        //    //programozas.AddSubActivity (csharp);
-
-        //    //_activityContainer.AddSubActivity (suli);
-        //}
     }
 }

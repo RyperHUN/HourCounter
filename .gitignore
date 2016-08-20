@@ -19,7 +19,7 @@ Libs/
 
 # Packages
 [Pp]ackages/ #Install it : Install-Package Google.Apis.Drive.v2
-packages.config
+#packages.config #Maybe useful
 
 # Build results
 [Dd]ebug/

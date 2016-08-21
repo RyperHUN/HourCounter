@@ -35,6 +35,9 @@ namespace GDrive
 
         public DateTime GetLastModifiedDate ()
         {
+            if(!IsFileExist ())
+                return DateTime.MinValue;
+
             var request                  = _service.Revisions.List (_fileId);
             RevisionList ListContainer   = request.Execute ();
             IList<Revision> revisionList = ListContainer.Revisions;

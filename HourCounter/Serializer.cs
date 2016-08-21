@@ -93,9 +93,11 @@ namespace HourCounter
 
             return DateTime.MinValue;
         }
+
         public static Serializer loadEverythingFromGDrive ()
         {
-            GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);         
+            GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);
+            IsOnDriveNewer ();
             if (drive.IsFileExist ())
             {
                 drive.DownloadFile ();
@@ -119,6 +121,25 @@ namespace HourCounter
                     drive.UploadFile ();//upload
                 }
             }
+        }
+        public static int IsOnDriveNewer ()
+        {
+            GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);
+            DateTime driveTime  = drive.GetLastModifiedDate ();
+            DateTime ondiskTime = GetOnDiskLastModifiedDate ();
+
+            int isDriveBigger = DateTime.Compare (driveTime, ondiskTime);
+            //Tests in a 10 minutes radius, if tey are modified in 10 minutes, it return 0 which means identical
+            if ( isDriveBigger < 0)
+                driveTime = driveTime.AddMinutes (10);
+            else
+                driveTime = driveTime.AddMinutes (-10);
+
+            int isModifiedDriveBigger = DateTime.Compare (driveTime, ondiskTime);    
+            if (isModifiedDriveBigger != isDriveBigger)
+                return 0;
+            
+            return isDriveBigger;
         }
     }
 }

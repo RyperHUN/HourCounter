@@ -36,7 +36,7 @@
             this.bAuthorizeGDrive = new System.Windows.Forms.Button();
             this.groupBoxGDrive = new System.Windows.Forms.GroupBox();
             this.bLoadFromDrive = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkEnableGDriveLoad = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bCancel = new System.Windows.Forms.Button();
@@ -117,7 +117,7 @@
             // groupBoxGDrive
             // 
             this.groupBoxGDrive.Controls.Add(this.bLoadFromDrive);
-            this.groupBoxGDrive.Controls.Add(this.checkBox1);
+            this.groupBoxGDrive.Controls.Add(this.checkEnableGDriveLoad);
             this.groupBoxGDrive.Location = new System.Drawing.Point(12, 101);
             this.groupBoxGDrive.Name = "groupBoxGDrive";
             this.groupBoxGDrive.Size = new System.Drawing.Size(224, 102);
@@ -134,15 +134,16 @@
             this.bLoadFromDrive.Text = "Load from drive";
             this.bLoadFromDrive.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkEnableGDriveLoad
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(159, 17);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Enable automatic drive sync";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkEnableGDriveLoad.AutoSize = true;
+            this.checkEnableGDriveLoad.Location = new System.Drawing.Point(6, 19);
+            this.checkEnableGDriveLoad.Name = "checkEnableGDriveLoad";
+            this.checkEnableGDriveLoad.Size = new System.Drawing.Size(118, 17);
+            this.checkEnableGDriveLoad.TabIndex = 7;
+            this.checkEnableGDriveLoad.Text = "Enable GDrive load";
+            this.checkEnableGDriveLoad.UseVisualStyleBackColor = true;
+            this.checkEnableGDriveLoad.CheckedChanged += new System.EventHandler(this.checkEnableGDriveLoad_CheckedChanged);
             // 
             // tabPage2
             // 
@@ -228,7 +229,7 @@
         private System.Windows.Forms.Label lTextAuthorizedStatus;
         private System.Windows.Forms.Button bAuthorizeGDrive;
         private System.Windows.Forms.GroupBox groupBoxGDrive;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkEnableGDriveLoad;
         private System.Windows.Forms.Button bLoadFromDrive;
     }
 }

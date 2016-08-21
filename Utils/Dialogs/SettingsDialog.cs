@@ -17,12 +17,24 @@ namespace Dialogs
         public SettingsDialog ()
         {
             InitializeComponent ();
+            InitValues ();
             Settings.Get.SetRestorePoint ();
+        }
+        private void InitValues ()
+        {
+            Settings settings = Settings.Get;
+            checkAutomaticSave.Checked    = settings.General.isAutomaticSave;
+            checkEnableGDriveLoad.Checked = settings.General.isGDriveSave;
         }
 
         private void checkAutomaticSave_CheckedChanged (object sender, EventArgs e)
         {
             Settings.Get.General.isAutomaticSave = checkAutomaticSave.Checked;
+        }
+
+        private void checkEnableGDriveLoad_CheckedChanged (object sender, EventArgs e)
+        {
+            Settings.Get.General.isGDriveSave    = checkAutomaticSave.Checked;
         }
 
         private void bCancel_Click (object sender, EventArgs e)

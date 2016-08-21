@@ -24,7 +24,7 @@ namespace HourCounter
 
         public void Save ()
         {
-            SaveEverythingToDisk (true);
+            SaveEverythingToDisk (Settings.Get.General.isAutomaticSave);
         }
 
         public void Load ()
@@ -44,7 +44,6 @@ namespace HourCounter
         {
             info.AddValue ("activityContainer", _activityContainer);
             info.AddValue ("habitController", _habitController);
-            Settings.Get.General.isGDriveSave = true;
             info.AddValue ("settings", Settings.Get);
         }
 

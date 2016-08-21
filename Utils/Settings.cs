@@ -37,7 +37,7 @@ namespace Utils
             return _instance;
         }
 
-        public GeneralSettings General;
+        public GeneralSettings General = new GeneralSettings ();
 
         [Serializable] //TODO megcsinalni rendes serializalast
         public class GeneralSettings

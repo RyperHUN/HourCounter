@@ -38,7 +38,6 @@
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddNewActivity = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSettings = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuAutomaticSave = new System.Windows.Forms.ToolStripMenuItem();
             this.showHabitAdderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -162,19 +161,10 @@
             // 
             // menuSettings
             // 
-            this.menuSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuAutomaticSave});
             this.menuSettings.Name = "menuSettings";
             this.menuSettings.Size = new System.Drawing.Size(170, 22);
             this.menuSettings.Text = "Settings";
             this.menuSettings.Click += new System.EventHandler(this.menuSettings_Click);
-            // 
-            // menuAutomaticSave
-            // 
-            this.menuAutomaticSave.Name = "menuAutomaticSave";
-            this.menuAutomaticSave.Size = new System.Drawing.Size(181, 22);
-            this.menuAutomaticSave.Text = "Automatic Save: ON";
-            this.menuAutomaticSave.Click += new System.EventHandler(this.menuAutomaticSave_Click);
             // 
             // showHabitAdderToolStripMenuItem
             // 
@@ -253,7 +243,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileMenu;
         private System.Windows.Forms.ToolStripMenuItem menuAddNewActivity;
         private System.Windows.Forms.ToolStripMenuItem menuSettings;
-        private System.Windows.Forms.ToolStripMenuItem menuAutomaticSave;
         private ActivityTimer.ActivityTimer activityTimer;
         private System.Windows.Forms.SplitContainer splitContainerRight;
         private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;

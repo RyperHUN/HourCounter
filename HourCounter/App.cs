@@ -15,7 +15,6 @@ namespace HourCounter
 {
     public partial class App : Form
     {
-        bool _isAutomaticSave       = true; ///TODO Berakni settingsbe és a serializatorba
         Activity        _activityContainer;
         HabitController _habitController;
 
@@ -52,21 +51,7 @@ namespace HourCounter
 
         private void menuSettings_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void menuAutomaticSave_Click(object sender, EventArgs e)
-        {
-            if(_isAutomaticSave)
-            {
-                _isAutomaticSave = false;
-                menuAutomaticSave.Text = "Automatic Save: OFF";
-            }
-            else
-            {
-                _isAutomaticSave = true;
-                menuAutomaticSave.Text = "Automatic Save: ON";
-            }
+            new Dialogs.SettingsDialog ().ShowDialog ();
         }
 
         private void treeView_AfterSelect (object sender, TreeViewEventArgs e)

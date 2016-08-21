@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using HabitUtils;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Utils;
 
 namespace HourCounter
 {
@@ -35,12 +36,16 @@ namespace HourCounter
         {
             _activityContainer = (Activity)info.GetValue ("activityContainer", typeof (Activity));
             _habitController   = (HabitController)info.GetValue ("habitController", typeof (HabitController));
+            Settings settings  = Settings.Get;
+            settings           = (Settings)info.GetValue ("settings", typeof(Settings));
         }
 
         public void GetObjectData (SerializationInfo info, StreamingContext context)
         {
             info.AddValue ("activityContainer", _activityContainer);
             info.AddValue ("habitController", _habitController);
+            Settings.Get.General.isGDriveSave = true;
+            info.AddValue ("settings", Settings.Get);
         }
 
         private void SaveEverythingToDisk (bool allowedToSave)

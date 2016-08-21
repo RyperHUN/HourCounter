@@ -16,11 +16,11 @@ namespace Dialogs
         public SettingsDialog ()
         {
             InitializeComponent ();
-            Settings copySettings = Settings.Get;
-            copySettings.General.isGDriveSave = false;
-            copySettings.SetRestorePoint ();
-            copySettings.General.isGDriveSave = true;
-            copySettings = copySettings.Restore ();
+            //Settings copySettings = Settings.Get;
+            //copySettings.General.isGDriveSave = false;
+            //copySettings.SetRestorePoint ();
+            //copySettings.General.isGDriveSave = true;
+            //copySettings = copySettings.Restore ();
         }
     }
 }

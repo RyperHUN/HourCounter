@@ -30,24 +30,24 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.lValueAuthorizedStatus = new System.Windows.Forms.Label();
+            this.checkAutomaticSave = new System.Windows.Forms.CheckBox();
+            this.lTextAuthorizedStatus = new System.Windows.Forms.Label();
+            this.bAuthorizeGDrive = new System.Windows.Forms.Button();
+            this.groupBoxGDrive = new System.Windows.Forms.GroupBox();
+            this.bLoadFromDrive = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bCancel = new System.Windows.Forms.Button();
             this.bOk = new System.Windows.Forms.Button();
-            this.bAuthorizeGDrive = new System.Windows.Forms.Button();
-            this.groupBoxGDrive = new System.Windows.Forms.GroupBox();
-            this.checkAutomaticSave = new System.Windows.Forms.CheckBox();
-            this.lTextAuthorizedStatus = new System.Windows.Forms.Label();
-            this.lValueAuthorizedStatus = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.bLoadFromDrive = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
+            this.groupBoxGDrive.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBoxGDrive.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -75,6 +75,74 @@
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
+            // 
+            // lValueAuthorizedStatus
+            // 
+            this.lValueAuthorizedStatus.AutoSize = true;
+            this.lValueAuthorizedStatus.Location = new System.Drawing.Point(108, 72);
+            this.lValueAuthorizedStatus.Name = "lValueAuthorizedStatus";
+            this.lValueAuthorizedStatus.Size = new System.Drawing.Size(21, 13);
+            this.lValueAuthorizedStatus.TabIndex = 1;
+            this.lValueAuthorizedStatus.Text = "Off";
+            // 
+            // checkAutomaticSave
+            // 
+            this.checkAutomaticSave.AutoSize = true;
+            this.checkAutomaticSave.Location = new System.Drawing.Point(12, 10);
+            this.checkAutomaticSave.Name = "checkAutomaticSave";
+            this.checkAutomaticSave.Size = new System.Drawing.Size(137, 17);
+            this.checkAutomaticSave.TabIndex = 6;
+            this.checkAutomaticSave.Text = "Enable Automatic Save";
+            this.checkAutomaticSave.UseVisualStyleBackColor = true;
+            this.checkAutomaticSave.CheckedChanged += new System.EventHandler(this.checkAutomaticSave_CheckedChanged);
+            // 
+            // lTextAuthorizedStatus
+            // 
+            this.lTextAuthorizedStatus.AutoSize = true;
+            this.lTextAuthorizedStatus.Location = new System.Drawing.Point(9, 72);
+            this.lTextAuthorizedStatus.Name = "lTextAuthorizedStatus";
+            this.lTextAuthorizedStatus.Size = new System.Drawing.Size(93, 13);
+            this.lTextAuthorizedStatus.TabIndex = 0;
+            this.lTextAuthorizedStatus.Text = "Authorized Status:";
+            // 
+            // bAuthorizeGDrive
+            // 
+            this.bAuthorizeGDrive.Location = new System.Drawing.Point(12, 37);
+            this.bAuthorizeGDrive.Name = "bAuthorizeGDrive";
+            this.bAuthorizeGDrive.Size = new System.Drawing.Size(103, 22);
+            this.bAuthorizeGDrive.TabIndex = 3;
+            this.bAuthorizeGDrive.Text = "Authorize GDrive";
+            this.bAuthorizeGDrive.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxGDrive
+            // 
+            this.groupBoxGDrive.Controls.Add(this.bLoadFromDrive);
+            this.groupBoxGDrive.Controls.Add(this.checkBox1);
+            this.groupBoxGDrive.Location = new System.Drawing.Point(12, 101);
+            this.groupBoxGDrive.Name = "groupBoxGDrive";
+            this.groupBoxGDrive.Size = new System.Drawing.Size(224, 102);
+            this.groupBoxGDrive.TabIndex = 5;
+            this.groupBoxGDrive.TabStop = false;
+            this.groupBoxGDrive.Text = "Google Drive";
+            // 
+            // bLoadFromDrive
+            // 
+            this.bLoadFromDrive.Location = new System.Drawing.Point(6, 42);
+            this.bLoadFromDrive.Name = "bLoadFromDrive";
+            this.bLoadFromDrive.Size = new System.Drawing.Size(97, 23);
+            this.bLoadFromDrive.TabIndex = 7;
+            this.bLoadFromDrive.Text = "Load from drive";
+            this.bLoadFromDrive.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(6, 19);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(159, 17);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "Enable automatic drive sync";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -113,6 +181,7 @@
             this.bCancel.TabIndex = 1;
             this.bCancel.Text = "Cancel";
             this.bCancel.UseVisualStyleBackColor = true;
+            this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
             // 
             // bOk
             // 
@@ -122,91 +191,26 @@
             this.bOk.TabIndex = 0;
             this.bOk.Text = "Ok";
             this.bOk.UseVisualStyleBackColor = true;
+            this.bOk.Click += new System.EventHandler(this.bOk_Click);
             // 
-            // bAuthorizeGDrive
-            // 
-            this.bAuthorizeGDrive.Location = new System.Drawing.Point(12, 37);
-            this.bAuthorizeGDrive.Name = "bAuthorizeGDrive";
-            this.bAuthorizeGDrive.Size = new System.Drawing.Size(103, 22);
-            this.bAuthorizeGDrive.TabIndex = 3;
-            this.bAuthorizeGDrive.Text = "Authorize GDrive";
-            this.bAuthorizeGDrive.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxGDrive
-            // 
-            this.groupBoxGDrive.Controls.Add(this.bLoadFromDrive);
-            this.groupBoxGDrive.Controls.Add(this.checkBox1);
-            this.groupBoxGDrive.Location = new System.Drawing.Point(12, 101);
-            this.groupBoxGDrive.Name = "groupBoxGDrive";
-            this.groupBoxGDrive.Size = new System.Drawing.Size(224, 102);
-            this.groupBoxGDrive.TabIndex = 5;
-            this.groupBoxGDrive.TabStop = false;
-            this.groupBoxGDrive.Text = "Google Drive";
-            // 
-            // checkAutomaticSave
-            // 
-            this.checkAutomaticSave.AutoSize = true;
-            this.checkAutomaticSave.Location = new System.Drawing.Point(12, 10);
-            this.checkAutomaticSave.Name = "checkAutomaticSave";
-            this.checkAutomaticSave.Size = new System.Drawing.Size(137, 17);
-            this.checkAutomaticSave.TabIndex = 6;
-            this.checkAutomaticSave.Text = "Enable Automatic Save";
-            this.checkAutomaticSave.UseVisualStyleBackColor = true;
-            // 
-            // lTextAuthorizedStatus
-            // 
-            this.lTextAuthorizedStatus.AutoSize = true;
-            this.lTextAuthorizedStatus.Location = new System.Drawing.Point(9, 72);
-            this.lTextAuthorizedStatus.Name = "lTextAuthorizedStatus";
-            this.lTextAuthorizedStatus.Size = new System.Drawing.Size(93, 13);
-            this.lTextAuthorizedStatus.TabIndex = 0;
-            this.lTextAuthorizedStatus.Text = "Authorized Status:";
-            // 
-            // lValueAuthorizedStatus
-            // 
-            this.lValueAuthorizedStatus.AutoSize = true;
-            this.lValueAuthorizedStatus.Location = new System.Drawing.Point(108, 72);
-            this.lValueAuthorizedStatus.Name = "lValueAuthorizedStatus";
-            this.lValueAuthorizedStatus.Size = new System.Drawing.Size(21, 13);
-            this.lValueAuthorizedStatus.TabIndex = 1;
-            this.lValueAuthorizedStatus.Text = "Off";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(159, 17);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Enable automatic drive sync";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // bLoadFromDrive
-            // 
-            this.bLoadFromDrive.Location = new System.Drawing.Point(6, 42);
-            this.bLoadFromDrive.Name = "bLoadFromDrive";
-            this.bLoadFromDrive.Size = new System.Drawing.Size(97, 23);
-            this.bLoadFromDrive.TabIndex = 7;
-            this.bLoadFromDrive.Text = "Load from drive";
-            this.bLoadFromDrive.UseVisualStyleBackColor = true;
-            // 
-            // Settings
+            // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 450);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "Settings";
+            this.Name = "SettingsDialog";
             this.Text = "Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.tabControl.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
+            this.groupBoxGDrive.ResumeLayout(false);
+            this.groupBoxGDrive.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupBoxGDrive.ResumeLayout(false);
-            this.groupBoxGDrive.PerformLayout();
             this.ResumeLayout(false);
 
         }

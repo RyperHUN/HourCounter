@@ -31,7 +31,7 @@ namespace HourCounter
         {
 
         }
-
+        /// TODO Hibakezelest hozzaadni! Ha valtoik a struktura nemfogja betlteni az adott objektumot.
         protected Serializer (SerializationInfo info, StreamingContext context)
         {
             _activityContainer = (Activity)info.GetValue ("activityContainer", typeof (Activity));

@@ -40,9 +40,10 @@ namespace Utils
         public GeneralSettings General;
 
         [Serializable] //TODO megcsinalni rendes serializalast
-        public struct GeneralSettings
+        public class GeneralSettings
         {
-            public bool isGDriveSave;
+            public bool isGDriveSave    = false;
+            public bool isAutomaticSave = false;
         }
 
         ///////////////

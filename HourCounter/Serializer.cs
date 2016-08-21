@@ -86,10 +86,16 @@ namespace HourCounter
                 return null;
             }
         }
+        public static DateTime GetOnDiskLastModifiedDate ()
+        {
+            if (File.Exists (SerializedFileName))
+                return File.GetLastWriteTime (SerializedFileName);
 
+            return DateTime.MinValue;
+        }
         public static Serializer loadEverythingFromGDrive ()
         {
-            GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);
+            GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);         
             if (drive.IsFileExist ())
             {
                 drive.DownloadFile ();

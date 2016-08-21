@@ -33,15 +33,15 @@ namespace GDrive
             SetFileName (fileName);
         }
 
-        //public void GetLastModifiedDate ()
-        //{
-        //    var request                  = _service.Revisions.List (_fileId);
-        //    RevisionList ListContainer   = request.Execute ();
-        //    IList<Revision> revisionList = ListContainer.Revisions;
+        public DateTime GetLastModifiedDate ()
+        {
+            var request                  = _service.Revisions.List (_fileId);
+            RevisionList ListContainer   = request.Execute ();
+            IList<Revision> revisionList = ListContainer.Revisions;
 
-        //    Revision last = revisionList.Last ();
-
-        //}
+            Revision last = revisionList.Last ();
+            return (DateTime)last.ModifiedTime;
+        }
 
         public void SetFileName (string fileName)
         {

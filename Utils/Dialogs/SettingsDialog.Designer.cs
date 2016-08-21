@@ -139,9 +139,9 @@
             this.checkEnableGDriveLoad.AutoSize = true;
             this.checkEnableGDriveLoad.Location = new System.Drawing.Point(6, 19);
             this.checkEnableGDriveLoad.Name = "checkEnableGDriveLoad";
-            this.checkEnableGDriveLoad.Size = new System.Drawing.Size(118, 17);
+            this.checkEnableGDriveLoad.Size = new System.Drawing.Size(121, 17);
             this.checkEnableGDriveLoad.TabIndex = 7;
-            this.checkEnableGDriveLoad.Text = "Enable GDrive load";
+            this.checkEnableGDriveLoad.Text = "Enable GDrive save";
             this.checkEnableGDriveLoad.UseVisualStyleBackColor = true;
             this.checkEnableGDriveLoad.CheckedChanged += new System.EventHandler(this.checkEnableGDriveLoad_CheckedChanged);
             // 

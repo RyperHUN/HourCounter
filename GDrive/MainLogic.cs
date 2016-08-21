@@ -29,8 +29,8 @@ namespace GDrive
 
         public CommandExecuter (String fileName)
         {
-            SetFileName (fileName);
             InitializeDrive ();
+            SetFileName (fileName);   
         }
 
         public void SetFileName (string fileName)
@@ -42,6 +42,13 @@ namespace GDrive
         public void UpdateFileId ()
         {
             _fileId = CommandStatic.GetFileId (_service, _fileName); ///TODO Check hogy mivan ha nem létező fájlt adsz meg!
+        }
+
+        public bool IsFileExist ()
+        {
+            if (_fileId != null)
+                return true;
+            return false;
         }
 
         private void InitializeDrive ()
@@ -74,7 +81,7 @@ namespace GDrive
 
         public void DownloadFile ()
         {
-            CommandStatic.DownloadFile (_service, _fileName);
+            CommandStatic.DownloadFile (_service, _fileId, _fileName);
         }
 
         public void RemoveFile ()
@@ -106,15 +113,14 @@ namespace GDrive
 
             if( foundedFileList.Count > 1)
                 throw new Exception ("Error : More files found when downloading");
+            if( foundedFileList.Count == 0)
+                return null;
 
-            string fileId = foundedFileList.First ().Id;
-            return fileId;
+            return foundedFileList.First ().Id;
         }
 
-        public static void DownloadFile (DriveService service, string fileName)// string _saveTo) //TODO SAVE TO
+        public static void DownloadFile (DriveService service, string fileId, string saveTo)// string _saveTo) //TODO SAVE TO
         {
-            String fileId = GetFileId (service, fileName);
-
             var stream = new System.IO.MemoryStream();
 
             var request = service.Files.Get(fileId);
@@ -142,7 +148,7 @@ namespace GDrive
             };
             request.Download (stream);
 
-            using (System.IO.FileStream destinationFile = new System.IO.FileStream (fileName, System.IO.FileMode.Create, System.IO.FileAccess.Write))
+            using (System.IO.FileStream destinationFile = new System.IO.FileStream (saveTo, System.IO.FileMode.Create, System.IO.FileAccess.Write))
             {
                 stream.WriteTo (destinationFile);
             }

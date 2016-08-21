@@ -91,15 +91,15 @@ namespace HourCounter
         {
             if (allowedToSave)
             {
-                ////GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);
-                //if (drive.IsFileExist () )
-                //{
-                //    //Update
-                //}
-                //else
-                //{
-                //    //upload
-                //}
+                GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);
+                if( drive.IsFileExist ())
+                {
+                    drive.UpdateFile ();//Update
+                }
+                else
+                {
+                    drive.UploadFile ();//upload
+                }
             }
         }
     }

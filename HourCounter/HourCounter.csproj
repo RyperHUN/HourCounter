@@ -57,6 +57,9 @@
     <Reference Include="DetailedView">
       <HintPath>..\DetailedView\bin\Debug\DetailedView.dll</HintPath>
     </Reference>
+    <Reference Include="GDrive">
+      <HintPath>..\GDrive\bin\Debug\GDrive.dll</HintPath>
+    </Reference>
     <Reference Include="HabitController">
       <HintPath>..\HabitController\bin\Debug\HabitController.dll</HintPath>
     </Reference>

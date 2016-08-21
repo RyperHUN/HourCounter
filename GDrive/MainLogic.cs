@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace GDrive
 {
     //All commands are executed at the set file name
-    class CommandExecuter
+    public class CommandExecuter
     {
         ///TODO Update file names to be able to use File Paths and Extensions easier
         // If modifying these scopes, delete your previously saved credentials
@@ -93,7 +93,7 @@ namespace GDrive
             CommandStatic.UploadFile (_service, _fileName, ".bin"); ///TODO Extension
         }
     }
-    class CommandStatic
+    public class CommandStatic
     {
         public static string GetFileId (DriveService service, string fileName)
         {

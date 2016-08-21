@@ -25,6 +25,7 @@ namespace HourCounter
         public void Save ()
         {
             SaveEverythingToDisk (Settings.Get.General.isAutomaticSave);
+            SaveEverythingToGDrive (Settings.Get.General.isGDriveSave);
         }
 
         public void Load ()
@@ -83,6 +84,22 @@ namespace HourCounter
             catch (FileNotFoundException /*exc*/)
             {
                 return null;
+            }
+        }
+
+        public void SaveEverythingToGDrive (bool allowedToSave)
+        {
+            if (allowedToSave)
+            {
+                ////GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);
+                //if (drive.IsFileExist () )
+                //{
+                //    //Update
+                //}
+                //else
+                //{
+                //    //upload
+                //}
             }
         }
     }

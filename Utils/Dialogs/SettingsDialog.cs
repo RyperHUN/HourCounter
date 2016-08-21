@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utils;
 
 namespace Dialogs
 {
@@ -15,11 +16,11 @@ namespace Dialogs
         public SettingsDialog ()
         {
             InitializeComponent ();
-        }
-
-        private void button2_Click (object sender, EventArgs e)
-        {
-
+            Settings copySettings = Settings.Get;
+            copySettings.General.isGDriveSave = false;
+            copySettings.SetRestorePoint ();
+            copySettings.General.isGDriveSave = true;
+            copySettings = copySettings.Restore ();
         }
     }
 }

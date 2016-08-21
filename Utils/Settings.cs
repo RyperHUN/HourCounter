@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Utils
 {
-    public class Settings
+    [Serializable]
+    public class Settings : ISerializable
     {
         private Settings ()
         {
         }
         static private Settings _instance = null;
-        static public Settings Get //Singleton
+        static private Settings _restoreInstance = null;
+        static public  Settings Get //Singleton
         {
             get
             {
@@ -24,11 +27,46 @@ namespace Utils
             private set { }
         }
 
+        public void SetRestorePoint ()
+        {
+            _restoreInstance = DeepClone (_instance);
+        }
+        public Settings Restore ()
+        {
+            _instance = _restoreInstance;
+            return _instance;
+        }
+
         public GeneralSettings General;
 
-        public class GeneralSettings
+        [Serializable] //TODO megcsinalni rendes serializalast
+        public struct GeneralSettings
         {
             public bool isGDriveSave;
+        }
+
+        ///////////////
+        //Serialization
+        public void GetObjectData (SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue ("SettingsInstance", _instance);
+            info.AddValue ("GeneralSettings", General);   
+        }
+        protected Settings (SerializationInfo info, StreamingContext context)
+        {
+            _instance = (Settings)info.GetValue ("SettingsInstance", typeof(Settings));
+            General   = (GeneralSettings)info.GetValue ("GeneralSettings", typeof(GeneralSettings));
+        }
+        private static T DeepClone<T>(T obj)
+        {
+            using (var ms = new System.IO.MemoryStream ())
+            {
+            var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter ();
+            formatter.Serialize (ms, obj);
+            ms.Position = 0;
+
+            return (T) formatter.Deserialize (ms);    
+            }
         }
     }
 }

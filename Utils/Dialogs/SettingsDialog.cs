@@ -24,7 +24,7 @@ namespace Dialogs
         {
             Settings settings = Settings.Get;
             checkAutomaticSave.Checked    = settings.General.isAutomaticSave;
-            checkEnableGDriveLoad.Checked = settings.General.isGDriveSave;
+            checkEnableGDriveSave.Checked = settings.General.isGDriveSave;
         }
 
         private void checkAutomaticSave_CheckedChanged (object sender, EventArgs e)
@@ -63,6 +63,9 @@ namespace Dialogs
             }
         }
 
-        
+        private void checkEnableDriveLoad_CheckedChanged (object sender, EventArgs e)
+        {
+            groupLoading.Enabled = !groupLoading.Enabled;   
+        }
     }
 }

@@ -20,8 +20,9 @@ namespace GDrive
         ///TODO Update file names to be able to use File Paths and Extensions easier
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/drive-dotnet-quickstart.json
-        static string[] Scopes        = {  DriveService.Scope.DriveFile }; //Here you can set what can access the program
+         //Here you can set what can access the program
         static string ApplicationName = "Hour Counter";
+        static string[] Scopes        = {  DriveService.Scope.DriveFile };
 
         private string       _fileName = null;
         private DriveService _service  = null;
@@ -65,24 +66,8 @@ namespace GDrive
         }
 
         private void InitializeDrive ()
-        {
-            UserCredential credential;
-
-            using (var stream =
-                new System.IO.FileStream ("client_secret.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
-            {
-                string credPath = System.Environment.GetFolderPath(
-                    System.Environment.SpecialFolder.Personal);
-                credPath = System.IO.Path.Combine (credPath, ".credentials/drive-hourcounter.json");
-
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync (
-                    GoogleClientSecrets.Load (stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore (credPath, true)).Result;
-                //Console.WriteLine ("Credential file saved to: " + credPath);
-            }
+        {  ///TODO Lekezelni System Aggregate exceptiont! ha user nem ad hozzaferest
+            UserCredential credential = CommandStatic.Authenticate (Scopes);
 
             // Create Drive API service.
             _service = new DriveService(new BaseClientService.Initializer()
@@ -112,9 +97,48 @@ namespace GDrive
         {
             CommandStatic.UploadFile (_service, _fileName, ".bin"); ///TODO Extension
         }
+
+        public static bool IsAuthenticated ()
+        {
+            UserCredential credential = CommandStatic.Authenticate (Scopes);
+
+            if (credential == null)
+                return false;
+
+            return true;
+        }
     }
     public class CommandStatic
     {
+        public static UserCredential Authenticate (string[] Scopes)
+        {
+            UserCredential credential;
+            try
+            {
+                using (var stream =
+                    new System.IO.FileStream ("client_secret.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                {
+                    string credPath = System.Environment.GetFolderPath(
+                        System.Environment.SpecialFolder.Personal);
+                    credPath = System.IO.Path.Combine (credPath, ".credentials/drive-hourcounter.json");
+
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync (
+                        GoogleClientSecrets.Load (stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore (credPath, true)).Result;
+                    //Console.WriteLine ("Credential file saved to: " + credPath);
+                }
+            }
+            catch (System.AggregateException /*exc*/)
+            {
+                return null; //Authentication is nut sucessful
+            }
+            ///TODO catch other exception
+            return credential;
+        }
+
         public static string GetFileId (DriveService service, string fileName)
         {
             var requestList       = service.Files.List ();

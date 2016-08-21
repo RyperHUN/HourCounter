@@ -36,11 +36,16 @@
             this.bAuthorizeGDrive = new System.Windows.Forms.Button();
             this.groupBoxGDrive = new System.Windows.Forms.GroupBox();
             this.bLoadFromDrive = new System.Windows.Forms.Button();
-            this.checkEnableGDriveLoad = new System.Windows.Forms.CheckBox();
+            this.checkEnableGDriveSave = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bCancel = new System.Windows.Forms.Button();
             this.bOk = new System.Windows.Forms.Button();
+            this.radioLoadNewer = new System.Windows.Forms.RadioButton();
+            this.radioLetMeDecide = new System.Windows.Forms.RadioButton();
+            this.lTextLoading = new System.Windows.Forms.Label();
+            this.groupLoading = new System.Windows.Forms.GroupBox();
+            this.checkEnableDriveLoad = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGDrive.SuspendLayout();
@@ -48,6 +53,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupLoading.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -116,34 +122,35 @@
             // 
             // groupBoxGDrive
             // 
-            this.groupBoxGDrive.Controls.Add(this.bLoadFromDrive);
-            this.groupBoxGDrive.Controls.Add(this.checkEnableGDriveLoad);
+            this.groupBoxGDrive.Controls.Add(this.checkEnableDriveLoad);
+            this.groupBoxGDrive.Controls.Add(this.groupLoading);
+            this.groupBoxGDrive.Controls.Add(this.checkEnableGDriveSave);
             this.groupBoxGDrive.Location = new System.Drawing.Point(12, 101);
             this.groupBoxGDrive.Name = "groupBoxGDrive";
-            this.groupBoxGDrive.Size = new System.Drawing.Size(224, 102);
+            this.groupBoxGDrive.Size = new System.Drawing.Size(343, 166);
             this.groupBoxGDrive.TabIndex = 5;
             this.groupBoxGDrive.TabStop = false;
             this.groupBoxGDrive.Text = "Google Drive";
             // 
             // bLoadFromDrive
             // 
-            this.bLoadFromDrive.Location = new System.Drawing.Point(6, 42);
+            this.bLoadFromDrive.Location = new System.Drawing.Point(35, 19);
             this.bLoadFromDrive.Name = "bLoadFromDrive";
             this.bLoadFromDrive.Size = new System.Drawing.Size(97, 23);
             this.bLoadFromDrive.TabIndex = 7;
             this.bLoadFromDrive.Text = "Load from drive";
             this.bLoadFromDrive.UseVisualStyleBackColor = true;
             // 
-            // checkEnableGDriveLoad
+            // checkEnableGDriveSave
             // 
-            this.checkEnableGDriveLoad.AutoSize = true;
-            this.checkEnableGDriveLoad.Location = new System.Drawing.Point(6, 19);
-            this.checkEnableGDriveLoad.Name = "checkEnableGDriveLoad";
-            this.checkEnableGDriveLoad.Size = new System.Drawing.Size(121, 17);
-            this.checkEnableGDriveLoad.TabIndex = 7;
-            this.checkEnableGDriveLoad.Text = "Enable GDrive save";
-            this.checkEnableGDriveLoad.UseVisualStyleBackColor = true;
-            this.checkEnableGDriveLoad.CheckedChanged += new System.EventHandler(this.checkEnableGDriveLoad_CheckedChanged);
+            this.checkEnableGDriveSave.AutoSize = true;
+            this.checkEnableGDriveSave.Location = new System.Drawing.Point(6, 19);
+            this.checkEnableGDriveSave.Name = "checkEnableGDriveSave";
+            this.checkEnableGDriveSave.Size = new System.Drawing.Size(121, 17);
+            this.checkEnableGDriveSave.TabIndex = 7;
+            this.checkEnableGDriveSave.Text = "Enable GDrive save";
+            this.checkEnableGDriveSave.UseVisualStyleBackColor = true;
+            this.checkEnableGDriveSave.CheckedChanged += new System.EventHandler(this.checkEnableGDriveLoad_CheckedChanged);
             // 
             // tabPage2
             // 
@@ -194,6 +201,62 @@
             this.bOk.UseVisualStyleBackColor = true;
             this.bOk.Click += new System.EventHandler(this.bOk_Click);
             // 
+            // radioLoadNewer
+            // 
+            this.radioLoadNewer.AutoSize = true;
+            this.radioLoadNewer.Checked = true;
+            this.radioLoadNewer.Location = new System.Drawing.Point(49, 66);
+            this.radioLoadNewer.Name = "radioLoadNewer";
+            this.radioLoadNewer.Size = new System.Drawing.Size(113, 17);
+            this.radioLoadNewer.TabIndex = 8;
+            this.radioLoadNewer.TabStop = true;
+            this.radioLoadNewer.Text = "Always load newer";
+            this.radioLoadNewer.UseVisualStyleBackColor = true;
+            // 
+            // radioLetMeDecide
+            // 
+            this.radioLetMeDecide.AutoSize = true;
+            this.radioLetMeDecide.Location = new System.Drawing.Point(49, 89);
+            this.radioLetMeDecide.Name = "radioLetMeDecide";
+            this.radioLetMeDecide.Size = new System.Drawing.Size(92, 17);
+            this.radioLetMeDecide.TabIndex = 9;
+            this.radioLetMeDecide.Text = "Let me decide";
+            this.radioLetMeDecide.UseVisualStyleBackColor = true;
+            // 
+            // lTextLoading
+            // 
+            this.lTextLoading.AutoSize = true;
+            this.lTextLoading.Location = new System.Drawing.Point(32, 45);
+            this.lTextLoading.Name = "lTextLoading";
+            this.lTextLoading.Size = new System.Drawing.Size(48, 13);
+            this.lTextLoading.TabIndex = 7;
+            this.lTextLoading.Text = "Loading:";
+            // 
+            // groupLoading
+            // 
+            this.groupLoading.Controls.Add(this.lTextLoading);
+            this.groupLoading.Controls.Add(this.bLoadFromDrive);
+            this.groupLoading.Controls.Add(this.radioLetMeDecide);
+            this.groupLoading.Controls.Add(this.radioLoadNewer);
+            this.groupLoading.Enabled = false;
+            this.groupLoading.Location = new System.Drawing.Point(161, 38);
+            this.groupLoading.Name = "groupLoading";
+            this.groupLoading.Size = new System.Drawing.Size(176, 122);
+            this.groupLoading.TabIndex = 10;
+            this.groupLoading.TabStop = false;
+            this.groupLoading.Text = "Loading";
+            // 
+            // checkEnableDriveLoad
+            // 
+            this.checkEnableDriveLoad.AutoSize = true;
+            this.checkEnableDriveLoad.Location = new System.Drawing.Point(161, 19);
+            this.checkEnableDriveLoad.Name = "checkEnableDriveLoad";
+            this.checkEnableDriveLoad.Size = new System.Drawing.Size(118, 17);
+            this.checkEnableDriveLoad.TabIndex = 11;
+            this.checkEnableDriveLoad.Text = "Enable GDrive load";
+            this.checkEnableDriveLoad.UseVisualStyleBackColor = true;
+            this.checkEnableDriveLoad.CheckedChanged += new System.EventHandler(this.checkEnableDriveLoad_CheckedChanged);
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,6 +275,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupLoading.ResumeLayout(false);
+            this.groupLoading.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -229,7 +294,12 @@
         private System.Windows.Forms.Label lTextAuthorizedStatus;
         private System.Windows.Forms.Button bAuthorizeGDrive;
         private System.Windows.Forms.GroupBox groupBoxGDrive;
-        private System.Windows.Forms.CheckBox checkEnableGDriveLoad;
+        private System.Windows.Forms.CheckBox checkEnableGDriveSave;
         private System.Windows.Forms.Button bLoadFromDrive;
+        private System.Windows.Forms.RadioButton radioLetMeDecide;
+        private System.Windows.Forms.RadioButton radioLoadNewer;
+        private System.Windows.Forms.Label lTextLoading;
+        private System.Windows.Forms.GroupBox groupLoading;
+        private System.Windows.Forms.CheckBox checkEnableDriveLoad;
     }
 }

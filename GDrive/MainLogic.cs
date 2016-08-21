@@ -30,8 +30,18 @@ namespace GDrive
         public CommandExecuter (String fileName)
         {
             InitializeDrive ();
-            SetFileName (fileName);   
+            SetFileName (fileName);
         }
+
+        //public void GetLastModifiedDate ()
+        //{
+        //    var request                  = _service.Revisions.List (_fileId);
+        //    RevisionList ListContainer   = request.Execute ();
+        //    IList<Revision> revisionList = ListContainer.Revisions;
+
+        //    Revision last = revisionList.Last ();
+
+        //}
 
         public void SetFileName (string fileName)
         {

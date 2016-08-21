@@ -82,7 +82,7 @@ namespace HourCounter
         }
         private void LoadEverything ()
         {
-            Serializer serializer = Serializer.loadEverythingFromDisk ();
+            Serializer serializer = Serializer.loadEverythingFromGDrive ();
             if(serializer != null) 
             {
                 _activityContainer = serializer._activityContainer;

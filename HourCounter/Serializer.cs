@@ -87,6 +87,18 @@ namespace HourCounter
             }
         }
 
+        public static Serializer loadEverythingFromGDrive ()
+        {
+            GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);
+            if (drive.IsFileExist ())
+            {
+                drive.DownloadFile ();
+                return loadEverythingFromDisk ();
+            }
+            else
+                return null;
+        }
+
         public void SaveEverythingToGDrive (bool allowedToSave)
         {
             if (allowedToSave)

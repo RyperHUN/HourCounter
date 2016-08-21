@@ -67,5 +67,18 @@ namespace Dialogs
         {
             groupLoading.Enabled = !groupLoading.Enabled;   
         }
+
+        private void bAuthorizeGDrive_Click (object sender, EventArgs e)
+        {
+            if (lValueAuthorizedStatus.Text == "Off")
+            {
+                bool isAuthenticated = GDrive.CommandExecuter.IsAuthenticated ();
+                if(isAuthenticated)
+                {
+                    lValueAuthorizedStatus.Text = "On";
+                    groupBoxGDrive.Enabled      = true;
+                }
+            }
+        }
     }
 }

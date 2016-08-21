@@ -119,12 +119,14 @@
             this.bAuthorizeGDrive.TabIndex = 3;
             this.bAuthorizeGDrive.Text = "Authorize GDrive";
             this.bAuthorizeGDrive.UseVisualStyleBackColor = true;
+            this.bAuthorizeGDrive.Click += new System.EventHandler(this.bAuthorizeGDrive_Click);
             // 
             // groupBoxGDrive
             // 
             this.groupBoxGDrive.Controls.Add(this.checkEnableDriveLoad);
             this.groupBoxGDrive.Controls.Add(this.groupLoading);
             this.groupBoxGDrive.Controls.Add(this.checkEnableGDriveSave);
+            this.groupBoxGDrive.Enabled = false;
             this.groupBoxGDrive.Location = new System.Drawing.Point(12, 101);
             this.groupBoxGDrive.Name = "groupBoxGDrive";
             this.groupBoxGDrive.Size = new System.Drawing.Size(343, 166);

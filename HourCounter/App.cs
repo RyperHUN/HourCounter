@@ -23,6 +23,11 @@ namespace HourCounter
             LoadEverything ();
             InitializeComponent ();
 
+            InitializeConnections ();
+        }
+
+        private void InitializeConnections ()
+        {
             treeView.addActivityContainer (_activityContainer);
          
 
@@ -40,7 +45,7 @@ namespace HourCounter
             splitContainerMain.Panel1.Controls.Add(treeView);
             detailedView.InitializeActivityContainer (_activityContainer);
             
-            _habitController.StartController ();
+            _habitController.StartController (); ///TODO Allithato settingsbe hogy elinduljon-e
         }
 
         private void menuAddNewActivity_Click (object sender, EventArgs e)
@@ -49,7 +54,7 @@ namespace HourCounter
             activityAdd.ShowDialog();
         }
 
-        private void menuSettings_Click(object sender, EventArgs e)
+        private void menuSettings_Click (object sender, EventArgs e)
         {
             new Dialogs.SettingsDialog ().ShowDialog ();
         }
@@ -58,7 +63,7 @@ namespace HourCounter
         {
             TreeNode selectedNode = treeView.SelectedNode;
             String activityName   = selectedNode.Text;
-            activityName = Activity.removeFormat (activityName);
+            activityName          = Activity.removeFormat (activityName);
             Activity activity     = _activityContainer.Find(_activityContainer,activityName);
             treeView.SelectChangedFunction (activity);
         }

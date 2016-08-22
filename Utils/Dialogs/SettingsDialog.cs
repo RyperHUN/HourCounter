@@ -18,23 +18,12 @@ namespace Dialogs
         {
             InitializeComponent ();
             InitValues ();
-            Settings.Get.SetRestorePoint ();
         }
         private void InitValues ()
         {
             Settings settings = Settings.Get;
             checkAutomaticSave.Checked    = settings.General.isAutomaticSave;
             checkEnableGDriveSave.Checked = settings.General.isGDriveSave;
-        }
-
-        private void checkAutomaticSave_CheckedChanged (object sender, EventArgs e)
-        {
-            Settings.Get.General.isAutomaticSave = checkAutomaticSave.Checked;
-        }
-
-        private void checkEnableGDriveLoad_CheckedChanged (object sender, EventArgs e)
-        {
-            Settings.Get.General.isGDriveSave    = checkAutomaticSave.Checked;
         }
 
         private void bCancel_Click (object sender, EventArgs e)
@@ -54,15 +43,20 @@ namespace Dialogs
             {
                 DialogResult result = MessageBox.Show("Do you want to discard changes", "Confirmation", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
-                {
-                    Settings.Get.Restore ();
-                    e.Cancel = false;
-                }
+                    e.Cancel = false; //Closes the dialog
                 else
                     e.Cancel = true;  //Prevents closing the dialog!
             }
+			else//Clicked ok
+				SaveSettingsChanges ();
         }
-
+		
+		private void SaveSettingsChanges ()
+		{
+			Settings.Get.General.isAutomaticSave = checkAutomaticSave.Checked;
+			Settings.Get.General.isGDriveSave    = checkEnableGDriveSave.Checked;
+		}
+		
         private void checkEnableDriveLoad_CheckedChanged (object sender, EventArgs e)
         {
             groupLoading.Enabled = !groupLoading.Enabled;   

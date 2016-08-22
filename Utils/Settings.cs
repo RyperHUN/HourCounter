@@ -14,7 +14,6 @@ namespace Utils
         {
         }
         static private Settings _instance = null;
-        static private Settings _restoreInstance = null;
         static public  Settings Get //Singleton
         {
             get
@@ -25,16 +24,6 @@ namespace Utils
                 return _instance;
             }
             private set { }
-        }
-
-        public void SetRestorePoint ()
-        {
-            _restoreInstance = DeepClone (_instance);
-        }
-        public Settings Restore ()
-        {
-            _instance = _restoreInstance;
-            return _instance;
         }
 
         public GeneralSettings General = new GeneralSettings ();
@@ -57,17 +46,6 @@ namespace Utils
         {
             _instance = (Settings)info.GetValue ("SettingsInstance", typeof(Settings));
             General   = (GeneralSettings)info.GetValue ("GeneralSettings", typeof(GeneralSettings));
-        }
-        private static T DeepClone<T>(T obj)
-        {
-            using (var ms = new System.IO.MemoryStream ())
-            {
-            var formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter ();
-            formatter.Serialize (ms, obj);
-            ms.Position = 0;
-
-            return (T) formatter.Deserialize (ms);    
-            }
         }
     }
 }

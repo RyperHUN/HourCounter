@@ -31,7 +31,6 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.lValueAuthorizedStatus = new System.Windows.Forms.Label();
-            this.checkAutomaticSave = new System.Windows.Forms.CheckBox();
             this.lTextAuthorizedStatus = new System.Windows.Forms.Label();
             this.bAuthorizeGDrive = new System.Windows.Forms.Button();
             this.groupBoxGDrive = new System.Windows.Forms.GroupBox();
@@ -70,7 +69,6 @@
             // tabGeneral
             // 
             this.tabGeneral.Controls.Add(this.lValueAuthorizedStatus);
-            this.tabGeneral.Controls.Add(this.checkAutomaticSave);
             this.tabGeneral.Controls.Add(this.lTextAuthorizedStatus);
             this.tabGeneral.Controls.Add(this.bAuthorizeGDrive);
             this.tabGeneral.Controls.Add(this.groupBoxGDrive);
@@ -90,16 +88,6 @@
             this.lValueAuthorizedStatus.Size = new System.Drawing.Size(21, 13);
             this.lValueAuthorizedStatus.TabIndex = 1;
             this.lValueAuthorizedStatus.Text = "Off";
-            // 
-            // checkAutomaticSave
-            // 
-            this.checkAutomaticSave.AutoSize = true;
-            this.checkAutomaticSave.Location = new System.Drawing.Point(12, 10);
-            this.checkAutomaticSave.Name = "checkAutomaticSave";
-            this.checkAutomaticSave.Size = new System.Drawing.Size(137, 17);
-            this.checkAutomaticSave.TabIndex = 6;
-            this.checkAutomaticSave.Text = "Enable Automatic Save";
-            this.checkAutomaticSave.UseVisualStyleBackColor = true;
             // 
             // lTextAuthorizedStatus
             // 
@@ -290,7 +278,6 @@
         private System.Windows.Forms.Button bCancel;
         private System.Windows.Forms.Button bOk;
         private System.Windows.Forms.Label lValueAuthorizedStatus;
-        private System.Windows.Forms.CheckBox checkAutomaticSave;
         private System.Windows.Forms.Label lTextAuthorizedStatus;
         private System.Windows.Forms.Button bAuthorizeGDrive;
         private System.Windows.Forms.GroupBox groupBoxGDrive;

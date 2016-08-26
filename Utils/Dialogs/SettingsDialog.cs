@@ -22,7 +22,6 @@ namespace Dialogs
         private void InitValues ()
         {
             Settings settings = Settings.Get;
-            checkAutomaticSave.Checked    = settings.General.isAutomaticSave;
             checkEnableGDriveSave.Checked = settings.General.isGDriveSave;
             checkEnableDriveLoad.Checked  = settings.General.isGDriveLoad;
         }
@@ -54,7 +53,6 @@ namespace Dialogs
 		
 		private void SaveSettingsChanges ()
 		{
-			Settings.Get.General.isAutomaticSave = checkAutomaticSave.Checked;
 			Settings.Get.General.isGDriveSave    = checkEnableGDriveSave.Checked;
             Settings.Get.General.isGDriveLoad    = checkEnableDriveLoad.Checked;
 		}

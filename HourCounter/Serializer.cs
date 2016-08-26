@@ -25,7 +25,7 @@ namespace HourCounter
 
         public void Save ()
         {
-            SaveEverythingToDisk (Settings.Get.General.isAutomaticSave);
+            SaveEverythingToDisk (true);
             SaveEverythingToGDrive (Settings.Get.General.isGDriveSave);
         }
 

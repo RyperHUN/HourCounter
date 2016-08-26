@@ -32,7 +32,6 @@ namespace Utils
         public class GeneralSettings
         {
             public bool isGDriveSave    = false;
-            public bool isAutomaticSave = false;
             public bool isGDriveLoad    = false;
         }
 

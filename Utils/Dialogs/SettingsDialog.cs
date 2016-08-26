@@ -24,6 +24,7 @@ namespace Dialogs
             Settings settings = Settings.Get;
             checkAutomaticSave.Checked    = settings.General.isAutomaticSave;
             checkEnableGDriveSave.Checked = settings.General.isGDriveSave;
+            checkEnableDriveLoad.Checked  = settings.General.isGDriveLoad;
         }
 
         private void bCancel_Click (object sender, EventArgs e)
@@ -55,6 +56,7 @@ namespace Dialogs
 		{
 			Settings.Get.General.isAutomaticSave = checkAutomaticSave.Checked;
 			Settings.Get.General.isGDriveSave    = checkEnableGDriveSave.Checked;
+            Settings.Get.General.isGDriveLoad    = checkEnableDriveLoad.Checked;
 		}
 		
         private void checkEnableDriveLoad_CheckedChanged (object sender, EventArgs e)

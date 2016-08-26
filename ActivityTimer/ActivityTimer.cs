@@ -237,7 +237,7 @@ namespace ActivityTimer
             catch (ArgumentException /*exc*/)
             {
                 DialogResult result = MessageBox.Show("Do you want to overwrite existing habit?", "Confirmation", MessageBoxButtons.YesNo);
-                if(result == DialogResult.OK)
+                if(result == DialogResult.Yes)
                 {
                     _selectedActivity.RemovedAsHabit ();
                     Habit_AddHabit ();

@@ -8,6 +8,7 @@ using HabitUtils;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Utils;
+using System.Windows.Forms;
 
 namespace HourCounter
 {
@@ -28,9 +29,29 @@ namespace HourCounter
             SaveEverythingToGDrive (Settings.Get.General.isGDriveSave);
         }
 
-        public void Load ()
+        public static Serializer Load ()
         {
-
+            Serializer diskLoaded = loadEverythingFromDisk ();
+            if (diskLoaded != null)
+            {
+                if (Settings.Get.General.isGDriveLoad)
+                {
+                    if (IsOnDriveNewer () > 0)
+                    {
+                        return loadEverythingFromGDrive (); //If this is newer
+                    }
+                }
+                return diskLoaded; //If this is newer
+            }
+            else //File not found
+            {
+                DialogResult result = MessageBox.Show("No save file found. Do you want to load from Google Drive?", "Confirmation", MessageBoxButtons.YesNo);
+                if(result == DialogResult.Yes)
+                {
+                    return loadEverythingFromGDrive ();
+                }
+            }
+            return null;
         }
         /// TODO Hibakezelest hozzaadni! Ha valtoik a struktura nemfogja betlteni az adott objektumot.
         protected Serializer (SerializationInfo info, StreamingContext context)

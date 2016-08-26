@@ -63,8 +63,28 @@ namespace ActivityTimer
         {
             while (systemSoundStopper.WaitOne ())
             {
-                System.Media.SystemSounds.Beep.Play ();
+                PlayRandomWindowsSound ();
                 Thread.Sleep (1000);
+            }
+        }
+
+        private void PlayRandomWindowsSound ()
+        {
+            int num = new Random ().Next (4);
+            switch (num)
+            {
+                case 0:
+                    System.Media.SystemSounds.Asterisk.Play();
+                    break;
+                case 1:
+                    System.Media.SystemSounds.Beep.Play();
+                    break;
+                case 2:
+                    System.Media.SystemSounds.Exclamation.Play();
+                    break;
+                case 3:
+                    System.Media.SystemSounds.Hand.Play();
+                    break;
             }
         }
     }

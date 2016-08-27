@@ -17,18 +17,19 @@ namespace Utils
 
         public TimerLogic ()
         {
-            timer.Interval  = 1000;
-            timer.Tick      += timeChanged;
-            TimerEndedEvent += TimerEndedHandler;
+            timer.Interval     = 1000;
+            timer.Tick         += timeChanged;
+            TimerEndedEvent    += TimerEndedHandler;
+            TimerStoppedByHand += TimerEndedHandler;
         }
 
         public Time InitTime
         {
             get { return _initTime; }
             set
-            {
+            {///TODO if started throw error!
                 _initTime      = value;
-                isValidTimeSet = true;
+                isValidTimeSet = true;///Todo changed init time event??
             }
         }
         public Time RemainTime
@@ -61,7 +62,7 @@ namespace Utils
 
         public void Stop ()
         {
-            TimerEndedEvent.Invoke ();
+            TimerStoppedByHand.Invoke ();
         }
 
         private void timeChanged (object sender, EventArgs e)
@@ -81,6 +82,7 @@ namespace Utils
         public delegate void TimeChange ();
         public event TimeChange TimeChangedEvent;
         public event TimeChange TimerEndedEvent;
+        public event TimeChange TimerStoppedByHand;
 
         //Timer start event
         //Timer end event

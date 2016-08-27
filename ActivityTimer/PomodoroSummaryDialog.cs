@@ -53,7 +53,7 @@ namespace ActivityTimer
                     elapsedTime += Utils.TimeConverter.StringToTimeHHMMSS (tRestTime.Text);
                 }
                 elapsedTime += Utils.TimeConverter.StringToTimeHHMMSS (tWorkTime.Text);
-                _selectedActivity.AddTime (elapsedTime);
+                _selectedActivity.AddTime (elapsedTime / 60);
                 
                 this.Close ();
             }

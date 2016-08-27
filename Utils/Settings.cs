@@ -31,8 +31,10 @@ namespace Utils
         [Serializable] //TODO megcsinalni rendes serializalast
         public class GeneralSettings
         {
-            public bool isGDriveSave    = false;
-            public bool isGDriveLoad    = false;
+            public bool isGDriveSave        = false;
+            public bool isGDriveLoad        = false;
+            public bool loadAlwaysLoadNewer = true;
+            public bool loadLetMeDecide     = false;
         }
 
         ///////////////

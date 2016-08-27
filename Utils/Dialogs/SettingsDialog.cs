@@ -23,11 +23,20 @@ namespace Dialogs
         {
             InitGeneral ();
             InitTimer ();
+            EnableAndDisableControls ();
         }
 
         private void InitTimer ()
         {
+            Settings settings = Settings.Get;
+            radioTimerAlwaysRememberLast.Checked = settings.Timers.timerRememberLastTime;
+            radioTimerSetTime.Checked            = settings.Timers.timerSetDefaultTime;
+            tTimerDefaultTime.Text               = TimeConverter.TimeToStringHHMMSS (settings.Timers.timerSetTime);
 
+            radioPomodAlwaysRememberLast.Checked = settings.Timers.pomodRememberLastTime;
+            radioPomodSetTime.Checked            = settings.Timers.pomodSetDefaultTime;
+            tPomodWorkTime.Text                  = TimeConverter.TimeToStringMMSS (settings.Timers.pomodWorkSetTime); //Maybe convert to MIN
+            tPomodRestTime.Text                  = TimeConverter.TimeToStringMMSS (settings.Timers.pomodRestSetTime);
         }
 
         private void InitGeneral ()
@@ -37,7 +46,6 @@ namespace Dialogs
             checkEnableDriveLoad.Checked  = settings.General.isGDriveLoad;
             radioLetMeDecide.Checked      = settings.General.loadLetMeDecide;
             radioLoadNewer.Checked        = settings.General.loadAlwaysLoadNewer;
-            groupLoading.Enabled          = settings.General.isGDriveLoad;
         }
         private void bCancel_Click (object sender, EventArgs e)
         {
@@ -66,16 +74,30 @@ namespace Dialogs
 		
 		private void SaveSettingsChanges ()
 		{
-			Settings.Get.General.isGDriveSave        = checkEnableGDriveSave.Checked;
+			SaveGeneralSettings ();
+            SaveTimerSettings ();
+		}
+
+        private void SaveGeneralSettings ()
+        {
+            Settings.Get.General.isGDriveSave        = checkEnableGDriveSave.Checked;
             Settings.Get.General.isGDriveLoad        = checkEnableDriveLoad.Checked;
             Settings.Get.General.loadLetMeDecide     = radioLetMeDecide.Checked;
             Settings.Get.General.loadAlwaysLoadNewer = radioLoadNewer.Checked;
-		}
-		
-        private void checkEnableDriveLoad_CheckedChanged (object sender, EventArgs e)
-        {
-            groupLoading.Enabled = !groupLoading.Enabled;
         }
+
+        private void SaveTimerSettings ()
+        {
+            Settings.Get.Timers.pomodRememberLastTime = radioPomodAlwaysRememberLast.Checked;
+            Settings.Get.Timers.pomodSetDefaultTime   = radioPomodSetTime.Checked;
+            ///TODO get set time
+
+            Settings.Get.Timers.timerRememberLastTime = radioTimerAlwaysRememberLast.Checked;
+            Settings.Get.Timers.timerSetDefaultTime   = radioTimerSetTime.Checked;
+            ///TODO get set time
+        }
+		
+        
 
         private void bAuthorizeGDrive_Click (object sender, EventArgs e)
         {
@@ -88,6 +110,24 @@ namespace Dialogs
                     groupBoxGDrive.Enabled      = true;
                 }
             }
+        }
+
+        private void selectableControlStateChanged (object sender, EventArgs e)
+        {
+            EnableAndDisableControls ();
+        }
+
+        private void EnableAndDisableControls ()
+        {
+            //Enables textboxes in Timer
+            tPomodRestTime.Enabled = radioPomodSetTime.Checked;
+            tPomodWorkTime.Enabled = radioPomodSetTime.Checked;
+
+            tTimerDefaultTime.Enabled = radioTimerSetTime.Checked;
+            bTimeBrowse.Enabled = checkReplaceTimerMusic.Checked;
+            
+            //Enables load box in General
+            groupLoading.Enabled = checkEnableDriveLoad.Checked;
         }
     }
 }

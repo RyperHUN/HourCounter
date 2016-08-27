@@ -151,7 +151,7 @@
             this.checkEnableDriveLoad.TabIndex = 11;
             this.checkEnableDriveLoad.Text = "Enable GDrive load";
             this.checkEnableDriveLoad.UseVisualStyleBackColor = true;
-            this.checkEnableDriveLoad.CheckedChanged += new System.EventHandler(this.checkEnableDriveLoad_CheckedChanged);
+            this.checkEnableDriveLoad.CheckedChanged += new System.EventHandler(this.selectableControlStateChanged);
             // 
             // groupLoading
             // 
@@ -307,6 +307,7 @@
             this.radioTimerSetTime.TabStop = true;
             this.radioTimerSetTime.Text = "Set default time";
             this.radioTimerSetTime.UseVisualStyleBackColor = true;
+            this.radioTimerSetTime.CheckedChanged += new System.EventHandler(this.selectableControlStateChanged);
             // 
             // tTimerDefaultTime
             // 
@@ -367,6 +368,7 @@
             this.radioPomodSetTime.TabStop = true;
             this.radioPomodSetTime.Text = "Set default time";
             this.radioPomodSetTime.UseVisualStyleBackColor = true;
+            this.radioPomodSetTime.CheckedChanged += new System.EventHandler(this.selectableControlStateChanged);
             // 
             // radioPomodAlwaysRememberLast
             // 
@@ -431,6 +433,7 @@
             this.checkReplaceTimerMusic.TabIndex = 6;
             this.checkReplaceTimerMusic.Text = "Replace timer music";
             this.checkReplaceTimerMusic.UseVisualStyleBackColor = true;
+            this.checkReplaceTimerMusic.CheckedChanged += new System.EventHandler(this.selectableControlStateChanged);
             // 
             // lTextLoadFile
             // 

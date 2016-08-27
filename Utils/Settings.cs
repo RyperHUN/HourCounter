@@ -27,6 +27,7 @@ namespace Utils
         }
 
         public GeneralSettings General = new GeneralSettings ();
+        public TimerSettings   Timers  = new TimerSettings ();
 
         [Serializable] //TODO megcsinalni rendes serializalast
         public class GeneralSettings
@@ -35,6 +36,19 @@ namespace Utils
             public bool isGDriveLoad        = false;
             public bool loadAlwaysLoadNewer = true;
             public bool loadLetMeDecide     = false;
+        }
+
+        [Serializable] //TODO megcsinalni rendes serializalast
+        public class TimerSettings
+        {
+            public bool timerRememberLastTime = true;
+            public bool timerSetDefaultTime   = false;
+            public long timerSetTime = 0;
+
+            public bool pomodRememberLastTime = true;
+            public bool pomodSetDefaultTime   = false;
+            public long pomodWorkSetTime = 0;
+            public long pomodRestSetTime = 0;
         }
 
         ///////////////

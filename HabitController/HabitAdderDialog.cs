@@ -8,19 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utils;
 
 namespace HabitUtils
 {
     public partial class HabitAdderDialog : Form
     {
-        Dictionary<Activity,long> _habitContainer = null;
+        Dictionary<Activity, Time> _habitContainer = null;
 
         public HabitAdderDialog ()
         {
             InitializeComponent ();
         }
 
-        public void Initialize (Dictionary<Activity,long> habitContainer)
+        public void Initialize (Dictionary<Activity, Time> habitContainer)
         {
             _habitContainer = habitContainer;
             FillPanelWithHabits ();

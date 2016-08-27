@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
+using Utils;
 
 namespace HourCounter
 {
@@ -19,8 +20,8 @@ namespace HourCounter
         private SortedList<string, Activity> _subActivities = new SortedList<string, Activity>(); //Stores all the subActivities
         public  SortedList<string, Activity> GetSubActivityList() { return _subActivities; }
 
-        private static Dictionary<Activity,long> _habitContainer = new Dictionary<Activity, long>(); //Stores who is habit and who is not.
-        public Dictionary<Activity, long> GetHabitList () { return _habitContainer; }
+        private static Dictionary<Activity, Time> _habitContainer = new Dictionary<Activity, Time>(); //Stores who is habit and who is not.
+        public Dictionary<Activity, Time> GetHabitList () { return _habitContainer; }
 
         private bool _isHabit = false;
         public bool IsHabit { get { return _isHabit; } private set { } }
@@ -43,7 +44,7 @@ namespace HourCounter
             _subActivities = (SortedList<string, Activity>)info.GetValue ("3", typeof (SortedList<string, Activity>));
             try
             { //New attributes can be added here <- If they are not exist EXCEPTION
-                _habitContainer = (Dictionary < Activity, long>)info.GetValue ("HabitContainer191923", typeof (Dictionary<Activity, long>));
+                _habitContainer = (Dictionary < Activity, Time>)info.GetValue ("HabitContainer191923", typeof (Dictionary<Activity, long>));
             }
             catch (SerializationException exception)
             {
@@ -51,7 +52,7 @@ namespace HourCounter
                 if (exceptionStr.Contains ("not found") && exceptionStr.Contains ("HabitContainer191923"))
                 {
                     //Found which variable
-                    _habitContainer = new Dictionary<Activity, long> ();
+                    _habitContainer = new Dictionary<Activity, Time> ();
                 }
             }
             try
@@ -215,20 +216,20 @@ namespace HourCounter
             updateAllViews ();
             return found;
         }
-        public void AddTime(long timeMin)
+        public void AddTime (Time time)
         {
-            _minutesSpentOnActivity += timeMin;
+            _minutesSpentOnActivity += time.Minutes;
             updateAllViews ();
         }
-        public long GetHabitTime ()
+        public Time GetHabitTime ()
         {
             if(IsHabit)
             {
                 return _habitContainer[this];
             }
-            return 0;
+            return null;
         }
-        public void AddedAsHabit (long time)
+        public void AddedAsHabit (Time time)
         {
             if (_habitContainer.ContainsKey (this))
             {

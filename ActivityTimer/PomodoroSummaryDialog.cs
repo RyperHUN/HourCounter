@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utils;
 
 namespace ActivityTimer
 {
@@ -47,13 +48,13 @@ namespace ActivityTimer
             Utils.Security.InitializationGuard (_isInitialized);
             try
             {
-                long elapsedTime = 0;
+                Time elapsedTime = new Time();
                 if (cIncludeRestTime.Checked )
                 {
-                    elapsedTime += Utils.TimeConverter.StringToTimeHHMMSS (tRestTime.Text);
+                    elapsedTime = new Time (TimeConverter.StringToTimeHHMMSS (tRestTime.Text));
                 }
-                elapsedTime += Utils.TimeConverter.StringToTimeHHMMSS (tWorkTime.Text);
-                _selectedActivity.AddTime (elapsedTime / 60);
+                elapsedTime = new Time (elapsedTime.Seconds + TimeConverter.StringToTimeHHMMSS (tWorkTime.Text));
+                _selectedActivity.AddTime (elapsedTime);
                 
                 this.Close ();
             }

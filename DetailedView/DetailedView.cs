@@ -50,12 +50,12 @@ namespace DetailedView
 
         public void updateHabitData ()
         {
-            const string HabitUnisSuffix = "min/day";
-            long habitTimeMin = 0;
+            const string HabitUnitSuffix = "min/day";
+            Time habitTime = new Time (0);
             if ( _selectedActivity.IsHabit)
-                habitTimeMin = _selectedActivity.GetHabitTime ();
+                habitTime = _selectedActivity.GetHabitTime ();
 
-            lValueHabitTimeMin.Text = habitTimeMin + HabitUnisSuffix;
+            lValueHabitTimeMin.Text = habitTime.Minutes + HabitUnitSuffix;
         }
 
         public void setSelectedActivity (Activity selectedActivity)

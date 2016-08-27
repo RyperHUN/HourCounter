@@ -148,7 +148,7 @@ namespace ActivityTimer
         {
             Timer_Timer.Stop (); //Automaticly calls Timer_TimerEnded
             TimerStoppedEvent.Invoke ();
-            _selectedActivity.AddTime (Timer_Timer.GetElapsedTime ().Minutes);
+            _selectedActivity.AddTime (Timer_Timer.GetElapsedTime ());
         }
 
         private void Timer_TimeChangedHandler ()
@@ -159,7 +159,7 @@ namespace ActivityTimer
         private void Timer_TimerEnded ()
         {
             TimerStoppedEvent.Invoke ();
-            _selectedActivity.AddTime (Timer_Timer.GetElapsedTime ().Minutes);
+            _selectedActivity.AddTime (Timer_Timer.GetElapsedTime ());
 
             //Popup menu where you can modify your time minus plus +-(ha eppen nem sikerult olyan jól )
             soundPlayer.PlaySoundUntilStop ();
@@ -202,7 +202,7 @@ namespace ActivityTimer
         {
             Stop_timerSecond.Stop ();
             TimerStoppedEvent.Invoke ();
-            _selectedActivity.AddTime (Stop_elapsedTime.Minutes);
+            _selectedActivity.AddTime (Stop_elapsedTime);
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// MANUAL ADD CODE GOES HERE ///////////////////////////////////////////////////
@@ -211,8 +211,8 @@ namespace ActivityTimer
         {
             try
             {
-                long needToAddTimeSec = TimeConverter.StringToTimeHHMMSS (Manual_tSetTime.Text);
-                _selectedActivity.AddTime (needToAddTimeSec / 60);
+                Time time = new Time (TimeConverter.StringToTimeHHMMSS (Manual_tSetTime.Text));
+                _selectedActivity.AddTime (time);
             }
             catch(InvalidOperationException /*exc*/)
             {
@@ -247,10 +247,8 @@ namespace ActivityTimer
         {
             try
             {
-                long habitTimeSec = TimeConverter.StringToTimeHHMMSS(Habit_tSetTime.Text);
-                long habitTimeMin = habitTimeSec/60;
-             
-                _selectedActivity.AddedAsHabit (habitTimeMin);
+                Time habitTime = new Time (TimeConverter.StringToTimeHHMMSS(Habit_tSetTime.Text));
+                _selectedActivity.AddedAsHabit (habitTime);
             }
             catch (InvalidOperationException /*exc*/)
             {

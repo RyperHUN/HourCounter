@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Utils;
 
 namespace HabitUtils
 {
@@ -110,23 +111,23 @@ namespace HabitUtils
             }
             return false;
         }
-        private long CalculateElapsedHabitTime (long timePerDay)
+        private Time CalculateElapsedHabitTime (Time timePerDay)
         {
             long passedDays = (long) (DateTime.Now - _lastTestedTime).TotalDays; //If opened twice a day, it will be zero
 
             if (passedDays > 0) //Solves the 0 passedDay problem 
-                return timePerDay * passedDays;
+                return new Time (timePerDay.Seconds * passedDays);
             else
                 return timePerDay;
         }
 
-        private Dictionary<Activity, long> CreateElapsedHabitTimes ()
+        private Dictionary<Activity, Time> CreateElapsedHabitTimes ()
         {
-            Dictionary<Activity,long> habitList = _activityContainer.GetHabitList ();
-            Dictionary<Activity,long> calculatedHabitList = new Dictionary<Activity,long> ();
+            Dictionary<Activity, Time> habitList = _activityContainer.GetHabitList ();
+            Dictionary<Activity, Time> calculatedHabitList = new Dictionary<Activity, Time> ();
             foreach (var habit in habitList)
             {
-                long calculatedTime = CalculateElapsedHabitTime (habit.Value);
+                Time calculatedTime = CalculateElapsedHabitTime (habit.Value);
                 calculatedHabitList.Add (habit.Key, calculatedTime);
             }
             return calculatedHabitList;

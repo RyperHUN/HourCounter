@@ -28,11 +28,11 @@ namespace HabitUtils
             InitializeComponent ();
         }
 
-        public void Initialize (Activity selectedActivity,long calculatedTime)
+        public void Initialize (Activity selectedActivity, Time calculatedTime)
         {
             _selectedActivity   = selectedActivity;
             lActivityName.Text  = _selectedActivity.Name;
-            string stringTime   = TimeConverter.TimeToStringHHMMSS (calculatedTime);
+            string stringTime   = TimeConverter.TimeToStringHHMMSS (calculatedTime.Seconds);
             tAddingTime.Text    = stringTime;
 
             SetStatusDoNothing ();
@@ -56,7 +56,7 @@ namespace HabitUtils
         {
             try
             { 
-                calculatedTime = GetCalculatedTime ();
+                calculatedTime = ConvertTime ();
             }
             catch (InvalidOperationException /*exc*/)
             {
@@ -71,7 +71,7 @@ namespace HabitUtils
             SetStatusDoNothing ();
         }
 
-        private long GetCalculatedTime () 
+        private long ConvertTime () 
         {
             try
             {
@@ -89,7 +89,7 @@ namespace HabitUtils
         {
             if (IsAdding)
             {
-                _selectedActivity.AddTime (calculatedTime);
+                _selectedActivity.AddTime (new Time(calculatedTime)); ///TODO replace class
             }
         }
     }

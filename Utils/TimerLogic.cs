@@ -43,7 +43,8 @@ namespace Utils
 
         public void Start ()
         {
-            _startTime = new Time(_initTime);
+            _startTime  = new Time (_initTime);
+            _remainTime = new Time (_initTime);
             TimeChangedEvent.Invoke ();
             timer.Start ();
         }

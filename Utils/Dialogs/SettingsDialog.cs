@@ -21,13 +21,24 @@ namespace Dialogs
         }
         private void InitValues ()
         {
+            InitGeneral ();
+            InitTimer ();
+        }
+
+        private void InitTimer ()
+        {
+
+        }
+
+        private void InitGeneral ()
+        {
             Settings settings = Settings.Get;
             checkEnableGDriveSave.Checked = settings.General.isGDriveSave;
             checkEnableDriveLoad.Checked  = settings.General.isGDriveLoad;
             radioLetMeDecide.Checked      = settings.General.loadLetMeDecide;
             radioLoadNewer.Checked        = settings.General.loadAlwaysLoadNewer;
+            groupLoading.Enabled          = settings.General.isGDriveLoad;
         }
-
         private void bCancel_Click (object sender, EventArgs e)
         {
             this.Close ();
@@ -63,7 +74,7 @@ namespace Dialogs
 		
         private void checkEnableDriveLoad_CheckedChanged (object sender, EventArgs e)
         {
-            groupLoading.Enabled = !groupLoading.Enabled;   
+            groupLoading.Enabled = !groupLoading.Enabled;
         }
 
         private void bAuthorizeGDrive_Click (object sender, EventArgs e)

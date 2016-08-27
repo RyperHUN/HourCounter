@@ -90,7 +90,7 @@ namespace HourCounter
             _name = name;
             _minutesSpentOnActivity = 0;
         }
-        public Activity(String name,long minutesSpentOnActivity)
+        public Activity (String name,long minutesSpentOnActivity)
         {
             _name = name;
             _minutesSpentOnActivity = minutesSpentOnActivity;

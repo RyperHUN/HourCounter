@@ -15,27 +15,27 @@ namespace ActivityTimer
     public partial class PomodoroSummaryDialog : Form
     {
         Activity _selectedActivity;
-        long _workTimeSec;
-        long _restTimeSec;
-        long _idleTimeSec;
+        Time _workTime;
+        Time _restTime;
+        Time _idleTime;
         bool _isInitialized = false;
 
         public PomodoroSummaryDialog ()
         {
             InitializeComponent ();
         }
-        public void Initialize (Activity selectedActivity ,long workTimeSec, long restTimeSec, long idleTimeSec)
+        public void Initialize (Activity selectedActivity ,Time workTime, Time restTime, Time idleTime)
         {
             _isInitialized = true;
 
             _selectedActivity = selectedActivity;
-            _workTimeSec      = workTimeSec;
-            _restTimeSec      = restTimeSec;
-            _idleTimeSec      = idleTimeSec;
+            _workTime         = workTime;
+            _restTime         = restTime;
+            _idleTime         = idleTime;
 
-            tWorkTime.Text      = Utils.TimeConverter.TimeToStringHHMMSS (_workTimeSec);
-            tRestTime.Text      = Utils.TimeConverter.TimeToStringHHMMSS (_restTimeSec);
-            lValueIdleTime.Text = Utils.TimeConverter.TimeToStringHHMMSS (_idleTimeSec);
+            tWorkTime.Text      = Utils.TimeConverter.TimeToStringHHMMSS (_workTime);
+            tRestTime.Text      = Utils.TimeConverter.TimeToStringHHMMSS (_restTime);
+            lValueIdleTime.Text = Utils.TimeConverter.TimeToStringHHMMSS (_idleTime);
         }
 
         private void bCancel_Click (object sender, EventArgs e)
@@ -51,9 +51,9 @@ namespace ActivityTimer
                 Time elapsedTime = new Time();
                 if (cIncludeRestTime.Checked )
                 {
-                    elapsedTime = new Time (TimeConverter.StringToTimeHHMMSS (tRestTime.Text));
+                    elapsedTime = TimeConverter.StringToTimeHHMMSS (tRestTime.Text);
                 }
-                elapsedTime = new Time (elapsedTime.Seconds + TimeConverter.StringToTimeHHMMSS (tWorkTime.Text));
+                elapsedTime = new Time (elapsedTime.Seconds + TimeConverter.StringToTimeHHMMSS (tWorkTime.Text).Seconds);
                 _selectedActivity.AddTime (elapsedTime);
                 
                 this.Close ();

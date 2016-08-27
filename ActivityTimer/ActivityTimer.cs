@@ -107,8 +107,8 @@ namespace ActivityTimer
             String setTime = Timer_tSetTime.Text;
             try
             {
-                Timer_Timer.InitTime       = new Time (TimeConverter.StringToTimeHHMMSS (setTime));
-                Timer_lRemainingTime.Text  = TimeConverter.TimeToStringHHMMSS (Timer_Timer.InitTime.Seconds);
+                Timer_Timer.InitTime       = TimeConverter.StringToTimeHHMMSS (setTime);
+                Timer_lRemainingTime.Text  = TimeConverter.TimeToStringHHMMSS (Timer_Timer.InitTime);
             }
             catch (InvalidOperationException /*exc*/)
             {
@@ -153,7 +153,7 @@ namespace ActivityTimer
 
         private void Timer_TimeChangedHandler ()
         {
-            Timer_lRemainingTime.Text = TimeConverter.TimeToStringHHMMSS (Timer_Timer.RemainTime.Seconds);
+            Timer_lRemainingTime.Text = TimeConverter.TimeToStringHHMMSS (Timer_Timer.RemainTime);
         }
 
         private void Timer_TimerEnded ()
@@ -173,13 +173,13 @@ namespace ActivityTimer
         private void Stop_stopwatchSecond_Tick (object sender, EventArgs e)
         {
             Stop_elapsedTime = new Time(Stop_elapsedTime.Seconds + 1);
-            Stop_lTime.Text  = TimeConverter.TimeToStringHHMMSS (Stop_elapsedTime.Seconds);
+            Stop_lTime.Text  = TimeConverter.TimeToStringHHMMSS (Stop_elapsedTime);
         }
      
         private void Stop_bStart_Click (object sender, EventArgs e)
         {
             Stop_elapsedTime = new Time ();
-            Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_elapsedTime.Seconds);
+            Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_elapsedTime);
             Stop_timerSecond.Start ();
             TimerStartedEvent.Invoke ();
         }
@@ -211,7 +211,7 @@ namespace ActivityTimer
         {
             try
             {
-                Time time = new Time (TimeConverter.StringToTimeHHMMSS (Manual_tSetTime.Text));
+                Time time = TimeConverter.StringToTimeHHMMSS (Manual_tSetTime.Text);
                 _selectedActivity.AddTime (time);
             }
             catch(InvalidOperationException /*exc*/)
@@ -247,7 +247,7 @@ namespace ActivityTimer
         {
             try
             {
-                Time habitTime = new Time (TimeConverter.StringToTimeHHMMSS(Habit_tSetTime.Text));
+                Time habitTime = TimeConverter.StringToTimeHHMMSS(Habit_tSetTime.Text);
                 _selectedActivity.AddedAsHabit (habitTime);
             }
             catch (InvalidOperationException /*exc*/)
@@ -305,19 +305,19 @@ namespace ActivityTimer
 
         private void Pomod_InitializeTimer ()
         {
-            Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.InitTime.Seconds); ///TODO belerakni a TImerLOgicba eztis vhogy?!
+            Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.InitTime); ///TODO belerakni a TImerLOgicba eztis vhogy?!
         }
 
         private void Pomod_ChangedWorkTime ()
         {
             if (Pomod_status == Pomod_Status.Work) ///TODO kivenni vagy a CHangedWOrkTIme al egybevonni
-                Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime.Seconds);
+                Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime);
         }
 
         private void Pomod_ChangedRestTime ()
         {
             if (Pomod_status == Pomod_Status.Rest) ///TODO kivenni vagy a CHangedWOrkTIme al egybevonni
-                Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerRest.RemainTime.Seconds);
+                Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerRest.RemainTime);
         }
 
         private void Pomod_EndedWorkTime ()
@@ -408,9 +408,9 @@ namespace ActivityTimer
         {
             PomodoroSummaryDialog dialog = new PomodoroSummaryDialog ();
             dialog.Initialize (_selectedActivity, 
-                               Pomod_ElapsedWorkTime.Seconds,
-                               Pomod_ElapsedRestTime.Seconds,
-                               Pomod_stopwatchIdle.Elapsed.Seconds);
+                               Pomod_ElapsedWorkTime,
+                               Pomod_ElapsedRestTime,
+                               new Time (Pomod_stopwatchIdle.Elapsed.Seconds));
             dialog.ShowDialog ();
             Pomod_stopwatchIdle.Reset ();
         }
@@ -420,7 +420,7 @@ namespace ActivityTimer
             {
                 String setTime                 = Pomod_tValueSetWorkTimeMin.Text;
                 Pomod_TimerWork.InitTime       = new Time (TimeConverter.ConvertMinToSec (TimeConverter.ConvertStringToLongSafe (setTime)));
-                Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.InitTime.Seconds);
+                Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.InitTime);
             }
             catch (InvalidOperationException /*exc*/)
             {

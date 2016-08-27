@@ -31,12 +31,13 @@ namespace Dialogs
             Settings settings = Settings.Get;
             radioTimerAlwaysRememberLast.Checked = settings.Timers.timerRememberLastTime;
             radioTimerSetTime.Checked            = settings.Timers.timerSetDefaultTime;
-            tTimerDefaultTime.Text               = TimeConverter.TimeToStringHHMMSS (settings.Timers.timerSetTime);
+            ///TODOOOOO
+            //tTimerDefaultTime.Text               = TimeConverter.TimeToStringHHMMSS (settings.Timers.timerSetTime);
 
             radioPomodAlwaysRememberLast.Checked = settings.Timers.pomodRememberLastTime;
             radioPomodSetTime.Checked            = settings.Timers.pomodSetDefaultTime;
-            tPomodWorkTime.Text                  = TimeConverter.TimeToStringMMSS (settings.Timers.pomodWorkSetTime); //Maybe convert to MIN
-            tPomodRestTime.Text                  = TimeConverter.TimeToStringMMSS (settings.Timers.pomodRestSetTime);
+            //tPomodWorkTime.Text                  = TimeConverter.TimeToStringMMSS (settings.Timers.pomodWorkSetTime); //Maybe convert to MIN
+            //tPomodRestTime.Text                  = TimeConverter.TimeToStringMMSS (settings.Timers.pomodRestSetTime);
         }
 
         private void InitGeneral ()

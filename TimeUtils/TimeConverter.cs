@@ -11,7 +11,7 @@ namespace Utils
     {
         static readonly long MINTOSEC  = 60;  //Multiplying MINTOSEC Dividing SecToMin
         static readonly long HOURTOSEC = 3600;
-        public static long StringToTimeHHMMSS (string time)
+        public static Time StringToTimeHHMMSS (string time)
         {
             String[] timeArray = time.Split(':');
             long timeSeconds = 0;
@@ -29,10 +29,12 @@ namespace Utils
                 throw exc;
             }
 
-            return timeSeconds;
+            return new Time (timeSeconds);
         }
-        public static string TimeToStringHHMMSS (long timeInSeconds)
+        public static string TimeToStringHHMMSS (Time time)
         {
+            long timeInSeconds = time.Seconds;
+
             long hour     = timeInSeconds / HOURTOSEC;
             timeInSeconds = timeInSeconds % HOURTOSEC; //Only time remains which is less than a hour
             long min      = timeInSeconds / MINTOSEC;
@@ -53,8 +55,10 @@ namespace Utils
 
             return result;
         }
-        public static string TimeToStringMMSS (long timeInSeconds)
+        public static string TimeToStringMMSS (Time time)
         {
+            long timeInSeconds = time.Seconds;
+
             long min      = timeInSeconds / MINTOSEC;
             timeInSeconds = timeInSeconds % MINTOSEC; //Only seconds remains which is less than a minute
             long sec      = timeInSeconds;

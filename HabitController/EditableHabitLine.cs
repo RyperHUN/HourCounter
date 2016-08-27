@@ -21,7 +21,7 @@ namespace HabitUtils
             get { return _isAdding; }
             private set { ; }
         }
-        private long calculatedTime = 0;
+        private Time calculatedTime = new Time (0);
         
         public EditableHabitLine ()
         {
@@ -32,7 +32,7 @@ namespace HabitUtils
         {
             _selectedActivity   = selectedActivity;
             lActivityName.Text  = _selectedActivity.Name;
-            string stringTime   = TimeConverter.TimeToStringHHMMSS (calculatedTime.Seconds);
+            string stringTime   = TimeConverter.TimeToStringHHMMSS (calculatedTime);
             tAddingTime.Text    = stringTime;
 
             SetStatusDoNothing ();
@@ -71,11 +71,11 @@ namespace HabitUtils
             SetStatusDoNothing ();
         }
 
-        private long ConvertTime () 
+        private Time ConvertTime () 
         {
             try
             {
-                long convertedTime = TimeConverter.StringToTimeHHMMSS (tAddingTime.Text);
+                Time convertedTime = TimeConverter.StringToTimeHHMMSS (tAddingTime.Text);
                 return convertedTime;
             }
             catch (InvalidOperationException exc)
@@ -89,7 +89,7 @@ namespace HabitUtils
         {
             if (IsAdding)
             {
-                _selectedActivity.AddTime (new Time(calculatedTime)); ///TODO replace class
+                _selectedActivity.AddTime (calculatedTime);
             }
         }
     }

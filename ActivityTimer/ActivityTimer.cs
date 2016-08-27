@@ -26,9 +26,8 @@ namespace ActivityTimer
         public ActivityTimer()
         {
             InitializeComponent();
-            
+            Timer_Init ();
             tabPicker.Dock  = DockStyle.Fill;
-            Timer_timerSecond.Interval     = 1000; // 1 sec
             Stop_timerSecond.Interval = 1000;
             Pomod_timerSecond.Interval = 1000;
 
@@ -95,34 +94,39 @@ namespace ActivityTimer
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// TIMER CODE GOES HERE ////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private long Timer_remainingTimeSeconds;
-        private long Timer_startingTimeSeconds;
-        private bool Timer_isValidTimeSet = false;
+        //private long Timer_remainingTimeSeconds;
+        //private long Timer_startingTimeSeconds;
+        //private bool Timer_isValidTimeSet = false;
+        private Utils.TimerLogic Timer_Timer;
+
+        private void Timer_Init ()
+        {
+            Timer_Timer                  = new TimerLogic ();
+            Timer_Timer.TimeChangedEvent += Timer_TimeChangedHandler;
+            Timer_Timer.TimerEndedEvent  += Timer_TimerEnded;
+        }
 
         private void Timer_bSet_Click (object sender, EventArgs e)
         {
-            String setTime        = Timer_tSetTime.Text;
+            String setTime = Timer_tSetTime.Text;
             try
             {
-                Timer_startingTimeSeconds  = TimeConverter.StringToTimeHHMMSS (setTime);
-                Timer_lRemainingTime.Text  = TimeConverter.TimeToStringHHMMSS (Timer_startingTimeSeconds);
-                Timer_remainingTimeSeconds = Timer_startingTimeSeconds;
-                Timer_isValidTimeSet = true;
+                Timer_Timer.InitTime       = new Time (TimeConverter.StringToTimeHHMMSS (setTime));
+                Timer_lRemainingTime.Text  = TimeConverter.TimeToStringHHMMSS (Timer_Timer.InitTime.Seconds);
             }
             catch (InvalidOperationException /*exc*/)
             {
                 MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
-                Timer_isValidTimeSet = false; //conversion failed
+                Timer_Timer.isValidTimeSet = false;
             }
         }
 
         private void Timer_bStart_Click(object sender, EventArgs e)
         {
-            if (Timer_isValidTimeSet)
+            if (Timer_Timer.isValidTimeSet)
             {
-                Timer_timerSecond.Start ();
-                if (TimerStartedEvent != null)
-                    TimerStartedEvent ();
+                Timer_Timer.Start ();
+                TimerStartedEvent.Invoke ();
             }
             else
             {
@@ -130,44 +134,39 @@ namespace ActivityTimer
             }
         }
 
-        private void Timer_timerSecond_Tick(object sender, EventArgs e)
-        {
-            Timer_remainingTimeSeconds--;
-            if (Timer_remainingTimeSeconds == 0)
-            {
-                Timer_timerSecond.Stop ();
-                if(TimerStoppedEvent != null)
-                    TimerStoppedEvent ();
-                _selectedActivity.AddTime (Timer_startingTimeSeconds / 60);
-
-                //Popup menu where you can modify your time minus plus +- ( ha eppen nem sikerult olyan jól )
-                soundPlayer.PlaySoundUntilStop ();
-                MessageBox.Show ("Timer done");
-                soundPlayer.StopSound ();
-            }
-            Timer_lRemainingTime.Text = TimeConverter.TimeToStringHHMMSS (Timer_remainingTimeSeconds);
-        }
         private void Timer_bPause_Click (object sender, EventArgs e)
         {
             if (Timer_bPause.Text == "Pause")
             {
                 Timer_bPause.Text = "Continue";
-                Timer_timerSecond.Stop ();
+                Timer_Timer.Pause ();
             }
             else
             {
                 Timer_bPause.Text = "Pause";
-                Timer_timerSecond.Start ();
+                Timer_Timer.Continue ();
             }
         }
+
         private void Timer_bStop_Click (object sender, EventArgs e)
         {
-            Timer_timerSecond.Stop ();
-            if (TimerStoppedEvent != null)
-                TimerStoppedEvent ();
-            long elapsedTimeSeconds = Timer_startingTimeSeconds - Timer_remainingTimeSeconds;
-            _selectedActivity.AddTime (elapsedTimeSeconds);
-            ///TODO Reset Timer to initial state
+            Timer_Timer.Stop (); //Automaticly calls Timer_TimerEnded
+        }
+
+        private void Timer_TimeChangedHandler ()
+        {
+            Timer_lRemainingTime.Text = TimeConverter.TimeToStringHHMMSS (Timer_Timer.RemainTime.Seconds);
+        }
+
+        private void Timer_TimerEnded ()
+        {
+            TimerStoppedEvent.Invoke ();
+            _selectedActivity.AddTime (Timer_Timer.GetElapsedTime ().Minutes);
+
+            //Popup menu where you can modify your time minus plus +-(ha eppen nem sikerult olyan jól )
+            soundPlayer.PlaySoundUntilStop ();
+            MessageBox.Show ("Timer done");
+            soundPlayer.StopSound ();
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// STOPWATCH CODE GOES HERE ////////////////////////////////////////////////////
@@ -282,6 +281,11 @@ namespace ActivityTimer
         long Pomod_remainingTimeSec;
         long Pomod_elapsedWorkTimeSec = 0;
         long Pomod_elapsedRestTimeSec = 0;
+        
+        private void Pomod_Init ()
+        {
+            ///TODO
+        }
 
         private void Pomod_bStart_Click (object sender, EventArgs e)
         {

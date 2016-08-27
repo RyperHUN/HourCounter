@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Timer_timerSecond = new System.Windows.Forms.Timer(this.components);
             this.Stop_timerSecond = new System.Windows.Forms.Timer(this.components);
             this.Timer_bStart = new System.Windows.Forms.Button();
             this.Timer_bPause = new System.Windows.Forms.Button();
@@ -80,10 +79,6 @@
             this.tabManualAdd.SuspendLayout();
             this.tabSetAsHabit.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Timer_timerSecond
-            // 
-            this.Timer_timerSecond.Tick += new System.EventHandler(this.Timer_timerSecond_Tick);
             // 
             // Stop_timerSecond
             // 
@@ -552,8 +547,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer Timer_timerSecond;
         private System.Windows.Forms.Timer Stop_timerSecond;
         private System.Windows.Forms.Button Timer_bStart;
         private System.Windows.Forms.Button Timer_bPause;

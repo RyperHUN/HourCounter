@@ -27,8 +27,8 @@ namespace ActivityTimer
         {
             InitializeComponent();
             Timer_Init ();
-            tabPicker.Dock  = DockStyle.Fill;
-            Stop_timerSecond.Interval = 1000;
+
+            Stop_timerSecond.Interval  = 1000;
             Pomod_timerSecond.Interval = 1000;
 
             Pomod_timerSecond.Tick += Pomod_timerSecond_Tick;
@@ -41,7 +41,7 @@ namespace ActivityTimer
 
             soundPlayer = new SoundPlayer (@"Sound/SOUND_RING_ALARM.wav");
         }
-        public void setSelectedActivity(Activity selectedActivity)
+        public void setSelectedActivity (Activity selectedActivity)
         {
             _selectedActivity = selectedActivity;
         }
@@ -65,7 +65,7 @@ namespace ActivityTimer
 
             EnableTab (false);
         }
-        private void DisableTimerMode()
+        private void DisableTimerMode ()
         {
             Timer_bSetTime.Enabled     = true;
             Pomod_bSetRestTime.Enabled = true;
@@ -94,9 +94,7 @@ namespace ActivityTimer
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// TIMER CODE GOES HERE ////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //private long Timer_remainingTimeSeconds;
-        //private long Timer_startingTimeSeconds;
-        //private bool Timer_isValidTimeSet = false;
+
         private Utils.TimerLogic Timer_Timer;
 
         private void Timer_Init ()
@@ -121,7 +119,7 @@ namespace ActivityTimer
             }
         }
 
-        private void Timer_bStart_Click(object sender, EventArgs e)
+        private void Timer_bStart_Click (object sender, EventArgs e)
         {
             if (Timer_Timer.isValidTimeSet)
             {
@@ -171,20 +169,19 @@ namespace ActivityTimer
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// STOPWATCH CODE GOES HERE ////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private long Stop_sTimeSecond = 0;
+        private Time Stop_elapsedTime = new Time ();
         private void Stop_stopwatchSecond_Tick (object sender, EventArgs e)
         {
-            Stop_sTimeSecond++;
-            Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_sTimeSecond);
+            Stop_elapsedTime = new Time(Stop_elapsedTime.Seconds + 1);
+            Stop_lTime.Text  = TimeConverter.TimeToStringHHMMSS (Stop_elapsedTime.Seconds);
         }
      
         private void Stop_bStart_Click (object sender, EventArgs e)
         {
-            Stop_sTimeSecond = 0;
-            Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_sTimeSecond);
+            Stop_elapsedTime = new Time ();
+            Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_elapsedTime.Seconds);
             Stop_timerSecond.Start ();
-            if (TimerStartedEvent != null)
-                TimerStartedEvent ();
+            TimerStartedEvent.Invoke ();
         }
 
         private void Stop_bPause_Click (object sender, EventArgs e)
@@ -204,10 +201,8 @@ namespace ActivityTimer
         private void Stop_bStop_Click (object sender, EventArgs e)
         {
             Stop_timerSecond.Stop ();
-            if (TimerStoppedEvent != null)
-                TimerStoppedEvent ();
-            long measuredMin = Stop_sTimeSecond / 60;
-            _selectedActivity.AddTime (measuredMin);
+            TimerStoppedEvent.Invoke ();
+            _selectedActivity.AddTime (Stop_elapsedTime.Minutes);
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// MANUAL ADD CODE GOES HERE ///////////////////////////////////////////////////
@@ -295,8 +290,7 @@ namespace ActivityTimer
 
                 Pomod_ChangeStatus (Pomod_Status.Work);
                 Pomod_timerSecond.Start ();
-                if (TimerStartedEvent != null)
-                    TimerStartedEvent ();
+                TimerStartedEvent.Invoke ();
             }
             else
             {
@@ -369,8 +363,7 @@ namespace ActivityTimer
         {
             Pomod_stopwatchIdle.Stop (); //Pause
             Pomod_timerSecond.Stop ();
-            if (TimerStoppedEvent != null)
-                TimerStoppedEvent ();
+            TimerStoppedEvent.Invoke ();
 
             if(Pomod_status == Pomod_Status.Work) //Adds remaining time to the whole time
                 Pomod_elapsedWorkTimeSec += Pomod_startingWorkTimeSec - Pomod_remainingTimeSec;

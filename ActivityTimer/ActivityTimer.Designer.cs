@@ -148,10 +148,11 @@
             this.tabPicker.Controls.Add(this.tabPomodoro);
             this.tabPicker.Controls.Add(this.tabManualAdd);
             this.tabPicker.Controls.Add(this.tabSetAsHabit);
-            this.tabPicker.Location = new System.Drawing.Point(0, 3);
+            this.tabPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPicker.Location = new System.Drawing.Point(0, 0);
             this.tabPicker.Name = "tabPicker";
             this.tabPicker.SelectedIndex = 0;
-            this.tabPicker.Size = new System.Drawing.Size(346, 213);
+            this.tabPicker.Size = new System.Drawing.Size(348, 218);
             this.tabPicker.TabIndex = 6;
             this.tabPicker.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabPicker_Selecting);
             // 
@@ -164,7 +165,7 @@
             this.tabStopwatch.Location = new System.Drawing.Point(4, 22);
             this.tabStopwatch.Name = "tabStopwatch";
             this.tabStopwatch.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStopwatch.Size = new System.Drawing.Size(338, 187);
+            this.tabStopwatch.Size = new System.Drawing.Size(340, 192);
             this.tabStopwatch.TabIndex = 1;
             this.tabStopwatch.Text = "Stopwatch";
             this.tabStopwatch.UseVisualStyleBackColor = true;

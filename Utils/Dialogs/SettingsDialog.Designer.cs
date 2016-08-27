@@ -427,7 +427,7 @@
             // checkReplaceTimerMusic
             // 
             this.checkReplaceTimerMusic.AutoSize = true;
-            this.checkReplaceTimerMusic.Location = new System.Drawing.Point(16, 269);
+            this.checkReplaceTimerMusic.Location = new System.Drawing.Point(14, 269);
             this.checkReplaceTimerMusic.Name = "checkReplaceTimerMusic";
             this.checkReplaceTimerMusic.Size = new System.Drawing.Size(121, 17);
             this.checkReplaceTimerMusic.TabIndex = 6;

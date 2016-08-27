@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Utils
 {
-    class Time
+    public class Time
     {
         private long _timeInSeconds;
         public Time ()
@@ -45,6 +45,24 @@ namespace Utils
         {
             get { return _timeInSeconds / 86400; }
             set { _timeInSeconds = value * 86400; }
+        }
+    }
+
+    public class TIME
+    {
+        public static Time Seconds (int seconds)
+        {
+            return new Time (seconds);
+        }
+
+        public static Time Minutes (int minutes)
+        {
+            return new Time (minutes * 60);
+        }
+
+        public static Time Hours (int hours)
+        {
+            return new Time (hours * 3600);
         }
     }
 }

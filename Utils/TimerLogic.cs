@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Utils
 {
-    class TimerLogic
+    public class TimerLogic
     {
         public  Time InitTime   = new Time ();
         public  Time StartTime  = new Time ();
@@ -16,5 +16,8 @@ namespace Utils
         {
             return new Time (StartTime.Seconds - RemainTime.Seconds);
         }
+
+        //Timer start event
+        //Timer end event
     }
 }

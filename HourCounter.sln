@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDrive", "GDrive\GDrive.csproj", "{FD98606B-36D6-4F99-8A9D-16F5237D73CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeUtils", "TimeUtils\TimeUtils.csproj", "{8ECFC65B-58ED-476A-928E-D65179636FED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{FD98606B-36D6-4F99-8A9D-16F5237D73CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD98606B-36D6-4F99-8A9D-16F5237D73CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD98606B-36D6-4F99-8A9D-16F5237D73CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ECFC65B-58ED-476A-928E-D65179636FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ECFC65B-58ED-476A-928E-D65179636FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ECFC65B-58ED-476A-928E-D65179636FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ECFC65B-58ED-476A-928E-D65179636FED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

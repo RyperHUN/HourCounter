@@ -13,17 +13,21 @@ namespace Utils
         private Settings ()
         {
         }
-        static private Settings _instance = null;
-        static public  Settings Get //Singleton
+        private static readonly Object syncObject = new Object();
+        private static          Settings _instance = null;
+
+        public  static Settings Instance //Singleton
         {
             get
             {
-                if (_instance == null)
-                    _instance = new Settings ();
+                lock (syncObject) ///TODO maybe more safer
+                {
+                    if (_instance == null)
+                        _instance = new Settings ();
 
-                return _instance;
+                    return _instance;
+                }
             }
-            private set { }
         }
 
         public GeneralSettings General = new GeneralSettings ();

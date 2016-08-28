@@ -60,12 +60,14 @@ namespace Utils
         public void GetObjectData (SerializationInfo info, StreamingContext context)
         {
             info.AddValue ("SettingsInstance", _instance);
-            info.AddValue ("GeneralSettings", General);   
+            info.AddValue ("GeneralSettings", General); 
+            info.AddValue ("TimerSettings", Timers); 
         }
         protected Settings (SerializationInfo info, StreamingContext context)
         {
             _instance = (Settings)info.GetValue ("SettingsInstance", typeof(Settings));
             General   = (GeneralSettings)info.GetValue ("GeneralSettings", typeof(GeneralSettings));
+            Timers    = (TimerSettings)info.GetValue ("TimerSettings", typeof(TimerSettings));
         }
     }
 }

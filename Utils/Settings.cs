@@ -16,7 +16,7 @@ namespace Utils
         private static readonly Object syncObject = new Object();
         private static          Settings _instance = null;
 
-        public  static Settings Instance //Singleton
+        public  static Settings Get //Singleton
         {
             get
             {

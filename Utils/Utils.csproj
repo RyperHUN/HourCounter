@@ -70,6 +70,12 @@
     <Compile Include="Dialogs\SettingsDialog.Designer.cs">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\TimerSetter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TimerSetter.Designer.cs">
+      <DependentUpon>TimerSetter.cs</DependentUpon>
+    </Compile>
     <Compile Include="InitializationMissingException.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="Settings.cs" />
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TimerSetter.resx">
+      <DependentUpon>TimerSetter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -121,14 +121,18 @@ namespace Dialogs
         private void EnableAndDisableControls ()
         {
             //Enables textboxes in Timer
-            tPomodRestTime.Enabled = radioPomodSetTime.Checked;
-            tPomodWorkTime.Enabled = radioPomodSetTime.Checked;
 
-            tTimerDefaultTime.Enabled = radioTimerSetTime.Checked;
-            bTimeBrowse.Enabled = checkReplaceTimerMusic.Checked;
+            bTimeBrowse.Enabled = checkReplaceTimerMusic.Checked; ///TODO reverse load direction, after load enable replace music thick
             
             //Enables load box in General
             groupLoading.Enabled = checkEnableDriveLoad.Checked;
+        }
+
+        private void bTimerSet_Click (object sender, EventArgs e)
+        {
+            Time parsedTime = new TimerSetter ().ShowDialog (TimeFormatType.HH_MM_SS);
+            if (parsedTime != null)
+                lValueTimerDefaultTime.Text = TimeConverter.TimeToStringHHMMSS (parsedTime);
         }
     }
 }

@@ -44,7 +44,7 @@ namespace HourCounter
             _subActivities = (SortedList<string, Activity>)info.GetValue ("3", typeof (SortedList<string, Activity>));
             try
             { //New attributes can be added here <- If they are not exist EXCEPTION
-                _habitContainer = (Dictionary < Activity, Time>)info.GetValue ("HabitContainer191923", typeof (Dictionary<Activity, long>));
+                _habitContainer = (Dictionary <Activity, Time>)info.GetValue ("HabitContainer191923", typeof (Dictionary<Activity, Time>));
             }
             catch (SerializationException exception)
             {

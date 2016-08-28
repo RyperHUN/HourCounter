@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HourCounter;
+using Utils;
 
 namespace Dialogs
 {
@@ -54,11 +55,12 @@ namespace Dialogs
         private void bAdd_Click (object sender, EventArgs e)
         {
             String activityName = tActivityName.Text;
-            long timeSpentMin = 0;
-            if(!IsValidArgumentsGivenForAdd (activityName, out timeSpentMin))
+            if(!IsValidArgumentsGivenForAdd (activityName))
                 return;
 
-            Activity newActivity = new Activity (activityName, timeSpentMin);
+            Time time = new Time(TimeConverter.ConvertStringToLongSafe (tTimeSpent.Text) * 60); ///TODO better conversion
+
+            Activity newActivity = new Activity (activityName, time.Minutes);
             if (radioMainActivity.Checked)
             {
                  _activityContainer.AddSubActivity (newActivity);
@@ -76,12 +78,13 @@ namespace Dialogs
         {
             this.Close();
         }
-        private bool IsValidArgumentsGivenForAdd (string activityName, out long timeSpentMin)
+
+        private bool IsValidArgumentsGivenForAdd (string activityName)
         {
-            timeSpentMin = 0;
+            long timeSpentMin = 0;
             try
             {
-                timeSpentMin = Utils.TimeConverter.ConvertStringToLongSafe (tTimeSpent.Text);
+                timeSpentMin = TimeConverter.ConvertStringToLongSafe (tTimeSpent.Text);
             }
             catch (InvalidOperationException /*exc*/)
             {

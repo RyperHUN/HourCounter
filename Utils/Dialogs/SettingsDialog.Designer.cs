@@ -62,8 +62,8 @@
             this.bOk = new System.Windows.Forms.Button();
             this.lTextTimerDefault = new System.Windows.Forms.Label();
             this.bTimerSet = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.bPomodSetRest = new System.Windows.Forms.Button();
+            this.bPomodSetWork = new System.Windows.Forms.Button();
             this.lValueTimerDefaultTime = new System.Windows.Forms.Label();
             this.lValuePomodDefaultWork = new System.Windows.Forms.Label();
             this.lValuePomodDefaultRest = new System.Windows.Forms.Label();
@@ -278,8 +278,8 @@
             // 
             this.groupBox2.Controls.Add(this.lValuePomodDefaultRest);
             this.groupBox2.Controls.Add(this.lValuePomodDefaultWork);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.bPomodSetWork);
+            this.groupBox2.Controls.Add(this.bPomodSetRest);
             this.groupBox2.Controls.Add(this.lPomodFormat2);
             this.groupBox2.Controls.Add(this.lTextRestTime);
             this.groupBox2.Controls.Add(this.lTextWorkTime);
@@ -458,27 +458,30 @@
             this.bTimerSet.UseVisualStyleBackColor = true;
             this.bTimerSet.Click += new System.EventHandler(this.bTimerSet_Click);
             // 
-            // button1
+            // bPomodSetRest
             // 
-            this.button1.Location = new System.Drawing.Point(236, 95);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(44, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Set";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bPomodSetRest.Location = new System.Drawing.Point(236, 95);
+            this.bPomodSetRest.Name = "bPomodSetRest";
+            this.bPomodSetRest.Size = new System.Drawing.Size(44, 23);
+            this.bPomodSetRest.TabIndex = 10;
+            this.bPomodSetRest.Text = "Set";
+            this.bPomodSetRest.UseVisualStyleBackColor = true;
+            this.bPomodSetRest.Click += new System.EventHandler(this.bPomodSetRest_Click);
             // 
-            // button2
+            // bPomodSetWork
             // 
-            this.button2.Location = new System.Drawing.Point(236, 66);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(44, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Set";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bPomodSetWork.Location = new System.Drawing.Point(236, 66);
+            this.bPomodSetWork.Name = "bPomodSetWork";
+            this.bPomodSetWork.Size = new System.Drawing.Size(44, 23);
+            this.bPomodSetWork.TabIndex = 11;
+            this.bPomodSetWork.Text = "Set";
+            this.bPomodSetWork.UseVisualStyleBackColor = true;
+            this.bPomodSetWork.Click += new System.EventHandler(this.bPomodSetWork_Click);
             // 
             // lValueTimerDefaultTime
             // 
             this.lValueTimerDefaultTime.AutoSize = true;
+            this.lValueTimerDefaultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lValueTimerDefaultTime.Location = new System.Drawing.Point(76, 79);
             this.lValueTimerDefaultTime.Name = "lValueTimerDefaultTime";
             this.lValueTimerDefaultTime.Size = new System.Drawing.Size(0, 13);
@@ -487,6 +490,7 @@
             // lValuePomodDefaultWork
             // 
             this.lValuePomodDefaultWork.AutoSize = true;
+            this.lValuePomodDefaultWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lValuePomodDefaultWork.Location = new System.Drawing.Point(76, 70);
             this.lValuePomodDefaultWork.Name = "lValuePomodDefaultWork";
             this.lValuePomodDefaultWork.Size = new System.Drawing.Size(0, 13);
@@ -495,6 +499,7 @@
             // lValuePomodDefaultRest
             // 
             this.lValuePomodDefaultRest.AutoSize = true;
+            this.lValuePomodDefaultRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lValuePomodDefaultRest.Location = new System.Drawing.Point(76, 100);
             this.lValuePomodDefaultRest.Name = "lValuePomodDefaultRest";
             this.lValuePomodDefaultRest.Size = new System.Drawing.Size(0, 13);
@@ -565,8 +570,8 @@
         private System.Windows.Forms.RadioButton radioPomodAlwaysRememberLast;
         private System.Windows.Forms.Label lValueLoadedFile;
         private System.Windows.Forms.Label lTextTimerDefault;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bPomodSetWork;
+        private System.Windows.Forms.Button bPomodSetRest;
         private System.Windows.Forms.Button bTimerSet;
         private System.Windows.Forms.Label lValuePomodDefaultRest;
         private System.Windows.Forms.Label lValuePomodDefaultWork;

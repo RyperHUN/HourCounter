@@ -13,7 +13,7 @@ namespace Utils
         private Settings ()
         {
         }
-        private static readonly Object syncObject = new Object();
+        private static readonly Object syncObject  = new Object();
         private static          Settings _instance = null;
 
         public  static Settings Get //Singleton
@@ -47,12 +47,12 @@ namespace Utils
         {
             public bool timerRememberLastTime = true;
             public bool timerSetDefaultTime   = false;
-            public long timerSetTime = 0;
+            public Time timerSetTime          = new Time (0);
 
             public bool pomodRememberLastTime = true;
             public bool pomodSetDefaultTime   = false;
-            public long pomodWorkSetTime = 0;
-            public long pomodRestSetTime = 0;
+            public Time pomodWorkSetTime      = new Time (0);
+            public Time pomodRestSetTime      = new Time (0);
         }
 
         ///////////////

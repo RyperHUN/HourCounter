@@ -13,12 +13,14 @@ namespace Dialogs
 {
     public partial class SettingsDialog : Form
     {
-        private bool IsCancellingChanges = true;
+        private bool IsCancellingChanges  = true;
+
         public SettingsDialog ()
         {
             InitializeComponent ();
             InitValues ();
         }
+
         private void InitValues ()
         {
             InitGeneral ();
@@ -32,12 +34,12 @@ namespace Dialogs
             radioTimerAlwaysRememberLast.Checked = settings.Timers.timerRememberLastTime;
             radioTimerSetTime.Checked            = settings.Timers.timerSetDefaultTime;
             ///TODOOOOO
-            //tTimerDefaultTime.Text               = TimeConverter.TimeToStringHHMMSS (settings.Timers.timerSetTime);
+            lValueTimerDefaultTime.Text          = TimeConverter.TimeToStringHHMMSS (settings.Timers.timerSetTime);
 
             radioPomodAlwaysRememberLast.Checked = settings.Timers.pomodRememberLastTime;
             radioPomodSetTime.Checked            = settings.Timers.pomodSetDefaultTime;
-            //tPomodWorkTime.Text                  = TimeConverter.TimeToStringMMSS (settings.Timers.pomodWorkSetTime); //Maybe convert to MIN
-            //tPomodRestTime.Text                  = TimeConverter.TimeToStringMMSS (settings.Timers.pomodRestSetTime);
+            lValuePomodDefaultRest.Text          = TimeConverter.TimeToStringMMSS (settings.Timers.pomodRestSetTime);
+            lValuePomodDefaultWork.Text          = TimeConverter.TimeToStringMMSS (settings.Timers.pomodWorkSetTime);
         }
 
         private void InitGeneral ()
@@ -121,6 +123,9 @@ namespace Dialogs
         private void EnableAndDisableControls ()
         {
             //Enables textboxes in Timer
+            bTimerSet.Enabled     = radioTimerSetTime.Checked;
+            bPomodSetWork.Enabled = radioPomodSetTime.Checked;
+            bPomodSetRest.Enabled = radioPomodSetTime.Checked;
 
             bTimeBrowse.Enabled = checkReplaceTimerMusic.Checked; ///TODO reverse load direction, after load enable replace music thick
             
@@ -133,6 +138,20 @@ namespace Dialogs
             Time parsedTime = new TimerSetter ().ShowDialog (TimeFormatType.HH_MM_SS);
             if (parsedTime != null)
                 lValueTimerDefaultTime.Text = TimeConverter.TimeToStringHHMMSS (parsedTime);
+        }
+
+        private void bPomodSetWork_Click (object sender, EventArgs e)
+        {
+            Time parsedTime = new TimerSetter ().ShowDialog (TimeFormatType.MM);
+            if (parsedTime != null)
+                lValuePomodDefaultWork.Text = TimeConverter.TimeToStringMMSS (parsedTime);
+        }
+
+        private void bPomodSetRest_Click (object sender, EventArgs e)
+        {
+            Time parsedTime = new TimerSetter ().ShowDialog (TimeFormatType.MM);
+            if (parsedTime != null)
+                lValuePomodDefaultRest.Text = TimeConverter.TimeToStringMMSS (parsedTime);
         }
     }
 }

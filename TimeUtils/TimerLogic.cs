@@ -79,10 +79,9 @@ namespace Utils
             timer.Stop ();
         }
 
-        public delegate void TimeChange ();
-        public event TimeChange TimeChangedEvent;
-        public event TimeChange TimerEndedEvent;
-        public event TimeChange TimerStoppedByHand;
+        public event Action TimeChangedEvent;
+        public event Action TimerEndedEvent;
+        public event Action TimerStoppedByHand;
 
         //Timer start event
         //Timer end event

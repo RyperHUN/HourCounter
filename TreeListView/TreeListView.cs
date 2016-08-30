@@ -12,8 +12,7 @@ namespace TreeListView
     public class TreeListView : TreeView, Observer
     {
         private Activity activityContainer;
-        public  delegate void SelectChangeHandler (Activity ac);
-        public  event SelectChangeHandler SelectChanged; //If focus on activity changes, reports the change to the subscribed methods
+        public  event Action<Activity> SelectChanged; //If focus on activity changes, reports the change to the subscribed methods
         
         public TreeListView ()
         {
@@ -89,8 +88,7 @@ namespace TreeListView
         }
         public void SelectChangedFunction (Activity activity)
         {
-            if(SelectChanged != null)
-                SelectChanged (activity);
+            SelectChanged?.Invoke (activity);
         }
         //Simple enable ON/OFF
         public void timerStartedHandler ()

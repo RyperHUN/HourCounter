@@ -15,9 +15,8 @@ namespace ActivityTimer
     [Serializable]
     public partial class ActivityTimer : UserControl
     {
-        public delegate void TimerHandler ();
-        public event TimerHandler TimerStartedEvent;
-        public event TimerHandler TimerStoppedEvent;
+        public event Action TimerStartedEvent;
+        public event Action TimerStoppedEvent;
 
         private SoundPlayer soundPlayer;
 

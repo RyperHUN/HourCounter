@@ -46,7 +46,7 @@ namespace Utils
         {
             _startTime  = new Time (_initTime);
             _remainTime = new Time (_initTime);
-            TimeChangedEvent.Invoke ();
+            TimeChangedEvent?.Invoke ();
             timer.Start ();
         }
 
@@ -62,16 +62,16 @@ namespace Utils
 
         public void Stop ()
         {
-            TimerStoppedByHand.Invoke ();
+            TimerStoppedByHand?.Invoke ();
         }
 
         private void timeChanged (object sender, EventArgs e)
         {
             _remainTime = new Time (_remainTime.Seconds - 1);
-            TimeChangedEvent.Invoke ();
+            TimeChangedEvent?.Invoke ();
             
             if (_remainTime.Seconds == 0)
-                TimerEndedEvent.Invoke ();
+                TimerEndedEvent?.Invoke ();
         }
 
         private void TimerEndedHandler ()

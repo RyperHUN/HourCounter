@@ -122,7 +122,7 @@ namespace ActivityTimer
             if (Timer_Timer.isValidTimeSet)
             {
                 Timer_Timer.Start ();
-                TimerStartedEvent.Invoke ();
+                TimerStartedEvent?.Invoke ();
             }
             else
             {
@@ -147,7 +147,7 @@ namespace ActivityTimer
         private void Timer_bStop_Click (object sender, EventArgs e)
         {
             Timer_Timer.Stop (); //Automaticly calls Timer_TimerEnded
-            TimerStoppedEvent.Invoke ();
+            TimerStoppedEvent?.Invoke ();
             _selectedActivity.AddTime (Timer_Timer.GetElapsedTime ());
         }
 
@@ -158,7 +158,7 @@ namespace ActivityTimer
 
         private void Timer_TimerEnded ()
         {
-            TimerStoppedEvent.Invoke ();
+            TimerStoppedEvent?.Invoke ();
             _selectedActivity.AddTime (Timer_Timer.GetElapsedTime ());
 
             //Popup menu where you can modify your time minus plus +-(ha eppen nem sikerult olyan jól )
@@ -181,7 +181,7 @@ namespace ActivityTimer
             Stop_elapsedTime = new Time ();
             Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_elapsedTime);
             Stop_timerSecond.Start ();
-            TimerStartedEvent.Invoke ();
+            TimerStartedEvent?.Invoke ();
         }
 
         private void Stop_bPause_Click (object sender, EventArgs e)
@@ -201,7 +201,7 @@ namespace ActivityTimer
         private void Stop_bStop_Click (object sender, EventArgs e)
         {
             Stop_timerSecond.Stop ();
-            TimerStoppedEvent.Invoke ();
+            TimerStoppedEvent?.Invoke ();
             _selectedActivity.AddTime (Stop_elapsedTime);
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -295,7 +295,7 @@ namespace ActivityTimer
 
                 Pomod_ChangeStatus (Pomod_Status.Work);
                 Pomod_TimerWork.Start ();
-                TimerStartedEvent.Invoke ();
+                TimerStartedEvent?.Invoke ();
             }
             else
             {
@@ -384,7 +384,7 @@ namespace ActivityTimer
         private void Pomod_bStop_Click (object sender, EventArgs e)
         {
             Pomod_stopwatchIdle.Stop (); //Pause
-            TimerStoppedEvent.Invoke ();
+            TimerStoppedEvent?.Invoke ();
 
             if(Pomod_status == Pomod_Status.Work) //Adds remaining time to the whole time
             {

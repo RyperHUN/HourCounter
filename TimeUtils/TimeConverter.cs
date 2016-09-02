@@ -18,7 +18,7 @@ namespace Utils
             try
             {
                 if (timeArray.Length < 3)
-                    throw new InvalidOperationException ("Not contains 3 :");
+                    throw new InvalidOperationException ("Not contains 2 :");
 
                 timeSeconds += ConvertStringToLongSafe (timeArray[0]) * HOURTOSEC;
                 timeSeconds += ConvertStringToLongSafe (timeArray[1]) * MINTOSEC;
@@ -54,6 +54,25 @@ namespace Utils
             string result = hourStr + ":" + minStr + ":" + secStr;
 
             return result;
+        }
+        public static Time StringToTimeMMSS (string time)
+        {
+            String[] timeArray = time.Split(':');
+            long timeSeconds = 0;
+            try
+            {
+                if (timeArray.Length < 2)
+                    throw new InvalidOperationException ("Not contains 1 :");
+
+                timeSeconds += ConvertStringToLongSafe (timeArray[0]) * MINTOSEC;
+                timeSeconds += ConvertStringToLongSafe (timeArray[1]); //TODO Maybe sec remove
+            }
+            catch (InvalidOperationException exc)
+            {
+                throw exc;
+            }
+
+            return new Time (timeSeconds);
         }
         public static string TimeToStringMMSS (Time time)
         {

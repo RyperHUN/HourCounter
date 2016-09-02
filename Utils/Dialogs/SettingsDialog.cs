@@ -91,11 +91,13 @@ namespace Dialogs
 
         private void SaveTimerSettings ()
         {
+            //Pomod
             Settings.Get.Timers.pomodRememberLastTime = radioPomodAlwaysRememberLast.Checked;
             Settings.Get.Timers.pomodSetDefaultTime   = radioPomodSetTime.Checked;
-            //Settings.Get.Timers.pomodWorkSetTime      = TimeConverter.StringToTimeHHMMSS (t)
-            ///TODO Create TimeConverter.StringToTimeMMSS
+            Settings.Get.Timers.pomodWorkSetTime      = TimeConverter.StringToTimeMMSS (lValuePomodDefaultWork.Text);
+            Settings.Get.Timers.pomodRestSetTime      = TimeConverter.StringToTimeMMSS (lValuePomodDefaultRest.Text);
 
+            //Timer
             Settings.Get.Timers.timerRememberLastTime = radioTimerAlwaysRememberLast.Checked;
             Settings.Get.Timers.timerSetDefaultTime   = radioTimerSetTime.Checked;
             Settings.Get.Timers.timerSetTime          = TimeConverter.StringToTimeHHMMSS (lValueTimerDefaultTime.Text);

@@ -29,8 +29,15 @@ namespace Utils
             set
             {///TODO if started throw error!
                 _initTime      = value;
-                isValidTimeSet = true;///Todo changed init time event??
+                isValidTimeSet = true;
+                syncTimes ();
             }
+        }
+        private void syncTimes ()
+        {
+            _startTime  = new Time (_initTime);
+            _remainTime = new Time (_initTime);
+            TimeChangedEvent?.Invoke (); //Maybe remove??
         }
         public Time RemainTime
         {
@@ -44,9 +51,7 @@ namespace Utils
 
         public void Start ()
         {
-            _startTime  = new Time (_initTime);
-            _remainTime = new Time (_initTime);
-            TimeChangedEvent?.Invoke ();
+            syncTimes ();
             timer.Start ();
         }
 

@@ -107,7 +107,6 @@ namespace ActivityTimer
             try
             {
                 Timer_Timer.InitTime       = TimeConverter.StringToTimeHHMMSS (setTime);
-                Timer_lRemainingTime.Text  = TimeConverter.TimeToStringHHMMSS (Timer_Timer.InitTime);
             }
             catch (InvalidOperationException /*exc*/)
             {
@@ -290,8 +289,6 @@ namespace ActivityTimer
         {
             if (Pomod_TimerWork.isValidTimeSet && Pomod_TimerRest.isValidTimeSet)
             {
-                Pomod_InitializeTimer ();
-
                 Pomod_ChangeStatus (Pomod_Status.Work);
                 Pomod_TimerWork.Start ();
                 TimerStartedEvent?.Invoke ();
@@ -302,20 +299,15 @@ namespace ActivityTimer
             }
         }
 
-        private void Pomod_InitializeTimer ()
-        {
-            Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.InitTime); ///TODO belerakni a TImerLOgicba eztis vhogy?!
-        }
-
         private void Pomod_ChangedWorkTime ()
         {
-            if (Pomod_status == Pomod_Status.Work) ///TODO kivenni vagy a CHangedWOrkTIme al egybevonni
+            if (Pomod_status == Pomod_Status.Work)
                 Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime);
         }
 
         private void Pomod_ChangedRestTime ()
         {
-            if (Pomod_status == Pomod_Status.Rest) ///TODO kivenni vagy a CHangedWOrkTIme al egybevonni
+            if (Pomod_status == Pomod_Status.Rest)
                 Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerRest.RemainTime);
         }
 

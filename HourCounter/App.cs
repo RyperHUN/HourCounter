@@ -94,7 +94,6 @@ namespace HourCounter
                 _activityContainer = new Activity ("INIT");
                 _habitController   = new HabitController (_activityContainer);
             }
-            
         }
 
         private void showHabitAdderToolStripMenuItem_Click (object sender, EventArgs e)

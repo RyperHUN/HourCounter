@@ -36,8 +36,29 @@ namespace ActivityTimer
 
             TimerStoppedEvent ();
 
+            Load_Settings ();
+
             soundPlayer = new SoundPlayer (@"Sound/SOUND_RING_ALARM.wav");
         }
+
+        private void Load_Settings () //Maybe this could be called from app when settings got changed
+        {
+            Settings.TimerSettings setting = Settings.Get.Timers;
+            if (setting.timerSetDefaultTime)
+            {
+                Timer_Timer.InitTime = new Time (setting.timerSetTime);
+            }
+            else
+            {
+                //Load last time
+            }
+            if(setting.pomodSetDefaultTime)
+            {
+                Pomod_TimerRest.InitTime = new Time (setting.pomodRestSetTime);
+                Pomod_TimerWork.InitTime = new Time (setting.pomodWorkSetTime);
+            }
+        }
+
         public void setSelectedActivity (Activity selectedActivity)
         {
             _selectedActivity = selectedActivity;
@@ -273,12 +294,10 @@ namespace ActivityTimer
             Pomod_ElapsedRestTime = new Time (0);
 
             Pomod_TimerWork                  = new TimerLogic ();
-            Pomod_TimerWork.InitTime.Minutes = 20;
             Pomod_TimerWork.TimeChangedEvent += Pomod_ChangedWorkTime;
             Pomod_TimerWork.TimerEndedEvent  += Pomod_EndedWorkTime;
 
             Pomod_TimerRest                  = new TimerLogic ();
-            Pomod_TimerRest.InitTime.Minutes = 5;
             Pomod_TimerRest.TimeChangedEvent += Pomod_ChangedRestTime;
             Pomod_TimerRest.TimerEndedEvent  += Pomod_EndedRestTime;
 

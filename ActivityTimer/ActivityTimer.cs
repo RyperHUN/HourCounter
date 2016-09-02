@@ -45,26 +45,42 @@ namespace ActivityTimer
         {
             Settings.TimerSettings setting = Settings.Get.Timers;
             if (setting.timerSetDefaultTime)
-            {
                 Timer_Timer.InitTime = new Time (setting.timerSetTime);
-                Timer_tSetTime.Text  = TimeConverter.TimeToStringHHMMSS (Timer_Timer.RemainTime); //Maybe add this as InitTime changed event
-            }
             else
-            {
-                //Load last time
-                //Timer_tSetTime.Text  = TimeConverter.TimeToStringHHMMSS (Timer_Timer.RemainTime); //TODO Modify function param
-            }
+                Timer_Timer.InitTime = new Time (setting.timerLastSetTime);
+
+            Timer_tSetTime.Text = TimeConverter.TimeToStringHHMMSS (Timer_Timer.InitTime); //Refresh input text
+
             if (setting.pomodSetDefaultTime)
             {
                 Pomod_TimerRest.InitTime = new Time (setting.pomodRestSetTime);
                 Pomod_TimerWork.InitTime = new Time (setting.pomodWorkSetTime);
-
-                Pomod_lValueRemainingTime.Text  = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime);
-                Pomod_tValueSetWorkTimeMin.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime).Split (':')[0];
-                Pomod_tValueSetRestTimeMin.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerRest.RemainTime).Split (':')[0];;
             }
+            else
+            {
+                Pomod_TimerRest.InitTime = new Time (setting.pomodLastSetRestTime);
+                Pomod_TimerWork.InitTime = new Time (setting.pomodLastSetWorkTime);
+            }
+
+            Pomod_lValueRemainingTime.Text  = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime); //Refresh input text
+            Pomod_tValueSetWorkTimeMin.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime).Split (':')[0];
+            Pomod_tValueSetRestTimeMin.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerRest.RemainTime).Split (':')[0];
         }
 
+        public void Save_Settings ()
+        {
+            Settings.TimerSettings setting = Settings.Get.Timers;
+            if (setting.pomodRememberLastTime)
+            {
+                setting.pomodLastSetWorkTime = new Time (Pomod_TimerWork.InitTime);
+                setting.pomodLastSetRestTime = new Time (Pomod_TimerRest.InitTime);
+
+            }
+            if(setting.timerRememberLastTime)
+            {
+                setting.timerLastSetTime = new Time (Timer_Timer.InitTime);
+            }
+        }
         public void setSelectedActivity (Activity selectedActivity)
         {
             _selectedActivity = selectedActivity;

@@ -42,11 +42,11 @@
             this.radioLoadNewer = new System.Windows.Forms.RadioButton();
             this.checkEnableGDriveSave = new System.Windows.Forms.CheckBox();
             this.tabTimers = new System.Windows.Forms.TabPage();
-            this.lValueLoadedFile = new System.Windows.Forms.Label();
-            this.lTextLoadFile = new System.Windows.Forms.Label();
-            this.checkReplaceTimerMusic = new System.Windows.Forms.CheckBox();
-            this.bTimeBrowse = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lValuePomodDefaultRest = new System.Windows.Forms.Label();
+            this.lValuePomodDefaultWork = new System.Windows.Forms.Label();
+            this.bPomodSetWork = new System.Windows.Forms.Button();
+            this.bPomodSetRest = new System.Windows.Forms.Button();
             this.lPomodFormat2 = new System.Windows.Forms.Label();
             this.lTextRestTime = new System.Windows.Forms.Label();
             this.lTextWorkTime = new System.Windows.Forms.Label();
@@ -54,19 +54,15 @@
             this.radioPomodSetTime = new System.Windows.Forms.RadioButton();
             this.radioPomodAlwaysRememberLast = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lValueTimerDefaultTime = new System.Windows.Forms.Label();
+            this.bTimerSet = new System.Windows.Forms.Button();
+            this.lTextTimerDefault = new System.Windows.Forms.Label();
             this.lTimerFormat = new System.Windows.Forms.Label();
             this.radioTimerSetTime = new System.Windows.Forms.RadioButton();
             this.radioTimerAlwaysRememberLast = new System.Windows.Forms.RadioButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bCancel = new System.Windows.Forms.Button();
             this.bOk = new System.Windows.Forms.Button();
-            this.lTextTimerDefault = new System.Windows.Forms.Label();
-            this.bTimerSet = new System.Windows.Forms.Button();
-            this.bPomodSetRest = new System.Windows.Forms.Button();
-            this.bPomodSetWork = new System.Windows.Forms.Button();
-            this.lValueTimerDefaultTime = new System.Windows.Forms.Label();
-            this.lValuePomodDefaultWork = new System.Windows.Forms.Label();
-            this.lValuePomodDefaultRest = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGDrive.SuspendLayout();
@@ -88,7 +84,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(520, 398);
+            this.tabControl.Size = new System.Drawing.Size(469, 361);
             this.tabControl.TabIndex = 0;
             // 
             // tabGeneral
@@ -100,7 +96,7 @@
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeneral.Size = new System.Drawing.Size(512, 372);
+            this.tabGeneral.Size = new System.Drawing.Size(461, 335);
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
@@ -223,56 +219,15 @@
             // 
             // tabTimers
             // 
-            this.tabTimers.Controls.Add(this.lValueLoadedFile);
-            this.tabTimers.Controls.Add(this.lTextLoadFile);
-            this.tabTimers.Controls.Add(this.checkReplaceTimerMusic);
-            this.tabTimers.Controls.Add(this.bTimeBrowse);
             this.tabTimers.Controls.Add(this.groupBox2);
             this.tabTimers.Controls.Add(this.groupBox1);
             this.tabTimers.Location = new System.Drawing.Point(4, 22);
             this.tabTimers.Name = "tabTimers";
             this.tabTimers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTimers.Size = new System.Drawing.Size(512, 372);
+            this.tabTimers.Size = new System.Drawing.Size(461, 335);
             this.tabTimers.TabIndex = 1;
             this.tabTimers.Text = "Timers";
             this.tabTimers.UseVisualStyleBackColor = true;
-            // 
-            // lValueLoadedFile
-            // 
-            this.lValueLoadedFile.AutoSize = true;
-            this.lValueLoadedFile.Location = new System.Drawing.Point(81, 301);
-            this.lValueLoadedFile.Name = "lValueLoadedFile";
-            this.lValueLoadedFile.Size = new System.Drawing.Size(0, 13);
-            this.lValueLoadedFile.TabIndex = 8;
-            // 
-            // lTextLoadFile
-            // 
-            this.lTextLoadFile.AutoSize = true;
-            this.lTextLoadFile.Location = new System.Drawing.Point(13, 301);
-            this.lTextLoadFile.Name = "lTextLoadFile";
-            this.lTextLoadFile.Size = new System.Drawing.Size(62, 13);
-            this.lTextLoadFile.TabIndex = 7;
-            this.lTextLoadFile.Text = "Loaded file:";
-            // 
-            // checkReplaceTimerMusic
-            // 
-            this.checkReplaceTimerMusic.AutoSize = true;
-            this.checkReplaceTimerMusic.Location = new System.Drawing.Point(14, 269);
-            this.checkReplaceTimerMusic.Name = "checkReplaceTimerMusic";
-            this.checkReplaceTimerMusic.Size = new System.Drawing.Size(121, 17);
-            this.checkReplaceTimerMusic.TabIndex = 6;
-            this.checkReplaceTimerMusic.Text = "Replace timer music";
-            this.checkReplaceTimerMusic.UseVisualStyleBackColor = true;
-            this.checkReplaceTimerMusic.CheckedChanged += new System.EventHandler(this.selectableControlStateChanged);
-            // 
-            // bTimeBrowse
-            // 
-            this.bTimeBrowse.Location = new System.Drawing.Point(206, 296);
-            this.bTimeBrowse.Name = "bTimeBrowse";
-            this.bTimeBrowse.Size = new System.Drawing.Size(75, 23);
-            this.bTimeBrowse.TabIndex = 5;
-            this.bTimeBrowse.Text = "Browse";
-            this.bTimeBrowse.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -292,6 +247,44 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pomodoro";
+            // 
+            // lValuePomodDefaultRest
+            // 
+            this.lValuePomodDefaultRest.AutoSize = true;
+            this.lValuePomodDefaultRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lValuePomodDefaultRest.Location = new System.Drawing.Point(76, 100);
+            this.lValuePomodDefaultRest.Name = "lValuePomodDefaultRest";
+            this.lValuePomodDefaultRest.Size = new System.Drawing.Size(0, 13);
+            this.lValuePomodDefaultRest.TabIndex = 11;
+            // 
+            // lValuePomodDefaultWork
+            // 
+            this.lValuePomodDefaultWork.AutoSize = true;
+            this.lValuePomodDefaultWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lValuePomodDefaultWork.Location = new System.Drawing.Point(76, 70);
+            this.lValuePomodDefaultWork.Name = "lValuePomodDefaultWork";
+            this.lValuePomodDefaultWork.Size = new System.Drawing.Size(0, 13);
+            this.lValuePomodDefaultWork.TabIndex = 11;
+            // 
+            // bPomodSetWork
+            // 
+            this.bPomodSetWork.Location = new System.Drawing.Point(236, 66);
+            this.bPomodSetWork.Name = "bPomodSetWork";
+            this.bPomodSetWork.Size = new System.Drawing.Size(44, 23);
+            this.bPomodSetWork.TabIndex = 11;
+            this.bPomodSetWork.Text = "Set";
+            this.bPomodSetWork.UseVisualStyleBackColor = true;
+            this.bPomodSetWork.Click += new System.EventHandler(this.bPomodSetWork_Click);
+            // 
+            // bPomodSetRest
+            // 
+            this.bPomodSetRest.Location = new System.Drawing.Point(236, 95);
+            this.bPomodSetRest.Name = "bPomodSetRest";
+            this.bPomodSetRest.Size = new System.Drawing.Size(44, 23);
+            this.bPomodSetRest.TabIndex = 10;
+            this.bPomodSetRest.Text = "Set";
+            this.bPomodSetRest.UseVisualStyleBackColor = true;
+            this.bPomodSetRest.Click += new System.EventHandler(this.bPomodSetRest_Click);
             // 
             // lPomodFormat2
             // 
@@ -367,6 +360,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Timer";
             // 
+            // lValueTimerDefaultTime
+            // 
+            this.lValueTimerDefaultTime.AutoSize = true;
+            this.lValueTimerDefaultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lValueTimerDefaultTime.Location = new System.Drawing.Point(76, 79);
+            this.lValueTimerDefaultTime.Name = "lValueTimerDefaultTime";
+            this.lValueTimerDefaultTime.Size = new System.Drawing.Size(0, 13);
+            this.lValueTimerDefaultTime.TabIndex = 10;
+            // 
+            // bTimerSet
+            // 
+            this.bTimerSet.Location = new System.Drawing.Point(236, 74);
+            this.bTimerSet.Name = "bTimerSet";
+            this.bTimerSet.Size = new System.Drawing.Size(44, 23);
+            this.bTimerSet.TabIndex = 9;
+            this.bTimerSet.Text = "Set";
+            this.bTimerSet.UseVisualStyleBackColor = true;
+            this.bTimerSet.Click += new System.EventHandler(this.bTimerSet_Click);
+            // 
+            // lTextTimerDefault
+            // 
+            this.lTextTimerDefault.AutoSize = true;
+            this.lTextTimerDefault.Location = new System.Drawing.Point(9, 79);
+            this.lTextTimerDefault.Name = "lTextTimerDefault";
+            this.lTextTimerDefault.Size = new System.Drawing.Size(66, 13);
+            this.lTextTimerDefault.TabIndex = 8;
+            this.lTextTimerDefault.Text = "Default time:";
+            // 
             // lTimerFormat
             // 
             this.lTimerFormat.AutoSize = true;
@@ -414,14 +435,14 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.bCancel);
             this.splitContainer1.Panel2.Controls.Add(this.bOk);
-            this.splitContainer1.Size = new System.Drawing.Size(520, 451);
-            this.splitContainer1.SplitterDistance = 398;
+            this.splitContainer1.Size = new System.Drawing.Size(469, 410);
+            this.splitContainer1.SplitterDistance = 361;
             this.splitContainer1.TabIndex = 0;
             // 
             // bCancel
             // 
             this.bCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bCancel.Location = new System.Drawing.Point(433, 13);
+            this.bCancel.Location = new System.Drawing.Point(382, 13);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(75, 23);
             this.bCancel.TabIndex = 1;
@@ -439,77 +460,11 @@
             this.bOk.UseVisualStyleBackColor = true;
             this.bOk.Click += new System.EventHandler(this.bOk_Click);
             // 
-            // lTextTimerDefault
-            // 
-            this.lTextTimerDefault.AutoSize = true;
-            this.lTextTimerDefault.Location = new System.Drawing.Point(9, 79);
-            this.lTextTimerDefault.Name = "lTextTimerDefault";
-            this.lTextTimerDefault.Size = new System.Drawing.Size(66, 13);
-            this.lTextTimerDefault.TabIndex = 8;
-            this.lTextTimerDefault.Text = "Default time:";
-            // 
-            // bTimerSet
-            // 
-            this.bTimerSet.Location = new System.Drawing.Point(236, 74);
-            this.bTimerSet.Name = "bTimerSet";
-            this.bTimerSet.Size = new System.Drawing.Size(44, 23);
-            this.bTimerSet.TabIndex = 9;
-            this.bTimerSet.Text = "Set";
-            this.bTimerSet.UseVisualStyleBackColor = true;
-            this.bTimerSet.Click += new System.EventHandler(this.bTimerSet_Click);
-            // 
-            // bPomodSetRest
-            // 
-            this.bPomodSetRest.Location = new System.Drawing.Point(236, 95);
-            this.bPomodSetRest.Name = "bPomodSetRest";
-            this.bPomodSetRest.Size = new System.Drawing.Size(44, 23);
-            this.bPomodSetRest.TabIndex = 10;
-            this.bPomodSetRest.Text = "Set";
-            this.bPomodSetRest.UseVisualStyleBackColor = true;
-            this.bPomodSetRest.Click += new System.EventHandler(this.bPomodSetRest_Click);
-            // 
-            // bPomodSetWork
-            // 
-            this.bPomodSetWork.Location = new System.Drawing.Point(236, 66);
-            this.bPomodSetWork.Name = "bPomodSetWork";
-            this.bPomodSetWork.Size = new System.Drawing.Size(44, 23);
-            this.bPomodSetWork.TabIndex = 11;
-            this.bPomodSetWork.Text = "Set";
-            this.bPomodSetWork.UseVisualStyleBackColor = true;
-            this.bPomodSetWork.Click += new System.EventHandler(this.bPomodSetWork_Click);
-            // 
-            // lValueTimerDefaultTime
-            // 
-            this.lValueTimerDefaultTime.AutoSize = true;
-            this.lValueTimerDefaultTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lValueTimerDefaultTime.Location = new System.Drawing.Point(76, 79);
-            this.lValueTimerDefaultTime.Name = "lValueTimerDefaultTime";
-            this.lValueTimerDefaultTime.Size = new System.Drawing.Size(0, 13);
-            this.lValueTimerDefaultTime.TabIndex = 10;
-            // 
-            // lValuePomodDefaultWork
-            // 
-            this.lValuePomodDefaultWork.AutoSize = true;
-            this.lValuePomodDefaultWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lValuePomodDefaultWork.Location = new System.Drawing.Point(76, 70);
-            this.lValuePomodDefaultWork.Name = "lValuePomodDefaultWork";
-            this.lValuePomodDefaultWork.Size = new System.Drawing.Size(0, 13);
-            this.lValuePomodDefaultWork.TabIndex = 11;
-            // 
-            // lValuePomodDefaultRest
-            // 
-            this.lValuePomodDefaultRest.AutoSize = true;
-            this.lValuePomodDefaultRest.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lValuePomodDefaultRest.Location = new System.Drawing.Point(76, 100);
-            this.lValuePomodDefaultRest.Name = "lValuePomodDefaultRest";
-            this.lValuePomodDefaultRest.Size = new System.Drawing.Size(0, 13);
-            this.lValuePomodDefaultRest.TabIndex = 11;
-            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(520, 451);
+            this.ClientSize = new System.Drawing.Size(469, 410);
             this.Controls.Add(this.splitContainer1);
             this.Name = "SettingsDialog";
             this.Text = "Settings";
@@ -522,7 +477,6 @@
             this.groupLoading.ResumeLayout(false);
             this.groupLoading.PerformLayout();
             this.tabTimers.ResumeLayout(false);
-            this.tabTimers.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -558,9 +512,6 @@
         private System.Windows.Forms.Label lTimerFormat;
         private System.Windows.Forms.RadioButton radioTimerSetTime;
         private System.Windows.Forms.RadioButton radioTimerAlwaysRememberLast;
-        private System.Windows.Forms.Label lTextLoadFile;
-        private System.Windows.Forms.CheckBox checkReplaceTimerMusic;
-        private System.Windows.Forms.Button bTimeBrowse;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lPomodFormat2;
         private System.Windows.Forms.Label lTextRestTime;
@@ -568,7 +519,6 @@
         private System.Windows.Forms.Label lPomodFormat;
         private System.Windows.Forms.RadioButton radioPomodSetTime;
         private System.Windows.Forms.RadioButton radioPomodAlwaysRememberLast;
-        private System.Windows.Forms.Label lValueLoadedFile;
         private System.Windows.Forms.Label lTextTimerDefault;
         private System.Windows.Forms.Button bPomodSetWork;
         private System.Windows.Forms.Button bPomodSetRest;

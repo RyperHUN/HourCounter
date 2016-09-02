@@ -129,8 +129,6 @@ namespace Dialogs
             bTimerSet.Enabled     = radioTimerSetTime.Checked;
             bPomodSetWork.Enabled = radioPomodSetTime.Checked;
             bPomodSetRest.Enabled = radioPomodSetTime.Checked;
-
-            bTimeBrowse.Enabled = checkReplaceTimerMusic.Checked; ///TODO reverse load direction, after load enable replace music thick
             
             //Enables load box in General
             groupLoading.Enabled = checkEnableDriveLoad.Checked;

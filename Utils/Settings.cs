@@ -48,11 +48,14 @@ namespace Utils
             public bool timerRememberLastTime = true;
             public bool timerSetDefaultTime   = false;
             public Time timerSetTime          = new Time (0);
+            public Time timerLastSetTime      = new Time (0);
 
             public bool pomodRememberLastTime = true;
             public bool pomodSetDefaultTime   = false;
             public Time pomodWorkSetTime      = new Time (0);
             public Time pomodRestSetTime      = new Time (0);
+            public Time pomodLastSetWorkTime  = new Time (0);
+            public Time pomodLastSetRestTime  = new Time (0);
         }
 
         ///////////////

@@ -78,6 +78,7 @@ namespace HourCounter
             Serializer serializer         = new Serializer ();
             serializer._activityContainer = _activityContainer;
             serializer._habitController   = _habitController;
+            activityTimer.Save_Settings (); //This saves the last remembered time settings, maybe do an event for saving?!
             serializer.Save ();
         }
         private void LoadEverything ()

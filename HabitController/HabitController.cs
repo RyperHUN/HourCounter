@@ -57,15 +57,15 @@ namespace HabitUtils
 		}
         public void StartController ()
         {
-			Utils.Security.InitializationGuard (_isInitialized);
+			Security.InitializationGuard (_isInitialized);
 
-            HabitTimeAdderLogic ();
+            HabitTimeAdderLogic (Settings.Get.General.habitRemindStartup);
             _hourCounterTimer.Start ();
         }
 		//InitDone
         private void hourCounter_Tick (object sender, EventArgs e)
         {
-            HabitTimeAdderLogic ();
+            HabitTimeAdderLogic (Settings.Get.General.habitRemindHourly);
         }
 		public void OpenHabbitAdderDialog ()
 		{
@@ -75,9 +75,9 @@ namespace HabitUtils
             dialog.Initialize (CreateElapsedHabitTimes ());
             dialog.ShowDialog ();
 		}
-        private void HabitTimeAdderLogic ()
+        private void HabitTimeAdderLogic (bool isAllowed)
         {
-            if (Settings.Get.General.habitRemindHourly)
+            if (isAllowed)
             {
                 if (IsTodayAlreadyAdded ())
                 {

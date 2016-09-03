@@ -36,8 +36,6 @@
             this.groupBoxGDrive = new System.Windows.Forms.GroupBox();
             this.checkEnableDriveLoad = new System.Windows.Forms.CheckBox();
             this.groupLoading = new System.Windows.Forms.GroupBox();
-            this.lTextLoading = new System.Windows.Forms.Label();
-            this.bLoadFromDrive = new System.Windows.Forms.Button();
             this.radioLetMeDecide = new System.Windows.Forms.RadioButton();
             this.radioLoadNewer = new System.Windows.Forms.RadioButton();
             this.checkEnableGDriveSave = new System.Windows.Forms.CheckBox();
@@ -65,6 +63,7 @@
             this.bOk = new System.Windows.Forms.Button();
             this.groupHabit = new System.Windows.Forms.GroupBox();
             this.checkHabitRemindHourly = new System.Windows.Forms.CheckBox();
+            this.checkHabitRemindStartup = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGDrive.SuspendLayout();
@@ -141,7 +140,7 @@
             this.groupBoxGDrive.Enabled = false;
             this.groupBoxGDrive.Location = new System.Drawing.Point(5, 78);
             this.groupBoxGDrive.Name = "groupBoxGDrive";
-            this.groupBoxGDrive.Size = new System.Drawing.Size(343, 166);
+            this.groupBoxGDrive.Size = new System.Drawing.Size(344, 116);
             this.groupBoxGDrive.TabIndex = 5;
             this.groupBoxGDrive.TabStop = false;
             this.groupBoxGDrive.Text = "Google Drive";
@@ -159,40 +158,20 @@
             // 
             // groupLoading
             // 
-            this.groupLoading.Controls.Add(this.lTextLoading);
-            this.groupLoading.Controls.Add(this.bLoadFromDrive);
             this.groupLoading.Controls.Add(this.radioLetMeDecide);
             this.groupLoading.Controls.Add(this.radioLoadNewer);
             this.groupLoading.Enabled = false;
             this.groupLoading.Location = new System.Drawing.Point(161, 38);
             this.groupLoading.Name = "groupLoading";
-            this.groupLoading.Size = new System.Drawing.Size(176, 122);
+            this.groupLoading.Size = new System.Drawing.Size(176, 74);
             this.groupLoading.TabIndex = 10;
             this.groupLoading.TabStop = false;
             this.groupLoading.Text = "Loading";
             // 
-            // lTextLoading
-            // 
-            this.lTextLoading.AutoSize = true;
-            this.lTextLoading.Location = new System.Drawing.Point(32, 45);
-            this.lTextLoading.Name = "lTextLoading";
-            this.lTextLoading.Size = new System.Drawing.Size(48, 13);
-            this.lTextLoading.TabIndex = 7;
-            this.lTextLoading.Text = "Loading:";
-            // 
-            // bLoadFromDrive
-            // 
-            this.bLoadFromDrive.Location = new System.Drawing.Point(35, 19);
-            this.bLoadFromDrive.Name = "bLoadFromDrive";
-            this.bLoadFromDrive.Size = new System.Drawing.Size(97, 23);
-            this.bLoadFromDrive.TabIndex = 7;
-            this.bLoadFromDrive.Text = "Load from drive";
-            this.bLoadFromDrive.UseVisualStyleBackColor = true;
-            // 
             // radioLetMeDecide
             // 
             this.radioLetMeDecide.AutoSize = true;
-            this.radioLetMeDecide.Location = new System.Drawing.Point(49, 89);
+            this.radioLetMeDecide.Location = new System.Drawing.Point(23, 42);
             this.radioLetMeDecide.Name = "radioLetMeDecide";
             this.radioLetMeDecide.Size = new System.Drawing.Size(92, 17);
             this.radioLetMeDecide.TabIndex = 9;
@@ -203,7 +182,7 @@
             // 
             this.radioLoadNewer.AutoSize = true;
             this.radioLoadNewer.Checked = true;
-            this.radioLoadNewer.Location = new System.Drawing.Point(49, 66);
+            this.radioLoadNewer.Location = new System.Drawing.Point(23, 19);
             this.radioLoadNewer.Name = "radioLoadNewer";
             this.radioLoadNewer.Size = new System.Drawing.Size(113, 17);
             this.radioLoadNewer.TabIndex = 8;
@@ -466,10 +445,11 @@
             // 
             // groupHabit
             // 
+            this.groupHabit.Controls.Add(this.checkHabitRemindStartup);
             this.groupHabit.Controls.Add(this.checkHabitRemindHourly);
-            this.groupHabit.Location = new System.Drawing.Point(6, 254);
+            this.groupHabit.Location = new System.Drawing.Point(6, 200);
             this.groupHabit.Name = "groupHabit";
-            this.groupHabit.Size = new System.Drawing.Size(336, 51);
+            this.groupHabit.Size = new System.Drawing.Size(343, 75);
             this.groupHabit.TabIndex = 11;
             this.groupHabit.TabStop = false;
             this.groupHabit.Text = "Habbits";
@@ -481,10 +461,20 @@
             this.checkHabitRemindHourly.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkHabitRemindHourly.Location = new System.Drawing.Point(6, 19);
             this.checkHabitRemindHourly.Name = "checkHabitRemindHourly";
-            this.checkHabitRemindHourly.Size = new System.Drawing.Size(143, 17);
+            this.checkHabitRemindHourly.Size = new System.Drawing.Size(201, 17);
             this.checkHabitRemindHourly.TabIndex = 12;
-            this.checkHabitRemindHourly.Text = "Remind hourly for adding";
+            this.checkHabitRemindHourly.Text = "Remind hourly for adding, until added";
             this.checkHabitRemindHourly.UseVisualStyleBackColor = true;
+            // 
+            // checkHabitRemindStartup
+            // 
+            this.checkHabitRemindStartup.AutoSize = true;
+            this.checkHabitRemindStartup.Location = new System.Drawing.Point(6, 42);
+            this.checkHabitRemindStartup.Name = "checkHabitRemindStartup";
+            this.checkHabitRemindStartup.Size = new System.Drawing.Size(109, 17);
+            this.checkHabitRemindStartup.TabIndex = 13;
+            this.checkHabitRemindStartup.Text = "Remind at startup";
+            this.checkHabitRemindStartup.UseVisualStyleBackColor = true;
             // 
             // SettingsDialog
             // 
@@ -530,10 +520,8 @@
         private System.Windows.Forms.Button bAuthorizeGDrive;
         private System.Windows.Forms.GroupBox groupBoxGDrive;
         private System.Windows.Forms.CheckBox checkEnableGDriveSave;
-        private System.Windows.Forms.Button bLoadFromDrive;
         private System.Windows.Forms.RadioButton radioLetMeDecide;
         private System.Windows.Forms.RadioButton radioLoadNewer;
-        private System.Windows.Forms.Label lTextLoading;
         private System.Windows.Forms.GroupBox groupLoading;
         private System.Windows.Forms.CheckBox checkEnableDriveLoad;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -556,5 +544,6 @@
         private System.Windows.Forms.Label lValueTimerDefaultTime;
         private System.Windows.Forms.GroupBox groupHabit;
         private System.Windows.Forms.CheckBox checkHabitRemindHourly;
+        private System.Windows.Forms.CheckBox checkHabitRemindStartup;
     }
 }

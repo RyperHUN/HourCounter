@@ -45,12 +45,13 @@ namespace Dialogs
         private void InitGeneral ()
         {
             Settings settings = Settings.Get;
-            checkEnableGDriveSave.Checked  = settings.General.isGDriveSave;
-            checkEnableDriveLoad.Checked   = settings.General.isGDriveLoad;
-            radioLetMeDecide.Checked       = settings.General.loadLetMeDecide;
-            radioLoadNewer.Checked         = settings.General.loadAlwaysLoadNewer;
+            checkEnableGDriveSave.Checked   = settings.General.isGDriveSave;
+            checkEnableDriveLoad.Checked    = settings.General.isGDriveLoad;
+            radioLetMeDecide.Checked        = settings.General.loadLetMeDecide;
+            radioLoadNewer.Checked          = settings.General.loadAlwaysLoadNewer;
 
-            checkHabitRemindHourly.Checked = Settings.Get.General.habitRemindHourly;
+            checkHabitRemindHourly.Checked  = settings.General.habitRemindHourly;
+            checkHabitRemindStartup.Checked = settings.General.habitRemindStartup;
         }
         private void bCancel_Click (object sender, EventArgs e)
         {
@@ -91,8 +92,8 @@ namespace Dialogs
             Settings.Get.General.loadAlwaysLoadNewer = radioLoadNewer.Checked;
 
             Settings.Get.General.habitRemindHourly   = checkHabitRemindHourly.Checked;
+            Settings.Get.General.habitRemindStartup  = checkHabitRemindStartup.Checked;
         }
-
         private void SaveTimerSettings ()
         {
             //Pomod

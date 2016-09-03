@@ -31,9 +31,9 @@ namespace HourCounter
 
         public static Serializer Load ()
         {
-            ///TODO Betoltesnel meg nincs settings betoltve :/
             try
             {
+                Serializer diskLoaded = loadEverythingFromDisk ();
                 if (Settings.Get.General.isGDriveLoad && Settings.Get.General.loadLetMeDecide) 
                 {
                     DialogResult result = MessageBox.Show("Do you want to load from GDrive?", "Confirmation", MessageBoxButtons.YesNo);
@@ -43,12 +43,11 @@ namespace HourCounter
                     }
                     else
                     {
-                        return loadEverythingFromDisk ();
+                        return diskLoaded;
                     }
                 }
                 else
                 {
-                    Serializer diskLoaded = loadEverythingFromDisk ();
                     if (diskLoaded != null)
                     {
                         if (Settings.Get.General.isGDriveLoad)

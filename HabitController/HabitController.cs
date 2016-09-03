@@ -77,29 +77,31 @@ namespace HabitUtils
 		}
         private void HabitTimeAdderLogic ()
         {
-			if (IsTodayAlreadyAdded ())
+            if (Settings.Get.General.habitRemindHourly)
             {
-                //_hourCounterTimer.Stop ();
-				//OpenHabbitAdderDialog (); 
-                return;
-            }
-            else
-            {
-                if(_activityContainer.GetHabitList ().Count == 0) // If there is no habit don't show the dialog
-                    return;
-
-				_hourCounterTimer.Stop (); //There will be no duplicated messages if no respond for another thick
-                DialogResult result = MessageBox.Show ("Do you want to add habbits now?", "Confirmation", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                if (IsTodayAlreadyAdded ())
                 {
-                    _lastTestedTime = DateTime.Now;
-                    OpenHabbitAdderDialog ();
+                    return;
                 }
-				else if (result == DialogResult.No)
-				{
-					_hourCounterTimer.Start (); ///TODO Test if it is a problem if start is duplicated. => I think not!
-				}
+                else
+                {
+                    if (_activityContainer.GetHabitList ().Count == 0) // If there is no habit don't show the dialog
+                        return;
+
+				    _hourCounterTimer.Stop (); //There will be no duplicated messages if no respond for another thick
+                    DialogResult result = MessageBox.Show ("Do you want to add habbits now?", "Confirmation", MessageBoxButtons.YesNo); //Maybe add one loop music?
+                    if (result == DialogResult.Yes)
+                    {
+                        _lastTestedTime = DateTime.Now;
+                        OpenHabbitAdderDialog ();
+                    }
+				    else if (result == DialogResult.No)
+				    {
+					    _hourCounterTimer.Start ();
+				    }
+                }
             }
+			
         }
         ///TODO Tovabbfejleszteni hogy kepes legyen lecsekkolni hogy mindegyik Habit megvan-e
         private bool IsTodayAlreadyAdded ()
@@ -115,10 +117,10 @@ namespace HabitUtils
         {
             long passedDays = (long) (DateTime.Now - _lastTestedTime).TotalDays; //If opened twice a day, it will be zero
 
-            if (passedDays > 0) //Solves the 0 passedDay problem 
+            if (passedDays > 0) 
                 return new Time (timePerDay.Seconds * passedDays);
             else
-                return timePerDay;
+                return timePerDay; //Solves the 0 passedDay problem 
         }
 
         private Dictionary<Activity, Time> CreateElapsedHabitTimes ()

@@ -102,7 +102,7 @@ namespace HourCounter
             _subActivities.Add(subActivity.Name, subActivity);
             updateAllViews();
         }
-        public LinkedList<String> GetListStringFormated(Activity startActivity, String tab)
+        public LinkedList<String> GetListStringIndentation(Activity startActivity, String tab)
         {
             SortedList<string, Activity> subActivities = startActivity.GetSubActivityList();
             if (subActivities.Count == 0) //No more activities
@@ -115,7 +115,7 @@ namespace HourCounter
                 activityStringList.AddLast(tab + activityName);
 
                 Activity subActivity = dict.Value;
-                LinkedList<String> subList = GetListStringFormated(subActivity, tab + "  ");
+                LinkedList<String> subList = GetListStringIndentation(subActivity, tab + "  ");
                 if(subList != null)
                 {
                     foreach (String subSubActivityName in subList)

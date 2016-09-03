@@ -25,13 +25,15 @@ namespace Dialogs
         }
         private void fillComboBox ()
         {
-            LinkedList<String> comboItems = _activityContainer.GetListStringFormated(_activityContainer, "");
+            LinkedList<String> comboItems       = _activityContainer.GetListStringIndentation (_activityContainer, "");
             if (comboItems != null)
             {
-                foreach (String item in comboItems)
+                foreach (String activityIdented in comboItems)
                 {
-                    if(item.Trim () != _selectedActivity.Name) //Does not add the selected activity, move to the same place is unneccesary
-                        comboBox.Items.Add (item);
+                    String activityName = activityIdented.Trim ();   //Trim removes indentation
+                    if (activityName != _selectedActivity.Name)      //Does not add the selected activity, move to the same place is unneccesary 
+                        if (_selectedActivity.Find (_selectedActivity, activityName) == null) //can't add to the selected activity's child
+                            comboBox.Items.Add (activityIdented);
                 }
             }
         }

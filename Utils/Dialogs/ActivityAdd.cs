@@ -24,7 +24,7 @@ namespace Dialogs
 
         private void fillComboBox ()
         {
-            LinkedList<String> comboItems = _activityContainer.GetListStringFormated(_activityContainer, "");
+            LinkedList<String> comboItems = _activityContainer.GetListStringIndentation(_activityContainer, "");
             if (comboItems != null)
             {
                 foreach (String item in comboItems)

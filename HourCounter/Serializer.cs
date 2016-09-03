@@ -69,7 +69,8 @@ namespace HourCounter
                     }
                 }
             }
-            catch (ArgumentException /*exc*/)
+            //catch (Google)
+            catch (AggregateException /*exc*/)
             {
                 MessageBox.Show ("Error accessing Google Drive, loading from disk");
                 return loadEverythingFromDisk ();

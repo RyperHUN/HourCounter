@@ -110,32 +110,27 @@ namespace GDrive
     }
     public class CommandStatic
     {
+        //Throws AggregateException if authenticaton fails
         public static UserCredential Authenticate (string[] Scopes)
         {
             UserCredential credential;
-            try
-            {
-                using (var stream =
-                    new System.IO.FileStream ("client_secret.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
-                {
-                    string credPath = System.Environment.GetFolderPath(
-                        System.Environment.SpecialFolder.Personal);
-                    credPath = System.IO.Path.Combine (credPath, ".credentials/drive-hourcounter.json");
 
-                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync (
-                        GoogleClientSecrets.Load (stream).Secrets,
-                        Scopes,
-                        "user",
-                        CancellationToken.None,
-                        new FileDataStore (credPath, true)).Result;
-                    //Console.WriteLine ("Credential file saved to: " + credPath);
-                }
-            }
-            catch (System.AggregateException /*exc*/)
+            using (var stream =
+                new System.IO.FileStream ("client_secret.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
             {
-                return null; //Authentication is nut sucessful
+                string credPath = System.Environment.GetFolderPath(
+                        System.Environment.SpecialFolder.Personal);
+                credPath = System.IO.Path.Combine (credPath, ".credentials/drive-hourcounter.json");
+
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync (
+                    GoogleClientSecrets.Load (stream).Secrets,
+                    Scopes,
+                    "user",
+                    CancellationToken.None,
+                    new FileDataStore (credPath, true)).Result;
+                Console.WriteLine ("Credential file saved to: " + credPath);
             }
-            ///TODO catch other exception
+
             return credential;
         }
 

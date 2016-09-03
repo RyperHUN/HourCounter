@@ -62,19 +62,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Activity">
-      <HintPath>..\Activity\bin\Debug\Activity.dll</HintPath>
+      <HintPath>..\Dependencies\Activity\bin\Debug\Activity.dll</HintPath>
     </Reference>
     <Reference Include="ActivityTimer">
-      <HintPath>..\ActivityTimer\bin\Debug\ActivityTimer.dll</HintPath>
+      <HintPath>..\Dependencies\ActivityTimer\bin\Debug\ActivityTimer.dll</HintPath>
     </Reference>
     <Reference Include="DetailedView">
-      <HintPath>..\DetailedView\bin\Debug\DetailedView.dll</HintPath>
+      <HintPath>..\Dependencies\DetailedView\bin\Debug\DetailedView.dll</HintPath>
     </Reference>
     <Reference Include="GDrive">
-      <HintPath>..\GDrive\bin\Debug\GDrive.dll</HintPath>
+      <HintPath>..\Dependencies\GoogleDrive\bin\Debug\GDrive.dll</HintPath>
     </Reference>
     <Reference Include="HabitController">
-      <HintPath>..\HabitController\bin\Debug\HabitController.dll</HintPath>
+      <HintPath>..\Dependencies\HabitController\bin\Debug\HabitController.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -88,11 +88,11 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="TreeListView">
-      <HintPath>..\TreeListView\bin\Debug\TreeListView.dll</HintPath>
+      <HintPath>..\Dependencies\TreeListView\bin\Debug\TreeListView.dll</HintPath>
     </Reference>
     <Reference Include="Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Utils\bin\Debug\Utils.dll</HintPath>
+      <HintPath>..\Dependencies\Utils\bin\Debug\Utils.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

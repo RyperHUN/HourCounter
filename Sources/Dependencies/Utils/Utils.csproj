@@ -34,7 +34,7 @@
       <HintPath>..\Activity\bin\Debug\Activity.dll</HintPath>
     </Reference>
     <Reference Include="GDrive">
-      <HintPath>..\GDrive\bin\Debug\GDrive.dll</HintPath>
+      <HintPath>..\GoogleDrive\bin\Debug\GDrive.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

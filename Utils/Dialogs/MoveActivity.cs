@@ -28,6 +28,7 @@ namespace Dialogs
             LinkedList<String> comboItems       = _activityContainer.GetListStringIndentation (_activityContainer, "");
             if (comboItems != null)
             {
+                comboBox.Items.Add ("Root");
                 foreach (String activityIdented in comboItems)
                 {
                     String activityName = activityIdented.Trim ();   //Trim removes indentation
@@ -54,7 +55,11 @@ namespace Dialogs
 
             string SearchForParentActivity = (string)comboBox.SelectedItem;
             SearchForParentActivity        = SearchForParentActivity.Trim (); //Remove spaces before activity ( tab )
-            _activityContainer.AddBelowActivity (_activityContainer, _selectedActivity, SearchForParentActivity);
+
+            if (SearchForParentActivity == "Root")
+                _activityContainer.AddSubActivity (_selectedActivity);
+            else
+                _activityContainer.AddBelowActivity (_activityContainer, _selectedActivity, SearchForParentActivity);
 
             this.Close ();
         }

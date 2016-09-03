@@ -16,6 +16,7 @@ namespace Dialogs
             if (result == DialogResult.Yes)
             {
                 activityContainer.Remove (activityContainer, selectedActivity.Name);
+                selectedActivity.RemovedAsHabit ();
             }
         }
     }

@@ -33,7 +33,6 @@ namespace Dialogs
             Settings settings = Settings.Get;
             radioTimerAlwaysRememberLast.Checked = settings.Timers.timerRememberLastTime;
             radioTimerSetTime.Checked            = settings.Timers.timerSetDefaultTime;
-            ///TODOOOOO
             lValueTimerDefaultTime.Text          = TimeConverter.TimeToStringHHMMSS (settings.Timers.timerSetTime);
 
             radioPomodAlwaysRememberLast.Checked = settings.Timers.pomodRememberLastTime;

@@ -31,26 +31,51 @@ namespace HourCounter
 
         public static Serializer Load ()
         {
-            Serializer diskLoaded = loadEverythingFromDisk ();
-            if (diskLoaded != null)
+            ///TODO Betoltesnel meg nincs settings betoltve :/
+            try
             {
-                if (Settings.Get.General.isGDriveLoad)
+                if (Settings.Get.General.isGDriveLoad && Settings.Get.General.loadLetMeDecide) 
                 {
-                    if (IsOnDriveNewer () > 0)
+                    DialogResult result = MessageBox.Show("Do you want to load from GDrive?", "Confirmation", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
                     {
-                        return loadEverythingFromGDrive (); //If this is newer
+                        return loadEverythingFromGDrive ();
+                    }
+                    else
+                    {
+                        return loadEverythingFromDisk ();
                     }
                 }
-                return diskLoaded; //If this is newer
-            }
-            else //File not found
-            {
-                DialogResult result = MessageBox.Show("No save file found. Do you want to load from Google Drive?", "Confirmation", MessageBoxButtons.YesNo);
-                if(result == DialogResult.Yes)
+                else
                 {
-                    return loadEverythingFromGDrive ();
+                    Serializer diskLoaded = loadEverythingFromDisk ();
+                    if (diskLoaded != null)
+                    {
+                        if (Settings.Get.General.isGDriveLoad)
+                        {
+                            if (IsOnDriveNewer () > 0)
+                            {
+                                return loadEverythingFromGDrive (); //If this is newer
+                            }
+                        }
+                        return diskLoaded; //If this is newer
+                    }
+                    else //File not found
+                    {
+                        DialogResult result = MessageBox.Show("No save file found. Do you want to load from Google Drive?", "Confirmation", MessageBoxButtons.YesNo);
+                        if(result == DialogResult.Yes)
+                        {
+                            return loadEverythingFromGDrive ();
+                        }
+                    }
                 }
             }
+            catch (ArgumentException /*exc*/)
+            {
+                MessageBox.Show ("Error accessing Google Drive, loading from disk");
+                return loadEverythingFromDisk ();
+            }
+            
             return null;
         }
         /// TODO Hibakezelest hozzaadni! Ha valtoik a struktura nemfogja betlteni az adott objektumot.

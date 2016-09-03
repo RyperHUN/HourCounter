@@ -63,6 +63,8 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bCancel = new System.Windows.Forms.Button();
             this.bOk = new System.Windows.Forms.Button();
+            this.groupHabit = new System.Windows.Forms.GroupBox();
+            this.checkHabitRemindHourly = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupBoxGDrive.SuspendLayout();
@@ -74,6 +76,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupHabit.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -84,11 +87,12 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(469, 361);
+            this.tabControl.Size = new System.Drawing.Size(523, 361);
             this.tabControl.TabIndex = 0;
             // 
             // tabGeneral
             // 
+            this.tabGeneral.Controls.Add(this.groupHabit);
             this.tabGeneral.Controls.Add(this.lValueAuthorizedStatus);
             this.tabGeneral.Controls.Add(this.lTextAuthorizedStatus);
             this.tabGeneral.Controls.Add(this.bAuthorizeGDrive);
@@ -96,7 +100,7 @@
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeneral.Size = new System.Drawing.Size(461, 335);
+            this.tabGeneral.Size = new System.Drawing.Size(515, 335);
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
@@ -104,7 +108,7 @@
             // lValueAuthorizedStatus
             // 
             this.lValueAuthorizedStatus.AutoSize = true;
-            this.lValueAuthorizedStatus.Location = new System.Drawing.Point(108, 72);
+            this.lValueAuthorizedStatus.Location = new System.Drawing.Point(107, 50);
             this.lValueAuthorizedStatus.Name = "lValueAuthorizedStatus";
             this.lValueAuthorizedStatus.Size = new System.Drawing.Size(21, 13);
             this.lValueAuthorizedStatus.TabIndex = 1;
@@ -113,7 +117,7 @@
             // lTextAuthorizedStatus
             // 
             this.lTextAuthorizedStatus.AutoSize = true;
-            this.lTextAuthorizedStatus.Location = new System.Drawing.Point(9, 72);
+            this.lTextAuthorizedStatus.Location = new System.Drawing.Point(8, 50);
             this.lTextAuthorizedStatus.Name = "lTextAuthorizedStatus";
             this.lTextAuthorizedStatus.Size = new System.Drawing.Size(93, 13);
             this.lTextAuthorizedStatus.TabIndex = 0;
@@ -121,7 +125,7 @@
             // 
             // bAuthorizeGDrive
             // 
-            this.bAuthorizeGDrive.Location = new System.Drawing.Point(12, 37);
+            this.bAuthorizeGDrive.Location = new System.Drawing.Point(9, 16);
             this.bAuthorizeGDrive.Name = "bAuthorizeGDrive";
             this.bAuthorizeGDrive.Size = new System.Drawing.Size(103, 22);
             this.bAuthorizeGDrive.TabIndex = 3;
@@ -135,7 +139,7 @@
             this.groupBoxGDrive.Controls.Add(this.groupLoading);
             this.groupBoxGDrive.Controls.Add(this.checkEnableGDriveSave);
             this.groupBoxGDrive.Enabled = false;
-            this.groupBoxGDrive.Location = new System.Drawing.Point(12, 101);
+            this.groupBoxGDrive.Location = new System.Drawing.Point(5, 78);
             this.groupBoxGDrive.Name = "groupBoxGDrive";
             this.groupBoxGDrive.Size = new System.Drawing.Size(343, 166);
             this.groupBoxGDrive.TabIndex = 5;
@@ -435,14 +439,14 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.bCancel);
             this.splitContainer1.Panel2.Controls.Add(this.bOk);
-            this.splitContainer1.Size = new System.Drawing.Size(469, 410);
+            this.splitContainer1.Size = new System.Drawing.Size(523, 410);
             this.splitContainer1.SplitterDistance = 361;
             this.splitContainer1.TabIndex = 0;
             // 
             // bCancel
             // 
             this.bCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bCancel.Location = new System.Drawing.Point(382, 13);
+            this.bCancel.Location = new System.Drawing.Point(436, 13);
             this.bCancel.Name = "bCancel";
             this.bCancel.Size = new System.Drawing.Size(75, 23);
             this.bCancel.TabIndex = 1;
@@ -460,11 +464,33 @@
             this.bOk.UseVisualStyleBackColor = true;
             this.bOk.Click += new System.EventHandler(this.bOk_Click);
             // 
+            // groupHabit
+            // 
+            this.groupHabit.Controls.Add(this.checkHabitRemindHourly);
+            this.groupHabit.Location = new System.Drawing.Point(6, 254);
+            this.groupHabit.Name = "groupHabit";
+            this.groupHabit.Size = new System.Drawing.Size(336, 51);
+            this.groupHabit.TabIndex = 11;
+            this.groupHabit.TabStop = false;
+            this.groupHabit.Text = "Habbits";
+            // 
+            // checkHabitRemindHourly
+            // 
+            this.checkHabitRemindHourly.AutoSize = true;
+            this.checkHabitRemindHourly.Checked = true;
+            this.checkHabitRemindHourly.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkHabitRemindHourly.Location = new System.Drawing.Point(6, 19);
+            this.checkHabitRemindHourly.Name = "checkHabitRemindHourly";
+            this.checkHabitRemindHourly.Size = new System.Drawing.Size(143, 17);
+            this.checkHabitRemindHourly.TabIndex = 12;
+            this.checkHabitRemindHourly.Text = "Remind hourly for adding";
+            this.checkHabitRemindHourly.UseVisualStyleBackColor = true;
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 410);
+            this.ClientSize = new System.Drawing.Size(523, 410);
             this.Controls.Add(this.splitContainer1);
             this.Name = "SettingsDialog";
             this.Text = "Settings";
@@ -485,6 +511,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupHabit.ResumeLayout(false);
+            this.groupHabit.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -526,5 +554,7 @@
         private System.Windows.Forms.Label lValuePomodDefaultRest;
         private System.Windows.Forms.Label lValuePomodDefaultWork;
         private System.Windows.Forms.Label lValueTimerDefaultTime;
+        private System.Windows.Forms.GroupBox groupHabit;
+        private System.Windows.Forms.CheckBox checkHabitRemindHourly;
     }
 }

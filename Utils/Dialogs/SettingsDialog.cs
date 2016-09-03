@@ -45,10 +45,12 @@ namespace Dialogs
         private void InitGeneral ()
         {
             Settings settings = Settings.Get;
-            checkEnableGDriveSave.Checked = settings.General.isGDriveSave;
-            checkEnableDriveLoad.Checked  = settings.General.isGDriveLoad;
-            radioLetMeDecide.Checked      = settings.General.loadLetMeDecide;
-            radioLoadNewer.Checked        = settings.General.loadAlwaysLoadNewer;
+            checkEnableGDriveSave.Checked  = settings.General.isGDriveSave;
+            checkEnableDriveLoad.Checked   = settings.General.isGDriveLoad;
+            radioLetMeDecide.Checked       = settings.General.loadLetMeDecide;
+            radioLoadNewer.Checked         = settings.General.loadAlwaysLoadNewer;
+
+            checkHabitRemindHourly.Checked = Settings.Get.General.habitRemindHourly;
         }
         private void bCancel_Click (object sender, EventArgs e)
         {
@@ -87,6 +89,8 @@ namespace Dialogs
             Settings.Get.General.isGDriveLoad        = checkEnableDriveLoad.Checked;
             Settings.Get.General.loadLetMeDecide     = radioLetMeDecide.Checked;
             Settings.Get.General.loadAlwaysLoadNewer = radioLoadNewer.Checked;
+
+            Settings.Get.General.habitRemindHourly   = checkHabitRemindHourly.Checked;
         }
 
         private void SaveTimerSettings ()

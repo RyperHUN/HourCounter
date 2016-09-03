@@ -40,6 +40,8 @@ namespace Utils
             public bool isGDriveLoad        = false;
             public bool loadAlwaysLoadNewer = true;
             public bool loadLetMeDecide     = false;
+
+            public bool habitRemindHourly   = true;
         }
 
         [Serializable] //TODO megcsinalni rendes serializalast

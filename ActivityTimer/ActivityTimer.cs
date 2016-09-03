@@ -38,7 +38,7 @@ namespace ActivityTimer
 
             Load_Settings ();
 
-            soundPlayer = new SoundPlayer (@"Sound/SOUND_RING_ALARM.wav");
+            soundPlayer = new SoundPlayer (@"Data/SOUND_RING_ALARM.wav");
         }
 
         private void Load_Settings () //Maybe this could be called from app when settings got changed

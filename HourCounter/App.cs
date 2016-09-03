@@ -15,8 +15,10 @@ namespace HourCounter
 {
     public partial class App : Form
     {
-        Activity        _activityContainer;
-        HabitController _habitController;
+        private Activity        _activityContainer;
+        private HabitController _habitController;
+
+        private Size _savedFormSize;
 
         public App ()
         {
@@ -45,13 +47,32 @@ namespace HourCounter
             splitContainerMain.Panel1.Controls.Add(treeView);
             detailedView.InitializeActivityContainer (_activityContainer);
             
-            _habitController.StartController (); ///TODO Allithato settingsbe hogy elinduljon-e
+            if (_activityContainer.GetSubActivityList ().Count == 0) //Hide details if no activity added
+                HideDetailsAndTimers ();
+
+            _habitController.StartController (); 
+        }
+
+        private void HideDetailsAndTimers ()
+        {
+            _savedFormSize = this.Size;
+            this.Size = splitContainerMain.Panel1.ClientSize;
+            splitContainerMain.Panel2Collapsed = true;
+            splitContainerMain.Panel2.Hide ();
+        }
+
+        private void EnableDetailsAndTimers ()
+        {
+            this.Size = _savedFormSize;
+            splitContainerMain.Panel2Collapsed = false;
+            splitContainerMain.Panel2.Show ();
         }
 
         private void menuAddNewActivity_Click (object sender, EventArgs e)
         {
             Dialogs.ActivityAdd activityAdd = new Dialogs.ActivityAdd(_activityContainer);
             activityAdd.ShowDialog();
+            EnableDetailsAndTimers ();
         }
 
         private void menuSettings_Click (object sender, EventArgs e)

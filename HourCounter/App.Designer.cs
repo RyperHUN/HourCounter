@@ -33,6 +33,7 @@
             this.splitContainerRight = new System.Windows.Forms.SplitContainer();
             this.groupDetailedView = new System.Windows.Forms.GroupBox();
             this.detailedView = new DetailedView.DetailedView();
+            this.activityTimer = new ActivityTimer.ActivityTimer();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAddNewActivity = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +44,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.activityTimer = new ActivityTimer.ActivityTimer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -124,6 +124,15 @@
             this.detailedView.TabIndex = 0;
             this.detailedView.Visible = false;
             // 
+            // activityTimer
+            // 
+            this.activityTimer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.activityTimer.Location = new System.Drawing.Point(0, 0);
+            this.activityTimer.Name = "activityTimer";
+            this.activityTimer.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
+            this.activityTimer.Size = new System.Drawing.Size(353, 220);
+            this.activityTimer.TabIndex = 0;
+            // 
             // menuBar
             // 
             this.menuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -200,15 +209,6 @@
             // ContentPanel
             // 
             this.ContentPanel.Size = new System.Drawing.Size(133, 0);
-            // 
-            // activityTimer
-            // 
-            this.activityTimer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.activityTimer.Location = new System.Drawing.Point(0, 0);
-            this.activityTimer.Name = "activityTimer";
-            this.activityTimer.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
-            this.activityTimer.Size = new System.Drawing.Size(353, 220);
-            this.activityTimer.TabIndex = 0;
             // 
             // App
             // 

@@ -25,10 +25,10 @@ Compile
 2. Download packages
 	1. Download by hand
 		1. Download Google Drive API 
-		    * NuGet package manager : Install-Package Google.Apis.Drive.v3
+		    * NuGet package manager : Install-Package Google.Apis.Drive.v3 GoogleDrive
 			* <a href="https://www.nuget.org/packages/Google.Apis.Drive.v3/">Google.Apis.Drive.v3</a>
 		2. Download MimeType converter
-			* NuGet package manager : Install-Package MediaTypeMap
+			* NuGet package manager : Install-Package MediaTypeMap GoogleDrive
 	
 	2. or Allow NuGet to download missing packages during build
 			

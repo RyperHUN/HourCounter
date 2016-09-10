@@ -426,7 +426,7 @@ namespace ActivityTimer
             if(Pomod_status == Pomod_Status.Rest)
             {
                 Pomod_ElapsedRestTime = new Time (Pomod_ElapsedRestTime.Seconds + Pomod_TimerRest.GetElapsedTime ().Seconds );
-                Pomod_TimerWork.Stop ();
+                Pomod_TimerRest.Stop ();
             }
             Pomod_ChangeStatus (Pomod_Status.Idle);
 

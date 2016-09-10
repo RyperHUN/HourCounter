@@ -389,7 +389,7 @@ namespace ActivityTimer
 
         private void Pomod_AddElapsedRestTime ()
         {
-            Pomod_ElapsedRestTime = new Time (Pomod_ElapsedRestTime.Seconds + Pomod_TimerWork.GetElapsedTime ().Seconds);
+            Pomod_ElapsedRestTime = new Time (Pomod_ElapsedRestTime.Seconds + Pomod_TimerRest.GetElapsedTime ().Seconds);
         }
         
         private void Pomod_bPause_Click (object sender, EventArgs e)

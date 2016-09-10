@@ -18,7 +18,7 @@ namespace HourCounter
         private Activity        _activityContainer;
         private HabitController _habitController;
 
-        private Size _savedFormSize;
+        private Nullable<Size> _savedFormSize = null;
 
         public App ()
         {
@@ -63,9 +63,12 @@ namespace HourCounter
 
         private void EnableDetailsAndTimers ()
         {
-            this.Size = _savedFormSize;
-            splitContainerMain.Panel2Collapsed = false;
-            splitContainerMain.Panel2.Show ();
+            if (_savedFormSize != null)
+            {
+                this.Size = _savedFormSize.Value;
+                splitContainerMain.Panel2Collapsed = false;
+                splitContainerMain.Panel2.Show ();
+            }
         }
 
         private void menuAddNewActivity_Click (object sender, EventArgs e)

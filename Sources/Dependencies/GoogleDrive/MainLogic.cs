@@ -116,7 +116,7 @@ namespace GDrive
             UserCredential credential;
 
             using (var stream =
-                new System.IO.FileStream ("client_secret.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                new System.IO.FileStream ("Data/client_secret.json", System.IO.FileMode.Open, System.IO.FileAccess.Read))
             {
                 string credPath = System.Environment.GetFolderPath(
                         System.Environment.SpecialFolder.Personal);

@@ -3,7 +3,7 @@ Counts how many hours you spend on activities.
 
 Demo
 =================================
-![alt tag](screen.PNG)
+![alt tag](screen.PNG) 
 
 Features
 =================================

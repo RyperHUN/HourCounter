@@ -1,6 +1,10 @@
 # HourCounter
 Counts how many hours you spend on activities.
 
+Demo
+=================================
+![alt tag](screen.PNG)
+
 Features
 =================================
 1. Managing Activities
@@ -37,9 +41,10 @@ Compile
 Future Plans
 =================================
 
-1. Add Google Drive support
+1. Add Google Calendar support
 2. Motivation music
 3. Improved serialization
-4. Many more
+4. Add support for daily time management
+5. Many more
 
 Also if you want to join developing this application, feel free to email me.

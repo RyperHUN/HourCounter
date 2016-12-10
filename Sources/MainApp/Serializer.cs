@@ -22,6 +22,7 @@ namespace HourCounter
 
         public Serializer ()
         {
+            //TODO Automatic save turn on/off on settings
             automaticSaveTimer.Interval = 1800000; // == 30 min;
             automaticSaveTimer.Tick +=  (object a, EventArgs e) => Save();
             automaticSaveTimer.Start ();

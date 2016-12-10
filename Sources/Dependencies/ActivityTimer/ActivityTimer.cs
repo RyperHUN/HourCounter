@@ -311,7 +311,7 @@ namespace ActivityTimer
         TimerLogic Pomod_TimerWork;
         TimerLogic Pomod_TimerRest;
 
-        Time Pomod_ElapsedWorkTime;  ///TODO Lenullazni ha stoppoljak
+        Time Pomod_ElapsedWorkTime;
         Time Pomod_ElapsedRestTime;
 
         private void Pomod_Init ()

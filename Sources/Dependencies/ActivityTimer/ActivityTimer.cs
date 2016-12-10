@@ -74,7 +74,6 @@ namespace ActivityTimer
             {
                 setting.pomodLastSetWorkTime = new Time (Pomod_TimerWork.InitTime);
                 setting.pomodLastSetRestTime = new Time (Pomod_TimerRest.InitTime);
-
             }
             if(setting.timerRememberLastTime)
             {

@@ -102,7 +102,7 @@ namespace ActivityTimer
             Stop_bStop.Enabled   = true;
             Pomod_bPause.Enabled = true;
             Pomod_bStop.Enabled  = true;
-
+            
             EnableTab (false);
         }
         private void DisableTimerMode ()
@@ -121,6 +121,10 @@ namespace ActivityTimer
             Stop_bStop.Enabled   = false;
             Pomod_bPause.Enabled = false;
             Pomod_bStop.Enabled  = false;
+
+            Pomod_bPause.Text = "Pause"; //Set pause button to init
+            Stop_bPause.Text  = "Pause";
+            Timer_bPause.Text = "Pause";
 
             EnableTab (true);
         }

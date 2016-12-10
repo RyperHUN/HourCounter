@@ -11,6 +11,7 @@ namespace Utils
     {
         static readonly long MINTOSEC  = 60;  //Multiplying MINTOSEC Dividing SecToMin
         static readonly long HOURTOSEC = 3600;
+        //TODO Maybe add optional parameter : hh[:mm[:ss]]
         public static Time StringToTimeHHMMSS (string time)
         {
             String[] timeArray = time.Split(':');
@@ -22,7 +23,7 @@ namespace Utils
 
                 timeSeconds += ConvertStringToLongSafe (timeArray[0]) * HOURTOSEC;
                 timeSeconds += ConvertStringToLongSafe (timeArray[1]) * MINTOSEC;
-                timeSeconds += ConvertStringToLongSafe (timeArray[2]); //TODO Maybe sec remove
+                timeSeconds += ConvertStringToLongSafe (timeArray[2]); 
             }
             catch (InvalidOperationException exc)
             {
@@ -65,7 +66,7 @@ namespace Utils
                     throw new InvalidOperationException ("Not contains 1 :");
 
                 timeSeconds += ConvertStringToLongSafe (timeArray[0]) * MINTOSEC;
-                timeSeconds += ConvertStringToLongSafe (timeArray[1]); //TODO Maybe sec remove
+                timeSeconds += ConvertStringToLongSafe (timeArray[1]);
             }
             catch (InvalidOperationException exc)
             {
@@ -74,6 +75,7 @@ namespace Utils
 
             return new Time (timeSeconds);
         }
+        //TODO Maybe add optional parameter : mm[:ss]
         public static string TimeToStringMMSS (Time time)
         {
             long timeInSeconds = time.Seconds;

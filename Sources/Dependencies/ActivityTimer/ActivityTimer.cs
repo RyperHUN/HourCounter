@@ -317,11 +317,11 @@ namespace ActivityTimer
 
             Pomod_TimerWork                  = new TimerLogic ();
             Pomod_TimerWork.TimeChangedEvent += Pomod_ChangedWorkTime;
-            Pomod_TimerWork.TimerEndedEvent  += Pomod_EndedWorkTime;
+            Pomod_TimerWork.TimerEndedEvent  += () => Pomod_TimerEnded(Pomod_Status.Rest);
 
             Pomod_TimerRest                  = new TimerLogic ();
             Pomod_TimerRest.TimeChangedEvent += Pomod_ChangedRestTime;
-            Pomod_TimerRest.TimerEndedEvent  += Pomod_EndedRestTime;
+            Pomod_TimerRest.TimerEndedEvent  += () => Pomod_TimerEnded(Pomod_Status.Work);
 
             Pomod_ChangeStatus (Pomod_Status.Idle);
         }
@@ -352,20 +352,12 @@ namespace ActivityTimer
                 Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerRest.RemainTime);
         }
 
-        private void Pomod_EndedWorkTime ()
+        private void Pomod_TimerEnded (Pomod_Status toChange)
         {
             Pomod_AddElapsedWorkTime ();
-            Pomod_OpenSetEndingDialog ();
-            Pomod_ChangeStatus (Pomod_Status.Rest);
+            Pomod_OpenSetEndingDialog ();   //Order is important, SetEnding uses old Status!
+            Pomod_ChangeStatus (toChange);
             Pomod_TimerRest.Start ();
-        }
-
-        private void Pomod_EndedRestTime ()
-        {
-            Pomod_AddElapsedRestTime ();
-            Pomod_OpenSetEndingDialog ();
-            Pomod_ChangeStatus (Pomod_Status.Work);
-            Pomod_TimerWork.Start ();
         }
 
         private void Pomod_OpenSetEndingDialog ()

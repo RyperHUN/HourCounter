@@ -18,9 +18,13 @@ namespace HourCounter
         public Activity _activityContainer;
         public HabitController _habitController;
         private static readonly string SerializedFileName = "data.bin";
+        private Timer automaticSaveTimer = new Timer();
 
         public Serializer ()
         {
+            automaticSaveTimer.Interval = 1800000; // == 30 min;
+            automaticSaveTimer.Tick +=  (object a, EventArgs e) => Save();
+            automaticSaveTimer.Start ();
         }
 
         public void Save ()

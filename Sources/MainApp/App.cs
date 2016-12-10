@@ -19,7 +19,7 @@ namespace HourCounter
         private HabitController _habitController;
 
         private Nullable<Size> _savedFormSize = null;
-
+        Serializer _serializer;
         public App ()
         {
             LoadEverything ();
@@ -50,7 +50,16 @@ namespace HourCounter
             if (_activityContainer.GetSubActivityList ().Count == 0) //Hide details if no activity added
                 HideDetailsAndTimers ();
 
-            _habitController.StartController (); 
+            _habitController.StartController ();
+
+            InitSerializer ();
+        }
+
+        private void InitSerializer ()
+        {
+            _serializer                    = new Serializer ();
+            _serializer._activityContainer = _activityContainer;
+            _serializer._habitController   = _habitController;
         }
 
         private void HideDetailsAndTimers ()
@@ -93,17 +102,14 @@ namespace HourCounter
         }
         private void Form1_FormClosing (object sender, FormClosingEventArgs e)
         {
-            //SaveEverything(_isAutomaticSave);
             SaveEverything ();
+            activityTimer.Save_Settings (); //This saves the last remembered time settings, 
+                                            //TODO maybe do an event for saving?!
         }
 
         private void SaveEverything ()
         {
-            Serializer serializer         = new Serializer ();
-            serializer._activityContainer = _activityContainer;
-            serializer._habitController   = _habitController;
-            activityTimer.Save_Settings (); //This saves the last remembered time settings, maybe do an event for saving?!
-            serializer.Save ();
+            _serializer.Save ();
         }
         private void LoadEverything ()
         {

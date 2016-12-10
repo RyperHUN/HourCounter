@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics; //Assert
 
 namespace Utils
 {
@@ -27,7 +28,9 @@ namespace Utils
         {
             get { return _initTime; }
             set
-            {///TODO if started throw error!
+            {
+                Debug.Assert(!timer.Enabled, "Timer already started");
+
                 _initTime      = value;
                 isValidTimeSet = true;
                 syncTimes ();
@@ -51,6 +54,7 @@ namespace Utils
 
         public void Start ()
         {
+            timer.Enabled = true;
             syncTimes ();
             timer.Start ();
         }

@@ -49,6 +49,21 @@ namespace Utils
             set { _timeInSeconds = value * 86400; }
         }
 
+        public long SecondsRemain
+        {
+            get { return Seconds % 60; }
+        }
+        
+        public long MinutesRemain
+        {
+            get { return Minutes % 60; }
+        }
+
+        public long HoursRemain
+        {
+            get { return Hours % 24; }
+        }
+
         //Serialization
         public void GetObjectData (SerializationInfo info, StreamingContext context)
         {

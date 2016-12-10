@@ -37,13 +37,9 @@ namespace DetailedView
         {
             lActivityName.Text = _selectedActivity.Name;
 
-            long minutesSpentOnActivity = _selectedActivity.Counter;
+            Time time = _selectedActivity.Counter;
 
-            long hours   = minutesSpentOnActivity / 60;
-            minutesSpentOnActivity %= 60;
-            long minutes = minutesSpentOnActivity;
-
-            string timeWithActivityString = hours + "h " + minutes + "m";
+            string timeWithActivityString = time.Hours + "h " + time.MinutesRemain + "m " + time.SecondsRemain + "s";
             lTimeSpentOnActivity.Text = timeWithActivityString;
             this.Visible = true;
         }

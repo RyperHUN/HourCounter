@@ -26,12 +26,12 @@ namespace HourCounter
         private bool _isHabit = false;
         public bool IsHabit { get { return _isHabit; } private set { } }
 
-        private long _minutesSpentOnActivity;
+        private Time _spentOnActivity;
         public void GetObjectData (SerializationInfo info, StreamingContext context)
         {
             info.AddValue ("0", _name);
             info.AddValue ("1", _isHabit);
-            info.AddValue ("2", _minutesSpentOnActivity);
+            info.AddValue ("UpdatedTime323", _spentOnActivity);
             info.AddValue ("3", _subActivities);
             info.AddValue ("HabitContainer191923", _habitContainer);
             info.AddValue ("_isHabit1281263", _isHabit);
@@ -40,7 +40,6 @@ namespace HourCounter
         {
             _name    = info.GetString ("0");
             _isHabit = info.GetBoolean ("1");
-            _minutesSpentOnActivity = (long)info.GetValue ("2", typeof(long));
             _subActivities = (SortedList<string, Activity>)info.GetValue ("3", typeof (SortedList<string, Activity>));
             try
             { //New attributes can be added here <- If they are not exist EXCEPTION
@@ -68,19 +67,37 @@ namespace HourCounter
                     _isHabit = false;
                 }
             }
+            bool loadedTime = false;
+            try
+            {
+                _spentOnActivity = (Time)info.GetValue ("UpdatedTime323", typeof(Time));  //Newer time version
+                loadedTime = true;
+            }
+            catch (SerializationException /*exception*/){/*nop*/}
+            try
+            {
+                _spentOnActivity = new Time (TimeConverter.ConvertMinToSec((long)info.GetValue ("2", typeof(long)))); // Old version compatibility
+                loadedTime = true;
+            }
+            catch (SerializationException /*exception*/)
+            {
+                if (!loadedTime) //If full file load was unsucessful
+                    throw;
+            }
+            
         }
     //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
-        public long Counter
+        public Time Counter
         {
             get
             {
-                long sumMinutesSpent = _minutesSpentOnActivity;
+                Time sumSpent = _spentOnActivity;
                 foreach (var de in _subActivities)
                 {
                     Activity ac = (Activity)de.Value;
-                    sumMinutesSpent += ac.Counter;
+                    sumSpent = new Time(sumSpent.Seconds + ac.Counter.Seconds);
                 }
-                return sumMinutesSpent;
+                return sumSpent;
             }
             private set {; }
         } // Only can be viewed
@@ -88,12 +105,12 @@ namespace HourCounter
         public Activity(String name)
         {
             _name = name;
-            _minutesSpentOnActivity = 0;
+            _spentOnActivity = new Time(0);
         }
         public Activity (String name,long minutesSpentOnActivity)
         {
             _name = name;
-            _minutesSpentOnActivity = minutesSpentOnActivity;
+            _spentOnActivity = new Time(TimeConverter.ConvertMinToSec(minutesSpentOnActivity));
         }
 
         // Adds subactivity to the activity list 
@@ -130,7 +147,7 @@ namespace HourCounter
 
         public string getFormatedStatus()
         {
-            return _name + "    " + (Counter / 60) + "h";
+            return _name + "    " + Counter.Hours + "h";
         }
         public static string removeFormat (string formated)
         {
@@ -218,7 +235,7 @@ namespace HourCounter
         }
         public void AddTime (Time time)
         {
-            _minutesSpentOnActivity += time.Minutes;
+            _spentOnActivity = new Time(_spentOnActivity.Seconds + time.Seconds);
             updateAllViews ();
         }
         public Time GetHabitTime ()

@@ -355,16 +355,16 @@ namespace ActivityTimer
         private void Pomod_EndedWorkTime ()
         {
             Pomod_AddElapsedWorkTime ();
-            Pomod_ChangeStatus (Pomod_Status.Rest);
             Pomod_OpenSetEndingDialog ();
+            Pomod_ChangeStatus (Pomod_Status.Rest);
             Pomod_TimerRest.Start ();
         }
 
         private void Pomod_EndedRestTime ()
         {
             Pomod_AddElapsedRestTime ();
-            Pomod_ChangeStatus (Pomod_Status.Work);
             Pomod_OpenSetEndingDialog ();
+            Pomod_ChangeStatus (Pomod_Status.Work);
             Pomod_TimerWork.Start ();
         }
 

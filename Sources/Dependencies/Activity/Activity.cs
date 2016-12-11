@@ -26,7 +26,7 @@ namespace HourCounter
         private bool _isHabit = false;
         public bool IsHabit { get { return _isHabit; } private set { } }
 
-        private bool _isDateSettingOn = false;
+        private static bool _isDateSettingOn = false;
 
         private Time _spentOnActivity;
         private SortedList<OnlyDate,Time> _dailyTime = new SortedList<OnlyDate, Time>();
@@ -119,7 +119,7 @@ namespace HourCounter
         ///TODO Test
         public Time CounterDate (OnlyDate date)
         {
-            Time sumSpent;
+            Time sumSpent = new Time(0);
             if (_dailyTime.TryGetValue (date,out sumSpent))
             {
                 foreach (var de in _subActivities)
@@ -131,16 +131,18 @@ namespace HourCounter
             }
             return new Time (0);
         }
-        private OnlyDate _savedDate = null;
+        private static OnlyDate _savedDate = null;
         public void notifySelectedDate ()
         {
             _isDateSettingOn = false;
+            updateAllViews ();
         }
 
         public void notifySelectedDate (DateTime date)
         {
             _isDateSettingOn = true;
             _savedDate = new OnlyDate (date);
+            updateAllViews ();
         }
 
         public Activity(String name)
@@ -280,7 +282,7 @@ namespace HourCounter
         public void AddTime (Time time)
         {
             _spentOnActivity = new Time(_spentOnActivity.Seconds + time.Seconds);
-            Time todayTime;
+            Time todayTime = new Time(0);
             OnlyDate today = new OnlyDate(DateTime.Now); ///TODO only add for today, or add for selected?
             if (_dailyTime.TryGetValue (today, out todayTime))
             {

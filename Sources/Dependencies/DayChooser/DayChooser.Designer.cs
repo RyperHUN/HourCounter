@@ -57,6 +57,7 @@
             this.radioToday.TabIndex = 1;
             this.radioToday.Text = "Today";
             this.radioToday.UseVisualStyleBackColor = true;
+            this.radioToday.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // radioYesterday
             // 
@@ -67,6 +68,7 @@
             this.radioYesterday.TabIndex = 2;
             this.radioYesterday.Text = "Yesterday";
             this.radioYesterday.UseVisualStyleBackColor = true;
+            this.radioYesterday.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // radioAllWeek
             // 
@@ -77,6 +79,7 @@
             this.radioAllWeek.TabIndex = 3;
             this.radioAllWeek.Text = "AllWeek";
             this.radioAllWeek.UseVisualStyleBackColor = true;
+            this.radioAllWeek.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // radioCustom
             // 
@@ -87,6 +90,7 @@
             this.radioCustom.TabIndex = 4;
             this.radioCustom.Text = "Custom";
             this.radioCustom.UseVisualStyleBackColor = true;
+            this.radioCustom.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // DayChooser
             // 

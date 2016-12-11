@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Utils
 {
-    public class OnlyDate
+    public class OnlyDate : IComparer<OnlyDate>
     {
         public int Year { get; private set; }
         public int Month { get; private set; }
@@ -23,7 +23,7 @@ namespace Utils
             return new OnlyDate (date.AddDays (days));            
         }
         //Returns 0 if identical, +num if lhs, -Num if rhs
-        public int compare (OnlyDate lhs, OnlyDate rhs)
+        public int Compare (OnlyDate lhs, OnlyDate rhs)
         {
             int year = lhs.Year   - rhs.Year;
             int month = lhs.Month - rhs.Month;

@@ -27,6 +27,7 @@ namespace HourCounter
         public bool IsHabit { get { return _isHabit; } private set { } }
 
         private Time _spentOnActivity;
+        private Dictionary<OnlyDate,long> dailyTime = new Dictionary<OnlyDate, long>();
         public void GetObjectData (SerializationInfo info, StreamingContext context)
         {
             info.AddValue ("0", _name);
@@ -101,6 +102,18 @@ namespace HourCounter
             }
             private set {; }
         } // Only can be viewed
+
+        /// TODO
+        public Time CounterDate (OnlyDate from, OnlyDate to)
+        {
+            Time sumSpent = _spentOnActivity;
+            foreach (var de in _subActivities)
+            {
+                Activity ac = (Activity)de.Value;
+                sumSpent = new Time(sumSpent.Seconds + ac.Counter.Seconds);
+            }
+            return sumSpent;
+        }
 
         public Activity(String name)
         {

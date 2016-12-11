@@ -32,6 +32,7 @@ namespace HourCounter
         {
             treeView.addActivityContainer (_activityContainer);
          
+            dayChooser.SetActivityContainer (_activityContainer);
 
             _activityContainer.addObserver (treeView);
             _activityContainer.addObserver (detailedView);

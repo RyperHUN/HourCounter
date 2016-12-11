@@ -26,6 +26,8 @@ namespace HourCounter
         private bool _isHabit = false;
         public bool IsHabit { get { return _isHabit; } private set { } }
 
+        private bool _isDateSettingOn = false;
+
         private Time _spentOnActivity;
         private SortedList<OnlyDate,Time> _dailyTime = new SortedList<OnlyDate, Time>();
         public void GetObjectData (SerializationInfo info, StreamingContext context)
@@ -129,6 +131,17 @@ namespace HourCounter
             }
             return new Time (0);
         }
+        private OnlyDate _savedDate = null;
+        public void notifySelectedDate ()
+        {
+            _isDateSettingOn = false;
+        }
+
+        public void notifySelectedDate (DateTime date)
+        {
+            _isDateSettingOn = true;
+            _savedDate = new OnlyDate (date);
+        }
 
         public Activity(String name)
         {
@@ -175,7 +188,10 @@ namespace HourCounter
 
         public string getFormatedStatus()
         {
-            return _name + "    " + Counter.Hours + "h";
+            if (_isDateSettingOn)
+                return _name + "    " + CounterDate (_savedDate).Hours + "h";
+            else
+                return _name + "    " + Counter.Hours + "h";
         }
         public static string removeFormat (string formated)
         {

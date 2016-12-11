@@ -46,6 +46,7 @@
             this.radioAll.TabStop = true;
             this.radioAll.Text = "All";
             this.radioAll.UseVisualStyleBackColor = true;
+            this.radioAll.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // radioToday
             // 

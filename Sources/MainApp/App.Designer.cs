@@ -45,7 +45,7 @@
             this.treeView = new TreeListView.TreeListView();
             this.activityTimer = new ActivityTimer.ActivityTimer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dayChooser1 = new DayChooser.DayChooser();
+            this.dayChooser = new DayChooser.DayChooser();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -223,17 +223,17 @@
             // 
             // dayChooser1
             // 
-            this.dayChooser1.Location = new System.Drawing.Point(-1, 440);
-            this.dayChooser1.Name = "dayChooser1";
-            this.dayChooser1.Size = new System.Drawing.Size(548, 46);
-            this.dayChooser1.TabIndex = 1;
+            this.dayChooser.Location = new System.Drawing.Point(-1, 440);
+            this.dayChooser.Name = "dayChooser1";
+            this.dayChooser.Size = new System.Drawing.Size(548, 46);
+            this.dayChooser.TabIndex = 1;
             // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(547, 481);
-            this.Controls.Add(this.dayChooser1);
+            this.Controls.Add(this.dayChooser);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -277,7 +277,7 @@
         private DetailedView.DetailedView detailedView;
         private TreeListView.TreeListView treeView;
         private System.Windows.Forms.ToolStripMenuItem showHabitAdderToolStripMenuItem;
-        private DayChooser.DayChooser dayChooser1;
+        private DayChooser.DayChooser dayChooser;
         private System.Windows.Forms.Panel panel1;
     }
 }

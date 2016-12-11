@@ -7,14 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HourCounter;
 
 namespace DayChooser
 {
     public partial class DayChooser : UserControl
     {
+        Activity _activityContainer;
         public DayChooser ()
         {
             InitializeComponent ();
+        }
+
+        public void SetActivityContainer (Activity container) { _activityContainer = container; }
+
+        private void CheckedChanged (object sender, EventArgs e)
+        {
+            if (radioAll.Checked)
+                _activityContainer.notifySelectedDate ();
+            else if (radioToday.Checked)
+                _activityContainer.notifySelectedDate (DateTime.Now);
         }
     }
 }

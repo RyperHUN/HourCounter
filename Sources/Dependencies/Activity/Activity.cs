@@ -310,16 +310,9 @@ namespace HourCounter
         public void AddTime (Time time)
         {
             _spentOnActivity = new Time(_spentOnActivity.Seconds + time.Seconds);
-            Time todayTime = new Time(0);
+            
             OnlyDate today = new OnlyDate(DateTime.Now); ///TODO only add for today, or add for selected?
-            if (_dailyTime.TryGetValue (today, out todayTime))
-            {
-                _dailyTime.Add(today, new Time (todayTime.Seconds + time.Seconds));
-            }
-            else
-            {
-                _dailyTime.Add(today, new Time (time.Seconds));
-            }
+            _dailyTime.AddForExisting (today, time);
 
             updateAllViews ();
         }

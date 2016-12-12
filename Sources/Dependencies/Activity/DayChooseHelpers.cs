@@ -9,6 +9,21 @@ namespace ActivityHelper
 {
     internal static class SortedListExtensions
     {
+        /// <summary>
+        /// If Key exists, it replaces it with parameter + original
+        /// </summary>
+        /// <param name="sortedList"></param>
+        /// <param name="keyToFind"></param>
+        /// <param name="value"></param>
+        public static void AddForExisting (this SortedList<OnlyDate, Time> sortedList, OnlyDate keyToFind, Time value)
+        {
+            Time existing = new Time (0);
+            if (sortedList.TryGetValue (keyToFind, out existing))
+            {
+                sortedList.Remove (keyToFind);
+            }
+            sortedList.Add (keyToFind, new Time (value.Seconds + existing.Seconds));
+        }
         public static int BinarySearch<TKey, TValue>(this SortedList<TKey, TValue> sortedList, TKey keyToFind, IComparer<TKey> comparer = null)
         {
             // need to create an array because SortedList.keys is a private array

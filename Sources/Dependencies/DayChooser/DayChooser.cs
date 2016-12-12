@@ -17,10 +17,12 @@ namespace DayChooser
     {
         Activity _activityContainer;
         private readonly String[] DateFormatString = { "yyyy.MM.dd", "yyyy.M.d", "yyyy.MM.d", "yyyy.M.dd" };
+        Color originalTextBackground;
         public DayChooser ()
         {
             InitializeComponent ();
             radioCustom.Enabled = true;
+            originalTextBackground = textFrom.BackColor;
             textFrom.Text = DateTime.Now.ToString(DateFormatString[0]);
             textTo.Text   = textFrom.Text;
         }
@@ -44,11 +46,21 @@ namespace DayChooser
             DateTime from;
             if (DateTime.TryParseExact (textFrom.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out from) )
             {
-                if (DateTime.TryParseExact (textTo.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out from) )
-                {
-                    radioCustom.Enabled = true;
-                    return;
-                }
+                textFrom.BackColor = originalTextBackground;
+            }
+            else
+            {
+                textFrom.BackColor = Color.LightPink;
+            }
+            if (DateTime.TryParseExact (textTo.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out from) )
+            {
+                radioCustom.Enabled = true;
+                textTo.BackColor    = originalTextBackground;
+                return;
+            }
+            else
+            {
+                textTo.BackColor = Color.LightPink;
             }
             radioCustom.Enabled = false;
         }

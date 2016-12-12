@@ -102,7 +102,7 @@ namespace HourCounter
         private void SaveEverythingToDisk (bool allowedToSave)
         {
             if (allowedToSave)
-            {
+            { //TODO add backup file, after replace them
                 IFormatter formatter = new BinaryFormatter();
                 Stream stream = new FileStream (SerializedFileName,
                                                 FileMode.Create,
@@ -122,6 +122,7 @@ namespace HourCounter
                                                 FileMode.Open,
                                                 FileAccess.Read,
                                                 FileShare.Read);
+                stream.Position = 0;
                 Serializer ser = (Serializer)formatter.Deserialize (stream);
                 stream.Close ();
                 
@@ -129,7 +130,7 @@ namespace HourCounter
             }
             catch (SerializationException exc)
             {
-                Console.WriteLine (exc.ToString ());
+                MessageBox.Show (exc.ToString ());
                 return null;
             }
             catch (FileNotFoundException /*exc*/)

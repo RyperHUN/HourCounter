@@ -38,6 +38,7 @@ namespace HourCounter
             info.AddValue ("3", _subActivities);
             info.AddValue ("HabitContainer191923", _habitContainer);
             info.AddValue ("_isHabit1281263", _isHabit);
+            info.AddValue ("DailyTimeV1", _dailyTime);
         }
         protected Activity (SerializationInfo info, StreamingContext context)
         {
@@ -87,8 +88,19 @@ namespace HourCounter
                 if (!loadedTime) //If full file load was unsucessful
                     throw;
             }
-            _dailyTime.Add(new OnlyDate(DateTime.Now.AddDays(-1)), new Time(6000)); ///TODO Delete
-            _dailyTime.Add(new OnlyDate(DateTime.Now.AddDays(0)), new Time(16000));
+            try
+            {
+                _dailyTime = (SortedList<OnlyDate, Time>)info.GetValue ("DailyTimeV1", typeof (SortedList<OnlyDate, Time>));
+            }
+            catch (SerializationException exception)
+            {
+                string exceptionStr = exception.ToString ();
+                if (exceptionStr.Contains ("not found") && exceptionStr.Contains ("DailyTimeV1"))
+                {
+                    //Found which variable
+                    _dailyTime = new SortedList<OnlyDate, Time> ();
+                }
+            }
         }
     //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
         private Time Counter

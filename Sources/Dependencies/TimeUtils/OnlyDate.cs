@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Utils
 {
-    public class OnlyDate : IComparable<OnlyDate>, IComparer<OnlyDate>
+    [Serializable]
+    public class OnlyDate : IComparable<OnlyDate>, IComparer<OnlyDate>, ISerializable
     {
         public int Year { get; private set; }
         public int Month { get; private set; }
@@ -58,6 +60,19 @@ namespace Utils
             {
                 return year;
             }
+        }
+
+        protected OnlyDate (SerializationInfo info, StreamingContext context)
+        {
+            Year = info.GetInt32 ("_year");
+            Month = info.GetInt32 ("_month");
+            Day = info.GetInt32 ("_day");
+        }
+        public void GetObjectData (SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue ("_year", Year);
+            info.AddValue ("_month", Month);
+            info.AddValue ("_day", Day);
         }
     }
 }

@@ -33,6 +33,9 @@
             this.radioYesterday = new System.Windows.Forms.RadioButton();
             this.radioAllWeek = new System.Windows.Forms.RadioButton();
             this.radioCustom = new System.Windows.Forms.RadioButton();
+            this.textFrom = new System.Windows.Forms.TextBox();
+            this.textTo = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // radioAll
@@ -92,17 +95,46 @@
             this.radioCustom.UseVisualStyleBackColor = true;
             this.radioCustom.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
+            // textFrom
+            // 
+            this.textFrom.Location = new System.Drawing.Point(332, 9);
+            this.textFrom.Name = "textFrom";
+            this.textFrom.Size = new System.Drawing.Size(76, 20);
+            this.textFrom.TabIndex = 5;
+            this.textFrom.TextChanged += new System.EventHandler(this.IntervalTextChanged);
+            // 
+            // textTo
+            // 
+            this.textTo.Location = new System.Drawing.Point(424, 9);
+            this.textTo.Name = "textTo";
+            this.textTo.Size = new System.Drawing.Size(76, 20);
+            this.textTo.TabIndex = 6;
+            this.textTo.TextChanged += new System.EventHandler(this.IntervalTextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(410, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(14, 18);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "-";
+            // 
             // DayChooser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textTo);
+            this.Controls.Add(this.textFrom);
             this.Controls.Add(this.radioCustom);
             this.Controls.Add(this.radioAllWeek);
             this.Controls.Add(this.radioYesterday);
             this.Controls.Add(this.radioToday);
             this.Controls.Add(this.radioAll);
+            this.Controls.Add(this.label1);
             this.Name = "DayChooser";
-            this.Size = new System.Drawing.Size(356, 39);
+            this.Size = new System.Drawing.Size(516, 37);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,5 +147,8 @@
         private System.Windows.Forms.RadioButton radioYesterday;
         private System.Windows.Forms.RadioButton radioAllWeek;
         private System.Windows.Forms.RadioButton radioCustom;
+        private System.Windows.Forms.TextBox textFrom;
+        private System.Windows.Forms.TextBox textTo;
+        private System.Windows.Forms.Label label1;
     }
 }

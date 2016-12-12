@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -107,8 +108,7 @@ namespace HourCounter
         ///TODO Test
         private Time CounterDate (OnlyDate from, OnlyDate to)
         {
-            if (to == null)
-                return CounterDate (from);
+            Debug.Assert (from != null && to != null);
 
             Time sumSpent = new Time(0);
             var keysBetweenDates = _dailyTime.GetKeyRangeBetween (from, to, from);
@@ -127,6 +127,8 @@ namespace HourCounter
         }
         private Time CounterDate (OnlyDate date)
         {
+            Debug.Assert (date != null);
+
             Time sumSpent = new Time(0);
             if (_dailyTime.TryGetValue (date,out sumSpent))
             {
@@ -138,6 +140,17 @@ namespace HourCounter
                 return sumSpent;
             }
             return new Time (0);
+        }
+
+        public Time GetTime ()
+        {
+            if(DayChooserHelper.IsDateSettingOn)
+                if (!DayChooserHelper.IsIntervalSearchOn)
+                    return CounterDate (DayChooserHelper.DateFrom);
+                else 
+                    return CounterDate (DayChooserHelper.DateFrom, DayChooserHelper.DateTo);
+
+            return Counter;
         }
         
         public void notifySelectedDate (OnlyDate from, OnlyDate to)
@@ -193,10 +206,7 @@ namespace HourCounter
 
         public string getFormatedStatus()
         {
-            if (DayChooserHelper.IsDateSettingOn)
-                return _name + "    " + CounterDate (DayChooserHelper.DateFrom, DayChooserHelper.DateTo).Hours + "h";
-            else
-                return _name + "    " + Counter.Hours + "h";
+            return _name + "    " + GetTime ().Hours + "h";
         }
         public static string removeFormat (string formated)
         {
@@ -325,100 +335,5 @@ namespace HourCounter
             _habitContainer.Remove (this);
             updateAllViews ();
         }
-    }
-
-    public static class SortedListExtensions
-    {
-        public static int BinarySearch<TKey, TValue>(this SortedList<TKey, TValue> sortedList, TKey keyToFind, IComparer<TKey> comparer = null)
-        {
-            // need to create an array because SortedList.keys is a private array
-            var keys = sortedList.Keys;
-            TKey[] keyArray = new TKey[keys.Count];
-            for (int i = 0; i < keyArray.Length; i++)
-                keyArray[i] = keys[i];
-
-            if(comparer == null) comparer = Comparer<TKey>.Default;
-            int index = Array.BinarySearch<TKey>(keyArray, keyToFind, comparer);
-            return index;
-        }
-
-        public static IEnumerable<TKey> GetKeyRangeBetween<TKey, TValue>(this SortedList<TKey, TValue> sortedList, TKey low, TKey high, IComparer<TKey> comparer = null)
-        {
-            int lowIndex = sortedList.BinarySearch(low, comparer);
-            if (lowIndex < 0)
-            {
-                // list doesn't contain the key, find nearest behind
-                // If not found, BinarySearch returns the complement of the index
-                lowIndex = ~lowIndex;
-            }
-
-            int highIndex = sortedList.BinarySearch(high, comparer);
-            if (highIndex < 0)
-            {
-                // list doesn't contain the key, find nearest before
-                // If not found, BinarySearch returns the complement of the index
-                highIndex = ~highIndex - 1;
-            }
-
-            var keys = sortedList.Keys;
-            for (int i = lowIndex; i <= highIndex; i++)
-            {
-                yield return keys[i];
-            }
-        }
-    }
-
-    public static class DayChooserHelper
-    {
-        private static bool _isDateSettingOn = false;
-        static public bool IsDateSettingOn {
-                                                get { return _isDateSettingOn; }
-                                                set
-                                                {
-                                                     if (value == false)
-                                                    {
-                                                        _isIntervalSearchOn  = false;
-                                                        _savedDateTo         = null;
-                                                        _savedDateFrom       = null;
-                                                    }
-                                                    _isDateSettingOn = value;
-                                                }
-                                            }
-        private static bool _isIntervalSearchOn = false;
-        static public bool IsIntervalSearchOn {
-                                                get { return _isIntervalSearchOn; }
-                                                set
-                                                {
-                                                     if (value == false)
-                                                        _savedDateTo = null;
-                                                    _isIntervalSearchOn = value;
-                                                }
-                                            }
-        private static OnlyDate _savedDateFrom = null;
-        static public OnlyDate DateFrom {
-                                                    get { return _savedDateFrom; }
-                                                    set {
-                                                            if ( value == null ) {
-                                                                _isDateSettingOn     = false;
-                                                                _isIntervalSearchOn  = false;
-                                                                _savedDateTo         = null;
-                                                            }
-                                                            else
-                                                            {
-                                                                _isDateSettingOn     = true;
-                                                            }
-                                                            _savedDateFrom = value;
-                                                        }
-                                                }
-        private static OnlyDate _savedDateTo;
-        static public OnlyDate DateTo {
-                                             get {  return _savedDateTo; }
-                                             set {  if ( value == null )
-                                                        _isIntervalSearchOn  = false;
-                                                    else if (_isDateSettingOn)
-                                                        _isIntervalSearchOn = true;
-                                                    _savedDateTo = value;
-                                                 }
-                                           }
     }
 }

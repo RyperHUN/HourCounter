@@ -37,7 +37,7 @@ namespace DetailedView
         {
             lActivityName.Text = _selectedActivity.Name;
 
-            Time time = _selectedActivity.Counter;
+            Time time = _selectedActivity.GetTime ();
 
             string timeWithActivityString = time.Hours + "h " + time.MinutesRemain + "m " + time.SecondsRemain + "s";
             lTimeSpentOnActivity.Text = timeWithActivityString;

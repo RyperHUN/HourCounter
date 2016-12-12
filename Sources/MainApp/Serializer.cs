@@ -9,6 +9,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Utils;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace HourCounter
 {
@@ -18,7 +19,7 @@ namespace HourCounter
         public Activity _activityContainer;
         public HabitController _habitController;
         private static readonly string SerializedFileName = "data.bin";
-        private Timer automaticSaveTimer = new Timer();
+        private System.Windows.Forms.Timer automaticSaveTimer = new System.Windows.Forms.Timer();
 
         public Serializer ()
         {
@@ -30,8 +31,10 @@ namespace HourCounter
 
         public void Save ()
         {
-            SaveEverythingToDisk (true);
-            SaveEverythingToGDrive (Settings.Get.General.isGDriveSave);
+            Thread background = new Thread ( () => {SaveEverythingToDisk (true);
+                                                    SaveEverythingToGDrive (Settings.Get.General.isGDriveSave); });
+            background.IsBackground = true;
+            background.Start ();
         }
 
         public static Serializer Load ()
@@ -102,8 +105,7 @@ namespace HourCounter
         private void SaveEverythingToDisk (bool allowedToSave)
         {
             if (allowedToSave)
-            { //TODO add backup file, after replace them
-
+            { 
                 IFormatter formatter = new BinaryFormatter();
                 string tempFileName = SerializedFileName + "temp.bin";
                 using (Stream stream = new FileStream (tempFileName,

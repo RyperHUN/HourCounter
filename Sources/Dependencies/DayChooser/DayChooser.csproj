@@ -60,6 +60,10 @@
       <Project>{7bea3eff-5a8d-48b9-af1e-eb2b7ead1735}</Project>
       <Name>Activity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TimeUtils\TimeUtils.csproj">
+      <Project>{8ecfc65b-58ed-476a-928e-d65179636fed}</Project>
+      <Name>TimeUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -139,25 +139,11 @@ namespace HourCounter
             }
             return new Time (0);
         }
-        public void notifySelectedDate ()
-        {
-            DayChooserHelper.IsDateSettingOn = false;
-            updateAllViews ();
-        }
-
-        public void notifySelectedDate (DateTime date)
-        {
-            DayChooserHelper.IsDateSettingOn = true;
-            DayChooserHelper.DateFrom = new OnlyDate (date);
-
-            updateAllViews ();
-        }
         
-        public void notifySelectedDate (DateTime from, DateTime to)
+        public void notifySelectedDate (OnlyDate from, OnlyDate to)
         {
-            DayChooserHelper.IsDateSettingOn = true;
-            DayChooserHelper.DateFrom = new OnlyDate (from);
-            DayChooserHelper.DateTo   = new OnlyDate (to);
+            DayChooserHelper.DateFrom = from; //Handles null dates too, and sets bool variables
+            DayChooserHelper.DateTo   = to;
 
             updateAllViews ();
         }
@@ -392,7 +378,7 @@ namespace HourCounter
                                                      if (value == false)
                                                     {
                                                         _isIntervalSearchOn  = false;
-                                                        _savedDateto         = null;
+                                                        _savedDateTo         = null;
                                                         _savedDateFrom       = null;
                                                     }
                                                     _isDateSettingOn = value;
@@ -404,7 +390,7 @@ namespace HourCounter
                                                 set
                                                 {
                                                      if (value == false)
-                                                        _savedDateto = null;
+                                                        _savedDateTo = null;
                                                     _isIntervalSearchOn = value;
                                                 }
                                             }
@@ -415,17 +401,23 @@ namespace HourCounter
                                                             if ( value == null ) {
                                                                 _isDateSettingOn     = false;
                                                                 _isIntervalSearchOn  = false;
-                                                                _savedDateto         = null;
+                                                                _savedDateTo         = null;
+                                                            }
+                                                            else
+                                                            {
+                                                                _isDateSettingOn     = true;
                                                             }
                                                             _savedDateFrom = value;
                                                         }
                                                 }
-        private static OnlyDate _savedDateto;
+        private static OnlyDate _savedDateTo;
         static public OnlyDate DateTo {
-                                             get {  return _savedDateto; }
+                                             get {  return _savedDateTo; }
                                              set {  if ( value == null )
                                                         _isIntervalSearchOn  = false;
-                                                    _savedDateFrom = value;
+                                                    else if (_isDateSettingOn)
+                                                        _isIntervalSearchOn = true;
+                                                    _savedDateTo = value;
                                                  }
                                            }
     }

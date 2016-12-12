@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity.cs" />
+    <Compile Include="DayChooseHelpers.cs" />
     <Compile Include="IDoc.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ActivityHelper;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -90,7 +91,7 @@ namespace HourCounter
             _dailyTime.Add(new OnlyDate(DateTime.Now.AddDays(0)), new Time(16000));
         }
     //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
-        public Time Counter
+        private Time Counter
         {
             get
             {
@@ -102,7 +103,7 @@ namespace HourCounter
                 }
                 return sumSpent;
             }
-            private set {; }
+            //private set {; }
         } // Only can be viewed
 
         ///TODO Test

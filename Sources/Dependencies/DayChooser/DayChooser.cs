@@ -27,6 +27,9 @@ namespace DayChooser
                 _activityContainer.notifySelectedDate ();
             else if (radioToday.Checked)
                 _activityContainer.notifySelectedDate (DateTime.Now);
+            else if (radioYesterday.Checked)
+                _activityContainer.notifySelectedDate (DateTime.Now.AddDays (-1));
+            //else if (radioAllWeek)
         }
     }
 }

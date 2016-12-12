@@ -117,7 +117,14 @@ namespace HourCounter
         //    return sumSpent;
         //}
         ///TODO Test
-        public Time CounterDate (OnlyDate date)
+        private Time CounterDate (OnlyDate from, OnlyDate to)
+        {
+            if (to == null)
+                return CounterDate (from);
+
+            throw new NotImplementedException ();
+        }
+        private Time CounterDate (OnlyDate date)
         {
             Time sumSpent = new Time(0);
             if (_dailyTime.TryGetValue (date,out sumSpent))
@@ -131,7 +138,8 @@ namespace HourCounter
             }
             return new Time (0);
         }
-        private static OnlyDate _savedDate = null;
+        private static OnlyDate _savedDateFrom = null;
+        private static OnlyDate _savedDateTo   = null;
         public void notifySelectedDate ()
         {
             _isDateSettingOn = false;
@@ -141,7 +149,17 @@ namespace HourCounter
         public void notifySelectedDate (DateTime date)
         {
             _isDateSettingOn = true;
-            _savedDate = new OnlyDate (date);
+            _savedDateFrom = new OnlyDate (date);
+
+            updateAllViews ();
+        }
+        
+        public void notifySelectedDate (DateTime from, DateTime to)
+        {
+            _isDateSettingOn = true;
+            _savedDateFrom = new OnlyDate (from);
+            _savedDateTo   = new OnlyDate (to);
+
             updateAllViews ();
         }
 
@@ -191,7 +209,10 @@ namespace HourCounter
         public string getFormatedStatus()
         {
             if (_isDateSettingOn)
-                return _name + "    " + CounterDate (_savedDate).Hours + "h";
+                if (_savedDateTo == null)
+                    return _name + "    " + CounterDate (_savedDateFrom).Hours + "h";
+                else
+                    throw new NotImplementedException ();
             else
                 return _name + "    " + Counter.Hours + "h";
         }

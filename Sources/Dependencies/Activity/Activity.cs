@@ -87,7 +87,8 @@ namespace HourCounter
                 if (!loadedTime) //If full file load was unsucessful
                     throw;
             }
-            
+            _dailyTime.Add(new OnlyDate(DateTime.Now.AddDays(-1)), new Time(6000)); ///TODO Torolni
+            _dailyTime.Add(new OnlyDate(DateTime.Now.AddDays(0)), new Time(16000));
         }
     //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
         public Time Counter
@@ -105,24 +106,26 @@ namespace HourCounter
             private set {; }
         } // Only can be viewed
 
-        /// TODO
-        //public Time CounterDate (OnlyDate from, OnlyDate to)
-        //{
-        //    Time sumSpent = _spentOnActivity;
-        //    foreach (var de in _subActivities)
-        //    {
-        //        Activity ac = (Activity)de.Value;
-        //        sumSpent = new Time(sumSpent.Seconds + ac.Counter.Seconds);
-        //    }
-        //    return sumSpent;
-        //}
         ///TODO Test
         private Time CounterDate (OnlyDate from, OnlyDate to)
         {
             if (to == null)
                 return CounterDate (from);
 
-            throw new NotImplementedException ();
+            Time sumSpent = new Time(0);
+            var keysBetweenDates = _dailyTime.GetKeyRangeBetween (from, to, from);
+            foreach (var key in keysBetweenDates)
+            {
+                Time spentAtKeyDate = _dailyTime[key];
+                sumSpent = new Time (sumSpent.Seconds + spentAtKeyDate.Seconds);
+            }
+            foreach (var derivedActivity in _subActivities)
+            {
+                Activity ac = (Activity)derivedActivity.Value;
+                sumSpent = new Time (sumSpent.Seconds + ac.CounterDate (from, to).Seconds);
+            }
+
+            return sumSpent;
         }
         private Time CounterDate (OnlyDate date)
         {
@@ -143,6 +146,8 @@ namespace HourCounter
         public void notifySelectedDate ()
         {
             _isDateSettingOn = false;
+            _savedDateTo   = null;
+            _savedDateFrom = null;
             updateAllViews ();
         }
 
@@ -150,6 +155,7 @@ namespace HourCounter
         {
             _isDateSettingOn = true;
             _savedDateFrom = new OnlyDate (date);
+            _savedDateTo   = null;
 
             updateAllViews ();
         }
@@ -212,7 +218,7 @@ namespace HourCounter
                 if (_savedDateTo == null)
                     return _name + "    " + CounterDate (_savedDateFrom).Hours + "h";
                 else
-                    throw new NotImplementedException ();
+                    return _name + "    " + CounterDate (_savedDateFrom, _savedDateTo).Hours + "h";
             else
                 return _name + "    " + Counter.Hours + "h";
         }
@@ -344,4 +350,45 @@ namespace HourCounter
             updateAllViews ();
         }
     }
+
+    public static class SortedListExtensions
+{
+    public static int BinarySearch<TKey, TValue>(this SortedList<TKey, TValue> sortedList, TKey keyToFind, IComparer<TKey> comparer = null)
+    {
+        // need to create an array because SortedList.keys is a private array
+        var keys = sortedList.Keys;
+        TKey[] keyArray = new TKey[keys.Count];
+        for (int i = 0; i < keyArray.Length; i++)
+            keyArray[i] = keys[i];
+
+        if(comparer == null) comparer = Comparer<TKey>.Default;
+        int index = Array.BinarySearch<TKey>(keyArray, keyToFind, comparer);
+        return index;
+    }
+
+    public static IEnumerable<TKey> GetKeyRangeBetween<TKey, TValue>(this SortedList<TKey, TValue> sortedList, TKey low, TKey high, IComparer<TKey> comparer = null)
+    {
+        int lowIndex = sortedList.BinarySearch(low, comparer);
+        if (lowIndex < 0)
+        {
+            // list doesn't contain the key, find nearest behind
+            // If not found, BinarySearch returns the complement of the index
+            lowIndex = ~lowIndex;
+        }
+
+        int highIndex = sortedList.BinarySearch(high, comparer);
+        if (highIndex < 0)
+        {
+            // list doesn't contain the key, find nearest before
+            // If not found, BinarySearch returns the complement of the index
+            highIndex = ~highIndex - 1;
+        }
+
+        var keys = sortedList.Keys;
+        for (int i = lowIndex; i <= highIndex; i++)
+        {
+            yield return keys[i];
+        }
+    }
+}
 }

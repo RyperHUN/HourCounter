@@ -26,8 +26,6 @@ namespace HourCounter
         private bool _isHabit = false;
         public bool IsHabit { get { return _isHabit; } private set { } }
 
-        private static bool _isDateSettingOn = false;
-
         private Time _spentOnActivity;
         private SortedList<OnlyDate,Time> _dailyTime = new SortedList<OnlyDate, Time>();
         public void GetObjectData (SerializationInfo info, StreamingContext context)
@@ -141,30 +139,25 @@ namespace HourCounter
             }
             return new Time (0);
         }
-        private static OnlyDate _savedDateFrom = null;
-        private static OnlyDate _savedDateTo   = null;
         public void notifySelectedDate ()
         {
-            _isDateSettingOn = false;
-            _savedDateTo   = null;
-            _savedDateFrom = null;
+            DayChooserHelper.IsDateSettingOn = false;
             updateAllViews ();
         }
 
         public void notifySelectedDate (DateTime date)
         {
-            _isDateSettingOn = true;
-            _savedDateFrom = new OnlyDate (date);
-            _savedDateTo   = null;
+            DayChooserHelper.IsDateSettingOn = true;
+            DayChooserHelper.DateFrom = new OnlyDate (date);
 
             updateAllViews ();
         }
         
         public void notifySelectedDate (DateTime from, DateTime to)
         {
-            _isDateSettingOn = true;
-            _savedDateFrom = new OnlyDate (from);
-            _savedDateTo   = new OnlyDate (to);
+            DayChooserHelper.IsDateSettingOn = true;
+            DayChooserHelper.DateFrom = new OnlyDate (from);
+            DayChooserHelper.DateTo   = new OnlyDate (to);
 
             updateAllViews ();
         }
@@ -214,8 +207,8 @@ namespace HourCounter
 
         public string getFormatedStatus()
         {
-            if (_isDateSettingOn)
-                return _name + "    " + CounterDate (_savedDateFrom, _savedDateTo).Hours + "h";
+            if (DayChooserHelper.IsDateSettingOn)
+                return _name + "    " + CounterDate (DayChooserHelper.DateFrom, DayChooserHelper.DateTo).Hours + "h";
             else
                 return _name + "    " + Counter.Hours + "h";
         }
@@ -391,6 +384,49 @@ namespace HourCounter
 
     public static class DayChooserHelper
     {
-
+        private static bool _isDateSettingOn = false;
+        static public bool IsDateSettingOn {
+                                                get { return _isDateSettingOn; }
+                                                set
+                                                {
+                                                     if (value == false)
+                                                    {
+                                                        _isIntervalSearchOn  = false;
+                                                        _savedDateto         = null;
+                                                        _savedDateFrom       = null;
+                                                    }
+                                                    _isDateSettingOn = value;
+                                                }
+                                            }
+        private static bool _isIntervalSearchOn = false;
+        static public bool IsIntervalSearchOn {
+                                                get { return _isIntervalSearchOn; }
+                                                set
+                                                {
+                                                     if (value == false)
+                                                        _savedDateto = null;
+                                                    _isIntervalSearchOn = value;
+                                                }
+                                            }
+        private static OnlyDate _savedDateFrom = null;
+        static public OnlyDate DateFrom {
+                                                    get { return _savedDateFrom; }
+                                                    set {
+                                                            if ( value == null ) {
+                                                                _isDateSettingOn     = false;
+                                                                _isIntervalSearchOn  = false;
+                                                                _savedDateto         = null;
+                                                            }
+                                                            _savedDateFrom = value;
+                                                        }
+                                                }
+        private static OnlyDate _savedDateto;
+        static public OnlyDate DateTo {
+                                             get {  return _savedDateto; }
+                                             set {  if ( value == null )
+                                                        _isIntervalSearchOn  = false;
+                                                    _savedDateFrom = value;
+                                                 }
+                                           }
     }
 }

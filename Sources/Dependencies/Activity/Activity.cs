@@ -101,6 +101,8 @@ namespace HourCounter
                     _dailyTime = new SortedList<OnlyDate, Time> ();
                 }
             }
+            //_dailyTime.Add (new OnlyDate (DateTime.Now.AddDays (-1)), new Time (6000)); ///TODO Delete
+            //_dailyTime.Add (new OnlyDate (DateTime.Now.AddDays (0)), new Time (16000));
         }
     //Vegigmegy az osszes subActivityn es hozzáadja az ő idejüket a Counterhez, és ezt fogja visszaadni mint össz idő.
         private Time Counter

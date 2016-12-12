@@ -103,13 +103,25 @@ namespace HourCounter
         {
             if (allowedToSave)
             { //TODO add backup file, after replace them
+
                 IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream (SerializedFileName,
-                                                FileMode.Create,
-                                                FileAccess.Write,
-                                                FileShare.None);
-                formatter.Serialize (stream, this);
-                stream.Close ();
+                string tempFileName = SerializedFileName + "temp.bin";
+                using (Stream stream = new FileStream (tempFileName,
+                                                        FileMode.Create,
+                                                        FileAccess.Write,
+                                                        FileShare.None))
+                {
+                    formatter.Serialize (stream, this);
+                }
+                if (File.Exists (SerializedFileName))
+                {
+                    File.Replace (tempFileName, SerializedFileName, "toDelete.bin");
+                    File.Delete ("toDelete.bin");
+                }
+                else
+                {
+                    File.Move(tempFileName, SerializedFileName);
+                }
             }
         }
 
@@ -117,14 +129,16 @@ namespace HourCounter
         {
             try
             {
+                Serializer ser = null;
                 IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream (SerializedFileName,
-                                                FileMode.Open,
-                                                FileAccess.Read,
-                                                FileShare.Read);
-                stream.Position = 0;
-                Serializer ser = (Serializer)formatter.Deserialize (stream);
-                stream.Close ();
+                using (Stream stream = new FileStream (SerializedFileName,
+                                                        FileMode.Open,
+                                                        FileAccess.Read,
+                                                        FileShare.Read))
+                {
+                    stream.Position = 0;
+                    ser = (Serializer)formatter.Deserialize (stream);
+                }
                 
                 return ser;
             }

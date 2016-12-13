@@ -30,6 +30,9 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.groupHabit = new System.Windows.Forms.GroupBox();
+            this.checkHabitRemindStartup = new System.Windows.Forms.CheckBox();
+            this.checkHabitRemindHourly = new System.Windows.Forms.CheckBox();
             this.lValueAuthorizedStatus = new System.Windows.Forms.Label();
             this.lTextAuthorizedStatus = new System.Windows.Forms.Label();
             this.bAuthorizeGDrive = new System.Windows.Forms.Button();
@@ -61,11 +64,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bCancel = new System.Windows.Forms.Button();
             this.bOk = new System.Windows.Forms.Button();
-            this.groupHabit = new System.Windows.Forms.GroupBox();
-            this.checkHabitRemindHourly = new System.Windows.Forms.CheckBox();
-            this.checkHabitRemindStartup = new System.Windows.Forms.CheckBox();
+            this.checkDayChooser = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
+            this.groupHabit.SuspendLayout();
             this.groupBoxGDrive.SuspendLayout();
             this.groupLoading.SuspendLayout();
             this.tabTimers.SuspendLayout();
@@ -75,7 +77,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupHabit.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -91,6 +92,7 @@
             // 
             // tabGeneral
             // 
+            this.tabGeneral.Controls.Add(this.checkDayChooser);
             this.tabGeneral.Controls.Add(this.groupHabit);
             this.tabGeneral.Controls.Add(this.lValueAuthorizedStatus);
             this.tabGeneral.Controls.Add(this.lTextAuthorizedStatus);
@@ -103,6 +105,39 @@
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
+            // 
+            // groupHabit
+            // 
+            this.groupHabit.Controls.Add(this.checkHabitRemindStartup);
+            this.groupHabit.Controls.Add(this.checkHabitRemindHourly);
+            this.groupHabit.Location = new System.Drawing.Point(6, 200);
+            this.groupHabit.Name = "groupHabit";
+            this.groupHabit.Size = new System.Drawing.Size(343, 75);
+            this.groupHabit.TabIndex = 11;
+            this.groupHabit.TabStop = false;
+            this.groupHabit.Text = "Habbits";
+            // 
+            // checkHabitRemindStartup
+            // 
+            this.checkHabitRemindStartup.AutoSize = true;
+            this.checkHabitRemindStartup.Location = new System.Drawing.Point(6, 42);
+            this.checkHabitRemindStartup.Name = "checkHabitRemindStartup";
+            this.checkHabitRemindStartup.Size = new System.Drawing.Size(109, 17);
+            this.checkHabitRemindStartup.TabIndex = 13;
+            this.checkHabitRemindStartup.Text = "Remind at startup";
+            this.checkHabitRemindStartup.UseVisualStyleBackColor = true;
+            // 
+            // checkHabitRemindHourly
+            // 
+            this.checkHabitRemindHourly.AutoSize = true;
+            this.checkHabitRemindHourly.Checked = true;
+            this.checkHabitRemindHourly.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkHabitRemindHourly.Location = new System.Drawing.Point(6, 19);
+            this.checkHabitRemindHourly.Name = "checkHabitRemindHourly";
+            this.checkHabitRemindHourly.Size = new System.Drawing.Size(201, 17);
+            this.checkHabitRemindHourly.TabIndex = 12;
+            this.checkHabitRemindHourly.Text = "Remind hourly for adding, until added";
+            this.checkHabitRemindHourly.UseVisualStyleBackColor = true;
             // 
             // lValueAuthorizedStatus
             // 
@@ -207,7 +242,7 @@
             this.tabTimers.Location = new System.Drawing.Point(4, 22);
             this.tabTimers.Name = "tabTimers";
             this.tabTimers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTimers.Size = new System.Drawing.Size(461, 335);
+            this.tabTimers.Size = new System.Drawing.Size(515, 335);
             this.tabTimers.TabIndex = 1;
             this.tabTimers.Text = "Timers";
             this.tabTimers.UseVisualStyleBackColor = true;
@@ -443,38 +478,15 @@
             this.bOk.UseVisualStyleBackColor = true;
             this.bOk.Click += new System.EventHandler(this.bOk_Click);
             // 
-            // groupHabit
+            // checkDayChooser
             // 
-            this.groupHabit.Controls.Add(this.checkHabitRemindStartup);
-            this.groupHabit.Controls.Add(this.checkHabitRemindHourly);
-            this.groupHabit.Location = new System.Drawing.Point(6, 200);
-            this.groupHabit.Name = "groupHabit";
-            this.groupHabit.Size = new System.Drawing.Size(343, 75);
-            this.groupHabit.TabIndex = 11;
-            this.groupHabit.TabStop = false;
-            this.groupHabit.Text = "Habbits";
-            // 
-            // checkHabitRemindHourly
-            // 
-            this.checkHabitRemindHourly.AutoSize = true;
-            this.checkHabitRemindHourly.Checked = true;
-            this.checkHabitRemindHourly.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkHabitRemindHourly.Location = new System.Drawing.Point(6, 19);
-            this.checkHabitRemindHourly.Name = "checkHabitRemindHourly";
-            this.checkHabitRemindHourly.Size = new System.Drawing.Size(201, 17);
-            this.checkHabitRemindHourly.TabIndex = 12;
-            this.checkHabitRemindHourly.Text = "Remind hourly for adding, until added";
-            this.checkHabitRemindHourly.UseVisualStyleBackColor = true;
-            // 
-            // checkHabitRemindStartup
-            // 
-            this.checkHabitRemindStartup.AutoSize = true;
-            this.checkHabitRemindStartup.Location = new System.Drawing.Point(6, 42);
-            this.checkHabitRemindStartup.Name = "checkHabitRemindStartup";
-            this.checkHabitRemindStartup.Size = new System.Drawing.Size(109, 17);
-            this.checkHabitRemindStartup.TabIndex = 13;
-            this.checkHabitRemindStartup.Text = "Remind at startup";
-            this.checkHabitRemindStartup.UseVisualStyleBackColor = true;
+            this.checkDayChooser.AutoSize = true;
+            this.checkDayChooser.Location = new System.Drawing.Point(12, 295);
+            this.checkDayChooser.Name = "checkDayChooser";
+            this.checkDayChooser.Size = new System.Drawing.Size(181, 17);
+            this.checkDayChooser.TabIndex = 12;
+            this.checkDayChooser.Text = "Enables Bottom Day chooser bar";
+            this.checkDayChooser.UseVisualStyleBackColor = true;
             // 
             // SettingsDialog
             // 
@@ -488,6 +500,8 @@
             this.tabControl.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
+            this.groupHabit.ResumeLayout(false);
+            this.groupHabit.PerformLayout();
             this.groupBoxGDrive.ResumeLayout(false);
             this.groupBoxGDrive.PerformLayout();
             this.groupLoading.ResumeLayout(false);
@@ -501,8 +515,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.groupHabit.ResumeLayout(false);
-            this.groupHabit.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -545,5 +557,6 @@
         private System.Windows.Forms.GroupBox groupHabit;
         private System.Windows.Forms.CheckBox checkHabitRemindHourly;
         private System.Windows.Forms.CheckBox checkHabitRemindStartup;
+        private System.Windows.Forms.CheckBox checkDayChooser;
     }
 }

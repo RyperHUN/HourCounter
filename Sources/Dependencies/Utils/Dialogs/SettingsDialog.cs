@@ -51,6 +51,8 @@ namespace Dialogs
 
             checkHabitRemindHourly.Checked  = settings.General.habitRemindHourly;
             checkHabitRemindStartup.Checked = settings.General.habitRemindStartup;
+
+            checkDayChooser.Checked         = settings.General.isDayChooserOn;
         }
         private void bCancel_Click (object sender, EventArgs e)
         {
@@ -92,6 +94,8 @@ namespace Dialogs
 
             Settings.Get.General.habitRemindHourly   = checkHabitRemindHourly.Checked;
             Settings.Get.General.habitRemindStartup  = checkHabitRemindStartup.Checked;
+
+            Settings.Get.General.isDayChooserOn      = checkDayChooser.Checked;
         }
         private void SaveTimerSettings ()
         {

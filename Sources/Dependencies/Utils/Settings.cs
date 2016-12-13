@@ -43,6 +43,8 @@ namespace Utils
 
             public bool habitRemindHourly   = true;
             public bool habitRemindStartup  = false;
+
+            public bool isDayChooserOn      = true;
         }
 
         [Serializable] //TODO megcsinalni rendes serializalast

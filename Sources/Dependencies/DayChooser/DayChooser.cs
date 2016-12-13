@@ -83,5 +83,11 @@ namespace DayChooser
             }
             radioCustom.Enabled = false;
         }
+
+        public void Disable ()
+        {
+            radioAll.Checked = true;
+            this.Enabled = false;
+        }
     }
 }

@@ -20,16 +20,40 @@ namespace HourCounter
 
         private Nullable<Size> _savedFormSize = null;
         Serializer _serializer;
+        int _originalHeight;
         public App ()
         {
             LoadEverything ();
             InitializeComponent ();
+            InitSettings ();
 
             InitializeConnections ();
         }
 
+        private void InitSettings ()
+        {
+            InitDayChooser ();
+        }
+
+        private void InitDayChooser ()
+        {
+            int sumPaddingMargin = 18;
+            if (Utils.Settings.Get.General.isDayChooserOn)
+            {
+                dayChooser.Enabled = true;
+                //this.Height = mainPanel.Height + dayChooser.Height + menuBar.Height * 2 + sumPaddingMargin;
+                Height = _originalHeight;
+            }
+            else
+            {
+                dayChooser.Disable();
+                this.Height = mainPanel.Height + menuBar.Height * 2 + sumPaddingMargin;
+            }
+        }
+
         private void InitializeConnections ()
         {
+            _originalHeight      = Height;
             treeView.addActivityContainer (_activityContainer);
          
             dayChooser.SetActivityContainer (_activityContainer);
@@ -87,23 +111,9 @@ namespace HourCounter
             activityAdd.ShowDialog();
             EnableDetailsAndTimers ();
         }        
-        int _originalHeight;
         private void menuSettings_Click (object sender, EventArgs e)
         {
-            new Dialogs.SettingsDialog ().ShowDialog ();
-            _originalHeight      = Height;
-            int sumPaddingMargin = 18;
-            if (Utils.Settings.Get.General.isDayChooserOn)
-            {
-                dayChooser.Enabled = true;
-                //this.Height = mainPanel.Height + dayChooser.Height + menuBar.Height * 2 + sumPaddingMargin;
-                Height = _originalHeight;
-            }
-            else
-            {
-                dayChooser.Enabled = false; ///TODO set day to ALL
-                this.Height = mainPanel.Height + menuBar.Height * 2 + sumPaddingMargin;
-            }
+            new Dialogs.SettingsDialog ().ShowDialog (); //TODO notification if settings changed/ (clicked ok)
         }
 
         private void treeView_AfterSelect (object sender, TreeViewEventArgs e)

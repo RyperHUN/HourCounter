@@ -18,7 +18,8 @@ namespace ActivityTimer
         public event Action TimerStartedEvent;
         public event Action TimerStoppedEvent;
 
-        private SoundPlayer soundPlayer;
+        private SoundPlayer timerEndSoundPlayer;
+        private SoundPlayer beepSoundPlayer;
 
         private Activity _selectedActivity;
 
@@ -38,7 +39,8 @@ namespace ActivityTimer
 
             Load_Settings ();
 
-            soundPlayer = new SoundPlayer (@"Data/SOUND_RING_ALARM.wav");
+            timerEndSoundPlayer = new SoundPlayer (@"Data/SOUND_RING_ALARM.wav");
+            beepSoundPlayer     = new SoundPlayer (@"Data/BLEEP.wav");
         }
 
         private void Load_Settings () //Maybe this could be called from app when settings got changed
@@ -206,9 +208,9 @@ namespace ActivityTimer
             _selectedActivity.AddTime (Timer_Timer.GetElapsedTime ());
 
             //Popup menu where you can modify your time minus plus +-(ha eppen nem sikerult olyan jól )
-            soundPlayer.PlaySoundUntilStop ();
+            timerEndSoundPlayer.PlaySoundUntilStop ();
             MessageBox.Show ("Timer done");
-            soundPlayer.StopSound ();
+            timerEndSoundPlayer.StopSound ();
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// STOPWATCH CODE GOES HERE ////////////////////////////////////////////////////
@@ -374,14 +376,14 @@ namespace ActivityTimer
         private void Pomod_OpenSetEndingDialog ()
         {
             Pomod_stopwatchIdle.Stop (); //Pause
-            soundPlayer.PlaySoundUntilStop ();
+            timerEndSoundPlayer.PlaySoundUntilStop ();
 
             if (Pomod_status == Pomod_Status.Rest)
                 MessageBox.Show ("Rest ended, It's time to work, good luck!");
             if (Pomod_status == Pomod_Status.Work)
                 MessageBox.Show ("Work ended, It's time to rest, good luck!");
 
-            soundPlayer.StopSound ();
+            timerEndSoundPlayer.StopSound ();
             Pomod_stopwatchIdle.Start (); //Continue
         }
 

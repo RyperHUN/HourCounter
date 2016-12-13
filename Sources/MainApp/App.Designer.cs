@@ -41,11 +41,11 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.detailedView = new DetailedView.DetailedView();
-            this.treeView = new TreeListView.TreeListView();
-            this.activityTimer = new ActivityTimer.ActivityTimer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dayChooser = new DayChooser.DayChooser();
+            this.treeView = new TreeListView.TreeListView();
+            this.detailedView = new DetailedView.DetailedView();
+            this.activityTimer = new ActivityTimer.ActivityTimer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -73,7 +73,7 @@
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.splitContainerRight);
-            this.splitContainerMain.Size = new System.Drawing.Size(551, 412);
+            this.splitContainerMain.Size = new System.Drawing.Size(552, 461);
             this.splitContainerMain.SplitterDistance = 207;
             this.splitContainerMain.TabIndex = 0;
             // 
@@ -92,8 +92,8 @@
             // splitContainerRight.Panel2
             // 
             this.splitContainerRight.Panel2.Controls.Add(this.activityTimer);
-            this.splitContainerRight.Size = new System.Drawing.Size(340, 412);
-            this.splitContainerRight.SplitterDistance = 223;
+            this.splitContainerRight.Size = new System.Drawing.Size(341, 461);
+            this.splitContainerRight.SplitterDistance = 249;
             this.splitContainerRight.TabIndex = 0;
             // 
             // groupDetailedView
@@ -101,9 +101,9 @@
             this.groupDetailedView.BackColor = System.Drawing.Color.White;
             this.groupDetailedView.Controls.Add(this.detailedView);
             this.groupDetailedView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupDetailedView.Location = new System.Drawing.Point(0, -17);
+            this.groupDetailedView.Location = new System.Drawing.Point(0, 9);
             this.groupDetailedView.Name = "groupDetailedView";
-            this.groupDetailedView.Size = new System.Drawing.Size(340, 240);
+            this.groupDetailedView.Size = new System.Drawing.Size(341, 240);
             this.groupDetailedView.TabIndex = 0;
             this.groupDetailedView.TabStop = false;
             this.groupDetailedView.Text = "Detailed View";
@@ -114,7 +114,7 @@
             this.fileMenu});
             this.menuBar.Location = new System.Drawing.Point(0, 0);
             this.menuBar.Name = "menuBar";
-            this.menuBar.Size = new System.Drawing.Size(547, 24);
+            this.menuBar.Size = new System.Drawing.Size(552, 24);
             this.menuBar.TabIndex = 0;
             this.menuBar.Text = "menuBar";
             // 
@@ -185,24 +185,39 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(133, 0);
             // 
-            // detailedView
+            // panel1
             // 
-            this.detailedView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.detailedView.Location = new System.Drawing.Point(3, 16);
-            this.detailedView.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.detailedView.Name = "detailedView";
-            this.detailedView.Size = new System.Drawing.Size(334, 221);
-            this.detailedView.TabIndex = 0;
-            this.detailedView.Visible = false;
+            this.panel1.Controls.Add(this.splitContainerMain);
+            this.panel1.Location = new System.Drawing.Point(0, 27);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(552, 461);
+            this.panel1.TabIndex = 2;
+            // 
+            // dayChooser
+            // 
+            this.dayChooser.Location = new System.Drawing.Point(1, 494);
+            this.dayChooser.Name = "dayChooser";
+            this.dayChooser.Size = new System.Drawing.Size(548, 46);
+            this.dayChooser.TabIndex = 1;
             // 
             // treeView
             // 
             this.treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView.Location = new System.Drawing.Point(5, 5);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(197, 402);
+            this.treeView.Size = new System.Drawing.Size(197, 451);
             this.treeView.TabIndex = 0;
             this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView_AfterSelect);
+            // 
+            // detailedView
+            // 
+            this.detailedView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.detailedView.Location = new System.Drawing.Point(3, 16);
+            this.detailedView.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.detailedView.Name = "detailedView";
+            this.detailedView.Size = new System.Drawing.Size(335, 221);
+            this.detailedView.TabIndex = 0;
+            this.detailedView.Visible = false;
             // 
             // activityTimer
             // 
@@ -210,29 +225,14 @@
             this.activityTimer.Location = new System.Drawing.Point(0, 0);
             this.activityTimer.Name = "activityTimer";
             this.activityTimer.Padding = new System.Windows.Forms.Padding(5, 0, 5, 5);
-            this.activityTimer.Size = new System.Drawing.Size(340, 185);
+            this.activityTimer.Size = new System.Drawing.Size(341, 208);
             this.activityTimer.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.splitContainerMain);
-            this.panel1.Location = new System.Drawing.Point(0, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(551, 412);
-            this.panel1.TabIndex = 2;
-            // 
-            // dayChooser1
-            // 
-            this.dayChooser.Location = new System.Drawing.Point(-1, 440);
-            this.dayChooser.Name = "dayChooser1";
-            this.dayChooser.Size = new System.Drawing.Size(548, 46);
-            this.dayChooser.TabIndex = 1;
             // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 481);
+            this.ClientSize = new System.Drawing.Size(552, 542);
             this.Controls.Add(this.dayChooser);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuBar);

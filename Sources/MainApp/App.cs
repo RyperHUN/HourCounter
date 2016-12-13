@@ -87,6 +87,7 @@ namespace HourCounter
             _serializer                    = new Serializer ();
             _serializer._activityContainer = _activityContainer;
             _serializer._habitController   = _habitController;
+            _serializer.TurnOnAutomaticSaveTimer ();
         }
 
         private void HideDetailsAndTimers ()

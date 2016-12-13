@@ -86,11 +86,24 @@ namespace HourCounter
             Dialogs.ActivityAdd activityAdd = new Dialogs.ActivityAdd(_activityContainer);
             activityAdd.ShowDialog();
             EnableDetailsAndTimers ();
-        }
-
+        }        
+        int _originalHeight;
         private void menuSettings_Click (object sender, EventArgs e)
         {
             new Dialogs.SettingsDialog ().ShowDialog ();
+            _originalHeight      = Height;
+            int sumPaddingMargin = 18;
+            if (Utils.Settings.Get.General.isDayChooserOn)
+            {
+                dayChooser.Enabled = true;
+                //this.Height = mainPanel.Height + dayChooser.Height + menuBar.Height * 2 + sumPaddingMargin;
+                Height = _originalHeight;
+            }
+            else
+            {
+                dayChooser.Enabled = false; ///TODO set day to ALL
+                this.Height = mainPanel.Height + menuBar.Height * 2 + sumPaddingMargin;
+            }
         }
 
         private void treeView_AfterSelect (object sender, TreeViewEventArgs e)

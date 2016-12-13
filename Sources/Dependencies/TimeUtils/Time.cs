@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Utils
 {
+    //TODO maybe remove set to be full immutable
     [Serializable]
     public class Time : ISerializable
     {
@@ -47,6 +48,11 @@ namespace Utils
         {
             get { return _timeInSeconds / 86400; }
             set { _timeInSeconds = value * 86400; }
+        }
+
+        public long Miliseconds
+        {
+            get { return _timeInSeconds * 1000; }
         }
 
         public long SecondsRemain

@@ -21,8 +21,13 @@ namespace ActivityHelper
             if (sortedList.TryGetValue (keyToFind, out existing))
             {
                 sortedList.Remove (keyToFind);
+                sortedList.Add (keyToFind, new Time (value.Seconds + existing.Seconds));
             }
-            sortedList.Add (keyToFind, new Time (value.Seconds + existing.Seconds));
+            else
+            {
+                sortedList.Add (keyToFind, new Time (value.Seconds) );
+            }
+            
         }
         public static int BinarySearch<TKey, TValue>(this SortedList<TKey, TValue> sortedList, TKey keyToFind, IComparer<TKey> comparer = null)
         {

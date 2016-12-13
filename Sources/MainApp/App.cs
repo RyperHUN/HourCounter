@@ -19,8 +19,8 @@ namespace HourCounter
         private HabitController _habitController;
 
         private Nullable<Size> _savedFormSize = null;
+        public event Action SettingsChanged;
         Serializer _serializer;
-        int _originalHeight;
         public App ()
         {
             LoadEverything ();
@@ -37,12 +37,11 @@ namespace HourCounter
 
         private void InitDayChooser ()
         {
-            int sumPaddingMargin = 18;
+            int sumPaddingMargin = 20;
             if (Utils.Settings.Get.General.isDayChooserOn)
             {
                 dayChooser.Enabled = true;
-                //this.Height = mainPanel.Height + dayChooser.Height + menuBar.Height * 2 + sumPaddingMargin;
-                Height = _originalHeight;
+                this.Height = mainPanel.Height + dayChooser.Height + menuBar.Height * 2 + sumPaddingMargin;
             }
             else
             {
@@ -53,7 +52,6 @@ namespace HourCounter
 
         private void InitializeConnections ()
         {
-            _originalHeight      = Height;
             treeView.addActivityContainer (_activityContainer);
          
             dayChooser.SetActivityContainer (_activityContainer);
@@ -68,6 +66,7 @@ namespace HourCounter
             activityTimer.TimerStartedEvent += detailedView.timerStartedHandler;
             activityTimer.TimerStoppedEvent += treeView.timerStoppedHandler;
             activityTimer.TimerStoppedEvent += detailedView.timerStoppedHandler;
+            SettingsChanged += InitSettings;
 
             splitContainerMain.Panel1.Controls.Add(treeView);
             detailedView.InitializeActivityContainer (_activityContainer);
@@ -113,7 +112,11 @@ namespace HourCounter
         }        
         private void menuSettings_Click (object sender, EventArgs e)
         {
-            new Dialogs.SettingsDialog ().ShowDialog (); //TODO notification if settings changed/ (clicked ok)
+            DialogResult result = new Dialogs.SettingsDialog ().ShowDialog (); //TODO notification if settings changed/ (clicked ok)
+            if (DialogResult.OK == result)
+            {
+                SettingsChanged?.Invoke ();
+            }
         }
 
         private void treeView_AfterSelect (object sender, TreeViewEventArgs e)

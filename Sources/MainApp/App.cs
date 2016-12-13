@@ -64,8 +64,11 @@ namespace HourCounter
 
             activityTimer.TimerStartedEvent += treeView.timerStartedHandler;
             activityTimer.TimerStartedEvent += detailedView.timerStartedHandler;
+            activityTimer.TimerStartedEvent += timerStartedHandler;
             activityTimer.TimerStoppedEvent += treeView.timerStoppedHandler;
             activityTimer.TimerStoppedEvent += detailedView.timerStoppedHandler;
+            activityTimer.TimerStoppedEvent += timerStoppedHandler;
+
             SettingsChanged += InitSettings;
 
             splitContainerMain.Panel1.Controls.Add(treeView);
@@ -157,6 +160,18 @@ namespace HourCounter
         private void showHabitAdderToolStripMenuItem_Click (object sender, EventArgs e)
         {
             _habitController.OpenHabbitAdderDialog ();
+        }
+
+        public void timerStartedHandler ()
+        {
+            menuBar.Enabled    = false;
+            dayChooser.Enabled = false;
+        }
+        
+        public void timerStoppedHandler ()
+        {
+            menuBar.Enabled    = true;
+            dayChooser.Enabled = true;
         }
     }
 }

@@ -34,6 +34,14 @@ namespace ActivityTimer
             }
         }
 
+        public void PlayOnce ()
+        {
+            if (isSoundPlayerLoaded)
+                soundPlayer.Play ();
+            else
+                System.Media.SystemSounds.Beep.Play();
+        }
+
         public void PlaySoundUntilStop ()
         {
             if (isSoundPlayerLoaded)

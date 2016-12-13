@@ -28,6 +28,7 @@ namespace ActivityTimer
             InitializeComponent();
             Timer_Init ();
             Pomod_Init ();
+            Stopwatch_Init ();
 
             Stop_timerSecond.Interval  = 1000;
 
@@ -140,7 +141,7 @@ namespace ActivityTimer
         ////////////////////////////////////////// TIMER CODE GOES HERE ////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        private Utils.TimerLogic Timer_Timer;
+        private TimerLogic Timer_Timer;
 
         private void Timer_Init ()
         {
@@ -216,6 +217,13 @@ namespace ActivityTimer
         ////////////////////////////////////////// STOPWATCH CODE GOES HERE ////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         private Time Stop_elapsedTime = new Time ();
+        private Timer Stop_beepTimer  = new Timer ();
+
+        private void Stopwatch_Init ()
+        {
+            Stop_beepTimer.Interval = (int)TIME.Minutes (10).Miliseconds;
+            Stop_beepTimer.Tick += (object s, EventArgs e) => beepSoundPlayer.PlayOnce ();
+        }
         private void Stop_stopwatchSecond_Tick (object sender, EventArgs e)
         {
             Stop_elapsedTime = new Time(Stop_elapsedTime.Seconds + 1);
@@ -227,6 +235,7 @@ namespace ActivityTimer
             Stop_elapsedTime = new Time ();
             Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_elapsedTime);
             Stop_timerSecond.Start ();
+            Stop_beepTimer.Start ();
             TimerStartedEvent?.Invoke ();
         }
 
@@ -247,6 +256,7 @@ namespace ActivityTimer
         private void Stop_bStop_Click (object sender, EventArgs e)
         {
             Stop_timerSecond.Stop ();
+            Stop_beepTimer.Stop ();
             TimerStoppedEvent?.Invoke ();
             _selectedActivity.AddTime (Stop_elapsedTime);
         }

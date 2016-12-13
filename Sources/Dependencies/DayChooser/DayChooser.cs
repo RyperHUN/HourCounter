@@ -18,6 +18,7 @@ namespace DayChooser
         Activity _activityContainer;
         private readonly String[] DateFormatString = { "yyyy.MM.dd", "yyyy.M.d", "yyyy.MM.d", "yyyy.M.dd" };
         Color originalTextBackground;
+        DateTime from, to;
         public DayChooser ()
         {
             InitializeComponent ();
@@ -39,24 +40,42 @@ namespace DayChooser
                 _activityContainer.notifySelectedDate (new OnlyDate (DateTime.Now.AddDays (-1)), null);
             else if (radioAllWeek.Checked)
                 _activityContainer.notifySelectedDate (new OnlyDate (DateTime.Now.AddDays (-7)), new OnlyDate (DateTime.Now));
+            else 
+                UpdateRadioCustom ();
+        }
+
+        private void UpdateRadioCustom ()
+        {
+            if (radioCustom.Checked)
+            {
+                if (radioCustom.Enabled == false)
+                    radioAll.Checked = true;
+                else
+                    _activityContainer.notifySelectedDate (new OnlyDate (from), new OnlyDate (to));
+            }
         }
 
         private void IntervalTextChanged (object sender, EventArgs e)
         {
-            DateTime from;
+            bool isFirstSucess = false;
             if (DateTime.TryParseExact (textFrom.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out from) )
             {
                 textFrom.BackColor = originalTextBackground;
+                isFirstSucess = true;
             }
             else
             {
                 textFrom.BackColor = Color.LightPink;
             }
-            if (DateTime.TryParseExact (textTo.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out from) )
+            if (DateTime.TryParseExact (textTo.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out to) )
             {
-                radioCustom.Enabled = true;
                 textTo.BackColor    = originalTextBackground;
-                return;
+                if (isFirstSucess)
+                {
+                    radioCustom.Enabled = true;
+                    UpdateRadioCustom ();
+                    return;
+                }
             }
             else
             {

@@ -169,6 +169,10 @@
       <Project>{1f57db29-e737-4c94-90a6-d965a581fa96}</Project>
       <Name>DayChooser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Dependencies\TimeUtils\TimeUtils.csproj">
+      <Project>{8ecfc65b-58ed-476a-928e-d65179636fed}</Project>
+      <Name>TimeUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -221,7 +221,7 @@ namespace ActivityTimer
 
         private void Stopwatch_Init ()
         {
-            Stop_beepTimer.Interval = (int)TIME.Minutes (10).Miliseconds;
+            Stop_beepTimer.Interval = (int)TIME.Minutes(10).Miliseconds;
             Stop_beepTimer.Tick += (object s, EventArgs e) => beepSoundPlayer.PlayOnce ();
         }
         private void Stop_stopwatchSecond_Tick (object sender, EventArgs e)

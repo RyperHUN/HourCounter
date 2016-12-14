@@ -30,6 +30,7 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.checkDayChooser = new System.Windows.Forms.CheckBox();
             this.groupHabit = new System.Windows.Forms.GroupBox();
             this.checkHabitRemindStartup = new System.Windows.Forms.CheckBox();
             this.checkHabitRemindHourly = new System.Windows.Forms.CheckBox();
@@ -64,7 +65,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.bCancel = new System.Windows.Forms.Button();
             this.bOk = new System.Windows.Forms.Button();
-            this.checkDayChooser = new System.Windows.Forms.CheckBox();
+            this.bLoadFromGDrive = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.groupHabit.SuspendLayout();
@@ -105,6 +106,16 @@
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
+            // 
+            // checkDayChooser
+            // 
+            this.checkDayChooser.AutoSize = true;
+            this.checkDayChooser.Location = new System.Drawing.Point(12, 295);
+            this.checkDayChooser.Name = "checkDayChooser";
+            this.checkDayChooser.Size = new System.Drawing.Size(181, 17);
+            this.checkDayChooser.TabIndex = 12;
+            this.checkDayChooser.Text = "Enables Bottom Day chooser bar";
+            this.checkDayChooser.UseVisualStyleBackColor = true;
             // 
             // groupHabit
             // 
@@ -169,6 +180,7 @@
             // 
             // groupBoxGDrive
             // 
+            this.groupBoxGDrive.Controls.Add(this.bLoadFromGDrive);
             this.groupBoxGDrive.Controls.Add(this.checkEnableDriveLoad);
             this.groupBoxGDrive.Controls.Add(this.groupLoading);
             this.groupBoxGDrive.Controls.Add(this.checkEnableGDriveSave);
@@ -480,15 +492,16 @@
             this.bOk.UseVisualStyleBackColor = true;
             this.bOk.Click += new System.EventHandler(this.bOk_Click);
             // 
-            // checkDayChooser
+            // bLoadFromGDrive
             // 
-            this.checkDayChooser.AutoSize = true;
-            this.checkDayChooser.Location = new System.Drawing.Point(12, 295);
-            this.checkDayChooser.Name = "checkDayChooser";
-            this.checkDayChooser.Size = new System.Drawing.Size(181, 17);
-            this.checkDayChooser.TabIndex = 12;
-            this.checkDayChooser.Text = "Enables Bottom Day chooser bar";
-            this.checkDayChooser.UseVisualStyleBackColor = true;
+            this.bLoadFromGDrive.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.bLoadFromGDrive.Location = new System.Drawing.Point(4, 42);
+            this.bLoadFromGDrive.Name = "bLoadFromGDrive";
+            this.bLoadFromGDrive.Size = new System.Drawing.Size(106, 23);
+            this.bLoadFromGDrive.TabIndex = 12;
+            this.bLoadFromGDrive.Text = "Load from GDrive";
+            this.bLoadFromGDrive.UseVisualStyleBackColor = true;
+            this.bLoadFromGDrive.Click += new System.EventHandler(this.bLoadFromGDrive_Click);
             // 
             // SettingsDialog
             // 
@@ -560,5 +573,6 @@
         private System.Windows.Forms.CheckBox checkHabitRemindHourly;
         private System.Windows.Forms.CheckBox checkHabitRemindStartup;
         private System.Windows.Forms.CheckBox checkDayChooser;
+        private System.Windows.Forms.Button bLoadFromGDrive;
     }
 }

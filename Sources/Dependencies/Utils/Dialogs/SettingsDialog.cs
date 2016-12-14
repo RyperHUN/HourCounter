@@ -65,6 +65,12 @@ namespace Dialogs
             this.Close ();
         }
 
+        private void bLoadFromGDrive_Click (object sender, EventArgs e)
+        {
+            IsCancellingChanges = false; //Prevents discard changes popup
+            this.Close ();
+        }
+
         private void Form1_FormClosing( object sender, FormClosingEventArgs e )
         {
             if(IsCancellingChanges)

@@ -129,8 +129,11 @@ namespace HourCounter
                 }
             }
         }
-
         public static Serializer loadEverythingFromDisk ()
+        {
+            return loadEverythingFromDisk (SerializedFileName);
+        }
+        public static Serializer loadEverythingFromDisk (string fileName)
         {
             try
             {
@@ -164,7 +167,17 @@ namespace HourCounter
 
             return DateTime.MinValue;
         }
-
+        public static Serializer forceLoadFromGdrive (string saveFileName)
+        {
+            GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);
+            if (drive.IsFileExist ())
+            {
+                drive.DownloadFile (saveFileName);
+                return loadEverythingFromDisk (saveFileName);
+            }
+            
+            return null;
+        }
         public static Serializer loadEverythingFromGDrive ()
         {
             GDrive.CommandExecuter drive = new GDrive.CommandExecuter (SerializedFileName);

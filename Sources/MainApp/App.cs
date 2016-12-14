@@ -122,6 +122,10 @@ namespace HourCounter
             {
                 SettingsChanged?.Invoke ();
             }
+            else if (DialogResult.Abort == result) //Load from GDRIVE
+            {
+
+            }
         }
 
         private void treeView_AfterSelect (object sender, TreeViewEventArgs e)

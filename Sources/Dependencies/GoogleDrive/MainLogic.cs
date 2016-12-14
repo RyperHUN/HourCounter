@@ -76,10 +76,13 @@ namespace GDrive
                 ApplicationName = ApplicationName,
             });
         }
-
         public void DownloadFile ()
         {
             CommandStatic.DownloadFile (_service, _fileId, _fileName);
+        }
+        public void DownloadFile (string toSaveFileName)
+        {
+            CommandStatic.DownloadFile (_service, _fileId, toSaveFileName);
         }
 
         public void RemoveFile ()

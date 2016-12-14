@@ -124,7 +124,12 @@ namespace HourCounter
             }
             else if (DialogResult.Abort == result) //Load from GDRIVE
             {
+                Serializer ser = Serializer.forceLoadFromGdrive ("dataGDRIVETemp.bin"); ///TODO Delete file
+                LoadFromSerializer (ser);
 
+                InitSettings ();
+
+                InitializeConnections ();
             }
         }
 
@@ -150,6 +155,11 @@ namespace HourCounter
         private void LoadEverything ()
         {
             Serializer serializer = Serializer.Load ();
+            LoadFromSerializer (serializer);
+        }
+
+        private void LoadFromSerializer (Serializer serializer)
+        {
             if(serializer != null) 
             {
                 _activityContainer = serializer._activityContainer;
@@ -158,7 +168,7 @@ namespace HourCounter
             }
             else //Failed serialization
             {
-                _activityContainer = new Activity ("INIT");
+                _activityContainer = new Activity ("INIT"); ///TODO Refactor
                 _habitController   = new HabitController (_activityContainer);
             }
         }

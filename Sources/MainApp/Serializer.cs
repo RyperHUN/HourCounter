@@ -34,8 +34,11 @@ namespace HourCounter
 
         public void Save ()
         {
-            Thread background = new Thread ( () => {SaveEverythingToDisk (true);
-                                                    SaveEverythingToGDrive (Settings.Get.General.isGDriveSave); });
+            Thread background = new Thread ( () =>
+            {
+                SaveEverythingToDisk (true);
+                SaveEverythingToGDrive (Settings.Get.General.isGDriveSave);
+            });
             background.IsBackground = true;
             background.Start ();
         }
@@ -139,7 +142,7 @@ namespace HourCounter
             {
                 Serializer ser = null;
                 IFormatter formatter = new BinaryFormatter();
-                using (Stream stream = new FileStream (SerializedFileName,
+                using (Stream stream = new FileStream (fileName,
                                                         FileMode.Open,
                                                         FileAccess.Read,
                                                         FileShare.Read))

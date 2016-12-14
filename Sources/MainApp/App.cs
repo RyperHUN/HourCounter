@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -132,17 +133,14 @@ namespace HourCounter
 
                 InitializeConnections ();
 
-                System.Timers.Timer timer = new System.Timers.Timer ();
-                timer.AutoReset = false; //only ticks once
-                timer.Interval = 500;
-                timer.Elapsed += HandleGDriveManualLoad;
-                timer.Start ();
+                HandleGDriveManualLoad ();
             }
         }
 
-        private void HandleGDriveManualLoad (object sender, System.Timers.ElapsedEventArgs e)
+        private async void HandleGDriveManualLoad ()
         {
-            DialogResult result = MessageBox.Show ("If you wan to keep this state, select Yes. If you select No we will restore the original state!", "Confirmation", MessageBoxButtons.YesNo);
+            await AsyncWait ();
+            DialogResult result = MessageBox.Show ("If you want to keep this state, select Yes. If you select No we will restore the original state!", "Confirmation", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 MyFile.OverwriteFile (Serializer.SerializedFileName, TEMPMANUALGDRIVEFILE);
@@ -157,6 +155,11 @@ namespace HourCounter
                 InitSettings ();
                 InitializeConnections ();
             }
+        }
+
+        private Task AsyncWait ()
+        {
+            return Task.Factory.StartNew ( () => Thread.Sleep(500) );
         }
 
         private void treeView_AfterSelect (object sender, TreeViewEventArgs e)

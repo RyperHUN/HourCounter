@@ -144,17 +144,16 @@ namespace HourCounter
         {
             Debug.Assert (date != null);
 
-            Time sumSpent = new Time(0);
-            if (_dailyTime.TryGetValue (date,out sumSpent))
+            Time sumSpent = new Time (0);
+            if(!_dailyTime.TryGetValue (date,out sumSpent))
+                sumSpent = new Time(0);
+                
+            foreach (var de in _subActivities)
             {
-                foreach (var de in _subActivities)
-                {
-                    Activity ac = (Activity)de.Value;
-                    sumSpent = new Time (sumSpent.Seconds + ac.CounterDate(date).Seconds);
-                }
-                return sumSpent;
+                Activity ac = (Activity)de.Value;
+                sumSpent = new Time (sumSpent.Seconds + ac.CounterDate(date).Seconds);
             }
-            return new Time (0);
+            return sumSpent;
         }
 
         public Time GetTime ()

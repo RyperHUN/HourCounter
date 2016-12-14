@@ -156,36 +156,38 @@ namespace GDrive
 
         public static void DownloadFile (DriveService service, string fileId, string saveTo)// string _saveTo) //TODO SAVE TO
         {
-            var stream = new System.IO.MemoryStream();
-
-            var request = service.Files.Get(fileId);
-            request.MediaDownloader.ProgressChanged +=
-            (IDownloadProgress progress) =>
+            using (var stream = new System.IO.MemoryStream ())
             {
-                switch (progress.Status)
+
+                var request = service.Files.Get(fileId);
+                request.MediaDownloader.ProgressChanged +=
+                (IDownloadProgress progress) =>
                 {
-                    case DownloadStatus.Downloading:
-                        {
-                            Console.WriteLine (progress.BytesDownloaded);
-                            break;
-                        }
-                    case DownloadStatus.Completed:
-                        {
-                            Console.WriteLine ("Download complete.");
-                            break;
-                        }
-                    case DownloadStatus.Failed:
-                        {
-                            Console.WriteLine ("Download failed.");
-                            break;
-                        }
-                }
-            };
-            request.Download (stream);
+                    switch (progress.Status)
+                    {
+                        case DownloadStatus.Downloading:
+                            {
+                                Console.WriteLine (progress.BytesDownloaded);
+                                break;
+                            }
+                        case DownloadStatus.Completed:
+                            {
+                                Console.WriteLine ("Download complete.");
+                                break;
+                            }
+                        case DownloadStatus.Failed:
+                            {
+                                Console.WriteLine ("Download failed.");
+                                break;
+                            }
+                    }
+                };
+                request.Download (stream);
 
-            using (System.IO.FileStream destinationFile = new System.IO.FileStream (saveTo, System.IO.FileMode.Create, System.IO.FileAccess.Write))
-            {
-                stream.WriteTo (destinationFile);
+                using (System.IO.FileStream destinationFile = new System.IO.FileStream (saveTo, System.IO.FileMode.Create, System.IO.FileAccess.Write))
+                {
+                    stream.WriteTo (destinationFile);
+                }
             }
         }
 

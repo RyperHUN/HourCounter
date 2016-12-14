@@ -115,6 +115,7 @@ namespace HourCounter
             activityAdd.ShowDialog();
             EnableDetailsAndTimers ();
         }        
+        readonly string TEMPMANUALGDRIVEFILE = "dataGDRIVETemp.bin";
         private void menuSettings_Click (object sender, EventArgs e)
         {
             DialogResult result = new Dialogs.SettingsDialog ().ShowDialog (); //TODO notification if settings changed/ (clicked ok)
@@ -124,11 +125,36 @@ namespace HourCounter
             }
             else if (DialogResult.Abort == result) //Load from GDRIVE
             {
-                Serializer ser = Serializer.forceLoadFromGdrive ("dataGDRIVETemp.bin"); ///TODO Delete file
+                Serializer ser = Serializer.forceLoadFromGdrive (TEMPMANUALGDRIVEFILE); ///TODO Delete file
                 LoadFromSerializer (ser);
 
                 InitSettings ();
 
+                InitializeConnections ();
+
+                System.Timers.Timer timer = new System.Timers.Timer ();
+                timer.AutoReset = false; //only ticks once
+                timer.Interval = 500;
+                timer.Elapsed += HandleGDriveManualLoad;
+                timer.Start ();
+            }
+        }
+
+        private void HandleGDriveManualLoad (object sender, System.Timers.ElapsedEventArgs e)
+        {
+            DialogResult result = MessageBox.Show ("If you wan to keep this state, select Yes. If you select No we will restore the original state!", "Confirmation", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                MyFile.OverwriteFile (Serializer.SerializedFileName, TEMPMANUALGDRIVEFILE);
+            }
+            else
+            {
+                if (File.Exists (TEMPMANUALGDRIVEFILE))
+                    File.Delete (TEMPMANUALGDRIVEFILE);
+
+                Serializer ser = Serializer.loadEverythingFromDisk (Serializer.SerializedFileName);
+                LoadFromSerializer (ser);
+                InitSettings ();
                 InitializeConnections ();
             }
         }

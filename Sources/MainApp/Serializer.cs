@@ -18,7 +18,7 @@ namespace HourCounter
     {
         public Activity _activityContainer;
         public HabitController _habitController;
-        private static readonly string SerializedFileName = "data.bin";
+        public static readonly string SerializedFileName = "data.bin";
         private System.Windows.Forms.Timer automaticSaveTimer = new System.Windows.Forms.Timer();
 
         public Serializer ()

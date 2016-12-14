@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using MimeTypes;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace GDrive
 {
@@ -158,8 +159,12 @@ namespace GDrive
         {
             using (var stream = new System.IO.MemoryStream ())
             {
-
+                
                 var request = service.Files.Get(fileId);
+                request.Fields = "size"; //Specify which fields to include in the response
+                var test = request.Execute ();
+                var fileSizeInBytes = test.Size;
+
                 request.MediaDownloader.ProgressChanged +=
                 (IDownloadProgress progress) =>
                 {
@@ -167,7 +172,7 @@ namespace GDrive
                     {
                         case DownloadStatus.Downloading:
                             {
-                                Console.WriteLine (progress.BytesDownloaded);
+                                Console.WriteLine($"Progress = {progress.BytesDownloaded/fileSizeInBytes}");
                                 break;
                             }
                         case DownloadStatus.Completed:

@@ -121,15 +121,7 @@ namespace HourCounter
                 {
                     formatter.Serialize (stream, this);
                 }
-                if (File.Exists (SerializedFileName))
-                {
-                    File.Replace (tempFileName, SerializedFileName, "toDelete.bin");
-                    File.Delete ("toDelete.bin");
-                }
-                else
-                {
-                    File.Move(tempFileName, SerializedFileName);
-                }
+                MyFile.OverwriteFile (SerializedFileName, tempFileName);
             }
         }
         public static Serializer loadEverythingFromDisk ()
@@ -227,6 +219,26 @@ namespace HourCounter
                 return 0;
             
             return isDriveBigger;
+        }
+    }
+
+    public static class MyFile
+    {
+        /// <summary>
+        /// Replaces destination with from, if destination don't exist just renames from
+        /// FROM WILL BE DELETED!
+        /// </summary>
+        public static void OverwriteFile (string destination, string from)
+        {
+            if (File.Exists (destination))
+            {
+                File.Replace (from, destination, "toDelete.bin");
+                File.Delete ("toDelete.bin");
+            }
+            else
+            {
+                File.Move(from, destination);
+            }
         }
     }
 }

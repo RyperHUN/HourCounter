@@ -39,7 +39,7 @@ namespace ActivityTimer
             TimerStoppedEvent ();
 
             Load_Settings ();
-
+            CheckValidTimes ();
             timerEndSoundPlayer = new SoundPlayer (@"Data/SOUND_RING_ALARM.wav");
             beepSoundPlayer     = new SoundPlayer (@"Data/BLEEP.wav");
         }
@@ -68,13 +68,19 @@ namespace ActivityTimer
             Pomod_lValueRemainingTime.Text  = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime); //Refresh input text
             Pomod_tValueSetWorkTimeMin.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime).Split (':')[0];
             Pomod_tValueSetRestTimeMin.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerRest.RemainTime).Split (':')[0];
-
-            CheckValidTimes ();
         }
 
         private void CheckValidTimes ()
         {
-            
+            if (Timer_Timer.isValidTimeSet)
+                Timer_bStart.Enabled = true;
+            else 
+                Timer_bStart.Enabled = false;
+
+            if (Pomod_TimerRest.isValidTimeSet && Pomod_TimerWork.isValidTimeSet)
+                Pomod_bStart.Enabled = true;
+            else
+                Pomod_bStart.Enabled = false;
         }
 
         public void Save_Settings ()
@@ -170,6 +176,7 @@ namespace ActivityTimer
                 MessageBox.Show ("Invalid string argument given.");
                 Timer_Timer.isValidTimeSet = false;
             }
+            CheckValidTimes ();
         }
 
         private void Timer_bStart_Click (object sender, EventArgs e)
@@ -494,6 +501,7 @@ namespace ActivityTimer
                 MessageBox.Show ("Invalid work time given, please input only minutes");
                 Pomod_TimerWork.isValidTimeSet = false; //conversion failed
             }
+            CheckValidTimes ();
         }
         private void Pomod_bSetRestTime_Click (object sender, EventArgs e)
         {
@@ -507,6 +515,7 @@ namespace ActivityTimer
                 MessageBox.Show ("Invalid rest time given, please input only minutes");
                 Pomod_TimerRest.isValidTimeSet = false; //conversion failed
             }
+            CheckValidTimes ();
         }
 
         private void Pomod_ChangeStatus (Pomod_Status status)

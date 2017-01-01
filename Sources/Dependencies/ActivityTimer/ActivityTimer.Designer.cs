@@ -123,6 +123,7 @@
             this.Timer_tSetTime.Size = new System.Drawing.Size(109, 20);
             this.Timer_tSetTime.TabIndex = 3;
             this.Timer_tSetTime.Text = "hh:mm:ss";
+            this.Timer_tSetTime.TextChanged += new System.EventHandler(this.Timer_tSetTime_TextChanged);
             // 
             // Timer_lTextRemainingTime
             // 

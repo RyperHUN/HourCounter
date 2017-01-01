@@ -12,6 +12,18 @@ namespace Utils
         static readonly long MINTOSEC  = 60;  //Multiplying MINTOSEC Dividing SecToMin
         static readonly long HOURTOSEC = 3600;
         //TODO Maybe add optional parameter : hh[:mm[:ss]]
+        public static bool isValidStringFormat (string timeStr)
+        {
+            try
+            {
+                StringToTime (timeStr);
+            }
+            catch (Exception /*e*/)
+            {
+                return false;
+            }
+            return true;
+        }
         //Format: min, mm:ss, hh:mm:ss
         public static Time StringToTime (string timeStr)
         {

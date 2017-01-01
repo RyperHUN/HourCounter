@@ -68,6 +68,13 @@ namespace ActivityTimer
             Pomod_lValueRemainingTime.Text  = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime); //Refresh input text
             Pomod_tValueSetWorkTimeMin.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.RemainTime).Split (':')[0];
             Pomod_tValueSetRestTimeMin.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerRest.RemainTime).Split (':')[0];
+
+            CheckValidTimes ();
+        }
+
+        private void CheckValidTimes ()
+        {
+            
         }
 
         public void Save_Settings ()
@@ -148,6 +155,7 @@ namespace ActivityTimer
             Timer_Timer                  = new TimerLogic ();
             Timer_Timer.TimeChangedEvent += Timer_TimeChangedHandler;
             Timer_Timer.TimerEndedEvent  += Timer_TimerEnded;
+
         }
 
         private void Timer_bSet_Click (object sender, EventArgs e)
@@ -213,6 +221,18 @@ namespace ActivityTimer
             MessageBox.Show ("Timer done");
             timerEndSoundPlayer.StopSound ();
         }
+        private void Timer_tSetTime_TextChanged (object sender, EventArgs e)
+        {
+            Timer_CheckInputFormat ();
+        }
+        private void Timer_CheckInputFormat ()
+        {
+            if (FormatChecker.SetInputColor (Timer_tSetTime, TimeConverter.isValidStringFormat (Timer_tSetTime.Text)))
+                Timer_bSetTime.Enabled = true;
+            else
+                Timer_bSetTime.Enabled = false;
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// STOPWATCH CODE GOES HERE ////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

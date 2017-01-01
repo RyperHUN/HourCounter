@@ -267,7 +267,7 @@ namespace ActivityTimer
         {
             try
             {
-                Time time = TimeConverter.StringToTimeHHMMSS (Manual_tSetTime.Text);
+                Time time = TimeConverter.StringToTime (Manual_tSetTime.Text);
                 _selectedActivity.AddTime (time);
             }
             catch(InvalidOperationException /*exc*/)
@@ -303,7 +303,7 @@ namespace ActivityTimer
         {
             try
             {
-                Time habitTime = TimeConverter.StringToTimeHHMMSS(Habit_tSetTime.Text);
+                Time habitTime = TimeConverter.StringToTime(Habit_tSetTime.Text);
                 _selectedActivity.AddedAsHabit (habitTime);
             }
             catch (InvalidOperationException /*exc*/)
@@ -466,7 +466,7 @@ namespace ActivityTimer
             try
             {
                 String setTime                 = Pomod_tValueSetWorkTimeMin.Text;
-                Pomod_TimerWork.InitTime       = new Time (TimeConverter.ConvertMinToSec (TimeConverter.ConvertStringToLongSafe (setTime)));
+                Pomod_TimerWork.InitTime       = TimeConverter.StringToTime (setTime);
                 Pomod_lValueRemainingTime.Text = TimeConverter.TimeToStringMMSS (Pomod_TimerWork.InitTime);
             }
             catch (InvalidOperationException /*exc*/)
@@ -480,7 +480,7 @@ namespace ActivityTimer
             try
             {
                 String setTime           = Pomod_tValueSetRestTimeMin.Text;
-                Pomod_TimerRest.InitTime = new Time (TimeConverter.ConvertMinToSec (TimeConverter.ConvertStringToLongSafe (setTime)));
+                Pomod_TimerRest.InitTime = TimeConverter.StringToTime (setTime);
             }
             catch (InvalidOperationException /*exc*/)
             {

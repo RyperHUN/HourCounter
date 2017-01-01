@@ -519,7 +519,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 12);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Format: min, hh:mm, hh:mm:ss";
+            this.label1.Text = "Format: min, mm:ss, hh:mm:ss";
             // 
             // label2
             // 
@@ -529,7 +529,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(136, 12);
             this.label2.TabIndex = 23;
-            this.label2.Text = "Format: min, hh:mm, hh:mm:ss";
+            this.label2.Text = "Format: min, mm:ss, hh:mm:ss";
             // 
             // label3
             // 
@@ -539,7 +539,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(136, 12);
             this.label3.TabIndex = 24;
-            this.label3.Text = "Format: min, hh:mm, hh:mm:ss";
+            this.label3.Text = "Format: min, mm:ss, hh:mm:ss";
             // 
             // label4
             // 
@@ -549,7 +549,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(136, 12);
             this.label4.TabIndex = 24;
-            this.label4.Text = "Format: min, hh:mm, hh:mm:ss";
+            this.label4.Text = "Format: min, mm:ss, hh:mm:ss";
             // 
             // ActivityTimer
             // 

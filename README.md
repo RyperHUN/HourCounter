@@ -44,7 +44,6 @@ Future Plans
 1. Add Google Calendar support
 2. Motivation music
 3. Improved serialization
-4. Add support for daily time management
-5. Many more
+4. Many more
 
 Also if you want to join developing this application, feel free to email me.

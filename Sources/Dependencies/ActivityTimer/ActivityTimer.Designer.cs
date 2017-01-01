@@ -48,8 +48,6 @@
             this.tabPomodoro = new System.Windows.Forms.TabPage();
             this.Pomod_lValueRemainingTime = new System.Windows.Forms.Label();
             this.Pomod_lTextMode = new System.Windows.Forms.Label();
-            this.Pomod_lMin2 = new System.Windows.Forms.Label();
-            this.Pomod_lMin1 = new System.Windows.Forms.Label();
             this.Pomod_bSetRestTime = new System.Windows.Forms.Button();
             this.Pomod_tValueSetRestTimeMin = new System.Windows.Forms.TextBox();
             this.Pomod_lTextSetRestTIme = new System.Windows.Forms.Label();
@@ -72,6 +70,10 @@
             this.Habit_tSetTime = new System.Windows.Forms.TextBox();
             this.Habit_bRemoveFromHabbits = new System.Windows.Forms.Button();
             this.Habit_lValueMinPerDay = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabPicker.SuspendLayout();
             this.tabStopwatch.SuspendLayout();
             this.tabTimer.SuspendLayout();
@@ -134,10 +136,10 @@
             // Timer_lRemainingTime
             // 
             this.Timer_lRemainingTime.AutoSize = true;
-            this.Timer_lRemainingTime.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Timer_lRemainingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Timer_lRemainingTime.Location = new System.Drawing.Point(108, 47);
             this.Timer_lRemainingTime.Name = "Timer_lRemainingTime";
-            this.Timer_lRemainingTime.Size = new System.Drawing.Size(185, 58);
+            this.Timer_lRemainingTime.Size = new System.Drawing.Size(218, 51);
             this.Timer_lRemainingTime.TabIndex = 5;
             this.Timer_lRemainingTime.Text = "hh:mm:ss";
             // 
@@ -203,15 +205,16 @@
             // Stop_lTime
             // 
             this.Stop_lTime.AutoSize = true;
-            this.Stop_lTime.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Stop_lTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Stop_lTime.Location = new System.Drawing.Point(87, 19);
             this.Stop_lTime.Name = "Stop_lTime";
-            this.Stop_lTime.Size = new System.Drawing.Size(159, 58);
+            this.Stop_lTime.Size = new System.Drawing.Size(198, 51);
             this.Stop_lTime.TabIndex = 6;
             this.Stop_lTime.Text = "00:00:00";
             // 
             // tabTimer
             // 
+            this.tabTimer.Controls.Add(this.label1);
             this.tabTimer.Controls.Add(this.Timer_bSetTime);
             this.tabTimer.Controls.Add(this.Timer_lTextSetTheTime);
             this.tabTimer.Controls.Add(this.Timer_lTextRemainingTime);
@@ -223,7 +226,7 @@
             this.tabTimer.Location = new System.Drawing.Point(4, 22);
             this.tabTimer.Name = "tabTimer";
             this.tabTimer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTimer.Size = new System.Drawing.Size(338, 187);
+            this.tabTimer.Size = new System.Drawing.Size(340, 192);
             this.tabTimer.TabIndex = 0;
             this.tabTimer.Text = "Timer";
             this.tabTimer.UseVisualStyleBackColor = true;
@@ -249,10 +252,9 @@
             // 
             // tabPomodoro
             // 
+            this.tabPomodoro.Controls.Add(this.label2);
             this.tabPomodoro.Controls.Add(this.Pomod_lValueRemainingTime);
             this.tabPomodoro.Controls.Add(this.Pomod_lTextMode);
-            this.tabPomodoro.Controls.Add(this.Pomod_lMin2);
-            this.tabPomodoro.Controls.Add(this.Pomod_lMin1);
             this.tabPomodoro.Controls.Add(this.Pomod_bSetRestTime);
             this.tabPomodoro.Controls.Add(this.Pomod_tValueSetRestTimeMin);
             this.tabPomodoro.Controls.Add(this.Pomod_lTextSetRestTIme);
@@ -267,7 +269,7 @@
             this.tabPomodoro.Location = new System.Drawing.Point(4, 22);
             this.tabPomodoro.Name = "tabPomodoro";
             this.tabPomodoro.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPomodoro.Size = new System.Drawing.Size(338, 187);
+            this.tabPomodoro.Size = new System.Drawing.Size(340, 192);
             this.tabPomodoro.TabIndex = 4;
             this.tabPomodoro.Text = "Pomodoro";
             this.tabPomodoro.UseVisualStyleBackColor = true;
@@ -275,10 +277,10 @@
             // Pomod_lValueRemainingTime
             // 
             this.Pomod_lValueRemainingTime.AutoSize = true;
-            this.Pomod_lValueRemainingTime.Font = new System.Drawing.Font("Adobe Devanagari", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pomod_lValueRemainingTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pomod_lValueRemainingTime.Location = new System.Drawing.Point(134, 105);
             this.Pomod_lValueRemainingTime.Name = "Pomod_lValueRemainingTime";
-            this.Pomod_lValueRemainingTime.Size = new System.Drawing.Size(88, 39);
+            this.Pomod_lValueRemainingTime.Size = new System.Drawing.Size(108, 33);
             this.Pomod_lValueRemainingTime.TabIndex = 13;
             this.Pomod_lValueRemainingTime.Text = "mm:ss";
             // 
@@ -291,27 +293,9 @@
             this.Pomod_lTextMode.TabIndex = 21;
             this.Pomod_lTextMode.Text = "Mode:";
             // 
-            // Pomod_lMin2
-            // 
-            this.Pomod_lMin2.AutoSize = true;
-            this.Pomod_lMin2.Location = new System.Drawing.Point(173, 55);
-            this.Pomod_lMin2.Name = "Pomod_lMin2";
-            this.Pomod_lMin2.Size = new System.Drawing.Size(23, 13);
-            this.Pomod_lMin2.TabIndex = 20;
-            this.Pomod_lMin2.Text = "min";
-            // 
-            // Pomod_lMin1
-            // 
-            this.Pomod_lMin1.AutoSize = true;
-            this.Pomod_lMin1.Location = new System.Drawing.Point(173, 22);
-            this.Pomod_lMin1.Name = "Pomod_lMin1";
-            this.Pomod_lMin1.Size = new System.Drawing.Size(23, 13);
-            this.Pomod_lMin1.TabIndex = 19;
-            this.Pomod_lMin1.Text = "min";
-            // 
             // Pomod_bSetRestTime
             // 
-            this.Pomod_bSetRestTime.Location = new System.Drawing.Point(211, 51);
+            this.Pomod_bSetRestTime.Location = new System.Drawing.Point(187, 54);
             this.Pomod_bSetRestTime.Name = "Pomod_bSetRestTime";
             this.Pomod_bSetRestTime.Size = new System.Drawing.Size(51, 20);
             this.Pomod_bSetRestTime.TabIndex = 18;
@@ -338,7 +322,7 @@
             // 
             // Pomod_bSetWorkTime
             // 
-            this.Pomod_bSetWorkTime.Location = new System.Drawing.Point(211, 19);
+            this.Pomod_bSetWorkTime.Location = new System.Drawing.Point(187, 19);
             this.Pomod_bSetWorkTime.Name = "Pomod_bSetWorkTime";
             this.Pomod_bSetWorkTime.Size = new System.Drawing.Size(51, 20);
             this.Pomod_bSetWorkTime.TabIndex = 15;
@@ -405,23 +389,24 @@
             // Pomod_lValueMode
             // 
             this.Pomod_lValueMode.AutoSize = true;
-            this.Pomod_lValueMode.Font = new System.Drawing.Font("Adobe Devanagari", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pomod_lValueMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pomod_lValueMode.Location = new System.Drawing.Point(135, 80);
             this.Pomod_lValueMode.Margin = new System.Windows.Forms.Padding(0);
             this.Pomod_lValueMode.Name = "Pomod_lValueMode";
-            this.Pomod_lValueMode.Size = new System.Drawing.Size(56, 37);
+            this.Pomod_lValueMode.Size = new System.Drawing.Size(62, 31);
             this.Pomod_lValueMode.TabIndex = 22;
             this.Pomod_lValueMode.Text = "Idle";
             // 
             // tabManualAdd
             // 
+            this.tabManualAdd.Controls.Add(this.label3);
             this.tabManualAdd.Controls.Add(this.Manual_bAdd);
             this.tabManualAdd.Controls.Add(this.Manual_lTextSetTime);
             this.tabManualAdd.Controls.Add(this.Manual_tSetTime);
             this.tabManualAdd.Location = new System.Drawing.Point(4, 22);
             this.tabManualAdd.Name = "tabManualAdd";
             this.tabManualAdd.Padding = new System.Windows.Forms.Padding(3);
-            this.tabManualAdd.Size = new System.Drawing.Size(338, 187);
+            this.tabManualAdd.Size = new System.Drawing.Size(340, 192);
             this.tabManualAdd.TabIndex = 2;
             this.tabManualAdd.Text = "Manual Add";
             this.tabManualAdd.UseVisualStyleBackColor = true;
@@ -455,6 +440,7 @@
             // 
             // tabSetAsHabit
             // 
+            this.tabSetAsHabit.Controls.Add(this.label4);
             this.tabSetAsHabit.Controls.Add(this.Habit_lTextSetTheTime);
             this.tabSetAsHabit.Controls.Add(this.Habit_lTextMinPerDay);
             this.tabSetAsHabit.Controls.Add(this.Habit_bSetAsHabit);
@@ -464,7 +450,7 @@
             this.tabSetAsHabit.Location = new System.Drawing.Point(4, 22);
             this.tabSetAsHabit.Name = "tabSetAsHabit";
             this.tabSetAsHabit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSetAsHabit.Size = new System.Drawing.Size(338, 187);
+            this.tabSetAsHabit.Size = new System.Drawing.Size(340, 192);
             this.tabSetAsHabit.TabIndex = 3;
             this.tabSetAsHabit.Text = "Set as Habit";
             this.tabSetAsHabit.UseVisualStyleBackColor = true;
@@ -481,7 +467,7 @@
             // Habit_lTextMinPerDay
             // 
             this.Habit_lTextMinPerDay.AutoSize = true;
-            this.Habit_lTextMinPerDay.Location = new System.Drawing.Point(29, 69);
+            this.Habit_lTextMinPerDay.Location = new System.Drawing.Point(29, 79);
             this.Habit_lTextMinPerDay.Name = "Habit_lTextMinPerDay";
             this.Habit_lTextMinPerDay.Size = new System.Drawing.Size(51, 13);
             this.Habit_lTextMinPerDay.TabIndex = 12;
@@ -489,7 +475,7 @@
             // 
             // Habit_bSetAsHabit
             // 
-            this.Habit_bSetAsHabit.Location = new System.Drawing.Point(17, 104);
+            this.Habit_bSetAsHabit.Location = new System.Drawing.Point(17, 114);
             this.Habit_bSetAsHabit.Name = "Habit_bSetAsHabit";
             this.Habit_bSetAsHabit.Size = new System.Drawing.Size(75, 23);
             this.Habit_bSetAsHabit.TabIndex = 8;
@@ -507,7 +493,7 @@
             // 
             // Habit_bRemoveFromHabbits
             // 
-            this.Habit_bRemoveFromHabbits.Location = new System.Drawing.Point(192, 104);
+            this.Habit_bRemoveFromHabbits.Location = new System.Drawing.Point(192, 114);
             this.Habit_bRemoveFromHabbits.Name = "Habit_bRemoveFromHabbits";
             this.Habit_bRemoveFromHabbits.Size = new System.Drawing.Size(123, 23);
             this.Habit_bRemoveFromHabbits.TabIndex = 10;
@@ -518,12 +504,52 @@
             // Habit_lValueMinPerDay
             // 
             this.Habit_lValueMinPerDay.AutoSize = true;
-            this.Habit_lValueMinPerDay.Font = new System.Drawing.Font("Adobe Devanagari", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Habit_lValueMinPerDay.Location = new System.Drawing.Point(142, 46);
+            this.Habit_lValueMinPerDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Habit_lValueMinPerDay.Location = new System.Drawing.Point(142, 56);
             this.Habit_lValueMinPerDay.Name = "Habit_lValueMinPerDay";
-            this.Habit_lValueMinPerDay.Size = new System.Drawing.Size(44, 58);
+            this.Habit_lValueMinPerDay.Size = new System.Drawing.Size(47, 51);
             this.Habit_lValueMinPerDay.TabIndex = 13;
             this.Habit_lValueMinPerDay.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(116, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 12);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Format: min, hh:mm, hh:mm:ss";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(102, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 12);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Format: min, hh:mm, hh:mm:ss";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(108, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(136, 12);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Format: min, hh:mm, hh:mm:ss";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(111, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(136, 12);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Format: min, hh:mm, hh:mm:ss";
             // 
             // ActivityTimer
             // 
@@ -585,11 +611,13 @@
         private System.Windows.Forms.Button Pomod_bPause;
         private System.Windows.Forms.TextBox Pomod_tValueSetWorkTimeMin;
         private System.Windows.Forms.Button Pomod_bStop;
-        private System.Windows.Forms.Label Pomod_lMin2;
-        private System.Windows.Forms.Label Pomod_lMin1;
         private System.Windows.Forms.Button Pomod_bSetRestTime;
         private System.Windows.Forms.TextBox Pomod_tValueSetRestTimeMin;
         private System.Windows.Forms.Label Pomod_lTextMode;
         private System.Windows.Forms.Label Pomod_lValueMode;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

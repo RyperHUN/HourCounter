@@ -155,11 +155,11 @@ namespace ActivityTimer
             String setTime = Timer_tSetTime.Text;
             try
             {
-                Timer_Timer.InitTime       = TimeConverter.StringToTimeHHMMSS (setTime);
+                Timer_Timer.InitTime       = TimeConverter.StringToTime (setTime);
             }
             catch (InvalidOperationException /*exc*/)
             {
-                MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
+                MessageBox.Show ("Invalid string argument given.");
                 Timer_Timer.isValidTimeSet = false;
             }
         }
@@ -272,7 +272,7 @@ namespace ActivityTimer
             }
             catch(InvalidOperationException /*exc*/)
             {
-                MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
+                MessageBox.Show ("Invalid string argument given.");
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

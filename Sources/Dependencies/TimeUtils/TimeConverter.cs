@@ -12,6 +12,27 @@ namespace Utils
         static readonly long MINTOSEC  = 60;  //Multiplying MINTOSEC Dividing SecToMin
         static readonly long HOURTOSEC = 3600;
         //TODO Maybe add optional parameter : hh[:mm[:ss]]
+        //Format: min, hh:mm, hh:mm:ss
+        public static Time StringToTime (string timeStr)
+        {
+            String[] timeArray = timeStr.Split(':');
+            switch(timeArray.Length)
+            {
+                case 1:
+                    return StringToTimeMM (timeStr);
+                case 2:
+                    return StringToTimeMMSS (timeStr);
+                case 3:
+                    return StringToTimeHHMMSS (timeStr);
+                default:
+                    throw new InvalidOperationException ("Wrong time string format");
+            }
+        }
+        public static Time StringToTimeMM (string time)
+        {
+            long timeSeconds = ConvertStringToLongSafe (time) * MINTOSEC;
+            return new Time (timeSeconds);
+        }
         public static Time StringToTimeHHMMSS (string time)
         {
             String[] timeArray = time.Split(':');

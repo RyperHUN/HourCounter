@@ -469,7 +469,8 @@
             this.Manual_tSetTime.Name = "Manual_tSetTime";
             this.Manual_tSetTime.Size = new System.Drawing.Size(109, 20);
             this.Manual_tSetTime.TabIndex = 8;
-            this.Manual_tSetTime.Text = "hh:mm:ss";
+            this.Manual_tSetTime.Text = "00:01";
+            this.Manual_tSetTime.TextChanged += new System.EventHandler(this.Manual_tSetTime_TextChanged);
             // 
             // tabSetAsHabit
             // 
@@ -532,7 +533,8 @@
             this.Habit_tSetTime.Name = "Habit_tSetTime";
             this.Habit_tSetTime.Size = new System.Drawing.Size(109, 20);
             this.Habit_tSetTime.TabIndex = 11;
-            this.Habit_tSetTime.Text = "hh:mm:ss";
+            this.Habit_tSetTime.Text = "00:01";
+            this.Habit_tSetTime.TextChanged += new System.EventHandler(this.Habit_tSetTime_TextChanged);
             // 
             // Habit_bRemoveFromHabbits
             // 

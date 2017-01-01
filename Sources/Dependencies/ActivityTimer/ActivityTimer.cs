@@ -81,6 +81,9 @@ namespace ActivityTimer
                 Pomod_bStart.Enabled = true;
             else
                 Pomod_bStart.Enabled = false;
+
+            Manual_tSetTime_checkInputFormat ();
+            Habit_tSetTime_CheckFormat ();
         }
 
         public void Save_Settings ()
@@ -302,6 +305,16 @@ namespace ActivityTimer
                 MessageBox.Show ("Invalid string argument given.");
             }
         }
+        private void Manual_tSetTime_TextChanged (object sender, EventArgs e)
+        {
+            Manual_tSetTime_checkInputFormat ();
+        }
+
+        private void Manual_tSetTime_checkInputFormat ()
+        {
+            Manual_bAdd.Enabled = FormatChecker.SetInputColor (Manual_tSetTime, TimeConverter.isValidStringFormat (Manual_tSetTime.Text));
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// HABIT ADD CODE GOES HERE ////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -338,6 +351,17 @@ namespace ActivityTimer
                 MessageBox.Show ("Invalid string argument given. Please give in the following format: hh:mm:ss");
             }
         }
+
+        private void Habit_tSetTime_TextChanged (object sender, EventArgs e)
+        {
+            Habit_tSetTime_CheckFormat ();
+        }
+
+        private void Habit_tSetTime_CheckFormat ()
+        {
+            Habit_bSetAsHabit.Enabled = FormatChecker.SetInputColor (Habit_tSetTime, TimeConverter.isValidStringFormat (Habit_tSetTime.Text));
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// POMODORO CODE GOES HERE /////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

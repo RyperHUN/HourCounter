@@ -575,6 +575,7 @@
             this.Stop_CheckBeep.TabIndex = 10;
             this.Stop_CheckBeep.Text = "Turn on beep";
             this.Stop_CheckBeep.UseVisualStyleBackColor = true;
+            this.Stop_CheckBeep.CheckedChanged += new System.EventHandler(this.Stop_CheckBeep_CheckedChanged);
             // 
             // label5
             // 
@@ -613,6 +614,7 @@
             this.Stop_bSet.TabIndex = 13;
             this.Stop_bSet.Text = "Set";
             this.Stop_bSet.UseVisualStyleBackColor = true;
+            this.Stop_bSet.Click += new System.EventHandler(this.Stop_bSet_Click);
             // 
             // ActivityTimer
             // 

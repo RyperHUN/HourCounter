@@ -84,6 +84,7 @@ namespace ActivityTimer
 
             Manual_tSetTime_checkInputFormat ();
             Habit_tSetTime_CheckFormat ();
+            Stop_tBeepTime_CheckFormat ();
         }
 
         public void Save_Settings ()
@@ -251,7 +252,7 @@ namespace ActivityTimer
 
         private void Stopwatch_Init ()
         {
-            Stop_beepTimer.Interval = (int)TIME.Minutes(10).Miliseconds;
+            Stop_SetTime ();
             Stop_beepTimer.Tick += (object s, EventArgs e) => beepSoundPlayer.PlayOnce ();
         }
         private void Stop_stopwatchSecond_Tick (object sender, EventArgs e)
@@ -265,7 +266,8 @@ namespace ActivityTimer
             Stop_elapsedTime = new Time ();
             Stop_lTime.Text = TimeConverter.TimeToStringHHMMSS (Stop_elapsedTime);
             Stop_timerSecond.Start ();
-            Stop_beepTimer.Start ();
+            if (Stop_CheckBeep.Checked)
+                Stop_beepTimer.Start ();
             TimerStartedEvent?.Invoke ();
         }
 
@@ -298,7 +300,22 @@ namespace ActivityTimer
 
         private void Stop_tBeepTime_CheckFormat ()
         {
-            
+            Stop_bSet.Enabled = FormatChecker.SetInputColor(Stop_tBeepTime, TimeConverter.isValidStringFormat(Stop_tBeepTime.Text));
+        }
+        private void Stop_CheckBeep_CheckedChanged (object sender, EventArgs e)
+        {
+            Stop_BeepPanel.Enabled = Stop_CheckBeep.Checked;
+        }
+
+        private void Stop_bSet_Click (object sender, EventArgs e)
+        {
+            Stop_SetTime ();
+        }
+
+        private void Stop_SetTime ()
+        {
+            Time beepTime = TimeConverter.StringToTime (Stop_tBeepTime.Text);
+            Stop_beepTimer.Interval = (int)beepTime.Miliseconds;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -537,6 +537,17 @@ namespace ActivityTimer
             }
         }
 
+        private void Pomod_input_TextChanged (object sender, EventArgs e)
+        {
+            Pomod_input_TextChanged ();
+        }
+
+        private void Pomod_input_TextChanged ()
+        {
+            Pomod_bSetRestTime.Enabled = FormatChecker.SetInputColor (Pomod_tValueSetRestTimeMin, TimeConverter.isValidStringFormat (Pomod_tValueSetRestTimeMin.Text));
+            Pomod_bSetWorkTime.Enabled = FormatChecker.SetInputColor (Pomod_tValueSetWorkTimeMin, TimeConverter.isValidStringFormat (Pomod_tValueSetWorkTimeMin.Text));
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////// OTHER CODE GOES HERE ////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

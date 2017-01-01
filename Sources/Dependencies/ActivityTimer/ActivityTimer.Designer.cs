@@ -43,9 +43,11 @@
             this.Stop_bStart = new System.Windows.Forms.Button();
             this.Stop_lTime = new System.Windows.Forms.Label();
             this.tabTimer = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.Timer_bSetTime = new System.Windows.Forms.Button();
             this.Timer_lTextSetTheTime = new System.Windows.Forms.Label();
             this.tabPomodoro = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.Pomod_lValueRemainingTime = new System.Windows.Forms.Label();
             this.Pomod_lTextMode = new System.Windows.Forms.Label();
             this.Pomod_bSetRestTime = new System.Windows.Forms.Button();
@@ -60,20 +62,18 @@
             this.Pomod_bStop = new System.Windows.Forms.Button();
             this.Pomod_lValueMode = new System.Windows.Forms.Label();
             this.tabManualAdd = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.Manual_bAdd = new System.Windows.Forms.Button();
             this.Manual_lTextSetTime = new System.Windows.Forms.Label();
             this.Manual_tSetTime = new System.Windows.Forms.TextBox();
             this.tabSetAsHabit = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.Habit_lTextSetTheTime = new System.Windows.Forms.Label();
             this.Habit_lTextMinPerDay = new System.Windows.Forms.Label();
             this.Habit_bSetAsHabit = new System.Windows.Forms.Button();
             this.Habit_tSetTime = new System.Windows.Forms.TextBox();
             this.Habit_bRemoveFromHabbits = new System.Windows.Forms.Button();
             this.Habit_lValueMinPerDay = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabPicker.SuspendLayout();
             this.tabStopwatch.SuspendLayout();
             this.tabTimer.SuspendLayout();
@@ -232,6 +232,16 @@
             this.tabTimer.Text = "Timer";
             this.tabTimer.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(116, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 12);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Format: min, mm:ss, hh:mm:ss";
+            // 
             // Timer_bSetTime
             // 
             this.Timer_bSetTime.Location = new System.Drawing.Point(253, 15);
@@ -275,6 +285,16 @@
             this.tabPomodoro.Text = "Pomodoro";
             this.tabPomodoro.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(102, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 12);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Format: min, mm:ss, hh:mm:ss";
+            // 
             // Pomod_lValueRemainingTime
             // 
             this.Pomod_lValueRemainingTime.AutoSize = true;
@@ -311,6 +331,7 @@
             this.Pomod_tValueSetRestTimeMin.Size = new System.Drawing.Size(63, 20);
             this.Pomod_tValueSetRestTimeMin.TabIndex = 17;
             this.Pomod_tValueSetRestTimeMin.Text = "5";
+            this.Pomod_tValueSetRestTimeMin.TextChanged += new System.EventHandler(this.Pomod_input_TextChanged);
             // 
             // Pomod_lTextSetRestTIme
             // 
@@ -376,6 +397,7 @@
             this.Pomod_tValueSetWorkTimeMin.Size = new System.Drawing.Size(63, 20);
             this.Pomod_tValueSetWorkTimeMin.TabIndex = 11;
             this.Pomod_tValueSetWorkTimeMin.Text = "20";
+            this.Pomod_tValueSetWorkTimeMin.TextChanged += new System.EventHandler(this.Pomod_input_TextChanged);
             // 
             // Pomod_bStop
             // 
@@ -411,6 +433,16 @@
             this.tabManualAdd.TabIndex = 2;
             this.tabManualAdd.Text = "Manual Add";
             this.tabManualAdd.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(108, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(136, 12);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Format: min, mm:ss, hh:mm:ss";
             // 
             // Manual_bAdd
             // 
@@ -455,6 +487,16 @@
             this.tabSetAsHabit.TabIndex = 3;
             this.tabSetAsHabit.Text = "Set as Habit";
             this.tabSetAsHabit.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(111, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(136, 12);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Format: min, mm:ss, hh:mm:ss";
             // 
             // Habit_lTextSetTheTime
             // 
@@ -511,46 +553,6 @@
             this.Habit_lValueMinPerDay.Size = new System.Drawing.Size(47, 51);
             this.Habit_lValueMinPerDay.TabIndex = 13;
             this.Habit_lValueMinPerDay.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(116, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 12);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Format: min, mm:ss, hh:mm:ss";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(102, 74);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 12);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "Format: min, mm:ss, hh:mm:ss";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(108, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 12);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Format: min, mm:ss, hh:mm:ss";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(111, 46);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 12);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Format: min, mm:ss, hh:mm:ss";
             // 
             // ActivityTimer
             // 

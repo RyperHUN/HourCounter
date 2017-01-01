@@ -74,12 +74,18 @@
             this.Habit_tSetTime = new System.Windows.Forms.TextBox();
             this.Habit_bRemoveFromHabbits = new System.Windows.Forms.Button();
             this.Habit_lValueMinPerDay = new System.Windows.Forms.Label();
+            this.Stop_CheckBeep = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Stop_BeepPanel = new System.Windows.Forms.Panel();
+            this.Stop_tBeepTime = new System.Windows.Forms.TextBox();
+            this.Stop_bSet = new System.Windows.Forms.Button();
             this.tabPicker.SuspendLayout();
             this.tabStopwatch.SuspendLayout();
             this.tabTimer.SuspendLayout();
             this.tabPomodoro.SuspendLayout();
             this.tabManualAdd.SuspendLayout();
             this.tabSetAsHabit.SuspendLayout();
+            this.Stop_BeepPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Stop_timerSecond
@@ -161,6 +167,8 @@
             // 
             // tabStopwatch
             // 
+            this.tabStopwatch.Controls.Add(this.Stop_BeepPanel);
+            this.tabStopwatch.Controls.Add(this.Stop_CheckBeep);
             this.tabStopwatch.Controls.Add(this.Stop_bStop);
             this.tabStopwatch.Controls.Add(this.Stop_bPause);
             this.tabStopwatch.Controls.Add(this.Stop_bStart);
@@ -175,7 +183,7 @@
             // 
             // Stop_bStop
             // 
-            this.Stop_bStop.Location = new System.Drawing.Point(230, 100);
+            this.Stop_bStop.Location = new System.Drawing.Point(234, 73);
             this.Stop_bStop.Name = "Stop_bStop";
             this.Stop_bStop.Size = new System.Drawing.Size(75, 23);
             this.Stop_bStop.TabIndex = 9;
@@ -185,7 +193,7 @@
             // 
             // Stop_bPause
             // 
-            this.Stop_bPause.Location = new System.Drawing.Point(122, 100);
+            this.Stop_bPause.Location = new System.Drawing.Point(126, 73);
             this.Stop_bPause.Name = "Stop_bPause";
             this.Stop_bPause.Size = new System.Drawing.Size(75, 23);
             this.Stop_bPause.TabIndex = 8;
@@ -195,7 +203,7 @@
             // 
             // Stop_bStart
             // 
-            this.Stop_bStart.Location = new System.Drawing.Point(18, 100);
+            this.Stop_bStart.Location = new System.Drawing.Point(22, 73);
             this.Stop_bStart.Name = "Stop_bStart";
             this.Stop_bStart.Size = new System.Drawing.Size(75, 23);
             this.Stop_bStart.TabIndex = 7;
@@ -207,7 +215,7 @@
             // 
             this.Stop_lTime.AutoSize = true;
             this.Stop_lTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 32.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Stop_lTime.Location = new System.Drawing.Point(87, 19);
+            this.Stop_lTime.Location = new System.Drawing.Point(61, 10);
             this.Stop_lTime.Name = "Stop_lTime";
             this.Stop_lTime.Size = new System.Drawing.Size(198, 51);
             this.Stop_lTime.TabIndex = 6;
@@ -556,6 +564,56 @@
             this.Habit_lValueMinPerDay.TabIndex = 13;
             this.Habit_lValueMinPerDay.Text = "0";
             // 
+            // Stop_CheckBeep
+            // 
+            this.Stop_CheckBeep.AutoSize = true;
+            this.Stop_CheckBeep.Checked = true;
+            this.Stop_CheckBeep.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Stop_CheckBeep.Location = new System.Drawing.Point(22, 102);
+            this.Stop_CheckBeep.Name = "Stop_CheckBeep";
+            this.Stop_CheckBeep.Size = new System.Drawing.Size(90, 17);
+            this.Stop_CheckBeep.TabIndex = 10;
+            this.Stop_CheckBeep.Text = "Turn on beep";
+            this.Stop_CheckBeep.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(1, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(136, 12);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Format: min, mm:ss, hh:mm:ss";
+            // 
+            // Stop_BeepPanel
+            // 
+            this.Stop_BeepPanel.Controls.Add(this.Stop_bSet);
+            this.Stop_BeepPanel.Controls.Add(this.Stop_tBeepTime);
+            this.Stop_BeepPanel.Controls.Add(this.label5);
+            this.Stop_BeepPanel.Location = new System.Drawing.Point(22, 120);
+            this.Stop_BeepPanel.Name = "Stop_BeepPanel";
+            this.Stop_BeepPanel.Size = new System.Drawing.Size(287, 66);
+            this.Stop_BeepPanel.TabIndex = 12;
+            // 
+            // Stop_tBeepTime
+            // 
+            this.Stop_tBeepTime.Location = new System.Drawing.Point(3, 16);
+            this.Stop_tBeepTime.Name = "Stop_tBeepTime";
+            this.Stop_tBeepTime.Size = new System.Drawing.Size(100, 20);
+            this.Stop_tBeepTime.TabIndex = 12;
+            this.Stop_tBeepTime.Text = "10:00";
+            this.Stop_tBeepTime.TextChanged += new System.EventHandler(this.Stop_tBeepTime_TextChanged);
+            // 
+            // Stop_bSet
+            // 
+            this.Stop_bSet.Location = new System.Drawing.Point(110, 16);
+            this.Stop_bSet.Name = "Stop_bSet";
+            this.Stop_bSet.Size = new System.Drawing.Size(47, 20);
+            this.Stop_bSet.TabIndex = 13;
+            this.Stop_bSet.Text = "Set";
+            this.Stop_bSet.UseVisualStyleBackColor = true;
+            // 
             // ActivityTimer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -574,6 +632,8 @@
             this.tabManualAdd.PerformLayout();
             this.tabSetAsHabit.ResumeLayout(false);
             this.tabSetAsHabit.PerformLayout();
+            this.Stop_BeepPanel.ResumeLayout(false);
+            this.Stop_BeepPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -624,5 +684,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox Stop_CheckBeep;
+        private System.Windows.Forms.Panel Stop_BeepPanel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button Stop_bSet;
+        private System.Windows.Forms.TextBox Stop_tBeepTime;
     }
 }

@@ -23,7 +23,7 @@ namespace DayChooser
         {
             InitializeComponent ();
             radioCustom.Enabled = true;
-            originalTextBackground = textFrom.BackColor;
+            originalTextBackground = Color.White;
             textFrom.Text = DateTime.Now.ToString(DateFormatString[0]);
             textTo.Text   = textFrom.Text;
         }
@@ -57,31 +57,16 @@ namespace DayChooser
 
         private void IntervalTextChanged (object sender, EventArgs e)
         {
-            bool isFirstSucess = false;
-            if (DateTime.TryParseExact (textFrom.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out from) )
+            if (FormatChecker.SetInputColor (textFrom, DateTime.TryParseExact (textFrom.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out from)) &&
+                FormatChecker.SetInputColor (textTo, DateTime.TryParseExact (textTo.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out to))
+                )
             {
-                textFrom.BackColor = originalTextBackground;
-                isFirstSucess = true;
+                radioCustom.Enabled = true;
+                UpdateRadioCustom ();
+                return;
             }
             else
-            {
-                textFrom.BackColor = Color.LightPink;
-            }
-            if (DateTime.TryParseExact (textTo.Text, DateFormatString, CultureInfo.InvariantCulture,DateTimeStyles.None, out to) )
-            {
-                textTo.BackColor    = originalTextBackground;
-                if (isFirstSucess)
-                {
-                    radioCustom.Enabled = true;
-                    UpdateRadioCustom ();
-                    return;
-                }
-            }
-            else
-            {
-                textTo.BackColor = Color.LightPink;
-            }
-            radioCustom.Enabled = false;
+                radioCustom.Enabled = false;
         }
 
         public void Disable ()

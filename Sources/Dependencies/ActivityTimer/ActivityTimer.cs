@@ -173,7 +173,7 @@ namespace ActivityTimer
             }
             else
             {
-                MessageBox.Show ("You must specify a time first.");
+                MessageBox.Show ("You must specify a valid time first.");
             }
         }
 

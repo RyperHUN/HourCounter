@@ -32,7 +32,7 @@ namespace Utils
                 Debug.Assert(!timer.Enabled, "Timer already started");
 
                 _initTime      = value;
-                isValidTimeSet = true;
+                isValidTimeSet = _initTime.Seconds > 0;
                 syncTimes ();
             }
         }
